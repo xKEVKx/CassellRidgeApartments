@@ -25,7 +25,7 @@ export const SITE_CONFIG = {
     twitter: ""
   },
 
-  mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6895.317241492977!2d-81.56779593153571!3d30.218289417204254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e5ca56e17d7963%3A0x92aab633c48a4a09!2s8231%20Princeton%20Square%20Blvd%20W%2C%20Jacksonville%2C%20FL%2032256!5e0!3m2!1sen!2sus!4v1588112582049!5m2!1sen!2sus"
+  mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13790.634482985954!2d-81.56779593153571!3d30.218289417204254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f12.0!3m3!1m2!1s0x88e5ca56e17d7963%3A0x92aab633c48a4a09!2s8231%20Princeton%20Square%20Blvd%20W%2C%20Jacksonville%2C%20FL%2032256!5e0!3m2!1sen!2sus!4v1588112582049!5m2!1sen!2sus"
 };
 
 export const HERO_IMAGE = "/images/hero-image.jpg";

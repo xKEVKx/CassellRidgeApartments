@@ -192,21 +192,31 @@ export default function FloorPlans() {
                   <span className="text-slate-700 font-medium">Central location near I-95 and Baymeadows</span>
                 </div>
               </div>
-              
-              <div className="bg-white rounded-2xl p-6 shadow-xl">
-                <h4 className="text-xl font-semibold text-slate-900 mb-4">Interactive Map</h4>
-                <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
-                  <iframe
-                    src={SITE_CONFIG.mapEmbedUrl}
-                    width="100%"
-                    height="300"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="w-full rounded-xl"
-                  ></iframe>
-                </div>
+            </div>
+          </div>
+          
+          {/* Interactive Map - Full Width */}
+          <div className="mt-16">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                Interactive Location Map
+              </h3>
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                Explore our convenient location in Jacksonville's Southside near I-95 and Baymeadows.
+              </p>
+            </div>
+            <div className="bg-white rounded-3xl p-4 shadow-xl">
+              <div className="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden">
+                <iframe
+                  src={SITE_CONFIG.mapEmbedUrl}
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full rounded-2xl"
+                ></iframe>
               </div>
             </div>
           </div>
