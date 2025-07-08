@@ -15,110 +15,259 @@ export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   
   const images: GalleryImage[] = [
+    // Interior Photos
     {
       id: 1,
-      title: "Living Room with Fireplace",
-      imageUrl: "/images/gallery/interior-1.jpg",
+      title: "Main Interior Living Space",
+      imageUrl: "/images/amenities/authentic/interior-main.jpg",
       category: "interior",
-      description: "Spacious living room with cozy fireplace"
+      description: "Spacious living room with modern fixtures"
     },
     {
       id: 2,
-      title: "Resort Style Pool",
-      imageUrl: "/images/gallery/pool-area.jpg",
-      category: "pool",
-      description: "One of two resort-style pools"
+      title: "Dining Area",
+      imageUrl: "/images/amenities/authentic/interior-dining.jpg",
+      category: "interior",
+      description: "Separate dining room with elegant design"
     },
     {
       id: 3,
-      title: "Elegant Bedroom",
-      imageUrl: "/images/gallery/interior-2.jpg",
+      title: "Living Room",
+      imageUrl: "/images/amenities/authentic/interior-living.jpg",
       category: "interior",
-      description: "Well-appointed bedroom with modern fixtures"
+      description: "Comfortable living space with modern amenities"
     },
     {
       id: 4,
-      title: "Modern Kitchen",
-      imageUrl: "/images/gallery/interior-3.jpg",
+      title: "Kitchen",
+      imageUrl: "/images/amenities/authentic/interior-kitchen.jpg",
       category: "interior",
       description: "Fully equipped modern kitchen"
     },
     {
       id: 5,
-      title: "Spacious Bathroom",
-      imageUrl: "/images/gallery/interior-4.jpg",
+      title: "Bedroom",
+      imageUrl: "/images/amenities/authentic/interior-bedroom.jpg",
       category: "interior",
-      description: "Modern bathroom with contemporary finishes"
+      description: "Well-appointed bedroom with ample space"
     },
     {
       id: 6,
-      title: "Living Area",
-      imageUrl: "/images/gallery/interior-5.jpg",
+      title: "Cozy Living Area",
+      imageUrl: "/images/amenities/authentic/interior-cozy.jpg",
       category: "interior",
-      description: "Open concept living area"
+      description: "Warm and inviting living space"
     },
     {
       id: 7,
-      title: "Comfortable Bedroom",
-      imageUrl: "/images/gallery/interior-6.jpg",
+      title: "Sunroom",
+      imageUrl: "/images/amenities/authentic/interior-sunroom.jpg",
       category: "interior",
-      description: "Comfortable bedroom with ample natural light"
+      description: "Bright sunroom with natural light"
     },
     {
       id: 8,
-      title: "Dining Area",
-      imageUrl: "/images/gallery/interior-7.jpg",
+      title: "Balcony View",
+      imageUrl: "/images/amenities/authentic/interior-balcony.jpg",
       category: "interior",
-      description: "Elegant dining area perfect for entertaining"
+      description: "Private balcony with outdoor view"
     },
     {
       id: 9,
-      title: "Cozy Living Room",
-      imageUrl: "/images/gallery/interior-8.jpg",
+      title: "Spacious Interior",
+      imageUrl: "/images/amenities/authentic/interior-spacious.jpg",
       category: "interior",
-      description: "Cozy living room with modern decor"
+      description: "Open floor plan with generous space"
     },
     {
       id: 10,
-      title: "Stylish Interior",
-      imageUrl: "/images/gallery/interior-9.jpg",
+      title: "Modern Living",
+      imageUrl: "/images/amenities/authentic/interior-modern.jpg",
       category: "interior",
-      description: "Stylish interior with contemporary design"
+      description: "Contemporary design with modern amenities"
     },
     {
       id: 11,
-      title: "Living Space",
-      imageUrl: "/images/gallery/interior-10.jpg",
+      title: "Fireplace Area",
+      imageUrl: "/images/amenities/authentic/interior-fireplace.jpg",
       category: "interior",
-      description: "Bright and airy living space"
+      description: "Wood burning fireplace in select units"
     },
     {
       id: 12,
-      title: "Pool Area",
-      imageUrl: "/images/gallery/grove-pool2-800w.jpg",
-      category: "pool",
-      description: "Beautiful pool area with sun deck"
+      title: "Window Views",
+      imageUrl: "/images/amenities/authentic/interior-window.jpg",
+      category: "interior",
+      description: "Large windows with natural light"
     },
     {
       id: 13,
+      title: "Elegant Design",
+      imageUrl: "/images/amenities/authentic/interior-elegant.jpg",
+      category: "interior",
+      description: "Sophisticated interior design"
+    },
+    
+    // Pool and Outdoor Areas
+    {
+      id: 14,
+      title: "Resort-Style Pool",
+      imageUrl: "/images/amenities/authentic/pool-area.jpg",
+      category: "pool",
+      description: "Main pool area with deck seating"
+    },
+    {
+      id: 15,
       title: "Pool Deck",
-      imageUrl: "/images/gallery/grove-pool5-800w.jpg",
+      imageUrl: "/images/amenities/authentic/pool-deck.jpg",
       category: "pool",
       description: "Spacious pool deck for relaxation"
     },
     {
-      id: 14,
-      title: "Swimming Pool",
-      imageUrl: "/images/gallery/grove-pool1-800w.jpg",
+      id: 16,
+      title: "Pool Area 2",
+      imageUrl: "/images/amenities/authentic/pool-area-2.jpg",
       category: "pool",
-      description: "Crystal clear swimming pool"
+      description: "Another view of the pool complex"
     },
     {
-      id: 15,
-      title: "Private Patio",
-      imageUrl: "/images/gallery/grove-patio1-800w.jpg",
+      id: 17,
+      title: "Volleyball Court",
+      imageUrl: "/images/amenities/authentic/pool-volleyball.jpg",
+      category: "pool",
+      description: "Sand volleyball court by the pool"
+    },
+    {
+      id: 18,
+      title: "Pool Seating",
+      imageUrl: "/images/amenities/authentic/pool-seating.jpg",
+      category: "pool",
+      description: "Comfortable seating areas around the pool"
+    },
+    {
+      id: 19,
+      title: "Pool Community Area",
+      imageUrl: "/images/amenities/authentic/pool-community.jpg",
+      category: "pool",
+      description: "Community gathering space by the pool"
+    },
+    {
+      id: 20,
+      title: "Volleyball Court 2",
+      imageUrl: "/images/amenities/authentic/pool-volleyball-2.jpg",
+      category: "pool",
+      description: "Sand volleyball court for active lifestyle"
+    },
+    {
+      id: 21,
+      title: "Pool Lifestyle",
+      imageUrl: "/images/amenities/authentic/pool-lifestyle.jpg",
+      category: "pool",
+      description: "Resort-style pool living"
+    },
+    {
+      id: 22,
+      title: "Pool Seating Area",
+      imageUrl: "/images/amenities/authentic/pool-seating-area.jpg",
+      category: "pool",
+      description: "Relaxing seating by the water"
+    },
+    {
+      id: 23,
+      title: "Pool Aerial View",
+      imageUrl: "/images/amenities/authentic/pool-aerial.jpg",
+      category: "pool",
+      description: "Overhead view of the pool complex"
+    },
+    {
+      id: 24,
+      title: "Resort-Style Pool",
+      imageUrl: "/images/amenities/authentic/pool-resort-style.jpg",
+      category: "pool",
+      description: "Beautiful resort-style pool design"
+    },
+    
+    // Building Exterior
+    {
+      id: 25,
+      title: "Building Exterior",
+      imageUrl: "/images/amenities/authentic/building-exterior.jpg",
       category: "exterior",
-      description: "Private patio with garden views"
+      description: "Beautiful apartment building exterior"
+    },
+    {
+      id: 26,
+      title: "Property Exterior",
+      imageUrl: "/images/amenities/authentic/exterior-building.jpg",
+      category: "exterior",
+      description: "Well-maintained property grounds"
+    },
+    {
+      id: 27,
+      title: "Building Exterior 2",
+      imageUrl: "/images/amenities/authentic/building-exterior-2.jpg",
+      category: "exterior",
+      description: "Another view of the building"
+    },
+    {
+      id: 28,
+      title: "Building Entrance",
+      imageUrl: "/images/amenities/authentic/building-entrance.jpg",
+      category: "exterior",
+      description: "Welcoming building entrance"
+    },
+    {
+      id: 29,
+      title: "Building Landscaping",
+      imageUrl: "/images/amenities/authentic/building-landscaping.jpg",
+      category: "exterior",
+      description: "Beautiful landscaping around the property"
+    },
+    {
+      id: 30,
+      title: "Building Exterior 3",
+      imageUrl: "/images/amenities/authentic/building-exterior-3.jpg",
+      category: "exterior",
+      description: "Side view of the apartment building"
+    },
+    {
+      id: 31,
+      title: "Building Exterior 4",
+      imageUrl: "/images/amenities/authentic/building-exterior-4.jpg",
+      category: "exterior",
+      description: "Full view of the building exterior"
+    },
+    
+    // Fitness Center
+    {
+      id: 32,
+      title: "Fitness Center",
+      imageUrl: "/images/amenities/authentic/fitness-center.jpg",
+      category: "fitness",
+      description: "24-hour fitness center"
+    },
+    {
+      id: 33,
+      title: "Fitness Equipment",
+      imageUrl: "/images/amenities/authentic/fitness-equipment.jpg",
+      category: "fitness",
+      description: "Modern fitness equipment"
+    },
+    {
+      id: 34,
+      title: "Fitness Center 2",
+      imageUrl: "/images/amenities/authentic/fitness-center-2.jpg",
+      category: "fitness",
+      description: "Spacious workout area"
+    },
+    
+    // Leasing Office
+    {
+      id: 35,
+      title: "Leasing Office",
+      imageUrl: "/images/amenities/authentic/leasing-office.jpg",
+      category: "office",
+      description: "Professional leasing office"
     }
   ];
 
@@ -126,7 +275,9 @@ export default function Gallery() {
     { id: "all", label: "All Photos", icon: Home },
     { id: "interior", label: "Interior", icon: Home },
     { id: "pool", label: "Pool & Amenities", icon: Waves },
-    { id: "exterior", label: "Exterior", icon: TreePine }
+    { id: "exterior", label: "Exterior", icon: TreePine },
+    { id: "fitness", label: "Fitness Center", icon: TreePine },
+    { id: "office", label: "Leasing Office", icon: Home }
   ];
 
   const filteredImages = selectedCategory === "all" 
@@ -141,7 +292,7 @@ export default function Gallery() {
             Property Gallery
           </h1>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Explore our beautiful apartment homes and resort-style amenities at The Grove at Deerwood
+            Explore our beautiful apartment homes and resort-style amenities at Bicycle Club Apartments
           </p>
         </div>
         
