@@ -31,7 +31,7 @@ export default function Amenities() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
           <div>
             <img 
-              src="/images/amenities/pool-exterior.jpg" 
+              src="/images/amenities/authentic/pool-area.jpg" 
               alt="Resort-style pool area" 
               className="rounded-lg shadow-lg w-full h-auto"
             />

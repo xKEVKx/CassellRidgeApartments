@@ -97,13 +97,13 @@ export default function Home() {
           <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden">
             {isPopupMinimized ? (
               // Minimized state
-              <div className="w-full h-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center cursor-pointer"
+              (<div className="w-full h-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center cursor-pointer"
                    onClick={() => setIsPopupMinimized(false)}>
                 <ChevronRight className="text-white w-8 h-8" />
-              </div>
+              </div>)
             ) : (
               // Expanded state
-              <div className="relative">
+              (<div className="relative">
                 {/* Header */}
                 <div className="bg-gradient-to-r from-orange-400 to-red-500 p-3 flex justify-end items-center">
                   <div className="flex gap-2">
@@ -121,7 +121,6 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
-                
                 {/* Image content */}
                 <div className="p-4">
                   <img 
@@ -130,7 +129,6 @@ export default function Home() {
                     className="w-full h-auto rounded-lg shadow-md"
                   />
                 </div>
-                
                 {/* Call to action */}
                 <div className="p-4 pt-0">
                   <Button 
@@ -140,7 +138,7 @@ export default function Home() {
                     <Link href="/contact">Learn More</Link>
                   </Button>
                 </div>
-              </div>
+              </div>)
             )}
           </div>
         </div>
@@ -179,7 +177,7 @@ export default function Home() {
               <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
                 With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness room, 
                 <span className="text-emerald-400 font-medium">Bicycle Club</span> is an ideal place to live in 
-                <span className="text-emerald-400 font-medium">Kansas City</span>.
+                <span className="text-emerald-400 font-medium"> Kansas City</span>.
               </p>
             </div>
             
@@ -233,7 +231,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Sophisticated Property Overview */}
       <section className="py-16 bg-gradient-to-b from-white via-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -331,7 +328,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Ultra Modern Amenities Showcase */}
       <section className="py-20 bg-slate-900 relative overflow-hidden">
         {/* Background Pattern */}
@@ -445,7 +441,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Modern Floor Plans Showcase */}
       <section className="py-20 bg-gradient-to-b from-white via-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -521,7 +516,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Ultra Modern Contact CTA */}
       <section className="py-20 relative overflow-hidden">
         {/* Rotating Background Images */}
