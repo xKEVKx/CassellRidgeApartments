@@ -119,6 +119,9 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 ## Changelog
 
 ### July 08, 2025 - Complete Website Transformation to Bicycle Club Apartments
+- **Page Title Update**: Changed browser tab title from "The Grove at Deerwood" to "Bicycle Club Apartments - Luxury Living in Kansas City, MO"
+- **Meta Tags**: Updated all SEO meta descriptions and Open Graph tags to reflect Bicycle Club branding
+- **Gallery Enhancement**: Added 35+ authentic Bicycle Club images from amenities page with proper categorization
 - **Complete Brand Transformation**: Updated entire website from Grove at Deerwood to Bicycle Club Apartments
 - **Location Change**: Transformed from Jacksonville, Florida to Kansas City, Missouri content
 - **New Floor Plans**: Updated to Bicycle Club's 4 floor plans (Aspen, Vail, Montrose, Vista) with correct pricing and square footage
