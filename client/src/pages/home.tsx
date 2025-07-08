@@ -33,6 +33,7 @@ export default function Home() {
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(true);
 
   useEffect(() => {
     const getRandomInterval = () => Math.random() * 2000 + 3000; // 3-5 seconds
@@ -212,9 +213,11 @@ export default function Home() {
             <div className="relative">
               <div className="relative group">
                 <img 
-                  src="/images/grove-hero.jpg" 
+                  src={interiorImages[currentImageIndex]} 
                   alt="Luxury apartment interior" 
-                  className="w-full h-auto rounded-3xl shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                  className={`w-full h-auto rounded-3xl shadow-2xl transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                  onLoad={() => setImageLoaded(true)}
+                  onLoadStart={() => setImageLoaded(false)}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
                 
