@@ -17,16 +17,12 @@ export default function Navbar() {
             <Link href="/" className="flex-shrink-0 group">
               <div className="flex items-center space-x-4">
                 <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                    <span className="text-white font-bold text-xl">G</span>
-                  </div>
-                  <div className="absolute -inset-1 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300"></div>
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors duration-300">
-                    The Grove
-                  </h1>
-                  <div className="text-sm text-slate-500 font-medium">at Deerwood</div>
+                  <img 
+                    src="/images/grove-logo.png" 
+                    alt="The Grove at Deerwood Logo" 
+                    className="h-16 w-auto transition-all duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute -inset-2 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
                 </div>
               </div>
             </Link>
@@ -83,9 +79,12 @@ export default function Navbar() {
               <SheetContent side="right" className="w-80 bg-white/95 backdrop-blur-xl">
                 <div className="flex flex-col space-y-6 mt-8">
                   {/* Logo in mobile */}
-                  <div className="text-center pb-4 border-b border-slate-200">
-                    <div className="text-2xl font-bold text-slate-900">The Grove</div>
-                    <div className="text-sm text-slate-500 font-medium">at Deerwood</div>
+                  <div className="flex justify-center pb-4 border-b border-slate-200">
+                    <img 
+                      src="/images/grove-logo.png" 
+                      alt="The Grove at Deerwood Logo" 
+                      className="h-12 w-auto"
+                    />
                   </div>
                   
                   {/* Navigation Links */}
