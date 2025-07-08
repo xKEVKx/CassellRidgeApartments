@@ -22,7 +22,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <div 
             className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior2-960x460-2.jpg)` }}
+            style={{ backgroundImage: `url(/images/grove-hero.jpg)` }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-800/70 to-slate-900/90" />
         </div>
@@ -189,7 +189,7 @@ export default function Home() {
             <div className="relative">
               <div className="relative group">
                 <img 
-                  src="https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior2-960x460-2.jpg" 
+                  src="/images/grove-hero.jpg" 
                   alt="Luxury apartment interior" 
                   className="w-full h-auto rounded-3xl shadow-2xl transition-transform duration-700 group-hover:scale-105"
                 />
@@ -302,7 +302,7 @@ export default function Home() {
             <div className="relative">
               <div className="relative group">
                 <img 
-                  src="https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-pool1-800w.jpg" 
+                  src="/images/grove-pool.jpg" 
                   alt="Resort-style pool at night" 
                   className="w-full h-auto rounded-3xl shadow-2xl transition-transform duration-700 group-hover:scale-105"
                 />
