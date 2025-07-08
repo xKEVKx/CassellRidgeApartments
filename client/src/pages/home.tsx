@@ -71,6 +71,8 @@ export default function Home() {
             style={{ backgroundImage: `url(/images/grove-home-hero.jpg)` }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-800/70 to-slate-900/90" />
+          {/* Pond shimmer effect */}
+          <div className="pond-shimmer" />
         </div>
         
         {/* Floating Elements */}
