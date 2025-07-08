@@ -42,7 +42,7 @@ export default function Navbar() {
                           className={`group px-3 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                             link.subItems.some(subItem => location === subItem.href)
                               ? 'text-emerald-700'
-                              : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                              : 'text-slate-700 hover:text-emerald-600'
                           }`}
                         >
                           <span className="relative flex items-center">
@@ -77,7 +77,7 @@ export default function Navbar() {
                       className={`group px-3 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                         location === link.href
                           ? 'text-emerald-700'
-                          : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                          : 'text-slate-700 hover:text-emerald-600'
                       }`}
                     >
                       <span className="relative flex items-center">
