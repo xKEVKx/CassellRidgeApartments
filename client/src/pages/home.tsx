@@ -105,7 +105,7 @@ export default function Home() {
       </section>
 
       {/* Sophisticated Property Overview */}
-      <section className="py-24 bg-gradient-to-b from-white via-slate-50 to-white">
+      <section className="py-16 bg-gradient-to-b from-white via-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -198,7 +198,7 @@ export default function Home() {
       </section>
 
       {/* Ultra Modern Amenities Showcase */}
-      <section className="py-32 bg-slate-900 relative overflow-hidden">
+      <section className="py-20 bg-slate-900 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -209,7 +209,7 @@ export default function Home() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Section Header */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
               Luxury 
@@ -312,10 +312,10 @@ export default function Home() {
       </section>
 
       {/* Modern Floor Plans Showcase */}
-      <section className="py-32 bg-gradient-to-b from-white via-slate-50 to-white">
+      <section className="py-20 bg-gradient-to-b from-white via-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-24">
+          <div className="text-center mb-16">
             
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
               Find Your 
@@ -388,7 +388,7 @@ export default function Home() {
       </section>
 
       {/* Ultra Modern Contact CTA */}
-      <section className="py-32 bg-slate-900 relative overflow-hidden">
+      <section className="py-20 bg-slate-900 relative overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"></div>
