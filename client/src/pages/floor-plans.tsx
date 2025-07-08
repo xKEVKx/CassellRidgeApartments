@@ -238,7 +238,7 @@ export default function FloorPlans() {
                 Interactive Location Map
               </h3>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                Explore our convenient location in Jacksonville's Southside near I-95 and Baymeadows.
+                Explore our convenient location in Kansas City's Northland near I-435 and North Oak Trafficway.
               </p>
             </div>
             <div className="bg-white rounded-3xl p-4 shadow-xl">
