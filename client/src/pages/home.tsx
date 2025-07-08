@@ -16,188 +16,337 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Modern Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Ultra Modern Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        {/* Background Video/Image */}
         <div className="absolute inset-0">
           <div 
-            className="w-full h-full bg-cover bg-center bg-no-repeat scale-105 transform"
-            style={{ backgroundImage: `url(/images/hero-modern.jpg)` }}
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior2-960x460-2.jpg)` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-800/70 to-slate-900/90" />
         </div>
         
-        <div className="relative z-10 text-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                  Tranquil <span className="text-emerald-400">Lakeside</span> Living
-                </h1>
-                <p className="text-lg sm:text-xl text-gray-200 leading-relaxed max-w-lg">
-                  Escape to tranquil lakeside living surrounded by lush landscaping, resort-style pools, and modern amenities in Southside Jacksonville.
-                </p>
+        {/* Floating Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="space-y-12">
+            {/* Main Heading */}
+            <div className="space-y-6">
+              <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/80 text-sm font-medium">
+                <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>
+                Now Leasing • Jacksonville, FL
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <ScheduleVisitModal
-                  trigger={
-                    <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg font-semibold shadow-xl">
-                      Schedule a Visit
-                    </Button>
-                  }
-                />
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-semibold"
-                  asChild
-                >
-                  <a href="https://www.on-site.com/apply/property/204538" target="_blank" rel="noopener noreferrer">
-                    Apply Now
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tracking-tight">
+                TRANQUIL
+                <span className="block bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
+                  LAKESIDE
+                </span>
+                <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white/90">
+                  LIVING
+                </span>
+              </h1>
               
-              <div className="flex flex-wrap items-center gap-6 text-sm">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                  <span>1, 2 & 3 Bedrooms</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                  <span>Resort-Style Pools</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                  <span>Lakeside Location</span>
-                </div>
-              </div>
+              <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
+                Escape to luxury lakeside living at The Grove at Deerwood. 
+                <span className="text-emerald-400 font-medium">Resort-style amenities</span> meet 
+                <span className="text-emerald-400 font-medium"> modern comfort</span> in Jacksonville's premier community.
+              </p>
             </div>
             
-            {/* Promotional Banner */}
-            <div className="hidden lg:flex justify-end">
-              <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl max-w-md">
-                <img 
-                  src="/images/summer-promo.png" 
-                  alt="Summer Promotion" 
-                  className="w-full h-auto rounded-lg"
-                />
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <ScheduleVisitModal
+                trigger={
+                  <Button 
+                    size="lg" 
+                    className="group relative bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl border-0 transition-all duration-300 hover:scale-105"
+                  >
+                    <span className="relative z-10">Schedule Your Tour</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                  </Button>
+                }
+              />
+              
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="group relative border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 px-10 py-4 text-lg font-semibold rounded-2xl backdrop-blur-md bg-white/5 transition-all duration-300 hover:scale-105"
+                asChild
+              >
+                <a href="https://www.on-site.com/apply/property/204538" target="_blank" rel="noopener noreferrer">
+                  Apply Now
+                  <ExternalLink className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </a>
+              </Button>
+            </div>
+            
+            {/* Feature Pills */}
+            <div className="flex flex-wrap justify-center gap-4 pt-8">
+              {[
+                { icon: "🏠", text: "1-3 Bedrooms" },
+                { icon: "🏊", text: "Resort Pools" },
+                { icon: "🌊", text: "Lakeside Views" },
+                { icon: "🎾", text: "Tennis Courts" }
+              ].map((feature, index) => (
+                <div 
+                  key={index}
+                  className="flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90 text-sm font-medium"
+                >
+                  <span className="text-lg">{feature.icon}</span>
+                  <span>{feature.text}</span>
+                </div>
+              ))}
+            </div>
+            
+            {/* Scroll Indicator */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+              <div className="flex flex-col items-center space-y-2 text-white/60">
+                <span className="text-sm font-medium">Explore</span>
+                <div className="w-px h-8 bg-white/30"></div>
+                <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce"></div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Property Overview */}
-      <section className="py-24 bg-white">
+      {/* Sophisticated Property Overview */}
+      <section className="py-32 bg-gradient-to-b from-white via-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Welcome to The Grove at Deerwood
+          {/* Section Header */}
+          <div className="text-center mb-24">
+            <div className="inline-flex items-center px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-6">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
+              Premium Living Experience
+            </div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
+              Welcome to 
+              <span className="block bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                The Grove at Deerwood
+              </span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
               Your Jacksonville apartment home is surrounded by lush landscaping, two resort style pools with sun deck 
-              and lighted tennis courts… <strong>something for everyone in your family to enjoy</strong>.
+              and lighted tennis courts… <strong className="text-emerald-600">something for everyone in your family to enjoy</strong>.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1">
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">ACCOMMODATIONS</h3>
-                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                    Large floor plans with spacious kitchens, huge walk-in closets and private patio/balcony designed for modern living.
-                  </p>
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            {/* Content Side */}
+            <div className="space-y-12">
+              <div className="space-y-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
+                  <h3 className="text-3xl sm:text-4xl font-bold text-slate-900">ACCOMMODATIONS</h3>
                 </div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <Check className="text-emerald-600 h-5 w-5" />
-                    </div>
-                    <span className="text-gray-700 font-medium">1, 2 & 3 Bedrooms</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <Check className="text-emerald-600 h-5 w-5" />
-                    </div>
-                    <span className="text-gray-700 font-medium">Private Patio/Balcony</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <Check className="text-emerald-600 h-5 w-5" />
-                    </div>
-                    <span className="text-gray-700 font-medium">Walk-in Closets</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <Check className="text-emerald-600 h-5 w-5" />
-                    </div>
-                    <span className="text-gray-700 font-medium">Modern Appliances</span>
-                  </div>
-                </div>
-                
-                <div className="pt-4">
-                  <Button asChild className="bg-emerald-600 hover:bg-emerald-700 px-8 py-4 text-lg font-semibold">
-                    <Link href="/amenities">Explore Amenities</Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-            
-            <div className="order-1 lg:order-2">
-              <div className="relative">
-                <img 
-                  src="/images/hero-modern.jpg" 
-                  alt="Modern apartment interior" 
-                  className="rounded-2xl shadow-2xl w-full h-auto"
-                />
-                <div className="absolute -bottom-6 -right-6 bg-emerald-600 text-white p-6 rounded-xl shadow-xl">
-                  <div className="text-2xl font-bold">Starting at</div>
-                  <div className="text-3xl font-bold">$1,049</div>
-                  <div className="text-sm opacity-90">per month</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Amenities */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">AMENITIES</h3>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  We have two resort style pools with sun deck. We also feature lighted tennis courts for your active lifestyle.
+                <p className="text-xl text-slate-600 leading-relaxed font-light">
+                  Large floor plans with spacious kitchens, huge walk-in closets and private patio/balcony designed for the modern lifestyle you deserve.
                 </p>
-                <Button asChild className="bg-emerald-600 hover:bg-emerald-700 px-8 py-4 text-lg font-semibold">
-                  <Link href="/amenities">Explore All Amenities</Link>
+              </div>
+              
+              {/* Feature Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  { icon: "🏠", title: "1, 2 & 3 Bedrooms", desc: "Spacious layouts" },
+                  { icon: "🌿", title: "Private Patio/Balcony", desc: "Outdoor living space" },
+                  { icon: "👗", title: "Walk-in Closets", desc: "Ample storage" },
+                  { icon: "⚡", title: "Modern Appliances", desc: "Energy efficient" }
+                ].map((feature, index) => (
+                  <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200">
+                    <div className="flex items-start space-x-4">
+                      <div className="text-2xl">{feature.icon}</div>
+                      <div>
+                        <h4 className="font-semibold text-slate-900 mb-1">{feature.title}</h4>
+                        <p className="text-sm text-slate-500">{feature.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* CTA */}
+              <div className="pt-8">
+                <Button 
+                  asChild 
+                  className="group bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
+                >
+                  <Link href="/amenities">
+                    Explore All Amenities
+                    <div className="ml-2 transition-transform group-hover:translate-x-1">→</div>
+                  </Link>
                 </Button>
               </div>
             </div>
-            <div>
-              <img 
-                src="/images/pool-modern.jpg" 
-                alt="Resort-style pool" 
-                className="rounded-2xl shadow-2xl w-full h-auto"
-              />
+            
+            {/* Image Side */}
+            <div className="relative">
+              <div className="relative group">
+                <img 
+                  src="https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior2-960x460-2.jpg" 
+                  alt="Luxury apartment interior" 
+                  className="w-full h-auto rounded-3xl shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
+                
+                {/* Floating Price Card */}
+                <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-2xl shadow-2xl border border-slate-100">
+                  <div className="text-center">
+                    <div className="text-sm text-slate-500 mb-1">Starting at</div>
+                    <div className="text-4xl font-bold text-slate-900 mb-1">$1,049</div>
+                    <div className="text-sm text-slate-500">per month</div>
+                    <div className="mt-4 w-12 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Background Decoration */}
+              <div className="absolute -top-8 -left-8 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl -z-10 opacity-60"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Floor Plans Preview */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Ultra Modern Amenities Showcase */}
+      <section className="py-32 bg-slate-900 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+            backgroundSize: '20px 20px'
+          }}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          {/* Section Header */}
           <div className="text-center mb-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Floor Plans</h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Choose from our spacious 1, 2, and 3 bedroom apartment homes designed for modern living
+            <div className="inline-flex items-center px-4 py-2 bg-emerald-500/20 rounded-full text-emerald-400 text-sm font-semibold mb-6 backdrop-blur-sm">
+              <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>
+              Resort-Style Living
+            </div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+              Luxury 
+              <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+                {" "}Amenities
+              </span>
+            </h2>
+            <p className="text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
+              Two resort-style pools with sun deck and lighted tennis courts designed for your active lifestyle.
+            </p>
+          </div>
+          
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            {/* Content Side */}
+            <div className="space-y-10">
+              {/* Amenity Cards */}
+              <div className="space-y-6">
+                {[
+                  { 
+                    icon: "🏊", 
+                    title: "Resort-Style Pools", 
+                    desc: "Two sparkling pools with sun deck and poolside cabanas for ultimate relaxation.",
+                    highlight: "2 Pools"
+                  },
+                  { 
+                    icon: "🎾", 
+                    title: "Lighted Tennis Courts", 
+                    desc: "Professional-grade courts available for day and evening play.",
+                    highlight: "Day & Night"
+                  },
+                  { 
+                    icon: "🏋️", 
+                    title: "Fitness Center", 
+                    desc: "State-of-the-art equipment and spacious workout areas.",
+                    highlight: "24/7 Access"
+                  }
+                ].map((amenity, index) => (
+                  <div key={index} className="group relative p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
+                    <div className="flex items-start space-x-4">
+                      <div className="text-3xl">{amenity.icon}</div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className="text-xl font-semibold text-white">{amenity.title}</h4>
+                          <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-sm font-medium rounded-full">
+                            {amenity.highlight}
+                          </span>
+                        </div>
+                        <p className="text-slate-300 leading-relaxed">{amenity.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* CTA */}
+              <div className="pt-8">
+                <Button 
+                  asChild 
+                  className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105"
+                >
+                  <Link href="/amenities">
+                    Discover All Amenities
+                    <div className="ml-2 transition-transform group-hover:translate-x-1">→</div>
+                  </Link>
+                </Button>
+              </div>
+            </div>
+            
+            {/* Image Side */}
+            <div className="relative">
+              <div className="relative group">
+                <img 
+                  src="https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-pool1-800w.jpg" 
+                  alt="Resort-style pool at night" 
+                  className="w-full h-auto rounded-3xl shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent rounded-3xl"></div>
+                
+                {/* Overlay Stats */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-white/20 backdrop-blur-md rounded-xl p-4 text-center">
+                      <div className="text-2xl font-bold text-white">2</div>
+                      <div className="text-sm text-white/80">Resort Pools</div>
+                    </div>
+                    <div className="bg-white/20 backdrop-blur-md rounded-xl p-4 text-center">
+                      <div className="text-2xl font-bold text-white">15+</div>
+                      <div className="text-sm text-white/80">Amenities</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Decorative Elements */}
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-3xl -z-10 blur-xl"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Modern Floor Plans Showcase */}
+      <section className="py-32 bg-gradient-to-b from-white via-slate-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-24">
+            <div className="inline-flex items-center px-4 py-2 bg-slate-100 rounded-full text-slate-700 text-sm font-semibold mb-6">
+              <span className="w-2 h-2 bg-slate-500 rounded-full mr-2"></span>
+              Thoughtfully Designed Homes
+            </div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
+              Find Your 
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                Perfect Space
+              </span>
+            </h2>
+            <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
+              Choose from our spacious 1, 2, and 3 bedroom apartment homes designed for the modern lifestyle you deserve.
             </p>
           </div>
           
@@ -260,37 +409,88 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section className="py-24 bg-emerald-600 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-800"></div>
+      {/* Ultra Modern Contact CTA */}
+      <section className="py-32 bg-slate-900 relative overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"></div>
+          <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }}></div>
+        </div>
+        
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-8">
-            <div className="space-y-4">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Ready to Make The Grove Your Home?</h2>
-              <p className="text-lg sm:text-xl text-emerald-100 max-w-3xl mx-auto leading-relaxed">
+          <div className="text-center space-y-16">
+            {/* Header */}
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-emerald-500/20 rounded-full text-emerald-400 text-sm font-semibold backdrop-blur-sm">
+                <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>
+                Ready to Move In
+              </div>
+              
+              <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
+                Ready to Make
+                <span className="block bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+                  The Grove Home?
+                </span>
+              </h2>
+              
+              <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
                 Contact us today to schedule your personal tour and see why The Grove at Deerwood is the perfect place to call home.
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-emerald-700 px-8 py-4 text-lg font-semibold"
-                asChild
-              >
-                <a href={`tel:${SITE_CONFIG.contact.phone}`}>
-                  <Phone className="mr-2 h-5 w-5" />
-                  Call {SITE_CONFIG.contact.phone}
-                </a>
-              </Button>
-              <ScheduleVisitModal
-                trigger={
-                  <Button size="lg" className="bg-white text-emerald-700 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-xl">
-                    Schedule a Visit
-                  </Button>
-                }
-              />
+            {/* CTA Section */}
+            <div className="space-y-12">
+              {/* Primary Actions */}
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <ScheduleVisitModal
+                  trigger={
+                    <Button 
+                      size="lg" 
+                      className="group relative bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-12 py-5 text-xl font-semibold rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105"
+                    >
+                      <span className="relative z-10">Schedule Your Tour</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                    </Button>
+                  }
+                />
+                
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="group border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 px-12 py-5 text-xl font-semibold rounded-2xl backdrop-blur-md bg-white/5 transition-all duration-300 hover:scale-105"
+                  asChild
+                >
+                  <a href={`tel:${SITE_CONFIG.contact.phone}`}>
+                    <Phone className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
+                    Call {SITE_CONFIG.contact.phone}
+                  </a>
+                </Button>
+              </div>
+              
+              {/* Quick Stats */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                {[
+                  { number: "15+", label: "Premium Amenities" },
+                  { number: "4", label: "Floor Plan Options" },
+                  { number: "24/7", label: "Concierge Service" }
+                ].map((stat, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-2">
+                      {stat.number}
+                    </div>
+                    <div className="text-slate-400 font-medium">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
