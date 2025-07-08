@@ -30,7 +30,7 @@ export const SITE_CONFIG = {
   mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12360.81693601346!2d-94.63406309629322!3d39.238235234285405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87c058a2bdc4a009%3A0x4d1b7397483d07a1!2s7909%20N%20Granby%20Ave%2C%20Kansas%20City%2C%20MO%2064151!5e0!3m2!1sen!2sus!4v1588286735462!5m2!1sen!2sus"
 };
 
-export const HERO_IMAGE = "/images/hero-pool-bicycle-club.png";
+export const HERO_IMAGE = "/images/hero-pool-bicycle-club.jpg";
 
 export const NAVIGATION_LINKS = [
   { href: "/", label: "Home", isIcon: true },
