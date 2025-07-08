@@ -224,21 +224,21 @@ export default function Home() {
                   className={`w-full h-full object-cover transition-all duration-1000 ease-in-out group-hover:scale-105 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
-                
-                {/* Floating Price Card */}
-                <Link href="/floor-plans">
-                  <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-2xl shadow-2xl border border-slate-100 cursor-pointer transition-all duration-300 hover:shadow-3xl hover:scale-105 group">
-                    <div className="text-center">
-                      <div className="text-sm text-slate-500 mb-1">Starting at</div>
-                      <div className="text-4xl font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors">
-                        ${lowestPrice.toLocaleString()}
-                      </div>
-                      <div className="text-sm text-slate-500">per month</div>
-                      <div className="mt-4 w-12 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
-                    </div>
-                  </div>
-                </Link>
               </div>
+              
+              {/* Floating Price Card - moved outside container */}
+              <Link href="/floor-plans">
+                <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-2xl shadow-2xl border border-slate-100 cursor-pointer transition-all duration-300 hover:shadow-3xl hover:scale-105 group z-10">
+                  <div className="text-center">
+                    <div className="text-sm text-slate-500 mb-1">Starting at</div>
+                    <div className="text-4xl font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors">
+                      ${lowestPrice.toLocaleString()}
+                    </div>
+                    <div className="text-sm text-slate-500">per month</div>
+                    <div className="mt-4 w-12 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
+                  </div>
+                </div>
+              </Link>
               
               {/* Background Decoration */}
               <div className="absolute -top-8 -left-8 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl -z-10 opacity-60"></div>
