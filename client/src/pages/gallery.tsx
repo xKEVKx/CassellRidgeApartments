@@ -53,215 +53,215 @@ export default function Gallery() {
     },
     {
       id: 6,
-      title: "Building Exterior",
+      title: "Bicycle Club Apartments Building",
       imageUrl: "/images/amenities/authentic/building-exterior.jpg",
       category: "exterior",
-      description: "Beautiful apartment building exterior"
+      description: "Beautiful Bicycle Club Apartments building exterior with modern architecture"
     },
     {
       id: 7,
-      title: "Property Exterior",
+      title: "Property Grounds",
       imageUrl: "/images/amenities/authentic/exterior-building.jpg",
       category: "exterior",
-      description: "Well-maintained property grounds"
+      description: "Well-maintained property grounds with professional landscaping"
     },
     {
       id: 8,
-      title: "Building Exterior 2",
+      title: "Building Side View",
       imageUrl: "/images/amenities/authentic/building-exterior-2.jpg",
       category: "exterior",
-      description: "Another view of the building"
+      description: "Side view of the apartment building showing architectural details"
     },
     {
       id: 9,
-      title: "Building Entrance",
+      title: "Main Entrance",
       imageUrl: "/images/amenities/authentic/building-entrance.jpg",
       category: "exterior",
-      description: "Welcoming building entrance"
+      description: "Welcoming main entrance with professional signage and landscaping"
     },
     {
       id: 10,
-      title: "Building Landscaping",
+      title: "Professional Landscaping",
       imageUrl: "/images/amenities/authentic/building-landscaping.jpg",
       category: "exterior",
-      description: "Beautiful landscaping around the property"
+      description: "Beautiful professional landscaping throughout the property"
     },
     {
       id: 11,
-      title: "Building Exterior 3",
+      title: "Building Architecture",
       imageUrl: "/images/amenities/authentic/building-exterior-3.jpg",
       category: "exterior",
-      description: "Side view of the apartment building"
+      description: "Modern apartment building architecture with attractive exterior features"
     },
     {
       id: 12,
-      title: "Building Exterior 4",
+      title: "Full Building View",
       imageUrl: "/images/amenities/authentic/building-exterior-4.jpg",
       category: "exterior",
-      description: "Full view of the building exterior"
+      description: "Complete view of the Bicycle Club Apartments building exterior"
     },
     {
       id: 13,
-      title: "Cozy Living Area",
+      title: "Open Concept Living Room",
       imageUrl: "/images/amenities/authentic/interior-cozy.jpg",
-      category: "exterior",
-      description: "Exterior view of residential area"
+      category: "interior",
+      description: "Spacious open concept living room with dining area and modern furnishings"
     },
     
     // All remaining photos are exterior
     {
       id: 14,
-      title: "Sunroom View",
+      title: "Bright Sunroom",
       imageUrl: "/images/amenities/authentic/interior-sunroom.jpg",
-      category: "exterior",
-      description: "External sunroom area"
+      category: "interior",
+      description: "Bright sunroom with abundant natural light and comfortable seating"
     },
     {
       id: 15,
-      title: "Balcony Exterior",
+      title: "Private Balcony",
       imageUrl: "/images/amenities/authentic/interior-balcony.jpg",
-      category: "exterior",
-      description: "Exterior balcony view"
+      category: "interior",
+      description: "Private balcony accessible from living area with outdoor views"
     },
     {
       id: 16,
-      title: "Spacious Exterior",
+      title: "Spacious Living Area",
       imageUrl: "/images/amenities/authentic/interior-spacious.jpg",
-      category: "exterior",
-      description: "Exterior spacious area"
+      category: "interior",
+      description: "Spacious living area with open floor plan design"
     },
     {
       id: 17,
-      title: "Modern Exterior",
+      title: "Modern Apartment Interior",
       imageUrl: "/images/amenities/authentic/interior-modern.jpg",
-      category: "exterior",
-      description: "Modern exterior design"
+      category: "interior",
+      description: "Modern apartment interior with contemporary fixtures and finishes"
     },
     {
       id: 18,
-      title: "Fireplace Exterior",
+      title: "Fireplace Living Room",
       imageUrl: "/images/amenities/authentic/interior-fireplace.jpg",
-      category: "exterior",
-      description: "Exterior fireplace area"
+      category: "interior",
+      description: "Cozy living room with wood-burning fireplace in select units"
     },
     {
       id: 19,
-      title: "Window Exterior",
+      title: "Large Windows",
       imageUrl: "/images/amenities/authentic/interior-window.jpg",
-      category: "exterior",
-      description: "Exterior window views"
+      category: "interior",
+      description: "Large windows providing natural light throughout the apartment"
     },
     {
       id: 20,
-      title: "Elegant Exterior",
+      title: "Elegant Interior Design",
       imageUrl: "/images/amenities/authentic/interior-elegant.jpg",
-      category: "exterior",
-      description: "Elegant exterior design"
+      category: "interior",
+      description: "Elegant interior design with sophisticated color scheme and modern amenities"
     },
     {
       id: 21,
-      title: "Resort-Style Pool",
+      title: "Resort-Style Swimming Pool",
       imageUrl: "/images/amenities/authentic/pool-area.jpg",
       category: "pool",
-      description: "Main pool area with deck seating"
+      description: "Beautiful resort-style swimming pool with spacious deck and lounge seating"
     },
     {
       id: 22,
-      title: "Pool Deck",
+      title: "Pool Deck & Seating",
       imageUrl: "/images/amenities/authentic/pool-deck.jpg",
       category: "pool",
-      description: "Spacious pool deck for relaxation"
+      description: "Expansive pool deck with comfortable seating for residents to relax and socialize"
     },
     {
       id: 23,
-      title: "Pool Area 2",
+      title: "Pool Complex Overview",
       imageUrl: "/images/amenities/authentic/pool-area-2.jpg",
       category: "pool",
-      description: "Another view of the pool complex"
+      description: "Complete view of the pool complex with surrounding amenities"
     },
     {
       id: 24,
-      title: "Volleyball Court",
+      title: "Sand Volleyball Court",
       imageUrl: "/images/amenities/authentic/pool-volleyball.jpg",
       category: "pool",
-      description: "Sand volleyball court by the pool"
+      description: "Professional sand volleyball court adjacent to the pool area for active recreation"
     },
     {
       id: 25,
-      title: "Pool Seating",
+      title: "Poolside Lounging",
       imageUrl: "/images/amenities/authentic/pool-seating.jpg",
       category: "pool",
-      description: "Comfortable seating areas around the pool"
+      description: "Comfortable poolside seating areas perfect for sunbathing and relaxation"
     },
     {
       id: 26,
-      title: "Pool Community Area",
+      title: "Community Pool Gathering",
       imageUrl: "/images/amenities/authentic/pool-community.jpg",
       category: "pool",
-      description: "Community gathering space by the pool"
+      description: "Community gathering space by the pool for social events and relaxation"
     },
     {
       id: 27,
-      title: "Volleyball Court 2",
+      title: "Active Recreation Area",
       imageUrl: "/images/amenities/authentic/pool-volleyball-2.jpg",
       category: "pool",
-      description: "Sand volleyball court for active lifestyle"
+      description: "Sand volleyball court providing active recreation opportunities for residents"
     },
     {
       id: 28,
-      title: "Pool Lifestyle",
+      title: "Pool Lifestyle Experience",
       imageUrl: "/images/amenities/authentic/pool-lifestyle.jpg",
       category: "pool",
-      description: "Resort-style pool living"
+      description: "Resort-style pool lifestyle with premium amenities and recreational facilities"
     },
     {
       id: 29,
-      title: "Pool Seating Area",
+      title: "Waterside Relaxation",
       imageUrl: "/images/amenities/authentic/pool-seating-area.jpg",
       category: "pool",
-      description: "Relaxing seating by the water"
+      description: "Relaxing waterside seating area with comfortable furniture and shade"
     },
     {
       id: 30,
-      title: "Pool Aerial View",
+      title: "Pool Complex Aerial",
       imageUrl: "/images/amenities/authentic/pool-aerial.jpg",
       category: "pool",
-      description: "Overhead view of the pool complex"
+      description: "Aerial view showcasing the complete pool complex and surrounding amenities"
     },
     {
       id: 31,
-      title: "Resort-Style Pool",
+      title: "Premium Pool Design",
       imageUrl: "/images/amenities/authentic/pool-resort-style.jpg",
       category: "pool",
-      description: "Beautiful resort-style pool design"
+      description: "Premium resort-style pool design with crystal clear water and modern features"
     },
     {
       id: 32,
-      title: "Fitness Center",
+      title: "24-Hour Fitness Center",
       imageUrl: "/images/amenities/authentic/fitness-center.jpg",
       category: "fitness",
-      description: "24-hour fitness center"
+      description: "State-of-the-art 24-hour fitness center with modern equipment and climate control"
     },
     {
       id: 33,
-      title: "Fitness Equipment",
+      title: "Modern Fitness Equipment",
       imageUrl: "/images/amenities/authentic/fitness-equipment.jpg",
       category: "fitness",
-      description: "Modern fitness equipment"
+      description: "Professional-grade fitness equipment including cardio machines and strength training"
     },
     {
       id: 34,
-      title: "Fitness Center 2",
+      title: "Spacious Workout Area",
       imageUrl: "/images/amenities/authentic/fitness-center-2.jpg",
       category: "fitness",
-      description: "Spacious workout area"
+      description: "Spacious workout area with ample room for exercise and stretching"
     },
     {
       id: 35,
-      title: "Leasing Office",
+      title: "Professional Leasing Office",
       imageUrl: "/images/amenities/authentic/leasing-office.jpg",
       category: "office",
-      description: "Professional leasing office"
+      description: "Professional leasing office with comfortable seating and knowledgeable staff"
     }
   ];
 
