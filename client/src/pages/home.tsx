@@ -105,14 +105,10 @@ export default function Home() {
       </section>
 
       {/* Sophisticated Property Overview */}
-      <section className="py-32 bg-gradient-to-b from-white via-slate-50 to-white">
+      <section className="py-24 bg-gradient-to-b from-white via-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-24">
-            <div className="inline-flex items-center px-4 py-2 bg-emerald-100 rounded-full text-emerald-700 text-sm font-semibold mb-6">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-              Premium Living Experience
-            </div>
+          <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
               Welcome to 
               <span className="block bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
