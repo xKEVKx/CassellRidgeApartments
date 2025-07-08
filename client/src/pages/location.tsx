@@ -169,7 +169,7 @@ export default function Location() {
               What's Nearby
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Discover the convenience of living at The Grove at Deerwood with easy access to shopping, dining, education, and entertainment.
+              Discover the convenience of living at Bicycle Club Apartments with easy access to shopping, dining, education, and entertainment.
             </p>
           </div>
           
@@ -204,7 +204,7 @@ export default function Location() {
                   Easy Access & Transportation
                 </h2>
                 <p className="text-xl text-slate-600 leading-relaxed">
-                  Our strategic location provides convenient access to major highways, public transportation, and Jacksonville's key destinations.
+                  Our strategic location provides convenient access to major highways, public transportation, and Kansas City's key destinations.
                 </p>
               </div>
               
@@ -225,9 +225,9 @@ export default function Location() {
                 <div className="space-y-6">
                   <MapPin className="w-16 h-16 text-emerald-600 mx-auto" />
                   <div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Prime Southside Location</h3>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Prime Northland Location</h3>
                     <p className="text-slate-600">
-                      Perfectly positioned for easy commuting to downtown Jacksonville, area universities, and beautiful beaches.
+                      Perfectly positioned for easy commuting to downtown Kansas City, area universities, and major shopping destinations.
                     </p>
                   </div>
                 </div>
