@@ -6,54 +6,19 @@ import { Bed, Bath, Square, Home, MapPin, Expand } from "lucide-react";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
 import { SITE_CONFIG } from "@/lib/constants";
 import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { Skeleton } from "@/components/ui/skeleton";
+import type { FloorPlan } from "@shared/schema";
 
 export default function FloorPlans() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const floorPlans = [
-    {
-      id: 1,
-      name: "Aspen",
-      bedrooms: 1,
-      bathrooms: 1,
-      sqft: 727,
-      startingPrice: 925,
-      imageUrl: "/images/floorplans/aspen.jpg",
-      description: "Comfortable one-bedroom apartment with modern amenities and efficient layout"
-    },
-    {
-      id: 2,
-      name: "Vail",
-      bedrooms: 2,
-      bathrooms: 1.5,
-      sqft: 1025,
-      startingPrice: 1120,
-      imageUrl: "/images/floorplans/vail.jpg",
-      description: "Spacious two-bedroom with 1.5 bathrooms and additional living space"
-    },
-    {
-      id: 3,
-      name: "Montrose",
-      bedrooms: 2,
-      bathrooms: 1.5,
-      sqft: 1070,
-      startingPrice: 1175,
-      imageUrl: "/images/floorplans/montrose.jpg",
-      description: "Well-appointed two-bedroom, 1.5 bathroom layout with generous living areas"
-    },
-    {
-      id: 4,
-      name: "Vista",
-      bedrooms: 2,
-      bathrooms: 1.5,
-      sqft: 1154,
-      startingPrice: 1285,
-      imageUrl: "/images/floorplans/vista.jpg",
-      description: "Premium two-bedroom, 1.5 bathroom layout with the most spacious floor plan"
-    }
-  ];
+
+  const { data: floorPlans, isLoading } = useQuery<FloorPlan[]>({
+    queryKey: ["/api/floor-plans"],
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white pt-24">
@@ -70,7 +35,27 @@ export default function FloorPlans() {
           </div>
           
           <div className="max-w-4xl mx-auto space-y-8">
-            {floorPlans.map((plan) => (
+            {isLoading ? (
+              // Loading skeletons
+              Array.from({ length: 4 }).map((_, index) => (
+                <Card key={index} className="overflow-hidden border-0 rounded-3xl bg-white flex flex-col lg:flex-row h-full">
+                  <div className="lg:w-1/2">
+                    <Skeleton className="w-full h-64 lg:h-full" />
+                  </div>
+                  <div className="p-8 flex-1 flex flex-col lg:w-1/2">
+                    <Skeleton className="h-6 w-3/4 mb-4" />
+                    <Skeleton className="h-4 w-full mb-6" />
+                    <div className="grid grid-cols-3 gap-6 mb-6">
+                      <Skeleton className="h-20 w-full" />
+                      <Skeleton className="h-20 w-full" />
+                      <Skeleton className="h-20 w-full" />
+                    </div>
+                    <Skeleton className="h-16 w-full" />
+                  </div>
+                </Card>
+              ))
+            ) : floorPlans && floorPlans.length > 0 ? (
+              floorPlans.map((plan) => (
               <Card key={plan.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 rounded-3xl bg-white flex flex-col lg:flex-row h-full">
                 <div className="relative lg:w-1/2">
                   <img 
@@ -139,7 +124,12 @@ export default function FloorPlans() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            ))
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-slate-600 text-lg">No floor plans available at this time.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -163,7 +153,7 @@ export default function FloorPlans() {
                   <DialogTrigger asChild>
                     <div className="relative group cursor-pointer">
                       <img 
-                        src="/images/grove-site-map.png" 
+                        src="/images/site-map.jpg" 
                         alt="Bicycle Club Apartments Site Map"
                         className="w-full h-auto rounded-2xl transition-transform duration-300 group-hover:scale-105"
                       />
