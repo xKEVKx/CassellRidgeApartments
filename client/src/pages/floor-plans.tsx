@@ -15,33 +15,43 @@ export default function FloorPlans() {
   const floorPlans = [
     {
       id: 1,
-      name: "Maple",
+      name: "Aspen",
       bedrooms: 1,
       bathrooms: 1,
-      sqft: 600,
-      startingPrice: 1049,
-      imageUrl: "/images/maple-floorplan.jpg",
-      description: "Cozy one-bedroom apartment with modern amenities and efficient layout"
+      sqft: 727,
+      startingPrice: 925,
+      imageUrl: "/images/floorplans/aspen.jpg",
+      description: "Comfortable one-bedroom apartment with modern amenities and efficient layout"
     },
     {
       id: 2,
-      name: "Cypress",
-      bedrooms: 1,
-      bathrooms: 1,
-      sqft: 700,
-      startingPrice: 1149,
-      imageUrl: "/images/cypress-floorplan.jpg",
-      description: "Spacious one-bedroom with additional living space and large windows"
+      name: "Vail",
+      bedrooms: 2,
+      bathrooms: 1.5,
+      sqft: 1025,
+      startingPrice: 1120,
+      imageUrl: "/images/floorplans/vail.jpg",
+      description: "Spacious two-bedroom with 1.5 bathrooms and additional living space"
     },
     {
       id: 3,
-      name: "Dogwood",
+      name: "Montrose",
       bedrooms: 2,
-      bathrooms: 2,
-      sqft: 1000,
-      startingPrice: 1399,
-      imageUrl: "/images/dogwood-floorplan.jpg",
-      description: "Two-bedroom, two-bathroom layout perfect for roommates or small families"
+      bathrooms: 1.5,
+      sqft: 1070,
+      startingPrice: 1175,
+      imageUrl: "/images/floorplans/montrose.jpg",
+      description: "Well-appointed two-bedroom, 1.5 bathroom layout with generous living areas"
+    },
+    {
+      id: 4,
+      name: "Vista",
+      bedrooms: 2,
+      bathrooms: 1.5,
+      sqft: 1154,
+      startingPrice: 1285,
+      imageUrl: "/images/floorplans/vista.jpg",
+      description: "Premium two-bedroom, 1.5 bathroom layout with the most spacious floor plan"
     }
   ];
 
@@ -55,7 +65,7 @@ export default function FloorPlans() {
               Our Floor Plans
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Large floor plans with spacious kitchens, huge walk-in closets, and private patios or balconies.
+              Comfortable floor plans with spacious kitchens, generous closets, and private patios or balconies.
             </p>
           </div>
           

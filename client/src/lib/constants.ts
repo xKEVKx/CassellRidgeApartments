@@ -1,21 +1,23 @@
 export const SITE_CONFIG = {
-  name: "The Grove at Deerwood",
-  tagline: "Tranquil Lakeside Living",
-  description: "Escape to Tranquil Lakeside living at The Grove at Deerwood apartments located in Southside Jacksonville Florida central to I-95 and Baymeadows.",
+  name: "Bicycle Club Apartments",
+  tagline: "Enjoy the Bicycle Club Lifestyle",
+  description: "With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness room, Bicycle Club is an ideal place to live in Kansas City.",
   
   contact: {
-    phone: "904.468.6078",
-    fax: "904.448.4149",
-    email: "Leasing@thegroveaptsfl.com",
+    phone: "816.587.8660",
+    fax: "",
+    email: "manager@bicycleclubapts.com",
     address: {
-      street: "8231 Princeton Square Blvd W",
-      city: "Jacksonville",
-      state: "FL",
-      zip: "32256"
+      street: "7909 North Granby Avenue",
+      city: "Kansas City",
+      state: "MO",
+      zip: "64151"
     },
     hours: {
-      weekdays: "Mon-Sat: 9 AM – 6 PM",
-      sunday: "Sunday: 1 PM – 6 PM"
+      weekdays: "Mon, Tues, Thurs, Fri: 9:00AM-6:00PM",
+      wednesday: "Wed: 9:00am - 7:00pm",
+      weekend: "Sat: 10AM-4PM",
+      sunday: "Sun: Closed"
     }
   },
 
@@ -25,10 +27,10 @@ export const SITE_CONFIG = {
     twitter: ""
   },
 
-  mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13790.634482985954!2d-81.56779593153571!3d30.218289417204254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f12.0!3m3!1m2!1s0x88e5ca56e17d7963%3A0x92aab633c48a4a09!2s8231%20Princeton%20Square%20Blvd%20W%2C%20Jacksonville%2C%20FL%2032256!5e0!3m2!1sen!2sus!4v1588112582049!5m2!1sen!2sus"
+  mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12360.81693601346!2d-94.63406309629322!3d39.238235234285405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87c058a2bdc4a009%3A0x4d1b7397483d07a1!2s7909%20N%20Granby%20Ave%2C%20Kansas%20City%2C%20MO%2064151!5e0!3m2!1sen!2sus!4v1588286735462!5m2!1sen!2sus"
 };
 
-export const HERO_IMAGE = "/images/hero-image.jpg";
+export const HERO_IMAGE = "/images/hero-bicycle-club.png";
 
 export const NAVIGATION_LINKS = [
   { href: "/", label: "Home", isIcon: true },
@@ -48,11 +50,11 @@ export const NAVIGATION_LINKS = [
 
 export const EXTERNAL_LINKS = [
   { 
-    href: "https://lm.realpage.com/external_guest_card?property=CMC20P07", 
-    label: "Leasing" 
+    href: "https://55376.onlineleasing.realpage.com/", 
+    label: "Online Leasing" 
   },
   { 
-    href: "https://www.on-site.com/web/resident_passport/204538/the_grove_at_deerwood/login", 
-    label: "Rent Payment" 
+    href: "https://property.onesite.realpage.com/welcomehome?siteid=3988481", 
+    label: "Residents" 
   }
 ];

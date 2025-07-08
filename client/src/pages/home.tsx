@@ -19,18 +19,18 @@ export default function Home() {
   // Calculate lowest price from floor plans
   const lowestPrice = floorPlans && floorPlans.length > 0 
     ? Math.min(...floorPlans.map(plan => plan.startingPrice))
-    : 1049; // fallback price
+    : 925; // fallback price
 
   // Interior images for rotating background
   const interiorImages = [
-    "/images/gallery/grove-interior2-960x460-2.jpg",
-    "/images/gallery/grove-interior9-800w.jpg", 
-    "/images/gallery/grove-interior7-800w.jpg",
-    "/images/gallery/grove-interior8-800w.jpg",
-    "/images/gallery/grove-interior6-800w.jpg",
-    "/images/gallery/grove-interior5-800w.jpg",
-    "/images/gallery/grove-interior4-800w.jpg",
-    "/images/gallery/grove-interior3-800w.jpg"
+    "/images/gallery/interior-1.jpg",
+    "/images/gallery/interior-2.jpg", 
+    "/images/gallery/interior-3.jpg",
+    "/images/gallery/interior-4.jpg",
+    "/images/gallery/interior-5.jpg",
+    "/images/gallery/interior-6.jpg",
+    "/images/gallery/interior-7.jpg",
+    "/images/gallery/interior-8.jpg"
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -202,7 +202,7 @@ export default function Home() {
                 className="group relative border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 px-10 py-4 text-lg font-semibold rounded-2xl backdrop-blur-md bg-white/5 transition-all duration-300 hover:scale-105"
                 asChild
               >
-                <a href="https://www.on-site.com/apply/property/204538" target="_blank" rel="noopener noreferrer">
+                <a href="https://55376.onlineleasing.realpage.com/" target="_blank" rel="noopener noreferrer">
                   Apply Now
                   <ExternalLink className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </a>
@@ -212,10 +212,10 @@ export default function Home() {
             {/* Feature Pills */}
             <div className="flex flex-wrap justify-center gap-4 pt-8">
               {[
-                { icon: "🏠", text: "1-3 Bedrooms", href: "/floor-plans" },
-                { icon: "🏊", text: "Resort Pools", href: "/amenities" },
-                { icon: "🌊", text: "Lakeside Views", href: "/amenities" },
-                { icon: "🎾", text: "Tennis Courts", href: "/amenities" }
+                { icon: "🏠", text: "1-2 Bedrooms", href: "/floor-plans" },
+                { icon: "🏊", text: "Resort-like Pool", href: "/amenities" },
+                { icon: "🏋️", text: "24hr Fitness", href: "/amenities" },
+                { icon: "🐕", text: "Dog Park", href: "/amenities" }
               ].map((feature, index) => (
                 <Link 
                   key={index}
@@ -241,12 +241,12 @@ export default function Home() {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
               Welcome to 
               <span className="block bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                The Grove at Deerwood
+                Bicycle Club Apartments
               </span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
-              Your Jacksonville apartment home is surrounded by lush landscaping, two resort style pools with sun deck 
-              and lighted tennis courts… <strong className="text-emerald-600">something for everyone in your family to enjoy</strong>.
+              The park-like setting of Bicycle Club offers you <strong className="text-emerald-600">ample space to walk and enjoy nature</strong>. 
+              With our fully equipped fitness room, gorgeous pool and community BBQ area.
             </p>
           </div>
           
@@ -260,17 +260,18 @@ export default function Home() {
                   <h3 className="text-3xl sm:text-4xl font-bold text-slate-900">ACCOMMODATIONS</h3>
                 </div>
                 <p className="text-xl text-slate-600 leading-relaxed font-light">
-                  Large floor plans with spacious kitchens, huge walk-in closets and private patio/balcony designed for the modern lifestyle you deserve.
+                  The lifestyle at Bicycle Club is one that offers a retreat-like atmosphere yet easy access to city activities. 
+                  Live like you are on vacation every day at Bicycle Club.
                 </p>
               </div>
               
               {/* Feature Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
-                  { icon: "🏠", title: "1, 2 & 3 Bedrooms", desc: "Spacious layouts" },
+                  { icon: "🏠", title: "1 & 2 Bedrooms", desc: "Spacious layouts" },
                   { icon: "🌿", title: "Private Patio/Balcony", desc: "Outdoor living space" },
-                  { icon: "👗", title: "Walk-in Closets", desc: "Ample storage" },
-                  { icon: "⚡", title: "Modern Appliances", desc: "Energy efficient" }
+                  { icon: "🔥", title: "Wood Burning Fireplace", desc: "Select units only" },
+                  { icon: "🍽️", title: "Separate Dining Rooms", desc: "Entertainment space" }
                 ].map((feature, index) => (
                   <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200">
                     <div className="flex items-start space-x-4">

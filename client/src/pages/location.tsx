@@ -8,45 +8,45 @@ export default function Location() {
   const nearbyAttractions = [
     {
       icon: <ShoppingBag className="h-6 w-6" />,
-      name: "The Avenues Mall",
-      description: "Premier shopping destination",
-      distance: "5 minutes"
-    },
-    {
-      icon: <ShoppingBag className="h-6 w-6" />,
-      name: "St. Johns Town Center",
-      description: "Outdoor lifestyle center",
-      distance: "15 minutes"
-    },
-    {
-      icon: <School className="h-6 w-6" />,
-      name: "University of North Florida",
-      description: "Major university campus",
+      name: "Zona Rosa",
+      description: "Outdoor shopping center",
       distance: "10 minutes"
     },
     {
+      icon: <ShoppingBag className="h-6 w-6" />,
+      name: "Northland Shopping Center",
+      description: "Local shopping destination",
+      distance: "5 minutes"
+    },
+    {
       icon: <School className="h-6 w-6" />,
-      name: "Jacksonville University",
-      description: "Private university",
+      name: "Park Hill School District",
+      description: "AAA Rated school district",
+      distance: "2 minutes"
+    },
+    {
+      icon: <School className="h-6 w-6" />,
+      name: "University of Missouri-Kansas City",
+      description: "Major university campus",
       distance: "20 minutes"
     },
     {
       icon: <Utensils className="h-6 w-6" />,
-      name: "Southside Dining",
+      name: "Northland Dining",
       description: "Restaurants & cafes",
-      distance: "2-10 minutes"
+      distance: "5-15 minutes"
     },
     {
       icon: <Plane className="h-6 w-6" />,
-      name: "Jacksonville Beach",
-      description: "Beautiful beaches",
-      distance: "25 minutes"
+      name: "Kansas City International Airport",
+      description: "Major airport",
+      distance: "30 minutes"
     }
   ];
 
   const transportation = [
-    "Central to I-95 and Baymeadows",
-    "Easy access to downtown Jacksonville",
+    "Easy access to I-29 and I-435",
+    "Close to downtown Kansas City",
     "Public transportation available",
     "Airport within 30 minutes"
   ];
@@ -73,13 +73,13 @@ export default function Location() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Perfect 
               <span className="block bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                Jacksonville Location
+                Kansas City Location
               </span>
             </h1>
             
             <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-              The Grove at Deerwood is just minutes to Jacksonville dining, retail shopping, and area colleges. 
-              A short commute to Jacksonville Beach, Atlantic Beach and St. Augustine.
+              Bicycle Club Apartments is just minutes to Kansas City dining, retail shopping, and area colleges. 
+              Easy access to downtown Kansas City and major highways.
             </p>
           </div>
         </div>

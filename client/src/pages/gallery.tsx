@@ -18,77 +18,77 @@ export default function Gallery() {
     {
       id: 1,
       title: "Living Room with Fireplace",
-      imageUrl: "/images/gallery/grove-interior2-960x460-2.jpg",
+      imageUrl: "/images/gallery/interior-1.jpg",
       category: "interior",
       description: "Spacious living room with cozy fireplace"
     },
     {
       id: 2,
       title: "Resort Style Pool",
-      imageUrl: "/images/gallery/grove-pool4-800w.jpg",
+      imageUrl: "/images/gallery/pool-area.jpg",
       category: "pool",
       description: "One of two resort-style pools"
     },
     {
       id: 3,
       title: "Elegant Bedroom",
-      imageUrl: "/images/gallery/grove-interior10-650h.jpg",
+      imageUrl: "/images/gallery/interior-2.jpg",
       category: "interior",
       description: "Well-appointed bedroom with modern fixtures"
     },
     {
       id: 4,
       title: "Modern Kitchen",
-      imageUrl: "/images/gallery/grove-interior9-800w.jpg",
+      imageUrl: "/images/gallery/interior-3.jpg",
       category: "interior",
       description: "Fully equipped modern kitchen"
     },
     {
       id: 5,
       title: "Spacious Bathroom",
-      imageUrl: "/images/gallery/grove-interior7-800w.jpg",
+      imageUrl: "/images/gallery/interior-4.jpg",
       category: "interior",
       description: "Modern bathroom with contemporary finishes"
     },
     {
       id: 6,
       title: "Living Area",
-      imageUrl: "/images/gallery/grove-interior8-800w.jpg",
+      imageUrl: "/images/gallery/interior-5.jpg",
       category: "interior",
       description: "Open concept living area"
     },
     {
       id: 7,
       title: "Comfortable Bedroom",
-      imageUrl: "/images/gallery/grove-interior6-800w.jpg",
+      imageUrl: "/images/gallery/interior-6.jpg",
       category: "interior",
       description: "Comfortable bedroom with ample natural light"
     },
     {
       id: 8,
       title: "Dining Area",
-      imageUrl: "/images/gallery/grove-interior5-800w.jpg",
+      imageUrl: "/images/gallery/interior-7.jpg",
       category: "interior",
       description: "Elegant dining area perfect for entertaining"
     },
     {
       id: 9,
       title: "Cozy Living Room",
-      imageUrl: "/images/gallery/grove-interior4-800w.jpg",
+      imageUrl: "/images/gallery/interior-8.jpg",
       category: "interior",
       description: "Cozy living room with modern decor"
     },
     {
       id: 10,
       title: "Stylish Interior",
-      imageUrl: "/images/gallery/grove-interior3-800w.jpg",
+      imageUrl: "/images/gallery/interior-9.jpg",
       category: "interior",
       description: "Stylish interior with contemporary design"
     },
     {
       id: 11,
       title: "Living Space",
-      imageUrl: "/images/gallery/grove-interior2-800w.jpg",
+      imageUrl: "/images/gallery/interior-10.jpg",
       category: "interior",
       description: "Bright and airy living space"
     },

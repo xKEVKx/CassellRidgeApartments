@@ -1,8 +1,8 @@
-# The Grove at Deerwood - Apartment Complex Website
+# Bicycle Club Apartments - Apartment Complex Website
 
 ## Overview
 
-This is a full-stack web application for "The Grove at Deerwood," a luxury apartment complex in Jacksonville, Florida. The application serves as a comprehensive marketing and leasing platform, featuring apartment listings, amenities, photo galleries, and contact management capabilities.
+This is a full-stack web application for "Bicycle Club Apartments," a luxury apartment complex in Kansas City, Missouri. The application serves as a comprehensive marketing and leasing platform, featuring apartment listings, amenities, photo galleries, and contact management capabilities.
 
 ## System Architecture
 
@@ -117,6 +117,28 @@ This is a full-stack web application for "The Grove at Deerwood," a luxury apart
 - Environment variable configuration
 
 ## Changelog
+
+### July 08, 2025 - Complete Website Transformation to Bicycle Club Apartments
+- **Complete Brand Transformation**: Updated entire website from Grove at Deerwood to Bicycle Club Apartments
+- **Location Change**: Transformed from Jacksonville, Florida to Kansas City, Missouri content
+- **New Floor Plans**: Updated to Bicycle Club's 4 floor plans (Aspen, Vail, Montrose, Vista) with correct pricing and square footage
+- **Authentic Images**: Downloaded and integrated 25+ authentic images from Bicycle Club website including:
+  - Floor plan images for all 4 layouts
+  - Interior photos showcasing apartments
+  - Pool and amenity photos
+  - Building exterior and landscape photos
+  - Community areas and fitness center
+- **Contact Information**: Updated all contact details to Kansas City location and hours
+- **Amenities Update**: Replaced amenities with Bicycle Club specific features:
+  - 24-hour fitness center
+  - Resort-like pool with sand volleyball court
+  - Pet-friendly dog park
+  - Wood burning fireplaces in select units
+  - AAA rated Park Hill School District proximity
+- **Virtual Tours**: Updated to include actual Bicycle Club YouTube tours
+- **External Links**: Updated leasing and resident portal links to Bicycle Club systems
+- **Database Migration**: Completely refreshed database with authentic Bicycle Club data
+- **Location Page**: Updated nearby attractions to Kansas City area including Zona Rosa, UMKC, and local amenities
 
 ### July 08, 2025 - Complete Navigation Structure Implementation
 - **Complete Navigation Overhaul**: Updated navigation to match original Grove at Deerwood website structure

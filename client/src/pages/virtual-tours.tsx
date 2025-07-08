@@ -7,30 +7,21 @@ export default function VirtualTours() {
   const tours = [
     {
       id: 1,
-      title: "Virtual Tour",
-      description: "Take a comprehensive virtual walkthrough of our beautiful community and see what makes The Grove at Deerwood special.",
-      thumbnail: "/images/grove-home-hero.jpg",
-      videoUrl: "https://www.youtube.com/watch?v=aRyaRCzdGu4",
+      title: "Virtual Property Tour",
+      description: "Take a comprehensive virtual walkthrough of our beautiful community and see what makes Bicycle Club Apartments special.",
+      thumbnail: "/images/amenities/building-exterior.jpg",
+      videoUrl: "https://www.youtube.com/watch?v=2UTDoEzRb-o",
       icon: <MapPin className="w-6 h-6" />,
       type: "Community Tour"
     },
     {
       id: 2,
-      title: "Property Tour",
-      description: "Explore our lush landscaping, resort-style amenities, and beautifully maintained grounds.",
-      thumbnail: "/images/grove-pool.jpg",
-      videoUrl: "https://www.youtube.com/watch?v=I7bn5QAnZs4",
-      icon: <Building className="w-6 h-6" />,
-      type: "Property Features"
-    },
-    {
-      id: 3,
-      title: "Apartment Tour",
-      description: "Step inside our spacious floor plans and see the modern finishes and thoughtful layouts.",
-      thumbnail: "/images/grove-interior.jpg",
-      videoUrl: "https://www.youtube.com/watch?v=5UryT-Cr-Bk",
+      title: "Virtual Tour – Montrose 2B 1.5BA",
+      description: "Explore our spacious Montrose floor plan with 2 bedrooms and 1.5 bathrooms, perfect for roommates or small families.",
+      thumbnail: "/images/floorplans/montrose.jpg",
+      videoUrl: "https://youtu.be/o5WW4wkKRls",
       icon: <Home className="w-6 h-6" />,
-      type: "Interior Tour"
+      type: "Floor Plan Tour"
     }
   ];
 
@@ -61,7 +52,7 @@ export default function VirtualTours() {
             </h1>
             
             <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-              Experience The Grove at Deerwood from the comfort of your home. Take a virtual tour of our community, amenities, and apartment homes.
+              Experience Bicycle Club Apartments from the comfort of your home. Take a virtual tour of our community, amenities, and apartment homes.
             </p>
           </div>
         </div>

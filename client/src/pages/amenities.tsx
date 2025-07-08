@@ -23,7 +23,7 @@ export default function Amenities() {
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4 font-serif">Amenities</h1>
           <p className="text-xl text-gray-600">
-            Resort-style living with something for everyone in your family to enjoy
+            The park-like setting of Bicycle Club offers you ample space to walk and enjoy nature
           </p>
         </div>
         
@@ -31,7 +31,7 @@ export default function Amenities() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
           <div>
             <img 
-              src="/images/pool4.jpg" 
+              src="/images/amenities/pool-exterior.jpg" 
               alt="Resort-style pool area" 
               className="rounded-lg shadow-lg w-full h-auto"
             />
@@ -39,29 +39,29 @@ export default function Amenities() {
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Resort-Style Living</h2>
             <p className="text-lg text-gray-600 mb-6">
-              <strong>Escape to Tranquil Lakeside living</strong> at The Grove at Deerwood (formerly Princeton Square) 
-              Apartments located in Southside Jacksonville Florida central to I-95 and Baymeadows.
+              <strong>Enjoy the Bicycle Club lifestyle</strong> at Bicycle Club Apartments located in Kansas City, Missouri.
+              With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness room.
             </p>
             <p className="text-lg text-gray-600 mb-6">
-              Your Jacksonville apartment home is surrounded by lush landscaping, two resort style pools with sun deck 
-              and lighted tennis courts… <strong>something for everyone in your family to enjoy</strong>.
+              The park-like setting of Bicycle Club offers you <strong>ample space to walk and enjoy nature</strong>. 
+              And, don't forget to check out our fully equipped fitness room, with spacious outside meeting areas overlooking the gorgeous pool and community BBQ area.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex items-center text-gray-600">
                 <i className="fas fa-swimming-pool text-green-700 mr-3 text-lg"></i>
-                Two resort-style pools
+                Resort-like pool
               </div>
               <div className="flex items-center text-gray-600">
-                <i className="fas fa-tennis-ball text-green-700 mr-3 text-lg"></i>
-                Lighted tennis courts
+                <i className="fas fa-dumbbell text-green-700 mr-3 text-lg"></i>
+                24-Hour fitness center
               </div>
               <div className="flex items-center text-gray-600">
-                <i className="fas fa-water text-green-700 mr-3 text-lg"></i>
-                Large stocked lake
+                <i className="fas fa-volleyball-ball text-green-700 mr-3 text-lg"></i>
+                Sand volleyball court
               </div>
               <div className="flex items-center text-gray-600">
-                <i className="fas fa-wifi text-green-700 mr-3 text-lg"></i>
-                WiFi at clubhouse
+                <i className="fas fa-dog text-green-700 mr-3 text-lg"></i>
+                Pet friendly dog park
               </div>
             </div>
           </div>
