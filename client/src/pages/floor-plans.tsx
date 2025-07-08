@@ -65,7 +65,7 @@ export default function FloorPlans() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {floorPlans.map((plan) => (
-              <Card key={plan.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 rounded-3xl bg-white">
+              <Card key={plan.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 rounded-3xl bg-white flex flex-col h-full">
                 <div className="relative">
                   <img 
                     src={plan.imageUrl} 
@@ -75,8 +75,8 @@ export default function FloorPlans() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300"></div>
                 </div>
                 
-                <CardContent className="p-8">
-                  <div className="space-y-6">
+                <CardContent className="p-8 flex-1 flex flex-col">
+                  <div className="space-y-6 flex-1">
                     <p className="text-slate-600 leading-relaxed">{plan.description}</p>
                     
                     <div className="grid grid-cols-3 gap-6">
@@ -104,27 +104,27 @@ export default function FloorPlans() {
                         <div className="text-2xl font-bold text-slate-900">{plan.sqft.toLocaleString()}</div>
                       </div>
                     </div>
-                    
-                    <div className="bg-slate-50 rounded-2xl p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-slate-600 font-medium">Rent Starting at:</span>
-                        <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 text-lg font-bold">
-                          ${plan.startingPrice.toLocaleString()}
-                        </Badge>
-                      </div>
-                      
-                      <ScheduleVisitModal
-                        floorPlan={plan.name}
-                        trigger={
-                          <Button 
-                            className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
-                            size="lg"
-                          >
-                            Schedule Visit
-                          </Button>
-                        }
-                      />
+                  </div>
+                  
+                  <div className="bg-slate-50 rounded-2xl p-6 mt-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-slate-600 font-medium">Rent Starting at:</span>
+                      <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 text-lg font-bold">
+                        ${plan.startingPrice.toLocaleString()}
+                      </Badge>
                     </div>
+                    
+                    <ScheduleVisitModal
+                      floorPlan={plan.name}
+                      trigger={
+                        <Button 
+                          className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+                          size="lg"
+                        >
+                          Schedule Visit
+                        </Button>
+                      }
+                    />
                   </div>
                 </CardContent>
               </Card>
