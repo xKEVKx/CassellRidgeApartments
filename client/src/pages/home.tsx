@@ -8,11 +8,43 @@ import { Skeleton } from "@/components/ui/skeleton";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
 import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
 import type { FloorPlan } from "@shared/schema";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const { data: floorPlans, isLoading: floorPlansLoading } = useQuery<FloorPlan[]>({
     queryKey: ["/api/floor-plans"],
   });
+
+  // Interior images for rotating background
+  const interiorImages = [
+    "/images/gallery/grove-interior2-960x460-2.jpg",
+    "/images/gallery/grove-interior9-800w.jpg", 
+    "/images/gallery/grove-interior7-800w.jpg",
+    "/images/gallery/grove-interior8-800w.jpg",
+    "/images/gallery/grove-interior6-800w.jpg",
+    "/images/gallery/grove-interior5-800w.jpg",
+    "/images/gallery/grove-interior4-800w.jpg",
+    "/images/gallery/grove-interior3-800w.jpg"
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const getRandomInterval = () => Math.random() * 2000 + 3000; // 3-5 seconds
+    
+    const rotateImage = () => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % interiorImages.length);
+    };
+
+    const scheduleNext = () => {
+      setTimeout(() => {
+        rotateImage();
+        scheduleNext();
+      }, getRandomInterval());
+    };
+
+    scheduleNext();
+  }, [interiorImages.length]);
 
   return (
     <div className="min-h-screen">
@@ -388,20 +420,25 @@ export default function Home() {
       </section>
 
       {/* Ultra Modern Contact CTA */}
-      <section className="py-20 bg-slate-900 relative overflow-hidden">
-        {/* Animated Background */}
+      <section className="py-20 relative overflow-hidden">
+        {/* Rotating Background Images */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900"></div>
-          <div className="absolute top-0 left-0 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          {interiorImages.map((image, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ backgroundImage: `url(${image})` }}
+            />
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-800/80 to-slate-900/90"></div>
         </div>
         
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }}></div>
+        {/* Floating Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-teal-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
