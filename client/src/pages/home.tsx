@@ -71,10 +71,16 @@ export default function Home() {
     const newVisitCount = visitCount + 1;
     localStorage.setItem('grove-visit-count', newVisitCount.toString());
     
-    if (newVisitCount <= 3) {
+    if (newVisitCount === 1) {
+      // First visit - show open
+      setShowSalePopup(true);
+      setIsPopupMinimized(false);
+    } else if (newVisitCount <= 3) {
+      // Visits 2-3 - show expanded
       setShowSalePopup(true);
       setIsPopupMinimized(false);
     } else {
+      // After 3 visits - show minimized
       setShowSalePopup(true);
       setIsPopupMinimized(true);
     }
