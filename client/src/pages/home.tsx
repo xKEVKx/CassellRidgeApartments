@@ -130,18 +130,19 @@ export default function Home() {
             {/* Feature Pills */}
             <div className="flex flex-wrap justify-center gap-4 pt-8">
               {[
-                { icon: "🏠", text: "1-3 Bedrooms" },
-                { icon: "🏊", text: "Resort Pools" },
-                { icon: "🌊", text: "Lakeside Views" },
-                { icon: "🎾", text: "Tennis Courts" }
+                { icon: "🏠", text: "1-3 Bedrooms", href: "/floor-plans" },
+                { icon: "🏊", text: "Resort Pools", href: "/amenities" },
+                { icon: "🌊", text: "Lakeside Views", href: "/amenities" },
+                { icon: "🎾", text: "Tennis Courts", href: "/amenities" }
               ].map((feature, index) => (
-                <div 
+                <Link 
                   key={index}
-                  className="flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90 text-sm font-medium"
+                  href={feature.href}
+                  className="flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90 text-sm font-medium hover:bg-white/20 hover:border-white/40 transition-all duration-300 cursor-pointer"
                 >
                   <span className="text-lg">{feature.icon}</span>
                   <span>{feature.text}</span>
-                </div>
+                </Link>
               ))}
             </div>
             
