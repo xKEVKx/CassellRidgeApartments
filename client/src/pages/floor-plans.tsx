@@ -50,38 +50,7 @@ export default function FloorPlans() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
-      {/* Hero Section */}
-      <section className="relative py-32 bg-slate-900 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-900"></div>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
-            backgroundSize: '20px 20px'
-          }}></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center px-4 py-2 bg-emerald-500/20 rounded-full text-emerald-400 text-sm font-semibold backdrop-blur-sm">
-              <Home className="w-4 h-4 mr-2" />
-              Floor Plans
-            </div>
-            
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              Find Your Perfect 
-              <span className="block bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                Home
-              </span>
-            </h1>
-            
-            <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-              Choose from our spacious 1, 2, and 3 bedroom apartment homes designed for comfort and modern living at The Grove at Deerwood.
-            </p>
-          </div>
-        </div>
-      </section>
-
+    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white pt-24">
       {/* Floor Plans Grid */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
