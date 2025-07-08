@@ -217,11 +217,11 @@ export default function Home() {
             
             {/* Image Side */}
             <div className="relative">
-              <div className="relative group">
+              <div className="relative group w-full h-96 overflow-hidden rounded-3xl shadow-2xl">
                 <img 
                   src={interiorImages[currentImageIndex]} 
                   alt="Luxury apartment interior" 
-                  className={`w-full h-auto rounded-3xl shadow-2xl transition-all duration-1000 ease-in-out group-hover:scale-105 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                  className={`w-full h-full object-cover transition-all duration-1000 ease-in-out group-hover:scale-105 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
                 
