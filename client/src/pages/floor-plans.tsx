@@ -42,16 +42,6 @@ export default function FloorPlans() {
       startingPrice: 1399,
       imageUrl: "/images/dogwood-floorplan.jpg",
       description: "Two-bedroom, two-bathroom layout perfect for roommates or small families"
-    },
-    {
-      id: 4,
-      name: "Summit",
-      bedrooms: 3,
-      bathrooms: 2,
-      sqft: 1200,
-      startingPrice: 2295,
-      imageUrl: "/images/summit-floorplan.jpg",
-      description: "Three-bedroom layout with maximum space and privacy"
     }
   ];
 
