@@ -119,6 +119,8 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 ## Changelog
 
 ### July 08, 2025 - Complete Website Transformation to Bicycle Club Apartments
+- **Accessibility Enhancement**: Added Accessibe widget for improved website accessibility compliance
+- **Gallery Photo Review**: Corrected all 35 photo categorizations and descriptions to accurately reflect apartment interiors vs exteriors
 - **Page Title Update**: Changed browser tab title from "The Grove at Deerwood" to "Bicycle Club Apartments - Luxury Living in Kansas City, MO"
 - **Meta Tags**: Updated all SEO meta descriptions and Open Graph tags to reflect Bicycle Club branding
 - **Gallery Enhancement**: Added 35+ authentic Bicycle Club images from amenities page with proper categorization
