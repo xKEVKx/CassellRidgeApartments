@@ -123,12 +123,12 @@ export default function Amenities() {
           <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Property Gallery</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { src: "/images/interior10.jpg", alt: "Interior view" },
-              { src: "/images/pool2.jpg", alt: "Pool area" },
-              { src: "/images/interior7.jpg", alt: "Living space" },
-              { src: "/images/pool5.jpg", alt: "Pool deck" },
-              { src: "/images/interior8.jpg", alt: "Bedroom" },
-              { src: "/images/patio1.jpg", alt: "Patio area" }
+              { src: "/images/amenities/authentic/building-exterior.jpg", alt: "Bicycle Club Apartments building exterior" },
+              { src: "/images/amenities/authentic/pool-area.jpg", alt: "Resort-style swimming pool area" },
+              { src: "/images/amenities/authentic/fitness-center.jpg", alt: "24-hour fitness center" },
+              { src: "/images/amenities/authentic/pool-deck.jpg", alt: "Pool deck with seating area" },
+              { src: "/images/amenities/authentic/interior-living.jpg", alt: "Modern apartment living room" },
+              { src: "/images/amenities/authentic/pool-volleyball.jpg", alt: "Sand volleyball court" }
             ].map((image, index) => (
               <div key={index} className="relative overflow-hidden rounded-lg shadow-lg">
                 <img 
