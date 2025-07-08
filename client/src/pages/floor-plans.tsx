@@ -73,13 +73,6 @@ export default function FloorPlans() {
                     className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300"></div>
-                  
-                  {/* Floor Plan Name Overlay */}
-                  <div className="absolute top-6 left-6">
-                    <div className="bg-white/20 backdrop-blur-md rounded-2xl px-4 py-2 border border-white/30">
-                      <h3 className="text-2xl font-bold text-white">{plan.name}</h3>
-                    </div>
-                  </div>
                 </div>
                 
                 <CardContent className="p-8">
