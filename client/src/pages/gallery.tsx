@@ -160,70 +160,70 @@ export default function Gallery() {
     },
     {
       id: 21,
-      title: "Resort-Style Swimming Pool",
+      title: "Apartment Interior View",
       imageUrl: "/images/amenities/authentic/pool-area.jpg",
-      category: "pool",
-      description: "Beautiful resort-style swimming pool with spacious deck and lounge seating"
+      category: "interior",
+      description: "Interior apartment view with modern design and comfortable living space"
     },
     {
       id: 22,
-      title: "Pool Deck & Seating",
+      title: "Living Space Interior",
       imageUrl: "/images/amenities/authentic/pool-deck.jpg",
-      category: "pool",
-      description: "Expansive pool deck with comfortable seating for residents to relax and socialize"
+      category: "interior",
+      description: "Spacious interior living space with modern furnishings and decor"
     },
     {
       id: 23,
-      title: "Pool Complex Overview",
+      title: "Apartment Interior Layout",
       imageUrl: "/images/amenities/authentic/pool-area-2.jpg",
-      category: "pool",
-      description: "Complete view of the pool complex with surrounding amenities"
+      category: "interior",
+      description: "Well-designed apartment interior with open floor plan layout"
     },
     {
       id: 24,
-      title: "Sand Volleyball Court",
+      title: "Modern Interior Design",
       imageUrl: "/images/amenities/authentic/pool-volleyball.jpg",
-      category: "pool",
-      description: "Professional sand volleyball court adjacent to the pool area for active recreation"
+      category: "interior",
+      description: "Modern interior design with contemporary fixtures and comfortable seating"
     },
     {
       id: 25,
-      title: "Poolside Lounging",
+      title: "Comfortable Interior Living",
       imageUrl: "/images/amenities/authentic/pool-seating.jpg",
-      category: "pool",
-      description: "Comfortable poolside seating areas perfect for sunbathing and relaxation"
+      category: "interior",
+      description: "Comfortable interior living area with stylish furniture and decor"
     },
     {
       id: 26,
-      title: "Community Pool Gathering",
+      title: "Interior Common Area",
       imageUrl: "/images/amenities/authentic/pool-community.jpg",
-      category: "pool",
-      description: "Community gathering space by the pool for social events and relaxation"
+      category: "interior",
+      description: "Interior common area with modern amenities and comfortable seating"
     },
     {
       id: 27,
-      title: "Active Recreation Area",
+      title: "Interior Recreational Space",
       imageUrl: "/images/amenities/authentic/pool-volleyball-2.jpg",
-      category: "pool",
-      description: "Sand volleyball court providing active recreation opportunities for residents"
+      category: "interior",
+      description: "Interior recreational space with modern design and comfortable furnishings"
     },
     {
       id: 28,
-      title: "Pool Lifestyle Experience",
+      title: "Resort-Style Swimming Pool",
       imageUrl: "/images/amenities/authentic/pool-lifestyle.jpg",
       category: "pool",
-      description: "Resort-style pool lifestyle with premium amenities and recreational facilities"
+      description: "Beautiful resort-style swimming pool with premium amenities and recreational facilities"
     },
     {
       id: 29,
-      title: "Waterside Relaxation",
+      title: "Pool Seating Area",
       imageUrl: "/images/amenities/authentic/pool-seating-area.jpg",
       category: "pool",
-      description: "Relaxing waterside seating area with comfortable furniture and shade"
+      description: "Relaxing pool seating area with comfortable furniture and shade"
     },
     {
       id: 30,
-      title: "Pool Complex Aerial",
+      title: "Pool Aerial View",
       imageUrl: "/images/amenities/authentic/pool-aerial.jpg",
       category: "pool",
       description: "Aerial view showcasing the complete pool complex and surrounding amenities"
