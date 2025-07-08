@@ -552,12 +552,12 @@ export default function Home() {
               <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
                 Ready to Make
                 <span className="block bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                  The Grove Home?
+                  Bicycle Club Home?
                 </span>
               </h2>
               
               <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-                Contact us today to schedule your personal tour and see why The Grove at Deerwood is the perfect place to call home.
+                Contact us today to schedule your personal tour and see why Bicycle Club Apartments is the perfect place to call home.
               </p>
             </div>
             
@@ -594,8 +594,8 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 {[
                   { number: "15+", label: "Premium Amenities" },
-                  { number: "3", label: "Floor Plan Options" },
-                  { number: "24/7", label: "Concierge Service" }
+                  { number: "4", label: "Floor Plan Options" },
+                  { number: "AAA", label: "Rated School District" }
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
                     <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-2">
