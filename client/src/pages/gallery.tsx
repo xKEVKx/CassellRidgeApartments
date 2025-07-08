@@ -162,105 +162,105 @@ export default function Gallery() {
       id: 21,
       title: "Resort-Style Pool",
       imageUrl: "/images/amenities/authentic/pool-area.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Main pool area with deck seating"
     },
     {
       id: 22,
       title: "Pool Deck",
       imageUrl: "/images/amenities/authentic/pool-deck.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Spacious pool deck for relaxation"
     },
     {
       id: 23,
       title: "Pool Area 2",
       imageUrl: "/images/amenities/authentic/pool-area-2.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Another view of the pool complex"
     },
     {
       id: 24,
       title: "Volleyball Court",
       imageUrl: "/images/amenities/authentic/pool-volleyball.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Sand volleyball court by the pool"
     },
     {
       id: 25,
       title: "Pool Seating",
       imageUrl: "/images/amenities/authentic/pool-seating.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Comfortable seating areas around the pool"
     },
     {
       id: 26,
       title: "Pool Community Area",
       imageUrl: "/images/amenities/authentic/pool-community.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Community gathering space by the pool"
     },
     {
       id: 27,
       title: "Volleyball Court 2",
       imageUrl: "/images/amenities/authentic/pool-volleyball-2.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Sand volleyball court for active lifestyle"
     },
     {
       id: 28,
       title: "Pool Lifestyle",
       imageUrl: "/images/amenities/authentic/pool-lifestyle.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Resort-style pool living"
     },
     {
       id: 29,
       title: "Pool Seating Area",
       imageUrl: "/images/amenities/authentic/pool-seating-area.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Relaxing seating by the water"
     },
     {
       id: 30,
       title: "Pool Aerial View",
       imageUrl: "/images/amenities/authentic/pool-aerial.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Overhead view of the pool complex"
     },
     {
       id: 31,
       title: "Resort-Style Pool",
       imageUrl: "/images/amenities/authentic/pool-resort-style.jpg",
-      category: "exterior",
+      category: "pool",
       description: "Beautiful resort-style pool design"
     },
     {
       id: 32,
       title: "Fitness Center",
       imageUrl: "/images/amenities/authentic/fitness-center.jpg",
-      category: "exterior",
+      category: "fitness",
       description: "24-hour fitness center"
     },
     {
       id: 33,
       title: "Fitness Equipment",
       imageUrl: "/images/amenities/authentic/fitness-equipment.jpg",
-      category: "exterior",
+      category: "fitness",
       description: "Modern fitness equipment"
     },
     {
       id: 34,
       title: "Fitness Center 2",
       imageUrl: "/images/amenities/authentic/fitness-center-2.jpg",
-      category: "exterior",
+      category: "fitness",
       description: "Spacious workout area"
     },
     {
       id: 35,
       title: "Leasing Office",
       imageUrl: "/images/amenities/authentic/leasing-office.jpg",
-      category: "exterior",
+      category: "office",
       description: "Professional leasing office"
     }
   ];
@@ -268,7 +268,10 @@ export default function Gallery() {
   const categories = [
     { id: "all", label: "All Photos", icon: Home },
     { id: "interior", label: "Interior", icon: Home },
-    { id: "exterior", label: "Exterior", icon: TreePine }
+    { id: "exterior", label: "Exterior", icon: TreePine },
+    { id: "pool", label: "Pool & Amenities", icon: Waves },
+    { id: "fitness", label: "Fitness Center", icon: TreePine },
+    { id: "office", label: "Leasing Office", icon: Home }
   ];
 
   const filteredImages = selectedCategory === "all" 
