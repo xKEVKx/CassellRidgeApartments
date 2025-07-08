@@ -99,14 +99,7 @@ export default function Home() {
               ))}
             </div>
             
-            {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-              <div className="flex flex-col items-center space-y-2 text-white/60">
-                <span className="text-sm font-medium">Explore</span>
-                <div className="w-px h-8 bg-white/30"></div>
-                <div className="w-2 h-2 bg-white/60 rounded-full animate-bounce"></div>
-              </div>
-            </div>
+
           </div>
         </div>
       </section>
