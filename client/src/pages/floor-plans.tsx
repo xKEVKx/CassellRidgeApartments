@@ -238,7 +238,7 @@ export default function FloorPlans() {
                 Interactive Location Map
               </h3>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                Explore our convenient location in Kansas City's Northland near I-435 and North Oak Trafficway.
+                Explore our convenient location in Kansas City's Northland near I-435 and Kansas City International Airport.
               </p>
             </div>
             <div className="bg-white rounded-3xl p-4 shadow-xl">
