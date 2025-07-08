@@ -176,7 +176,7 @@ export default function Home() {
               
               <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
                 With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness room, 
-                <span className="text-emerald-400 font-medium">Bicycle Club</span> is an ideal place to live in 
+                <span className="text-emerald-400 font-medium"> Bicycle Club</span> is an ideal place to live in 
                 <span className="text-emerald-400 font-medium"> Kansas City</span>.
               </p>
             </div>
