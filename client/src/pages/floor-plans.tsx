@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Bed, Bath, Square, Home, MapPin } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Bed, Bath, Square, Home, MapPin, Expand } from "lucide-react";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -148,11 +149,34 @@ export default function FloorPlans() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="bg-white rounded-3xl p-8 shadow-xl">
-                <img 
-                  src="/images/grove-site-map.png" 
-                  alt="Grove at Deerwood Site Map"
-                  className="w-full h-auto rounded-2xl"
-                />
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="relative group cursor-pointer">
+                      <img 
+                        src="/images/grove-site-map.png" 
+                        alt="Grove at Deerwood Site Map"
+                        className="w-full h-auto rounded-2xl transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex items-center justify-center">
+                        <div className="bg-white/90 backdrop-blur-sm rounded-full p-3">
+                          <Expand className="w-6 h-6 text-slate-700" />
+                        </div>
+                      </div>
+                      <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="text-sm font-medium text-slate-700">Click to view full size</span>
+                      </div>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-6xl w-full h-[90vh] p-4">
+                    <div className="w-full h-full flex items-center justify-center">
+                      <img 
+                        src="/images/grove-site-map.png" 
+                        alt="Grove at Deerwood Site Map - Full Size"
+                        className="max-w-full max-h-full object-contain rounded-xl"
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
             
