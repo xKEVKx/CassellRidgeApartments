@@ -98,8 +98,7 @@ export default function Home() {
               // Expanded state
               <div className="relative">
                 {/* Header */}
-                <div className="bg-gradient-to-r from-orange-400 to-red-500 p-3 flex justify-between items-center">
-                  <h3 className="text-white font-bold text-sm">Summer Sale!</h3>
+                <div className="bg-gradient-to-r from-orange-400 to-red-500 p-3 flex justify-end items-center">
                   <div className="flex gap-2">
                     <button
                       onClick={() => setIsPopupMinimized(true)}
