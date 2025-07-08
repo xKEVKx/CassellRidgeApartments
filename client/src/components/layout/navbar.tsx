@@ -30,8 +30,8 @@ export default function Navbar() {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:block">
-            <div className="ml-10 flex items-center space-x-2">
+          <div className="hidden xl:block">
+            <div className="ml-10 flex items-center space-x-4">
               {NAVIGATION_LINKS.map((link) => (
                 <div key={link.href}>
                   {link.subItems ? (
@@ -96,7 +96,7 @@ export default function Navbar() {
               ))}
               
               {/* External Links - Hidden on smaller screens */}
-              <div className="hidden xl:flex space-x-2">
+              <div className="hidden 2xl:flex space-x-3">
                 {EXTERNAL_LINKS.map((link) => (
                   <Button
                     key={link.href}
@@ -120,8 +120,8 @@ export default function Navbar() {
                   asChild
                 >
                   <a href={`tel:${SITE_CONFIG.contact.phone}`}>
-                    <Phone className="w-4 h-4 xl:mr-2 transition-transform group-hover:scale-110" />
-                    <span className="hidden xl:inline">Call Now</span>
+                    <Phone className="w-4 h-4 2xl:mr-2 transition-transform group-hover:scale-110" />
+                    <span className="hidden 2xl:inline">Call Now</span>
                   </a>
                 </Button>
               </div>
@@ -129,7 +129,7 @@ export default function Navbar() {
           </div>
           
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="xl:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button 
