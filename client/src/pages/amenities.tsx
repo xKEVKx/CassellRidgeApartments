@@ -2,9 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Check } from "lucide-react";
+import { useEffect } from "react";
 import type { Amenity } from "@shared/schema";
 
 export default function Amenities() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { data: amenities, isLoading } = useQuery<Amenity[]>({
     queryKey: ["/api/amenities"],
   });
