@@ -36,7 +36,7 @@ export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   
-  // Summer sale popup state
+  // Summer sale popup state - disabled for Bicycle Club
   const [showSalePopup, setShowSalePopup] = useState(false);
   const [isPopupMinimized, setIsPopupMinimized] = useState(false);
 
@@ -65,25 +65,26 @@ export default function Home() {
     };
   }, [interiorImages.length]);
 
-  // Handle summer sale popup visibility
+  // Handle summer sale popup visibility - disabled for Bicycle Club
   useEffect(() => {
-    const visitCount = parseInt(localStorage.getItem('grove-visit-count') || '0');
-    const newVisitCount = visitCount + 1;
-    localStorage.setItem('grove-visit-count', newVisitCount.toString());
+    // Disabled for Bicycle Club transformation
+    // const visitCount = parseInt(localStorage.getItem('grove-visit-count') || '0');
+    // const newVisitCount = visitCount + 1;
+    // localStorage.setItem('grove-visit-count', newVisitCount.toString());
     
-    if (newVisitCount === 1) {
-      // First visit - show open
-      setShowSalePopup(true);
-      setIsPopupMinimized(false);
-    } else if (newVisitCount <= 3) {
-      // Visits 2-3 - show expanded
-      setShowSalePopup(true);
-      setIsPopupMinimized(false);
-    } else {
-      // After 3 visits - show minimized
-      setShowSalePopup(true);
-      setIsPopupMinimized(true);
-    }
+    // if (newVisitCount === 1) {
+    //   // First visit - show open
+    //   setShowSalePopup(true);
+    //   setIsPopupMinimized(false);
+    // } else if (newVisitCount <= 3) {
+    //   // Visits 2-3 - show expanded
+    //   setShowSalePopup(true);
+    //   setIsPopupMinimized(false);
+    // } else {
+    //   // After 3 visits - show minimized
+    //   setShowSalePopup(true);
+    //   setIsPopupMinimized(true);
+    // }
   }, []);
 
   return (
@@ -150,7 +151,7 @@ export default function Home() {
         <div className="absolute inset-0">
           <div 
             className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(/images/grove-home-hero.jpg)` }}
+            style={{ backgroundImage: `url(${HERO_IMAGE})` }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-800/70 to-slate-900/90" />
         </div>
@@ -166,19 +167,19 @@ export default function Home() {
             {/* Main Heading */}
             <div className="space-y-6">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tracking-tight">
-                TRANQUIL
+                ENJOY THE
                 <span className="block bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
-                  LAKESIDE
+                  BICYCLE CLUB
                 </span>
                 <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white/90">
-                  LIVING
+                  LIFESTYLE
                 </span>
               </h1>
               
               <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
-                Escape to luxury lakeside living at The Grove at Deerwood. 
-                <span className="text-emerald-400 font-medium">Resort-style amenities</span> meet 
-                <span className="text-emerald-400 font-medium"> modern comfort</span> in Jacksonville's premier community.
+                With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness room, 
+                <span className="text-emerald-400 font-medium">Bicycle Club</span> is an ideal place to live in 
+                <span className="text-emerald-400 font-medium">Kansas City</span>.
               </p>
             </div>
             
@@ -203,7 +204,7 @@ export default function Home() {
                 asChild
               >
                 <a href="https://55376.onlineleasing.realpage.com/" target="_blank" rel="noopener noreferrer">
-                  Apply Now
+                  Online Leasing
                   <ExternalLink className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
@@ -245,8 +246,8 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
-              The park-like setting of Bicycle Club offers you <strong className="text-emerald-600">ample space to walk and enjoy nature</strong>. 
-              With our fully equipped fitness room, gorgeous pool and community BBQ area.
+              Resort-like pool, great schools, natural setting, 24-hr fitness center and so much more make 
+              <strong className="text-emerald-600">Bicycle Club</strong> a truly great place to live.
             </p>
           </div>
           

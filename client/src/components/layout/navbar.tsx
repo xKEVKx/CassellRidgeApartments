@@ -19,8 +19,8 @@ export default function Navbar() {
               <div className="flex items-center space-x-4">
                 <div className="relative">
                   <img 
-                    src="/images/grove-logo.png" 
-                    alt="The Grove at Deerwood Logo" 
+                    src="/images/bicycle-club-logo.png" 
+                    alt="Bicycle Club Apartments Logo" 
                     className="h-16 w-auto transition-all duration-300 group-hover:scale-105"
                   />
                   <div className="absolute -inset-2 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
