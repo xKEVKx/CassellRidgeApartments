@@ -1,95 +1,255 @@
-import { useQuery } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Bed, Bath, Square, Home, MapPin } from "lucide-react";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
-import type { FloorPlan } from "@shared/schema";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export default function FloorPlans() {
-  const { data: floorPlans, isLoading } = useQuery<FloorPlan[]>({
-    queryKey: ["/api/floor-plans"],
-  });
+  const floorPlans = [
+    {
+      id: 1,
+      name: "Maple",
+      bedrooms: 1,
+      bathrooms: 1,
+      sqft: 600,
+      startingPrice: 1049,
+      imageUrl: "/images/maple-floorplan.jpg",
+      description: "Cozy one-bedroom apartment with modern amenities and efficient layout"
+    },
+    {
+      id: 2,
+      name: "Cypress",
+      bedrooms: 1,
+      bathrooms: 1,
+      sqft: 700,
+      startingPrice: 1149,
+      imageUrl: "/images/cypress-floorplan.jpg",
+      description: "Spacious one-bedroom with additional living space and large windows"
+    },
+    {
+      id: 3,
+      name: "Dogwood",
+      bedrooms: 2,
+      bathrooms: 2,
+      sqft: 1000,
+      startingPrice: 1399,
+      imageUrl: "/images/dogwood-floorplan.jpg",
+      description: "Two-bedroom, two-bathroom layout perfect for roommates or small families"
+    },
+    {
+      id: 4,
+      name: "Summit",
+      bedrooms: 3,
+      bathrooms: 2,
+      sqft: 1200,
+      startingPrice: 2295,
+      imageUrl: "/images/summit-floorplan.jpg",
+      description: "Three-bedroom layout with maximum space and privacy"
+    }
+  ];
 
   return (
-    <div className="min-h-screen py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4 font-serif">Floor Plans</h1>
-          <p className="text-xl text-gray-600">
-            Choose from our spacious 1, 2, and 3 bedroom apartment homes designed for comfort and modern living
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
+      {/* Hero Section */}
+      <section className="relative py-32 bg-slate-900 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-900"></div>
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+            backgroundSize: '20px 20px'
+          }}></div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {isLoading ? (
-            Array.from({ length: 6 }).map((_, i) => (
-              <Card key={i} className="overflow-hidden">
-                <Skeleton className="h-64 w-full" />
-                <CardContent className="p-6">
-                  <Skeleton className="h-6 w-20 mb-2" />
-                  <Skeleton className="h-4 w-full mb-2" />
-                  <Skeleton className="h-4 w-3/4 mb-4" />
-                  <Skeleton className="h-10 w-full" />
-                </CardContent>
-              </Card>
-            ))
-          ) : (
-            floorPlans?.map((plan) => (
-              <Card key={plan.id} className="overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="aspect-w-16 aspect-h-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="space-y-8">
+            <div className="inline-flex items-center px-4 py-2 bg-emerald-500/20 rounded-full text-emerald-400 text-sm font-semibold backdrop-blur-sm">
+              <Home className="w-4 h-4 mr-2" />
+              Floor Plans
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              Find Your Perfect 
+              <span className="block bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+                Home
+              </span>
+            </h1>
+            
+            <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
+              Choose from our spacious 1, 2, and 3 bedroom apartment homes designed for comfort and modern living at The Grove at Deerwood.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Floor Plans Grid */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
+              Our Floor Plans
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Large floor plans with spacious kitchens, huge walk-in closets, and private patios or balconies.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {floorPlans.map((plan) => (
+              <Card key={plan.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 rounded-3xl bg-white">
+                <div className="relative">
                   <img 
                     src={plan.imageUrl} 
                     alt={`${plan.name} floor plan`}
-                    className="w-full h-64 object-cover"
+                    className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                  {plan.description && (
-                    <p className="text-gray-600 mb-4">{plan.description}</p>
-                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300"></div>
                   
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div>
-                      <div className="text-sm text-gray-500">Bedrooms</div>
-                      <div className="text-lg font-semibold">{plan.bedrooms}</div>
-                    </div>
-                    <div>
-                      <div className="text-sm text-gray-500">Bathrooms</div>
-                      <div className="text-lg font-semibold">{plan.bathrooms}</div>
-                    </div>
-                    <div>
-                      <div className="text-sm text-gray-500">Square Feet</div>
-                      <div className="text-lg font-semibold">{plan.sqft.toLocaleString()}</div>
-                    </div>
-                    <div>
-                      <div className="text-sm text-gray-500">Starting at</div>
-                      <Badge variant="secondary" className="text-green-700 font-semibold">
-                        ${plan.startingPrice.toLocaleString()}
-                      </Badge>
+                  {/* Floor Plan Name Overlay */}
+                  <div className="absolute top-6 left-6">
+                    <div className="bg-white/20 backdrop-blur-md rounded-2xl px-4 py-2 border border-white/30">
+                      <h3 className="text-2xl font-bold text-white">{plan.name}</h3>
                     </div>
                   </div>
-                  
-                  <ScheduleVisitModal
-                    floorPlan={plan.name}
-                    trigger={
-                      <button className="w-full bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded-md font-medium transition-colors">
-                        Schedule Visit
-                      </button>
-                    }
-                  />
+                </div>
+                
+                <CardContent className="p-8">
+                  <div className="space-y-6">
+                    <p className="text-slate-600 leading-relaxed">{plan.description}</p>
+                    
+                    <div className="grid grid-cols-3 gap-6">
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                          <Bed className="w-6 h-6 text-emerald-600" />
+                        </div>
+                        <div className="text-sm font-medium text-slate-500 mb-1">Bedrooms</div>
+                        <div className="text-2xl font-bold text-slate-900">{plan.bedrooms}</div>
+                      </div>
+                      
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                          <Bath className="w-6 h-6 text-teal-600" />
+                        </div>
+                        <div className="text-sm font-medium text-slate-500 mb-1">Bathrooms</div>
+                        <div className="text-2xl font-bold text-slate-900">{plan.bathrooms}</div>
+                      </div>
+                      
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-cyan-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                          <Square className="w-6 h-6 text-cyan-600" />
+                        </div>
+                        <div className="text-sm font-medium text-slate-500 mb-1">Sq Ft. (approx.)</div>
+                        <div className="text-2xl font-bold text-slate-900">{plan.sqft.toLocaleString()}</div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-slate-50 rounded-2xl p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-slate-600 font-medium">Rent Starting at:</span>
+                        <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 text-lg font-bold">
+                          ${plan.startingPrice.toLocaleString()}
+                        </Badge>
+                      </div>
+                      
+                      <ScheduleVisitModal
+                        floorPlan={plan.name}
+                        trigger={
+                          <Button 
+                            className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+                            size="lg"
+                          >
+                            Schedule Visit
+                          </Button>
+                        }
+                      />
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
-            ))
-          )}
-        </div>
-        
-        {!isLoading && (!floorPlans || floorPlans.length === 0) && (
-          <div className="text-center py-12">
-            <p className="text-gray-600">No floor plans available at this time.</p>
+            ))}
           </div>
-        )}
-      </div>
+        </div>
+      </section>
+
+      {/* Property Layout Section */}
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
+              The Property Layout
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Discover the beautiful layout of The Grove at Deerwood community with our detailed site map.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="bg-white rounded-3xl p-8 shadow-xl">
+                <img 
+                  src="/images/grove-site-map.png" 
+                  alt="Grove at Deerwood Site Map"
+                  className="w-full h-auto rounded-2xl"
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
+                  Community Features
+                </h3>
+                <p className="text-xl text-slate-600 leading-relaxed">
+                  Our thoughtfully designed community offers resort-style amenities, beautifully landscaped grounds, and convenient access to all that Jacksonville has to offer.
+                </p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <span className="text-slate-700 font-medium">Two resort-style pools with sun deck</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <span className="text-slate-700 font-medium">Lighted tennis courts</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <span className="text-slate-700 font-medium">Lush landscaping throughout</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <span className="text-slate-700 font-medium">Central location near I-95 and Baymeadows</span>
+                </div>
+              </div>
+              
+              <div className="bg-white rounded-2xl p-6 shadow-xl">
+                <h4 className="text-xl font-semibold text-slate-900 mb-4">Interactive Map</h4>
+                <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
+                  <iframe
+                    src={SITE_CONFIG.mapEmbedUrl}
+                    width="100%"
+                    height="300"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full rounded-xl"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
