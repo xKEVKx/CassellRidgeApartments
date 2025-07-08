@@ -210,10 +210,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Section Header */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-4 py-2 bg-emerald-500/20 rounded-full text-emerald-400 text-sm font-semibold mb-6 backdrop-blur-sm">
-              <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>
-              Resort-Style Living
-            </div>
+            
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
               Luxury 
               <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
@@ -319,10 +316,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-24">
-            <div className="inline-flex items-center px-4 py-2 bg-slate-100 rounded-full text-slate-700 text-sm font-semibold mb-6">
-              <span className="w-2 h-2 bg-slate-500 rounded-full mr-2"></span>
-              Thoughtfully Designed Homes
-            </div>
+            
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
               Find Your 
               <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
@@ -414,10 +408,7 @@ export default function Home() {
           <div className="text-center space-y-16">
             {/* Header */}
             <div className="space-y-8">
-              <div className="inline-flex items-center px-4 py-2 bg-emerald-500/20 rounded-full text-emerald-400 text-sm font-semibold backdrop-blur-sm">
-                <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>
-                Ready to Move In
-              </div>
+              
               
               <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
                 Ready to Make
