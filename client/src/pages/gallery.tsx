@@ -18,38 +18,38 @@ export default function Gallery() {
     // Interior Photos
     {
       id: 1,
-      title: "Main Interior Living Space",
+      title: "Open Concept Living Room",
       imageUrl: "/images/amenities/authentic/interior-main.jpg",
       category: "interior",
-      description: "Spacious living room with modern fixtures"
+      description: "Spacious open concept living room with modern furniture and dining area view"
     },
     {
       id: 2,
-      title: "Dining Area",
+      title: "Elegant Dining Room",
       imageUrl: "/images/amenities/authentic/interior-dining.jpg",
       category: "interior",
-      description: "Separate dining room with elegant design"
+      description: "Separate dining room with elegant table, chairs, and sophisticated decor"
     },
     {
       id: 3,
-      title: "Living Room",
+      title: "Contemporary Living Space",
       imageUrl: "/images/amenities/authentic/interior-living.jpg",
       category: "interior",
-      description: "Comfortable living space with modern amenities"
+      description: "Contemporary living space with comfortable seating and modern design elements"
     },
     {
       id: 4,
-      title: "Kitchen",
+      title: "Modern Kitchen",
       imageUrl: "/images/amenities/authentic/interior-kitchen.jpg",
       category: "interior",
-      description: "Fully equipped modern kitchen"
+      description: "Fully equipped modern kitchen with updated appliances and cabinet storage"
     },
     {
       id: 5,
-      title: "Bedroom",
+      title: "Spacious Bedroom",
       imageUrl: "/images/amenities/authentic/interior-bedroom.jpg",
       category: "interior",
-      description: "Well-appointed bedroom with ample space"
+      description: "Well-appointed bedroom with ample space, modern furnishings, and natural light"
     },
     {
       id: 6,
@@ -102,110 +102,110 @@ export default function Gallery() {
     },
     {
       id: 13,
-      title: "Open Concept Living Room",
+      title: "Living Room with Dining Area",
       imageUrl: "/images/amenities/authentic/interior-cozy.jpg",
       category: "interior",
-      description: "Spacious open concept living room with dining area and modern furnishings"
+      description: "Open concept living room with glass coffee tables, carpeting, and adjacent dining area"
     },
     
-    // All remaining photos are exterior
+    // Additional Interior Photos
     {
       id: 14,
       title: "Bright Sunroom",
       imageUrl: "/images/amenities/authentic/interior-sunroom.jpg",
       category: "interior",
-      description: "Bright sunroom with abundant natural light and comfortable seating"
+      description: "Bright sunroom with large windows, natural light, and comfortable seating area"
     },
     {
       id: 15,
-      title: "Private Balcony",
+      title: "Private Balcony Access",
       imageUrl: "/images/amenities/authentic/interior-balcony.jpg",
       category: "interior",
-      description: "Private balcony accessible from living area with outdoor views"
+      description: "Interior view showing private balcony access with sliding doors and outdoor views"
     },
     {
       id: 16,
       title: "Spacious Living Area",
       imageUrl: "/images/amenities/authentic/interior-spacious.jpg",
       category: "interior",
-      description: "Spacious living area with open floor plan design"
+      description: "Spacious living area with high ceilings, modern furniture, and open floor plan"
     },
     {
       id: 17,
       title: "Modern Apartment Interior",
       imageUrl: "/images/amenities/authentic/interior-modern.jpg",
       category: "interior",
-      description: "Modern apartment interior with contemporary fixtures and finishes"
+      description: "Modern apartment interior with updated fixtures, contemporary design, and stylish furnishings"
     },
     {
       id: 18,
       title: "Fireplace Living Room",
       imageUrl: "/images/amenities/authentic/interior-fireplace.jpg",
       category: "interior",
-      description: "Cozy living room with wood-burning fireplace in select units"
+      description: "Cozy living room featuring wood-burning fireplace with mantel and surrounding seating"
     },
     {
       id: 19,
-      title: "Large Windows",
+      title: "Large Windows and Natural Light",
       imageUrl: "/images/amenities/authentic/interior-window.jpg",
       category: "interior",
-      description: "Large windows providing natural light throughout the apartment"
+      description: "Interior showing large windows with blinds providing abundant natural light"
     },
     {
       id: 20,
       title: "Elegant Interior Design",
       imageUrl: "/images/amenities/authentic/interior-elegant.jpg",
       category: "interior",
-      description: "Elegant interior design with sophisticated color scheme and modern amenities"
+      description: "Elegant interior design with sophisticated color palette and quality finishes"
     },
     {
       id: 21,
-      title: "Apartment Interior View",
+      title: "Resort-Style Pool Area",
       imageUrl: "/images/amenities/authentic/pool-area.jpg",
-      category: "interior",
-      description: "Interior apartment view with modern design and comfortable living space"
+      category: "pool",
+      description: "Beautiful resort-style swimming pool with crystal clear water and surrounding deck"
     },
     {
       id: 22,
-      title: "Living Space Interior",
+      title: "Pool Deck",
       imageUrl: "/images/amenities/authentic/pool-deck.jpg",
-      category: "interior",
-      description: "Spacious interior living space with modern furnishings and decor"
+      category: "pool",
+      description: "Spacious pool deck with lounge chairs and umbrella seating for relaxation"
     },
     {
       id: 23,
-      title: "Apartment Interior Layout",
+      title: "Pool Complex",
       imageUrl: "/images/amenities/authentic/pool-area-2.jpg",
-      category: "interior",
-      description: "Well-designed apartment interior with open floor plan layout"
+      category: "pool",
+      description: "Complete view of the pool complex with surrounding amenities and seating areas"
     },
     {
       id: 24,
-      title: "Modern Interior Design",
+      title: "Sand Volleyball Court",
       imageUrl: "/images/amenities/authentic/pool-volleyball.jpg",
-      category: "interior",
-      description: "Modern interior design with contemporary fixtures and comfortable seating"
+      category: "pool",
+      description: "Professional sand volleyball court adjacent to the pool area for active recreation"
     },
     {
       id: 25,
-      title: "Comfortable Interior Living",
+      title: "Poolside Seating",
       imageUrl: "/images/amenities/authentic/pool-seating.jpg",
-      category: "interior",
-      description: "Comfortable interior living area with stylish furniture and decor"
+      category: "pool",
+      description: "Comfortable poolside seating area with chairs and tables for socializing"
     },
     {
       id: 26,
-      title: "Interior Common Area",
+      title: "Pool Community Area",
       imageUrl: "/images/amenities/authentic/pool-community.jpg",
-      category: "interior",
-      description: "Interior common area with modern amenities and comfortable seating"
+      category: "pool",
+      description: "Community gathering space by the pool with seating and recreational facilities"
     },
     {
       id: 27,
-      title: "Interior Recreational Space",
+      title: "Volleyball Recreation",
       imageUrl: "/images/amenities/authentic/pool-volleyball-2.jpg",
-      category: "interior",
-      description: "Interior recreational space with modern design and comfortable furnishings"
+      category: "pool",
+      description: "Sand volleyball court providing active recreation opportunities for residents"
     },
     {
       id: 28,
@@ -240,28 +240,28 @@ export default function Gallery() {
       title: "24-Hour Fitness Center",
       imageUrl: "/images/amenities/authentic/fitness-center.jpg",
       category: "fitness",
-      description: "State-of-the-art 24-hour fitness center with modern equipment and climate control"
+      description: "State-of-the-art 24-hour fitness center with cardio equipment, weight machines, and mirrors"
     },
     {
       id: 33,
-      title: "Modern Fitness Equipment",
+      title: "Fitness Equipment",
       imageUrl: "/images/amenities/authentic/fitness-equipment.jpg",
       category: "fitness",
-      description: "Professional-grade fitness equipment including cardio machines and strength training"
+      description: "Professional fitness equipment including treadmills, ellipticals, and strength training machines"
     },
     {
       id: 34,
-      title: "Spacious Workout Area",
+      title: "Workout Area",
       imageUrl: "/images/amenities/authentic/fitness-center-2.jpg",
       category: "fitness",
-      description: "Spacious workout area with ample room for exercise and stretching"
+      description: "Spacious workout area with modern equipment and proper lighting for exercise"
     },
     {
       id: 35,
-      title: "Professional Leasing Office",
+      title: "Leasing Office",
       imageUrl: "/images/amenities/authentic/leasing-office.jpg",
       category: "office",
-      description: "Professional leasing office with comfortable seating and knowledgeable staff"
+      description: "Professional leasing office with comfortable seating area and consultation space"
     }
   ];
 
