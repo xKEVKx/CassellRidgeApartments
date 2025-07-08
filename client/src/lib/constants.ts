@@ -34,6 +34,25 @@ export const NAVIGATION_LINKS = [
   { href: "/", label: "Home" },
   { href: "/floor-plans", label: "Floor Plans" },
   { href: "/amenities", label: "Amenities" },
-  { href: "/gallery", label: "Gallery" },
+  { 
+    href: "/property", 
+    label: "Property",
+    subItems: [
+      { href: "/gallery", label: "Gallery" },
+      { href: "/location", label: "Location" },
+      { href: "/virtual-tours", label: "Virtual Tours" }
+    ]
+  },
   { href: "/contact", label: "Contact" }
+];
+
+export const EXTERNAL_LINKS = [
+  { 
+    href: "https://lm.realpage.com/external_guest_card?property=CMC20P07", 
+    label: "Leasing" 
+  },
+  { 
+    href: "https://www.on-site.com/web/resident_passport/204538/the_grove_at_deerwood/login", 
+    label: "Rent Payment" 
+  }
 ];

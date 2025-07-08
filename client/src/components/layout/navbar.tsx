@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { SITE_CONFIG, NAVIGATION_LINKS } from "@/lib/constants";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { SITE_CONFIG, NAVIGATION_LINKS, EXTERNAL_LINKS } from "@/lib/constants";
 
 export default function Navbar() {
   const [location] = useLocation();
@@ -32,22 +33,79 @@ export default function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-2">
               {NAVIGATION_LINKS.map((link) => (
-                <Link
+                <div key={link.href}>
+                  {link.subItems ? (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button 
+                          variant="ghost"
+                          className={`group px-5 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ${
+                            link.subItems.some(subItem => location === subItem.href)
+                              ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
+                              : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                          }`}
+                        >
+                          <span className="relative flex items-center">
+                            {link.label}
+                            <ChevronDown className="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" />
+                            <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                              link.subItems.some(subItem => location === subItem.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                            }`}></div>
+                          </span>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-48 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-2xl shadow-xl">
+                        {link.subItems.map((subItem) => (
+                          <DropdownMenuItem key={subItem.href} asChild>
+                            <Link 
+                              href={subItem.href}
+                              className={`w-full px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                                location === subItem.href
+                                  ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white'
+                                  : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600'
+                              }`}
+                            >
+                              {subItem.label}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={`group px-5 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ${
+                        location === link.href
+                          ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
+                          : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                      }`}
+                    >
+                      <span className="relative">
+                        {link.label}
+                        <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                          location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}></div>
+                      </span>
+                    </Link>
+                  )}
+                </div>
+              ))}
+              
+              {/* External Links */}
+              {EXTERNAL_LINKS.map((link) => (
+                <Button
                   key={link.href}
-                  href={link.href}
-                  className={`group px-5 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ${
-                    location === link.href
-                      ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
-                      : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
-                  }`}
+                  variant="ghost"
+                  className="group px-5 py-3 rounded-2xl text-sm font-semibold text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg transition-all duration-300"
+                  asChild
                 >
-                  <span className="relative">
-                    {link.label}
-                    <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
-                      location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`}></div>
-                  </span>
-                </Link>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer">
+                    <span className="relative flex items-center">
+                      {link.label}
+                      <ExternalLink className="w-3 h-3 ml-1" />
+                    </span>
+                  </a>
+                </Button>
               ))}
               
               <div className="ml-6 pl-6 border-l border-slate-200">
@@ -89,23 +147,68 @@ export default function Navbar() {
                   
                   {/* Navigation Links */}
                   {NAVIGATION_LINKS.map((link) => (
-                    <Link
+                    <div key={link.href} className="space-y-2">
+                      {link.subItems ? (
+                        <div className="space-y-2">
+                          <div className="px-6 py-3 text-sm font-semibold text-slate-500 uppercase tracking-wide">
+                            {link.label}
+                          </div>
+                          {link.subItems.map((subItem) => (
+                            <Link
+                              key={subItem.href}
+                              href={subItem.href}
+                              onClick={() => setIsOpen(false)}
+                              className={`group px-6 py-3 rounded-2xl text-base font-medium transition-all duration-300 block ${
+                                location === subItem.href
+                                  ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
+                                  : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                              }`}
+                            >
+                              <span className="relative">
+                                {subItem.label}
+                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                  location === subItem.href ? 'w-full' : 'w-0 group-hover:w-full'
+                                }`}></div>
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className={`group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block ${
+                            location === link.href
+                              ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
+                              : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                          }`}
+                        >
+                          <span className="relative">
+                            {link.label}
+                            <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                              location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                            }`}></div>
+                          </span>
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                  
+                  {/* External Links */}
+                  {EXTERNAL_LINKS.map((link) => (
+                    <a
                       key={link.href}
                       href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => setIsOpen(false)}
-                      className={`group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 ${
-                        location === link.href
-                          ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
-                          : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
-                      }`}
+                      className="group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg"
                     >
-                      <span className="relative">
+                      <span className="relative flex items-center">
                         {link.label}
-                        <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
-                          location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
-                        }`}></div>
+                        <ExternalLink className="w-4 h-4 ml-2" />
                       </span>
-                    </Link>
+                    </a>
                   ))}
                   
                   {/* Call Button */}
