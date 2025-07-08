@@ -19,7 +19,7 @@ export default function Navbar() {
               <div className="flex items-center space-x-4">
                 <div className="relative">
                   <img 
-                    src="/images/bicycle-club-logo.png" 
+                    src="/images/bicycle-club-header-logo.png" 
                     alt="Bicycle Club Apartments Logo" 
                     className="h-16 w-auto transition-all duration-300 group-hover:scale-105"
                   />

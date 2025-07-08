@@ -12,7 +12,7 @@ export default function Footer() {
               {SITE_CONFIG.name}
             </h3>
             <p className="text-gray-300">
-              {SITE_CONFIG.tagline} in the heart of Jacksonville, Florida.
+              {SITE_CONFIG.tagline} in the heart of Kansas City, Missouri.
             </p>
           </div>
           
@@ -36,22 +36,22 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Resident Services</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="https://property.onesite.realpage.com/welcomehome?siteid=3988481" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                   Rent Payment
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="https://property.onesite.realpage.com/welcomehome?siteid=3988481" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                   Maintenance Request
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="https://property.onesite.realpage.com/welcomehome?siteid=3988481" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                   Resident Portal
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="https://55376.onlineleasing.realpage.com/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                   Apply Online
                 </a>
               </li>
