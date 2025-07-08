@@ -66,27 +66,29 @@ export default function VirtualTours() {
               Explore Our Community
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Get a comprehensive look at The Grove at Deerwood through our virtual tours. See our amenities, floor plans, and beautiful community.
+              Get a comprehensive look at Bicycle Club Apartments through our virtual tours. See our amenities, floor plans, and beautiful community.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 max-w-5xl mx-auto">
             {tours.map((tour) => (
-              <Card key={tour.id} className="group bg-white hover:shadow-2xl transition-all duration-500 border-0 rounded-3xl overflow-hidden">
+              <Card key={tour.id} className="group bg-white hover:shadow-2xl transition-all duration-500 border-0 rounded-3xl overflow-hidden h-full flex flex-col">
                 <div className="relative">
-                  <img 
-                    src={tour.thumbnail} 
-                    alt={tour.title}
-                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                  
-                  {/* Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300">
-                      <Play className="w-8 h-8 text-white ml-1" />
+                  <a href={tour.videoUrl} target="_blank" rel="noopener noreferrer" className="block">
+                    <img 
+                      src={tour.thumbnail} 
+                      alt={tour.title}
+                      className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300">
+                        <Play className="w-8 h-8 text-white ml-1" />
+                      </div>
                     </div>
-                  </div>
+                  </a>
                   
                   {/* Type Badge */}
                   <div className="absolute top-4 left-4">
@@ -97,13 +99,13 @@ export default function VirtualTours() {
                   </div>
                 </div>
                 
-                <CardContent className="p-8">
-                  <div className="space-y-4">
+                <CardContent className="p-8 flex-1 flex flex-col">
+                  <div className="space-y-4 flex-1 flex flex-col">
                     <h3 className="text-2xl font-bold text-slate-900">{tour.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{tour.description}</p>
+                    <p className="text-slate-600 leading-relaxed flex-1">{tour.description}</p>
                     
                     <Button 
-                      className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+                      className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105 mt-auto"
                       asChild
                     >
                       <a href={tour.videoUrl} target="_blank" rel="noopener noreferrer">
@@ -127,7 +129,7 @@ export default function VirtualTours() {
               Ready to See More?
             </h2>
             <p className="text-xl text-slate-600 leading-relaxed">
-              While our virtual tours give you a great overview, there's nothing like experiencing The Grove at Deerwood in person. Schedule your visit today!
+              While our virtual tours give you a great overview, there's nothing like experiencing Bicycle Club Apartments in person. Schedule your visit today!
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
