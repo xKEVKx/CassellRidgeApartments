@@ -66,7 +66,7 @@ export default function FloorPlans() {
                   <img 
                     src={plan.imageUrl} 
                     alt={`${plan.name} floor plan`}
-                    className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105 bg-slate-50"
+                    className="w-full h-auto object-contain bg-slate-50"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300"></div>
                   
