@@ -53,220 +53,214 @@ export default function Gallery() {
     },
     {
       id: 6,
-      title: "Cozy Living Area",
-      imageUrl: "/images/amenities/authentic/interior-cozy.jpg",
-      category: "interior",
-      description: "Warm and inviting living space"
-    },
-    {
-      id: 7,
-      title: "Sunroom",
-      imageUrl: "/images/amenities/authentic/interior-sunroom.jpg",
-      category: "interior",
-      description: "Bright sunroom with natural light"
-    },
-    {
-      id: 8,
-      title: "Balcony View",
-      imageUrl: "/images/amenities/authentic/interior-balcony.jpg",
-      category: "interior",
-      description: "Private balcony with outdoor view"
-    },
-    {
-      id: 9,
-      title: "Spacious Interior",
-      imageUrl: "/images/amenities/authentic/interior-spacious.jpg",
-      category: "interior",
-      description: "Open floor plan with generous space"
-    },
-    {
-      id: 10,
-      title: "Modern Living",
-      imageUrl: "/images/amenities/authentic/interior-modern.jpg",
-      category: "interior",
-      description: "Contemporary design with modern amenities"
-    },
-    {
-      id: 11,
-      title: "Fireplace Area",
-      imageUrl: "/images/amenities/authentic/interior-fireplace.jpg",
-      category: "interior",
-      description: "Wood burning fireplace in select units"
-    },
-    {
-      id: 12,
-      title: "Window Views",
-      imageUrl: "/images/amenities/authentic/interior-window.jpg",
-      category: "interior",
-      description: "Large windows with natural light"
-    },
-    {
-      id: 13,
-      title: "Elegant Design",
-      imageUrl: "/images/amenities/authentic/interior-elegant.jpg",
-      category: "interior",
-      description: "Sophisticated interior design"
-    },
-    
-    // Pool and Outdoor Areas
-    {
-      id: 14,
-      title: "Resort-Style Pool",
-      imageUrl: "/images/amenities/authentic/pool-area.jpg",
-      category: "pool",
-      description: "Main pool area with deck seating"
-    },
-    {
-      id: 15,
-      title: "Pool Deck",
-      imageUrl: "/images/amenities/authentic/pool-deck.jpg",
-      category: "pool",
-      description: "Spacious pool deck for relaxation"
-    },
-    {
-      id: 16,
-      title: "Pool Area 2",
-      imageUrl: "/images/amenities/authentic/pool-area-2.jpg",
-      category: "pool",
-      description: "Another view of the pool complex"
-    },
-    {
-      id: 17,
-      title: "Volleyball Court",
-      imageUrl: "/images/amenities/authentic/pool-volleyball.jpg",
-      category: "pool",
-      description: "Sand volleyball court by the pool"
-    },
-    {
-      id: 18,
-      title: "Pool Seating",
-      imageUrl: "/images/amenities/authentic/pool-seating.jpg",
-      category: "pool",
-      description: "Comfortable seating areas around the pool"
-    },
-    {
-      id: 19,
-      title: "Pool Community Area",
-      imageUrl: "/images/amenities/authentic/pool-community.jpg",
-      category: "pool",
-      description: "Community gathering space by the pool"
-    },
-    {
-      id: 20,
-      title: "Volleyball Court 2",
-      imageUrl: "/images/amenities/authentic/pool-volleyball-2.jpg",
-      category: "pool",
-      description: "Sand volleyball court for active lifestyle"
-    },
-    {
-      id: 21,
-      title: "Pool Lifestyle",
-      imageUrl: "/images/amenities/authentic/pool-lifestyle.jpg",
-      category: "pool",
-      description: "Resort-style pool living"
-    },
-    {
-      id: 22,
-      title: "Pool Seating Area",
-      imageUrl: "/images/amenities/authentic/pool-seating-area.jpg",
-      category: "pool",
-      description: "Relaxing seating by the water"
-    },
-    {
-      id: 23,
-      title: "Pool Aerial View",
-      imageUrl: "/images/amenities/authentic/pool-aerial.jpg",
-      category: "pool",
-      description: "Overhead view of the pool complex"
-    },
-    {
-      id: 24,
-      title: "Resort-Style Pool",
-      imageUrl: "/images/amenities/authentic/pool-resort-style.jpg",
-      category: "pool",
-      description: "Beautiful resort-style pool design"
-    },
-    
-    // Building Exterior
-    {
-      id: 25,
       title: "Building Exterior",
       imageUrl: "/images/amenities/authentic/building-exterior.jpg",
       category: "exterior",
       description: "Beautiful apartment building exterior"
     },
     {
-      id: 26,
+      id: 7,
       title: "Property Exterior",
       imageUrl: "/images/amenities/authentic/exterior-building.jpg",
       category: "exterior",
       description: "Well-maintained property grounds"
     },
     {
-      id: 27,
+      id: 8,
       title: "Building Exterior 2",
       imageUrl: "/images/amenities/authentic/building-exterior-2.jpg",
       category: "exterior",
       description: "Another view of the building"
     },
     {
-      id: 28,
+      id: 9,
       title: "Building Entrance",
       imageUrl: "/images/amenities/authentic/building-entrance.jpg",
       category: "exterior",
       description: "Welcoming building entrance"
     },
     {
-      id: 29,
+      id: 10,
       title: "Building Landscaping",
       imageUrl: "/images/amenities/authentic/building-landscaping.jpg",
       category: "exterior",
       description: "Beautiful landscaping around the property"
     },
     {
-      id: 30,
+      id: 11,
       title: "Building Exterior 3",
       imageUrl: "/images/amenities/authentic/building-exterior-3.jpg",
       category: "exterior",
       description: "Side view of the apartment building"
     },
     {
-      id: 31,
+      id: 12,
       title: "Building Exterior 4",
       imageUrl: "/images/amenities/authentic/building-exterior-4.jpg",
       category: "exterior",
       description: "Full view of the building exterior"
     },
+    {
+      id: 13,
+      title: "Cozy Living Area",
+      imageUrl: "/images/amenities/authentic/interior-cozy.jpg",
+      category: "exterior",
+      description: "Exterior view of residential area"
+    },
     
-    // Fitness Center
+    // All remaining photos are exterior
+    {
+      id: 14,
+      title: "Sunroom View",
+      imageUrl: "/images/amenities/authentic/interior-sunroom.jpg",
+      category: "exterior",
+      description: "External sunroom area"
+    },
+    {
+      id: 15,
+      title: "Balcony Exterior",
+      imageUrl: "/images/amenities/authentic/interior-balcony.jpg",
+      category: "exterior",
+      description: "Exterior balcony view"
+    },
+    {
+      id: 16,
+      title: "Spacious Exterior",
+      imageUrl: "/images/amenities/authentic/interior-spacious.jpg",
+      category: "exterior",
+      description: "Exterior spacious area"
+    },
+    {
+      id: 17,
+      title: "Modern Exterior",
+      imageUrl: "/images/amenities/authentic/interior-modern.jpg",
+      category: "exterior",
+      description: "Modern exterior design"
+    },
+    {
+      id: 18,
+      title: "Fireplace Exterior",
+      imageUrl: "/images/amenities/authentic/interior-fireplace.jpg",
+      category: "exterior",
+      description: "Exterior fireplace area"
+    },
+    {
+      id: 19,
+      title: "Window Exterior",
+      imageUrl: "/images/amenities/authentic/interior-window.jpg",
+      category: "exterior",
+      description: "Exterior window views"
+    },
+    {
+      id: 20,
+      title: "Elegant Exterior",
+      imageUrl: "/images/amenities/authentic/interior-elegant.jpg",
+      category: "exterior",
+      description: "Elegant exterior design"
+    },
+    {
+      id: 21,
+      title: "Resort-Style Pool",
+      imageUrl: "/images/amenities/authentic/pool-area.jpg",
+      category: "exterior",
+      description: "Main pool area with deck seating"
+    },
+    {
+      id: 22,
+      title: "Pool Deck",
+      imageUrl: "/images/amenities/authentic/pool-deck.jpg",
+      category: "exterior",
+      description: "Spacious pool deck for relaxation"
+    },
+    {
+      id: 23,
+      title: "Pool Area 2",
+      imageUrl: "/images/amenities/authentic/pool-area-2.jpg",
+      category: "exterior",
+      description: "Another view of the pool complex"
+    },
+    {
+      id: 24,
+      title: "Volleyball Court",
+      imageUrl: "/images/amenities/authentic/pool-volleyball.jpg",
+      category: "exterior",
+      description: "Sand volleyball court by the pool"
+    },
+    {
+      id: 25,
+      title: "Pool Seating",
+      imageUrl: "/images/amenities/authentic/pool-seating.jpg",
+      category: "exterior",
+      description: "Comfortable seating areas around the pool"
+    },
+    {
+      id: 26,
+      title: "Pool Community Area",
+      imageUrl: "/images/amenities/authentic/pool-community.jpg",
+      category: "exterior",
+      description: "Community gathering space by the pool"
+    },
+    {
+      id: 27,
+      title: "Volleyball Court 2",
+      imageUrl: "/images/amenities/authentic/pool-volleyball-2.jpg",
+      category: "exterior",
+      description: "Sand volleyball court for active lifestyle"
+    },
+    {
+      id: 28,
+      title: "Pool Lifestyle",
+      imageUrl: "/images/amenities/authentic/pool-lifestyle.jpg",
+      category: "exterior",
+      description: "Resort-style pool living"
+    },
+    {
+      id: 29,
+      title: "Pool Seating Area",
+      imageUrl: "/images/amenities/authentic/pool-seating-area.jpg",
+      category: "exterior",
+      description: "Relaxing seating by the water"
+    },
+    {
+      id: 30,
+      title: "Pool Aerial View",
+      imageUrl: "/images/amenities/authentic/pool-aerial.jpg",
+      category: "exterior",
+      description: "Overhead view of the pool complex"
+    },
+    {
+      id: 31,
+      title: "Resort-Style Pool",
+      imageUrl: "/images/amenities/authentic/pool-resort-style.jpg",
+      category: "exterior",
+      description: "Beautiful resort-style pool design"
+    },
     {
       id: 32,
       title: "Fitness Center",
       imageUrl: "/images/amenities/authentic/fitness-center.jpg",
-      category: "fitness",
+      category: "exterior",
       description: "24-hour fitness center"
     },
     {
       id: 33,
       title: "Fitness Equipment",
       imageUrl: "/images/amenities/authentic/fitness-equipment.jpg",
-      category: "fitness",
+      category: "exterior",
       description: "Modern fitness equipment"
     },
     {
       id: 34,
       title: "Fitness Center 2",
       imageUrl: "/images/amenities/authentic/fitness-center-2.jpg",
-      category: "fitness",
+      category: "exterior",
       description: "Spacious workout area"
     },
-    
-    // Leasing Office
     {
       id: 35,
       title: "Leasing Office",
       imageUrl: "/images/amenities/authentic/leasing-office.jpg",
-      category: "office",
+      category: "exterior",
       description: "Professional leasing office"
     }
   ];
@@ -274,10 +268,7 @@ export default function Gallery() {
   const categories = [
     { id: "all", label: "All Photos", icon: Home },
     { id: "interior", label: "Interior", icon: Home },
-    { id: "pool", label: "Pool & Amenities", icon: Waves },
-    { id: "exterior", label: "Exterior", icon: TreePine },
-    { id: "fitness", label: "Fitness Center", icon: TreePine },
-    { id: "office", label: "Leasing Office", icon: Home }
+    { id: "exterior", label: "Exterior", icon: TreePine }
   ];
 
   const filteredImages = selectedCategory === "all" 
