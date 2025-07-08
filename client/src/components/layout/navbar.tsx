@@ -10,36 +10,43 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-green-700 font-serif">
-                {SITE_CONFIG.name}
-              </h1>
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">G</span>
+                </div>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  {SITE_CONFIG.name}
+                </h1>
+              </div>
             </Link>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex items-baseline space-x-1">
               {NAVIGATION_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     location === link.href
-                      ? "text-green-700 bg-green-50"
-                      : "text-gray-700 hover:text-green-700 hover:bg-green-50"
+                      ? 'bg-emerald-600 text-white shadow-lg'
+                      : 'text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 hover:shadow-md'
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
-              <Button className="bg-green-700 hover:bg-green-800 text-white">
-                <Phone className="w-4 h-4 mr-2" />
-                Call Now
+              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white ml-4 px-6 py-2 rounded-xl font-semibold shadow-lg" asChild>
+                <a href={`tel:${SITE_CONFIG.contact.phone}`}>
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call Now
+                </a>
               </Button>
             </div>
           </div>
