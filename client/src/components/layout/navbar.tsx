@@ -30,8 +30,8 @@ export default function Navbar() {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden xl:block">
-            <div className="ml-10 flex items-center space-x-4">
+          <div className="hidden lg:block">
+            <div className="ml-6 flex items-center space-x-2">
               {NAVIGATION_LINKS.map((link) => (
                 <div key={link.href}>
                   {link.subItems ? (
@@ -39,7 +39,7 @@ export default function Navbar() {
                       <DropdownMenuTrigger asChild>
                         <Button 
                           variant="ghost"
-                          className={`group px-5 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ${
+                          className={`group px-3 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                             link.subItems.some(subItem => location === subItem.href)
                               ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
                               : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
@@ -74,7 +74,7 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={link.href}
-                      className={`group px-5 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 ${
+                      className={`group px-3 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                         location === link.href
                           ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
                           : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
@@ -96,12 +96,12 @@ export default function Navbar() {
               ))}
               
               {/* External Links - Hidden on smaller screens */}
-              <div className="hidden 2xl:flex space-x-3">
+              <div className="hidden xl:flex space-x-2">
                 {EXTERNAL_LINKS.map((link) => (
                   <Button
                     key={link.href}
                     variant="ghost"
-                    className="group px-5 py-3 rounded-2xl text-sm font-semibold text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg transition-all duration-300"
+                    className="group px-3 py-2 rounded-2xl text-sm font-semibold text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg transition-all duration-300"
                     asChild
                   >
                     <a href={link.href} target="_blank" rel="noopener noreferrer">
@@ -116,12 +116,12 @@ export default function Navbar() {
               
               <div className="ml-6 pl-6 border-l border-slate-200">
                 <Button 
-                  className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-4 xl:px-6 py-3 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
+                  className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-3 xl:px-4 py-2 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
                   asChild
                 >
                   <a href={`tel:${SITE_CONFIG.contact.phone}`}>
-                    <Phone className="w-4 h-4 2xl:mr-2 transition-transform group-hover:scale-110" />
-                    <span className="hidden 2xl:inline">Call Now</span>
+                    <Phone className="w-4 h-4 xl:mr-2 transition-transform group-hover:scale-110" />
+                    <span className="hidden xl:inline">Call Now</span>
                   </a>
                 </Button>
               </div>
@@ -129,7 +129,7 @@ export default function Navbar() {
           </div>
           
           {/* Mobile menu button */}
-          <div className="xl:hidden">
+          <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button 
