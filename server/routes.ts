@@ -93,7 +93,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           bedrooms: 1,
           bathrooms: 1,
           sqft: 600,
-          startingPrice: 1049,
+          startingPrice: 1055,
           imageUrl: "/images/maple-floorplan.jpg",
           description: "Cozy one-bedroom apartment with modern amenities"
         },
