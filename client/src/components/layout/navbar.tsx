@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Phone, ChevronDown, ExternalLink } from "lucide-react";
+import { Menu, X, Phone, ChevronDown, ExternalLink, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -80,8 +80,12 @@ export default function Navbar() {
                           : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
                       }`}
                     >
-                      <span className="relative">
-                        {link.label}
+                      <span className="relative flex items-center">
+                        {link.isIcon ? (
+                          <Home className="w-5 h-5" />
+                        ) : (
+                          link.label
+                        )}
                         <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
                           location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
                         }`}></div>
@@ -183,8 +187,15 @@ export default function Navbar() {
                               : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
                           }`}
                         >
-                          <span className="relative">
-                            {link.label}
+                          <span className="relative flex items-center">
+                            {link.isIcon ? (
+                              <>
+                                <Home className="w-5 h-5 mr-3" />
+                                Home
+                              </>
+                            ) : (
+                              link.label
+                            )}
                             <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
                               location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
                             }`}></div>

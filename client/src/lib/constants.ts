@@ -31,7 +31,7 @@ export const SITE_CONFIG = {
 export const HERO_IMAGE = "/images/hero-image.jpg";
 
 export const NAVIGATION_LINKS = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Home", isIcon: true },
   { href: "/floor-plans", label: "Floor Plans" },
   { href: "/amenities", label: "Amenities" },
   { 
