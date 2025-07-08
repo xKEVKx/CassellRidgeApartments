@@ -33,7 +33,7 @@ export default function Home() {
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [imageLoaded, setImageLoaded] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const getRandomInterval = () => Math.random() * 2000 + 3000; // 3-5 seconds
@@ -41,7 +41,13 @@ export default function Home() {
     let timeoutId: NodeJS.Timeout;
     
     const rotateImage = () => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % interiorImages.length);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % interiorImages.length);
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 50); // Short delay for smooth crossfade
+      }, 500); // Fade out duration
       timeoutId = setTimeout(rotateImage, getRandomInterval());
     };
 
@@ -215,9 +221,7 @@ export default function Home() {
                 <img 
                   src={interiorImages[currentImageIndex]} 
                   alt="Luxury apartment interior" 
-                  className={`w-full h-auto rounded-3xl shadow-2xl transition-all duration-700 group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                  onLoad={() => setImageLoaded(true)}
-                  onLoadStart={() => setImageLoaded(false)}
+                  className={`w-full h-auto rounded-3xl shadow-2xl transition-all duration-1000 ease-in-out group-hover:scale-105 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
                 
