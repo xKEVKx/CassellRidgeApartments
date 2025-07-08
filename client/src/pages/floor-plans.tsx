@@ -76,9 +76,14 @@ export default function FloorPlans() {
                   <img 
                     src={plan.imageUrl} 
                     alt={`${plan.name} floor plan`}
-                    className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105 bg-slate-50"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300"></div>
+                  
+                  {/* Floor Plan Name Overlay */}
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2">
+                    <h3 className="text-xl font-bold text-slate-900">{plan.name}</h3>
+                  </div>
                 </div>
                 
                 <CardContent className="p-8 flex-1 flex flex-col">
