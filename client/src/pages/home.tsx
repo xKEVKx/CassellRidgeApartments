@@ -9,6 +9,7 @@ import ScheduleVisitModal from "@/components/schedule-visit-modal";
 import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
 import type { FloorPlan } from "@shared/schema";
 import { useState, useEffect } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Home() {
   const { data: floorPlans, isLoading: floorPlansLoading } = useQuery<FloorPlan[]>({
@@ -34,6 +35,10 @@ export default function Home() {
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  
+  // Summer sale popup state
+  const [showSalePopup, setShowSalePopup] = useState(false);
+  const [isPopupMinimized, setIsPopupMinimized] = useState(false);
 
   useEffect(() => {
     const getRandomInterval = () => Math.random() * 2000 + 3000; // 3-5 seconds
@@ -60,8 +65,80 @@ export default function Home() {
     };
   }, [interiorImages.length]);
 
+  // Handle summer sale popup visibility
+  useEffect(() => {
+    const visitCount = parseInt(localStorage.getItem('grove-visit-count') || '0');
+    const newVisitCount = visitCount + 1;
+    localStorage.setItem('grove-visit-count', newVisitCount.toString());
+    
+    if (newVisitCount <= 3) {
+      setShowSalePopup(true);
+      setIsPopupMinimized(false);
+    } else {
+      setShowSalePopup(true);
+      setIsPopupMinimized(true);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen">
+      {/* Summer Sale Popup */}
+      {showSalePopup && (
+        <div className={`fixed left-4 top-1/2 transform -translate-y-1/2 z-50 transition-all duration-300 ${
+          isPopupMinimized ? 'w-16 h-16' : 'w-72 h-96'
+        }`}>
+          <div className="bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden">
+            {isPopupMinimized ? (
+              // Minimized state
+              <div className="w-full h-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center cursor-pointer"
+                   onClick={() => setIsPopupMinimized(false)}>
+                <ChevronRight className="text-white w-8 h-8" />
+              </div>
+            ) : (
+              // Expanded state
+              <div className="relative">
+                {/* Header */}
+                <div className="bg-gradient-to-r from-orange-400 to-red-500 p-3 flex justify-between items-center">
+                  <h3 className="text-white font-bold text-sm">Summer Sale!</h3>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setIsPopupMinimized(true)}
+                      className="text-white hover:text-gray-200 transition-colors"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => setShowSalePopup(false)}
+                      className="text-white hover:text-gray-200 transition-colors"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Image content */}
+                <div className="p-4">
+                  <img 
+                    src="https://www.thegroveaptsfl.com/wp-content/uploads/2025/04/The-Grove-Summer-Sale.png"
+                    alt="The Grove Summer Sale"
+                    className="w-full h-auto rounded-lg shadow-md"
+                  />
+                </div>
+                
+                {/* Call to action */}
+                <div className="p-4 pt-0">
+                  <Button 
+                    asChild 
+                    className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold"
+                  >
+                    <Link href="/contact">Learn More</Link>
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       {/* Ultra Modern Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         {/* Background Video/Image */}
