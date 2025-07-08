@@ -5,8 +5,13 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Bed, Bath, Square, Home, MapPin, Expand } from "lucide-react";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
 import { SITE_CONFIG } from "@/lib/constants";
+import { useEffect } from "react";
 
 export default function FloorPlans() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const floorPlans = [
     {
       id: 1,
