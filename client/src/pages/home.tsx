@@ -263,10 +263,12 @@ export default function Home() {
               {/* Feature Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
-                  { icon: "🏠", title: "1 & 2 Bedrooms", desc: "Spacious layouts" },
-                  { icon: "🌿", title: "Private Patio/Balcony", desc: "Outdoor living space" },
-                  { icon: "🔥", title: "Wood Burning Fireplace", desc: "Select units only" },
-                  { icon: "🍽️", title: "Separate Dining Rooms", desc: "Entertainment space" }
+                  { icon: "🏠", title: "1 & 2 Bedrooms", desc: "Spacious layouts with modern features" },
+                  { icon: "🌿", title: "Large Patios/Balconies", desc: "Private outdoor living space" },
+                  { icon: "🔥", title: "Wood Burning Fireplace", desc: "Cozy atmosphere in select units" },
+                  { icon: "🍽️", title: "Separate Dining Rooms", desc: "Perfect for entertaining" },
+                  { icon: "🏫", title: "AAA Rated School District", desc: "Park Hill School District proximity" },
+                  { icon: "🚗", title: "Lighted Carports", desc: "Covered parking with lighting" }
                 ].map((feature, index) => (
                   <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200">
                     <div className="flex items-start space-x-4">
@@ -346,7 +348,7 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              Two resort-style pools with sun deck and lighted tennis courts designed for your active lifestyle.
+              Resort-like pool, 24-hour fitness center, sand volleyball court, and pet-friendly dog park designed for your active lifestyle.
             </p>
           </div>
           
@@ -359,21 +361,27 @@ export default function Home() {
                 {[
                   { 
                     icon: "🏊", 
-                    title: "Resort-Style Pools", 
-                    desc: "Two sparkling pools with sun deck and poolside cabanas for ultimate relaxation.",
-                    highlight: "2 Pools"
+                    title: "Resort-like Pool", 
+                    desc: "Beautiful pool area with sun deck and spacious outside meeting areas overlooking the gorgeous pool.",
+                    highlight: "Sun Deck"
                   },
                   { 
-                    icon: "🎾", 
-                    title: "Lighted Tennis Courts", 
-                    desc: "Professional-grade courts available for day and evening play.",
-                    highlight: "Day & Night"
+                    icon: "🏐", 
+                    title: "Sand Volleyball Court", 
+                    desc: "Professional sand volleyball court for active recreation and community events.",
+                    highlight: "Sand Court"
                   },
                   { 
                     icon: "🏋️", 
-                    title: "Fitness Center", 
-                    desc: "State-of-the-art equipment and spacious workout areas.",
+                    title: "24-Hour Fitness Center", 
+                    desc: "Fully equipped fitness room available 24/7 with modern workout equipment.",
                     highlight: "24/7 Access"
+                  },
+                  { 
+                    icon: "🐕", 
+                    title: "Pet Friendly Dog Park", 
+                    desc: "Dedicated off-leash dog park area for your furry friends to play and socialize.",
+                    highlight: "Off-Leash"
                   }
                 ].map((amenity, index) => (
                   <div key={index} className="group relative p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">

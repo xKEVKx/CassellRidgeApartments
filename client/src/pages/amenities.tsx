@@ -39,12 +39,8 @@ export default function Amenities() {
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Resort-Style Living</h2>
             <p className="text-lg text-gray-600 mb-6">
-              <strong>Enjoy the Bicycle Club lifestyle</strong> at Bicycle Club Apartments located in Kansas City, Missouri.
-              With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness room.
-            </p>
-            <p className="text-lg text-gray-600 mb-6">
               The park-like setting of Bicycle Club offers you <strong>ample space to walk and enjoy nature</strong>. 
-              And, don't forget to check out our fully equipped fitness room, with spacious outside meeting areas overlooking the gorgeous pool and community BBQ area.
+              And, don't forget to check out our <strong>fully equipped fitness room</strong>, with spacious outside meeting areas overlooking the <strong>gorgeous pool and community BBQ area!</strong>
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex items-center text-gray-600">
