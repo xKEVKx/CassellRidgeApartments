@@ -59,10 +59,10 @@ export default function FloorPlans() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="max-w-4xl mx-auto space-y-8">
             {floorPlans.map((plan) => (
-              <Card key={plan.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 rounded-3xl bg-white flex flex-col h-full">
-                <div className="relative">
+              <Card key={plan.id} className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-0 rounded-3xl bg-white flex flex-col lg:flex-row h-full">
+                <div className="relative lg:w-1/2">
                   <img 
                     src={plan.imageUrl} 
                     alt={`${plan.name} floor plan`}
@@ -76,7 +76,7 @@ export default function FloorPlans() {
                   </div>
                 </div>
                 
-                <CardContent className="p-8 flex-1 flex flex-col">
+                <CardContent className="p-8 flex-1 flex flex-col lg:w-1/2">
                   <div className="space-y-6 flex-1">
                     <p className="text-slate-600 leading-relaxed">{plan.description}</p>
                     
