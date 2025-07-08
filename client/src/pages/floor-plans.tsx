@@ -225,7 +225,7 @@ export default function FloorPlans() {
                   <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
                     <MapPin className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <span className="text-slate-700 font-medium">Central location near I-95 and Baymeadows</span>
+                  <span className="text-slate-700 font-medium">Central location near I-29 and I-435</span>
                 </div>
               </div>
             </div>
