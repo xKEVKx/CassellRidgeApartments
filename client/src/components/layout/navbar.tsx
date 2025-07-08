@@ -30,7 +30,7 @@ export default function Navbar() {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="ml-10 flex items-center space-x-2">
               {NAVIGATION_LINKS.map((link) => (
                 <div key={link.href}>
@@ -95,31 +95,33 @@ export default function Navbar() {
                 </div>
               ))}
               
-              {/* External Links */}
-              {EXTERNAL_LINKS.map((link) => (
-                <Button
-                  key={link.href}
-                  variant="ghost"
-                  className="group px-5 py-3 rounded-2xl text-sm font-semibold text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg transition-all duration-300"
-                  asChild
-                >
-                  <a href={link.href} target="_blank" rel="noopener noreferrer">
-                    <span className="relative flex items-center">
-                      {link.label}
-                      <ExternalLink className="w-3 h-3 ml-1" />
-                    </span>
-                  </a>
-                </Button>
-              ))}
+              {/* External Links - Hidden on smaller screens */}
+              <div className="hidden xl:flex space-x-2">
+                {EXTERNAL_LINKS.map((link) => (
+                  <Button
+                    key={link.href}
+                    variant="ghost"
+                    className="group px-5 py-3 rounded-2xl text-sm font-semibold text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg transition-all duration-300"
+                    asChild
+                  >
+                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                      <span className="relative flex items-center">
+                        {link.label}
+                        <ExternalLink className="w-3 h-3 ml-1" />
+                      </span>
+                    </a>
+                  </Button>
+                ))}
+              </div>
               
               <div className="ml-6 pl-6 border-l border-slate-200">
                 <Button 
-                  className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
+                  className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-4 xl:px-6 py-3 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
                   asChild
                 >
                   <a href={`tel:${SITE_CONFIG.contact.phone}`}>
-                    <Phone className="w-4 h-4 mr-2 transition-transform group-hover:scale-110" />
-                    Call Now
+                    <Phone className="w-4 h-4 xl:mr-2 transition-transform group-hover:scale-110" />
+                    <span className="hidden xl:inline">Call Now</span>
                   </a>
                 </Button>
               </div>
@@ -127,7 +129,7 @@ export default function Navbar() {
           </div>
           
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button 
