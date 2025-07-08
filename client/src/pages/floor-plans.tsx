@@ -53,7 +53,7 @@ export default function FloorPlans() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white pt-24">
       {/* Floor Plans Grid */}
-      <section className="py-6">
+      <section className="pt-2 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
