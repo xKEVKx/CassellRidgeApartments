@@ -131,7 +131,7 @@ export default function ContactForm({
           
           <Button 
             type="submit" 
-            className="w-full bg-blue-600 hover:bg-blue-700"
+            className="w-full bg-green-700 hover:bg-green-800"
             disabled={mutation.isPending}
           >
             {mutation.isPending ? "Sending..." : "Send Message"}

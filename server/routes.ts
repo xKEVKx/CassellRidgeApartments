@@ -94,7 +94,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           bathrooms: 1,
           sqft: 600,
           startingPrice: 1049,
-          imageUrl: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/The-Grove-at-Deerwood_Maple_web-1024x768-1.jpg",
+          imageUrl: "/images/maple-floorplan.jpg",
           description: "Cozy one-bedroom apartment with modern amenities"
         },
         {
@@ -103,7 +103,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           bathrooms: 1,
           sqft: 700,
           startingPrice: 1149,
-          imageUrl: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/The-Grove-at-Deerwood_Cypress_web-1024x768-1.jpg",
+          imageUrl: "/images/cypress-floorplan.jpg",
           description: "Spacious one-bedroom with enhanced layout"
         },
         {
@@ -112,7 +112,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           bathrooms: 2,
           sqft: 1000,
           startingPrice: 1399,
-          imageUrl: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/The-Grove-at-Deerwood_Dogwood_web-1024x768-1.jpg",
+          imageUrl: "/images/dogwood-floorplan.jpg",
           description: "Two-bedroom, two-bathroom apartment home"
         },
         {
@@ -121,7 +121,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           bathrooms: 2,
           sqft: 1200,
           startingPrice: 2295,
-          imageUrl: "https://www.thegroveaptsfl.com/wp-content/uploads/2016/11/Summit_Summit.jpg",
+          imageUrl: "/images/summit-floorplan.jpg",
           description: "Premium three-bedroom apartment with luxury features"
         }
       ];
@@ -155,39 +155,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
         {
           title: "Modern Living Room",
           description: "Spacious living area with modern furnishings",
-          imageUrl: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior3-800w.jpg",
+          imageUrl: "/images/interior3.jpg",
           category: "interior",
           featured: true
         },
         {
           title: "Resort-Style Pool",
           description: "Beautiful pool area with sun deck",
-          imageUrl: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-pool2-800w.jpg",
+          imageUrl: "/images/pool2.jpg",
           category: "pool",
           featured: true
         },
         {
           title: "Modern Kitchen",
           description: "Fully equipped kitchen with modern appliances",
-          imageUrl: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior4-800w.jpg",
+          imageUrl: "/images/interior4.jpg",
           category: "interior"
         },
         {
           title: "Comfortable Bedroom",
           description: "Spacious bedroom with large windows",
-          imageUrl: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior5-800w.jpg",
+          imageUrl: "/images/interior5.jpg",
           category: "interior"
         },
         {
           title: "Pool Lounge Area",
           description: "Relaxing pool area with comfortable seating",
-          imageUrl: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-pool4-800w.jpg",
+          imageUrl: "/images/pool4.jpg",
           category: "pool"
         },
         {
           title: "Modern Bathroom",
           description: "Elegant bathroom with modern fixtures",
-          imageUrl: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior6-800w.jpg",
+          imageUrl: "/images/interior6.jpg",
           category: "interior"
         }
       ];

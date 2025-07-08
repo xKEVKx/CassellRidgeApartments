@@ -26,7 +26,7 @@ export default function Amenities() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
           <div>
             <img 
-              src="https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-pool4-800w.jpg" 
+              src="/images/pool4.jpg" 
               alt="Resort-style pool area" 
               className="rounded-lg shadow-lg w-full h-auto"
             />
@@ -43,19 +43,19 @@ export default function Amenities() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex items-center text-gray-600">
-                <i className="fas fa-swimming-pool text-blue-600 mr-3 text-lg"></i>
+                <i className="fas fa-swimming-pool text-green-700 mr-3 text-lg"></i>
                 Two resort-style pools
               </div>
               <div className="flex items-center text-gray-600">
-                <i className="fas fa-tennis-ball text-blue-600 mr-3 text-lg"></i>
+                <i className="fas fa-tennis-ball text-green-700 mr-3 text-lg"></i>
                 Lighted tennis courts
               </div>
               <div className="flex items-center text-gray-600">
-                <i className="fas fa-water text-blue-600 mr-3 text-lg"></i>
+                <i className="fas fa-water text-green-700 mr-3 text-lg"></i>
                 Large stocked lake
               </div>
               <div className="flex items-center text-gray-600">
-                <i className="fas fa-wifi text-blue-600 mr-3 text-lg"></i>
+                <i className="fas fa-wifi text-green-700 mr-3 text-lg"></i>
                 WiFi at clubhouse
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function Amenities() {
               <ul className="space-y-3">
                 {propertyAmenities.map((amenity) => (
                   <li key={amenity.id} className="flex items-center text-gray-600">
-                    <Check className="text-blue-600 mr-3 h-5 w-5 flex-shrink-0" />
+                    <Check className="text-green-700 mr-3 h-5 w-5 flex-shrink-0" />
                     <span>{amenity.name}</span>
                   </li>
                 ))}
@@ -104,7 +104,7 @@ export default function Amenities() {
               <ul className="space-y-3">
                 {apartmentAmenities.map((amenity) => (
                   <li key={amenity.id} className="flex items-center text-gray-600">
-                    <Check className="text-blue-600 mr-3 h-5 w-5 flex-shrink-0" />
+                    <Check className="text-green-700 mr-3 h-5 w-5 flex-shrink-0" />
                     <span>{amenity.name}</span>
                   </li>
                 ))}
@@ -118,12 +118,12 @@ export default function Amenities() {
           <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Property Gallery</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { src: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior10-650h.jpg", alt: "Interior view" },
-              { src: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-pool2-800w.jpg", alt: "Pool area" },
-              { src: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior7-800w.jpg", alt: "Living space" },
-              { src: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-pool5-800w.jpg", alt: "Pool deck" },
-              { src: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior8-800w.jpg", alt: "Bedroom" },
-              { src: "https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-patio1-800w.jpg", alt: "Patio area" }
+              { src: "/images/interior10.jpg", alt: "Interior view" },
+              { src: "/images/pool2.jpg", alt: "Pool area" },
+              { src: "/images/interior7.jpg", alt: "Living space" },
+              { src: "/images/pool5.jpg", alt: "Pool deck" },
+              { src: "/images/interior8.jpg", alt: "Bedroom" },
+              { src: "/images/patio1.jpg", alt: "Patio area" }
             ].map((image, index) => (
               <div key={index} className="relative overflow-hidden rounded-lg shadow-lg">
                 <img 

@@ -42,7 +42,7 @@ export default function Gallery() {
               key={category.id}
               variant={selectedCategory === category.id ? "default" : "outline"}
               onClick={() => setSelectedCategory(category.id)}
-              className={selectedCategory === category.id ? "bg-blue-600 hover:bg-blue-700" : ""}
+              className={selectedCategory === category.id ? "bg-green-700 hover:bg-green-800" : ""}
             >
               {category.label}
             </Button>

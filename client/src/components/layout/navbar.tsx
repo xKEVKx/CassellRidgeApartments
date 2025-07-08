@@ -15,7 +15,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-blue-600 font-serif">
+              <h1 className="text-2xl font-bold text-green-700 font-serif">
                 {SITE_CONFIG.name}
               </h1>
             </Link>
@@ -30,14 +30,14 @@ export default function Navbar() {
                   href={link.href}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     location === link.href
-                      ? "text-blue-600 bg-blue-50"
-                      : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                      ? "text-green-700 bg-green-50"
+                      : "text-gray-700 hover:text-green-700 hover:bg-green-50"
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button className="bg-green-700 hover:bg-green-800 text-white">
                 <Phone className="w-4 h-4 mr-2" />
                 Call Now
               </Button>
@@ -61,14 +61,14 @@ export default function Navbar() {
                       onClick={() => setIsOpen(false)}
                       className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
                         location === link.href
-                          ? "text-blue-600 bg-blue-50"
-                          : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                          ? "text-green-700 bg-green-50"
+                          : "text-gray-700 hover:text-green-700 hover:bg-green-50"
                       }`}
                     >
                       {link.label}
                     </Link>
                   ))}
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white justify-start">
+                  <Button className="bg-green-700 hover:bg-green-800 text-white justify-start">
                     <Phone className="w-4 h-4 mr-2" />
                     Call {SITE_CONFIG.contact.phone}
                   </Button>

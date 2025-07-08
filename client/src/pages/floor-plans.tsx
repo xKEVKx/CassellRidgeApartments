@@ -64,7 +64,7 @@ export default function FloorPlans() {
                     </div>
                     <div>
                       <div className="text-sm text-gray-500">Starting at</div>
-                      <Badge variant="secondary" className="text-blue-600 font-semibold">
+                      <Badge variant="secondary" className="text-green-700 font-semibold">
                         ${plan.startingPrice.toLocaleString()}
                       </Badge>
                     </div>
@@ -73,7 +73,7 @@ export default function FloorPlans() {
                   <ScheduleVisitModal
                     floorPlan={plan.name}
                     trigger={
-                      <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium transition-colors">
+                      <button className="w-full bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded-md font-medium transition-colors">
                         Schedule Visit
                       </button>
                     }

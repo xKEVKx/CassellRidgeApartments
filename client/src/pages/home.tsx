@@ -26,7 +26,7 @@ export default function Home() {
         
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 font-serif">
-            Tranquil <span className="text-blue-300">Lakeside</span> Living
+            Tranquil <span className="text-green-300">Lakeside</span> Living
           </h1>
           <p className="text-xl md:text-2xl mb-8 font-light">
             {SITE_CONFIG.description}
@@ -34,7 +34,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <ScheduleVisitModal
               trigger={
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Button size="lg" className="bg-green-700 hover:bg-green-800 text-white">
                   Schedule a Visit
                 </Button>
               }
@@ -70,7 +70,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <img 
-                src="https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-interior2-960x460-2.jpg" 
+                src="/images/hero-image.jpg" 
                 alt="Modern apartment interior" 
                 className="rounded-lg shadow-lg w-full h-auto"
               />
@@ -82,24 +82,24 @@ export default function Home() {
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center text-gray-600">
-                  <Check className="text-blue-600 mr-3 h-5 w-5" />
+                  <Check className="text-green-700 mr-3 h-5 w-5" />
                   Spacious 1, 2, and 3 bedroom floor plans
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <Check className="text-blue-600 mr-3 h-5 w-5" />
+                  <Check className="text-green-700 mr-3 h-5 w-5" />
                   Private patio or balcony
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <Check className="text-blue-600 mr-3 h-5 w-5" />
+                  <Check className="text-green-700 mr-3 h-5 w-5" />
                   Walk-in closets
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <Check className="text-blue-600 mr-3 h-5 w-5" />
+                  <Check className="text-green-700 mr-3 h-5 w-5" />
                   Modern kitchen appliances
                 </li>
               </ul>
               <div className="mt-8">
-                <Button asChild className="bg-blue-600 hover:bg-blue-700">
+                <Button asChild className="bg-green-700 hover:bg-green-800">
                   <Link href="/amenities">Learn More</Link>
                 </Button>
               </div>
@@ -117,13 +117,13 @@ export default function Home() {
               <p className="text-lg text-gray-600 mb-6">
                 We have two resort style pools with sun deck. We also feature lighted tennis courts for your active lifestyle.
               </p>
-              <Button asChild className="bg-blue-600 hover:bg-blue-700">
+              <Button asChild className="bg-green-700 hover:bg-green-800">
                 <Link href="/amenities">Learn More</Link>
               </Button>
             </div>
             <div>
               <img 
-                src="https://www.thegroveaptsfl.com/wp-content/uploads/2020/04/grove-pool1-800w.jpg" 
+                src="/images/pool1.jpg" 
                 alt="Resort-style pool" 
                 className="rounded-lg shadow-lg w-full h-auto"
               />
@@ -172,7 +172,7 @@ export default function Home() {
                       </div>
                       <div className="text-sm text-gray-600 text-right">
                         <span className="block">{plan.sqft.toLocaleString()} sq ft</span>
-                        <Badge variant="secondary" className="text-blue-600">
+                        <Badge variant="secondary" className="text-green-700">
                           From ${plan.startingPrice.toLocaleString()}
                         </Badge>
                       </div>
@@ -180,7 +180,7 @@ export default function Home() {
                     <ScheduleVisitModal
                       floorPlan={plan.name}
                       trigger={
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                        <Button className="w-full bg-green-700 hover:bg-green-800">
                           Schedule Visit
                         </Button>
                       }
@@ -192,7 +192,7 @@ export default function Home() {
           </div>
           
           <div className="text-center mt-12">
-            <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
+            <Button size="lg" asChild className="bg-green-700 hover:bg-green-800">
               <Link href="/floor-plans">View All Floor Plans</Link>
             </Button>
           </div>
@@ -200,20 +200,20 @@ export default function Home() {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-20 bg-green-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-4">Ready to Make The Grove Your Home?</h2>
           <p className="text-xl mb-8">
             Contact us today to schedule your personal tour and see why The Grove at Deerwood is the perfect place to call home.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-700">
               <Phone className="mr-2 h-5 w-5" />
               Call {SITE_CONFIG.contact.phone}
             </Button>
             <ScheduleVisitModal
               trigger={
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+                <Button size="lg" className="bg-white text-green-700 hover:bg-gray-100">
                   Schedule a Visit
                 </Button>
               }

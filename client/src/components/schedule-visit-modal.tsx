@@ -12,7 +12,7 @@ export default function ScheduleVisitModal({ trigger, floorPlan }: ScheduleVisit
   const [open, setOpen] = useState(false);
 
   const defaultTrigger = (
-    <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+    <Button className="bg-green-700 hover:bg-green-800 text-white">
       Schedule Visit
     </Button>
   );
@@ -27,7 +27,7 @@ export default function ScheduleVisitModal({ trigger, floorPlan }: ScheduleVisit
           <DialogTitle>
             Schedule a Visit
             {floorPlan && (
-              <span className="text-blue-600 font-normal"> - {floorPlan}</span>
+              <span className="text-green-700 font-normal"> - {floorPlan}</span>
             )}
           </DialogTitle>
         </DialogHeader>
