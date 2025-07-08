@@ -511,7 +511,7 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 {[
                   { number: "15+", label: "Premium Amenities" },
-                  { number: "4", label: "Floor Plan Options" },
+                  { number: "3", label: "Floor Plan Options" },
                   { number: "24/7", label: "Concierge Service" }
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
