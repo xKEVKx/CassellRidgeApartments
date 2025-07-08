@@ -145,8 +145,8 @@ export default function Navbar() {
                   {/* Logo in mobile */}
                   <div className="flex justify-center pb-4 border-b border-slate-200">
                     <img 
-                      src="/images/grove-logo.png" 
-                      alt="The Grove at Deerwood Logo" 
+                      src="/images/bicycle-club-header-logo.png" 
+                      alt="Bicycle Club Apartments Logo" 
                       className="h-12 w-auto"
                     />
                   </div>
