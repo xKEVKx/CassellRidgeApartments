@@ -244,7 +244,7 @@ export default function Home() {
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
               Resort-like pool, great schools, natural setting, 24-hr fitness center and so much more make 
-              <strong className="text-emerald-600">Bicycle Club</strong> a truly great place to live.
+              <strong className="text-emerald-600"> Bicycle Club</strong> a truly great place to live.
             </p>
           </div>
           
