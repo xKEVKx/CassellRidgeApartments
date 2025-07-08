@@ -152,7 +152,7 @@ export default function FloorPlans() {
               The Property Layout
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Discover the beautiful layout of The Grove at Deerwood community with our detailed site map.
+              Discover the beautiful layout of Bicycle Club Apartments community with our detailed site map.
             </p>
           </div>
           
@@ -164,7 +164,7 @@ export default function FloorPlans() {
                     <div className="relative group cursor-pointer">
                       <img 
                         src="/images/grove-site-map.png" 
-                        alt="Grove at Deerwood Site Map"
+                        alt="Bicycle Club Apartments Site Map"
                         className="w-full h-auto rounded-2xl transition-transform duration-300 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex items-center justify-center">
@@ -180,8 +180,8 @@ export default function FloorPlans() {
                   <DialogContent className="max-w-6xl w-full h-[90vh] p-4">
                     <div className="w-full h-full flex items-center justify-center">
                       <img 
-                        src="/images/grove-site-map.png" 
-                        alt="Grove at Deerwood Site Map - Full Size"
+                        src="/images/site-map.jpg" 
+                        alt="Bicycle Club Apartments Site Map - Full Size"
                         className="max-w-full max-h-full object-contain rounded-xl"
                       />
                     </div>
@@ -196,7 +196,7 @@ export default function FloorPlans() {
                   Community Features
                 </h3>
                 <p className="text-xl text-slate-600 leading-relaxed">
-                  Our thoughtfully designed community offers resort-style amenities, beautifully landscaped grounds, and convenient access to all that Jacksonville has to offer.
+                  Our thoughtfully designed community offers resort-style amenities, beautifully landscaped grounds, and convenient access to all that Kansas City has to offer.
                 </p>
               </div>
               
@@ -205,13 +205,25 @@ export default function FloorPlans() {
                   <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
                     <MapPin className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <span className="text-slate-700 font-medium">Two resort-style pools with sun deck</span>
+                  <span className="text-slate-700 font-medium">Resort-style pool with sun deck</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
                     <MapPin className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <span className="text-slate-700 font-medium">Lighted tennis courts</span>
+                  <span className="text-slate-700 font-medium">Sand volleyball court</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <span className="text-slate-700 font-medium">24-hour fitness center</span>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <span className="text-slate-700 font-medium">Off-leash dog park</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
