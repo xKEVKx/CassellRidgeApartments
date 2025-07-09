@@ -4,7 +4,7 @@
 
 ### Main Commit
 ```
-fix: Gallery image loading issues and contact page typography
+fix: Gallery image loading, contact typography, and email updates
 
 - Fix first gallery image not displaying due to problematic image with gray area
 - Replace interior-6.jpg with interior-living.jpg for better visual presentation
@@ -12,13 +12,17 @@ fix: Gallery image loading issues and contact page typography
 - Update database records to show living room vs bedroom for variety
 - Fix Contact Us heading font to match site-wide typography consistency
 - Remove font-serif class from contact page heading
+- Update email address from manager@bicycleclubapts.com to bicycleclub-w@m.knck.io
+- Change email display text to "Email Us" in contact page and footer
 
 Database changes:
 - Updated gallery_images id=1: Modern Living Room with interior-living.jpg
 - Maintained gallery_images id=3: Bedroom Suite with interior-bedroom.jpg
 
 Files modified:
-- client/src/pages/contact.tsx
+- client/src/pages/contact.tsx (typography + email display)
+- client/src/components/layout/footer.tsx (email display)
+- client/src/lib/constants.ts (email address)
 - Database: gallery_images table records 1 and 3
 ```
 
@@ -43,11 +47,23 @@ fix(contact): Standardize heading font to match site typography
 - Improve visual consistency across all page headings
 ```
 
+#### Commit 3: Email Updates
+```
+update: Change email address and display text
+
+- Update contact email from manager@bicycleclubapts.com to bicycleclub-w@m.knck.io
+- Change email display text to "Email Us" in contact page and footer
+- Maintain proper mailto functionality while improving UX
+- Update site constants for consistent email usage
+```
+
 ## Files to Stage for Commit
 
 ### Modified Files
-- `client/src/pages/contact.tsx` (font fix)
-- `RECENT_CHANGES.md` (new documentation)
+- `client/src/pages/contact.tsx` (font fix + email display)
+- `client/src/components/layout/footer.tsx` (email display)
+- `client/src/lib/constants.ts` (email address)
+- `RECENT_CHANGES.md` (updated documentation)
 - `replit.md` (updated changelog)
 - `COMMIT_MESSAGES.md` (this file)
 

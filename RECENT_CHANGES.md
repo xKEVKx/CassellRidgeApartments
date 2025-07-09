@@ -14,6 +14,15 @@
 - **Solution**: Removed `font-serif` class from contact page heading
 - **File**: `client/src/pages/contact.tsx` - line 15
 
+### Email Address Updates & Display Changes
+- **Updated**: Email address from manager@bicycleclubapts.com to bicycleclub-w@m.knck.io
+- **Display**: Changed email text to show "Email Us" instead of full email address
+- **Files**: 
+  - `client/src/lib/constants.ts` - Updated SITE_CONFIG.contact.email
+  - `client/src/pages/contact.tsx` - Changed display text to "Email Us"
+  - `client/src/components/layout/footer.tsx` - Changed display text to "Email Us"
+- **Functionality**: Mailto links still send to correct email address
+
 ### Database Connection Improvements (Previous)
 - **Fixed**: Neon PostgreSQL connection issues with proper pooling configuration
 - **Added**: `poolQueryViaFetch: true` and timeout settings for serverless reliability
@@ -39,8 +48,15 @@
 
 3. **Contact Page** (`client/src/pages/contact.tsx`):
    - Font consistency fix for main heading
+   - Updated email display text to "Email Us"
 
-4. **Database Records**:
+4. **Footer Component** (`client/src/components/layout/footer.tsx`):
+   - Updated email display text to "Email Us"
+
+5. **Constants** (`client/src/lib/constants.ts`):
+   - Updated contact email to bicycleclub-w@m.knck.io
+
+6. **Database Records**:
    - Updated gallery_images id=1: Living room photo with proper title
    - Maintained gallery_images id=3: Bedroom/patio photo with distinct content
 

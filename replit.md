@@ -118,13 +118,15 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
-### July 09, 2025 - Gallery Image Loading & Contact Page Font Fixes
+### July 09, 2025 - Gallery Image Loading, Contact Page Font, & Email Updates
 - **Image Loading Issue**: Fixed first gallery image not displaying due to problematic image with large gray area
 - **Duplicate Prevention**: Resolved duplicate images in gallery by updating first image to use different file
 - **Database Updates**: Updated gallery image references to use appropriate interior photos (living room vs bedroom)
 - **Error Handling**: Gallery now properly handles images with unusual dimensions or content layouts
 - **Font Consistency**: Fixed Contact Us page heading to use same sans-serif font as rest of site
 - **UI Polish**: Removed serif font styling from contact page for consistent typography
+- **Email Updates**: Changed contact email from manager@bicycleclubapts.com to bicycleclub-w@m.knck.io
+- **Email Display**: Updated email text to show "Email Us" instead of full address in contact page and footer
 
 ### July 09, 2025 - Gallery Directory Consolidation & Image Management
 - **File Organization**: Consolidated all gallery images into single organized directory structure
