@@ -67,7 +67,7 @@ export async function sendContactNotification(submission: ContactSubmission) {
 
   const mailOptions = {
     from: process.env.PROOFPOINT_SMTP_USER,
-    to: process.env.PROOFPOINT_SMTP_USER, // Send to the same email for notifications
+    to: 'kkohorst@everestproperties.com', // Send notifications to this email
     subject,
     html: htmlContent,
     text: `
