@@ -37,10 +37,8 @@ export default function Navbar() {
                   {link.subItems ? (
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button 
-                          variant="ghost"
-                          style={{ background: 'transparent !important' }}
-                          className={`group px-3 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 [&]:!bg-transparent [&]:hover:!bg-transparent [&]:focus:!bg-transparent [&[data-state=open]]:!bg-transparent [&]:active:!bg-transparent ${
+                        <button 
+                          className={`group px-3 py-2 text-sm font-semibold transition-all duration-300 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent outline-none border-none ${
                             link.subItems.some(subItem => location === subItem.href)
                               ? 'text-emerald-700'
                               : 'text-slate-700 hover:text-emerald-600'
@@ -53,7 +51,7 @@ export default function Navbar() {
                               link.subItems.some(subItem => location === subItem.href) ? 'w-full' : 'w-0 group-hover:w-full'
                             }`}></div>
                           </span>
-                        </Button>
+                        </button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="w-48 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-2xl shadow-xl">
                         {link.subItems.map((subItem) => (
