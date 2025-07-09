@@ -42,7 +42,7 @@ export default function Contact() {
                   <h3 className="font-semibold text-gray-900">Email</h3>
                   <p className="text-gray-600">
                     <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-green-700 hover:underline">
-                      {SITE_CONFIG.contact.email}
+                      Email Us
                     </a>
                   </p>
                 </div>
