@@ -39,7 +39,8 @@ export default function Navbar() {
                       <DropdownMenuTrigger asChild>
                         <Button 
                           variant="ghost"
-                          className={`group px-3 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
+                          style={{ background: 'transparent !important' }}
+                          className={`group px-3 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 [&]:!bg-transparent [&]:hover:!bg-transparent [&]:focus:!bg-transparent [&[data-state=open]]:!bg-transparent [&]:active:!bg-transparent ${
                             link.subItems.some(subItem => location === subItem.href)
                               ? 'text-emerald-700'
                               : 'text-slate-700 hover:text-emerald-600'
