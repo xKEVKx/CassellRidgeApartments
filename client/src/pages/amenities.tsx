@@ -2,20 +2,64 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Check } from "lucide-react";
-import { useEffect } from "react";
-import type { Amenity } from "@shared/schema";
+import { useEffect, useState } from "react";
+import type { Amenity, GalleryImage } from "@shared/schema";
 
 export default function Amenities() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  
   const { data: amenities, isLoading } = useQuery<Amenity[]>({
     queryKey: ["/api/amenities"],
   });
 
+  const { data: galleryImages } = useQuery<GalleryImage[]>({
+    queryKey: ["/api/gallery"],
+  });
+
   const propertyAmenities = amenities?.filter(a => a.category === "property") || [];
   const apartmentAmenities = amenities?.filter(a => a.category === "apartment") || [];
+
+  // Get amenity-related images for the slideshow
+  const slideshowImages = galleryImages?.filter(img => 
+    img.category === 'pool' || 
+    img.category === 'amenities' || 
+    img.category === 'community' ||
+    img.category === 'exterior'
+  ) || [
+    { imageUrl: "/images/amenities/authentic/pool-area.jpg", title: "Resort-style pool area" },
+    { imageUrl: "/images/amenities/authentic/fitness-center.jpg", title: "24-hour fitness center" },
+    { imageUrl: "/images/amenities/authentic/pool-deck.jpg", title: "Pool deck with seating area" },
+    { imageUrl: "/images/amenities/authentic/pool-volleyball.jpg", title: "Sand volleyball court" },
+    { imageUrl: "/images/amenities/authentic/building-exterior.jpg", title: "Bicycle Club Apartments building exterior" }
+  ];
+
+  // Auto-rotate images every 3-5 seconds (randomized)
+  useEffect(() => {
+    if (slideshowImages.length <= 1) return;
+    
+    let timeoutId: number;
+    
+    const scheduleNextRotation = () => {
+      const randomInterval = Math.floor(Math.random() * 3000) + 3000; // 3-6 seconds
+      timeoutId = setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => 
+          prevIndex === slideshowImages.length - 1 ? 0 : prevIndex + 1
+        );
+        scheduleNextRotation();
+      }, randomInterval);
+    };
+    
+    scheduleNextRotation();
+    
+    return () => clearTimeout(timeoutId);
+  }, [slideshowImages.length]);
+
+  const currentImage = slideshowImages[currentImageIndex] || slideshowImages[0];
 
   return (
     <div className="min-h-screen py-20 bg-gray-50">
@@ -29,12 +73,15 @@ export default function Amenities() {
         
         {/* Featured Amenities Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-          <div>
+          <div className="relative overflow-hidden rounded-lg shadow-lg">
             <img 
-              src="/images/amenities/authentic/pool-area.jpg" 
-              alt="Resort-style pool area" 
-              className="rounded-lg shadow-lg w-full h-auto"
+              src={currentImage.imageUrl} 
+              alt={currentImage.title || "Amenity feature"} 
+              className="w-full h-auto transition-opacity duration-1000 ease-in-out"
+              key={currentImageIndex} // Force re-render for smooth transition
             />
+            {/* Optional: Add fade transition effect */}
+            <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-opacity duration-300"></div>
           </div>
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Resort-Style Living</h2>
