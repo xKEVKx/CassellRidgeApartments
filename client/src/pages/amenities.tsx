@@ -7,6 +7,7 @@ import type { Amenity, GalleryImage } from "@shared/schema";
 
 export default function Amenities() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   
   // Scroll to top when component mounts
   useEffect(() => {
@@ -38,26 +39,39 @@ export default function Amenities() {
     { imageUrl: "/images/amenities/authentic/building-exterior.jpg", title: "Bicycle Club Apartments building exterior" }
   ];
 
-  // Auto-rotate images every 3-5 seconds (randomized)
+  // Auto-rotate images every 3-5 seconds (randomized) with smooth transitions
   useEffect(() => {
     if (slideshowImages.length <= 1) return;
     
-    let timeoutId: number;
+    const getRandomInterval = () => Math.random() * 2000 + 3000; // 3-5 seconds
     
-    const scheduleNextRotation = () => {
-      const randomInterval = Math.floor(Math.random() * 3000) + 3000; // 3-6 seconds
-      timeoutId = setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => 
-          prevIndex === slideshowImages.length - 1 ? 0 : prevIndex + 1
-        );
-        scheduleNextRotation();
-      }, randomInterval);
+    let timeoutId: NodeJS.Timeout;
+    
+    const rotateImage = () => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        // Pick a random image different from current one
+        let newIndex;
+        do {
+          newIndex = Math.floor(Math.random() * slideshowImages.length);
+        } while (newIndex === currentImageIndex && slideshowImages.length > 1);
+        
+        setCurrentImageIndex(newIndex);
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 50); // Short delay for smooth crossfade
+      }, 500); // Fade out duration
+      timeoutId = setTimeout(rotateImage, getRandomInterval());
     };
-    
-    scheduleNextRotation();
-    
-    return () => clearTimeout(timeoutId);
-  }, [slideshowImages.length]);
+
+    timeoutId = setTimeout(rotateImage, getRandomInterval());
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [slideshowImages.length, currentImageIndex]);
 
   const currentImage = slideshowImages[currentImageIndex] || slideshowImages[0];
 
@@ -73,15 +87,13 @@ export default function Amenities() {
         
         {/* Featured Amenities Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-          <div className="relative overflow-hidden rounded-lg shadow-lg">
+          <div className="relative group w-full h-96 overflow-hidden rounded-lg shadow-lg">
             <img 
               src={currentImage.imageUrl} 
               alt={currentImage.title || "Amenity feature"} 
-              className="w-full h-auto transition-opacity duration-1000 ease-in-out"
-              key={currentImageIndex} // Force re-render for smooth transition
+              className={`w-full h-full object-cover transition-all duration-1000 ease-in-out group-hover:scale-105 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
             />
-            {/* Optional: Add fade transition effect */}
-            <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
           </div>
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Resort-Style Living</h2>
