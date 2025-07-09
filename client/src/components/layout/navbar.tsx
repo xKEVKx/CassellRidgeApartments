@@ -61,8 +61,8 @@ export default function Navbar() {
                               href={subItem.href}
                               className={`w-full px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
                                 location === subItem.href
-                                  ? 'text-emerald-700 font-semibold'
-                                  : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600'
+                                  ? 'text-emerald-700 font-semibold bg-emerald-50'
+                                  : 'text-slate-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 hover:text-emerald-600 hover:shadow-sm'
                               }`}
                             >
                               {subItem.label}
