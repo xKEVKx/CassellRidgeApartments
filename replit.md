@@ -118,6 +118,16 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 09, 2025 - ProofPoint Email Integration Complete
+- **Email System**: Implemented complete email integration using ProofPoint SMTP
+- **Contact Forms**: All contact form submissions now automatically send notifications to kkohorst@everestproperties.com
+- **Professional Templates**: Created HTML email templates with contact details and next steps for follow-up
+- **Database Integration**: Contact submissions saved to database while emails are sent in parallel
+- **SPF Configuration**: Added SPF DNS record for bicycleclubapts.com to improve email deliverability
+- **Gallery Navigation**: Added keyboard navigation (arrow keys) and clickable navigation arrows to photo gallery
+- **Gallery Counter**: Added image counter showing current position in gallery popup
+- **Contact Page**: Removed fax option from contact information as requested
+
 ### July 08, 2025 - Complete Website Transformation to Bicycle Club Apartments
 - **Accessibility Enhancement**: Added Accessibe widget for improved website accessibility compliance
 - **Gallery Photo Review**: Corrected all 35 photo categorizations and descriptions to accurately reflect apartment interiors vs exteriors
