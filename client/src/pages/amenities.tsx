@@ -83,7 +83,7 @@ export default function Amenities() {
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4 font-serif">Amenities</h1>
           <p className="text-xl text-gray-600">
-            The lifestyle at The Bicycle Club is one that offers a retreat–like atmosphere yet easy access to city activities. Live like you are on vacation every day at The Bicycle Club. Our affordable rents make it all possible.
+            Discover the park-like setting of Bicycle Club, where you'll find plenty of space to stroll and enjoy the beauty of nature. Your furry friends will love our Off-Leash Bark Park, the perfect place to play and socialize. Don't forget to visit our fully equipped fitness center, and enjoy the spacious outdoor gathering areas overlooking the stunning pool and community BBQ area.
           </p>
         </div>
         
