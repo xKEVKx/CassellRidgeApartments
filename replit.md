@@ -118,6 +118,12 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 09, 2025 - Gallery Image Loading & Duplication Fixes
+- **Image Loading Issue**: Fixed first gallery image not displaying due to problematic image with large gray area
+- **Duplicate Prevention**: Resolved duplicate images in gallery by updating first image to use different file
+- **Database Updates**: Updated gallery image references to use appropriate interior photos
+- **Error Handling**: Gallery now properly handles images with unusual dimensions or content layouts
+
 ### July 09, 2025 - Gallery Directory Consolidation & Image Management
 - **File Organization**: Consolidated all gallery images into single organized directory structure
 - **Directory Structure**: Created `/images/gallery/` with category-based subdirectories:
