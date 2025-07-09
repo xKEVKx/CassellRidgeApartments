@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
 import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
-import type { FloorPlan } from "@shared/schema";
+import type { FloorPlan, GalleryImage } from "@shared/schema";
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -16,13 +16,18 @@ export default function Home() {
     queryKey: ["/api/floor-plans"],
   });
 
+  // Fetch gallery images for photo rotation
+  const { data: galleryImages } = useQuery<GalleryImage[]>({
+    queryKey: ["/api/gallery"],
+  });
+
   // Calculate lowest price from floor plans
   const lowestPrice = floorPlans && floorPlans.length > 0 
     ? Math.min(...floorPlans.map(plan => plan.startingPrice))
     : 925; // fallback price
 
-  // Interior images for rotating background
-  const interiorImages = [
+  // Get all gallery images for rotation (interior, exterior, pool, community)
+  const rotationImages = galleryImages?.map(img => img.imageUrl) || [
     "/images/gallery/interior-1.jpg",
     "/images/gallery/interior-2.jpg", 
     "/images/gallery/interior-3.jpg",
@@ -30,7 +35,19 @@ export default function Home() {
     "/images/gallery/interior-5.jpg",
     "/images/gallery/interior-6.jpg",
     "/images/gallery/interior-7.jpg",
-    "/images/gallery/interior-8.jpg"
+    "/images/gallery/interior-8.jpg",
+    "/images/gallery/interior-9.jpg",
+    "/images/gallery/interior-10.jpg",
+    "/images/gallery/interior-11.jpg",
+    "/images/gallery/pool-area.jpg",
+    "/images/gallery/pool-deck.jpg",
+    "/images/gallery/pool-seating.jpg",
+    "/images/gallery/community-area.jpg",
+    "/images/gallery/leasing-office.jpg",
+    "/images/gallery/outdoor-area.jpg",
+    "/images/gallery/landscape.jpg",
+    "/images/amenities/building-exterior.jpg",
+    "/images/amenities/fitness-center.jpg"
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -41,6 +58,8 @@ export default function Home() {
   const [isPopupMinimized, setIsPopupMinimized] = useState(false);
 
   useEffect(() => {
+    if (rotationImages.length <= 1) return; // Don't rotate if only 1 or no images
+    
     const getRandomInterval = () => Math.random() * 2000 + 3000; // 3-5 seconds
     
     let timeoutId: NodeJS.Timeout;
@@ -48,7 +67,13 @@ export default function Home() {
     const rotateImage = () => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % interiorImages.length);
+        // Pick a random image different from current one
+        let newIndex;
+        do {
+          newIndex = Math.floor(Math.random() * rotationImages.length);
+        } while (newIndex === currentImageIndex && rotationImages.length > 1);
+        
+        setCurrentImageIndex(newIndex);
         setTimeout(() => {
           setIsTransitioning(false);
         }, 50); // Short delay for smooth crossfade
@@ -63,7 +88,7 @@ export default function Home() {
         clearTimeout(timeoutId);
       }
     };
-  }, [interiorImages.length]);
+  }, [rotationImages.length, currentImageIndex]);
 
   // Handle summer sale popup visibility - disabled for Bicycle Club
   useEffect(() => {
@@ -300,7 +325,7 @@ export default function Home() {
             <div className="relative">
               <div className="relative group w-full h-96 overflow-hidden rounded-3xl shadow-2xl">
                 <img 
-                  src={interiorImages[currentImageIndex]} 
+                  src={rotationImages[currentImageIndex]} 
                   alt="Luxury apartment interior" 
                   className={`w-full h-full object-cover transition-all duration-1000 ease-in-out group-hover:scale-105 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
                 />
@@ -525,7 +550,7 @@ export default function Home() {
       <section className="py-20 relative overflow-hidden">
         {/* Rotating Background Images */}
         <div className="absolute inset-0">
-          {interiorImages.map((image, index) => (
+          {rotationImages.map((image, index) => (
             <div
               key={index}
               className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
