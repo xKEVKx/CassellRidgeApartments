@@ -31,9 +31,9 @@ export default function Navbar() {
           
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
-            <div className="ml-6 flex items-center space-x-2">
-              {NAVIGATION_LINKS.map((link) => (
-                <div key={link.href}>
+            <div className="ml-6 flex items-center space-x-6">
+              {NAVIGATION_LINKS.map((link, index) => (
+                <div key={link.href} className="relative">
                   {link.subItems ? (
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -92,11 +92,15 @@ export default function Navbar() {
                       </span>
                     </Link>
                   )}
+                  {/* Subtle separator between menu items */}
+                  {index < NAVIGATION_LINKS.length - 1 && (
+                    <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
+                  )}
                 </div>
               ))}
               
               {/* External Links - Hidden on smaller screens */}
-              <div className="hidden xl:flex space-x-2">
+              <div className="hidden xl:flex space-x-4">
                 {EXTERNAL_LINKS.map((link) => (
                   <Button
                     key={link.href}
