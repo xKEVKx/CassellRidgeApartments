@@ -83,13 +83,20 @@ export default function Navbar() {
                       >
                         <span className="relative flex items-center">
                           {link.isIcon ? (
-                            <Home className="w-5 h-5" />
+                            <>
+                              <Home className="w-5 h-5" />
+                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                location === link.href ? 'w-5' : 'w-0 group-hover:w-5'
+                              }`}></div>
+                            </>
                           ) : (
-                            link.label
+                            <>
+                              {link.label}
+                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                              }`}></div>
+                            </>
                           )}
-                          <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
-                            location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
-                          }`}></div>
                         </span>
                       </Link>
                     )}
@@ -120,6 +127,10 @@ export default function Navbar() {
                         </span>
                       </a>
                     </Button>
+                    {/* Subtle separator between external links */}
+                    {index < EXTERNAL_LINKS.length - 1 && (
+                      <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
+                    )}
                   </div>
                 ))}
               </div>
