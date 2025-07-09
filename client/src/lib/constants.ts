@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
   contact: {
     phone: "816.587.8660",
     fax: "",
-    email: "manager@bicycleclubapts.com",
+    email: "bicycleclub-w@m.knck.io",
     address: {
       street: "7909 North Granby Avenue",
       city: "Kansas City",
