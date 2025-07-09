@@ -31,7 +31,7 @@ export default function Navbar() {
           
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
-            <div className="ml-6 flex items-center space-x-8">
+            <div className="ml-6 flex items-center space-x-6">
               {/* All Navigation Items with Consistent Spacing */}
               {NAVIGATION_LINKS.map((link, index) => (
                 <div key={link.href} className="relative">
@@ -100,7 +100,7 @@ export default function Navbar() {
                     </Link>
                   )}
                   {/* Separator after each navigation item */}
-                  <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
+                  <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
                 </div>
               ))}
               
@@ -120,8 +120,10 @@ export default function Navbar() {
                         </span>
                       </a>
                     </Button>
-                    {/* Separator after each external link */}
-                    <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
+                    {/* Separator after each external link except the last one */}
+                    {index < EXTERNAL_LINKS.length - 1 && (
+                      <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
+                    )}
                   </div>
                 ))}
               </div>
