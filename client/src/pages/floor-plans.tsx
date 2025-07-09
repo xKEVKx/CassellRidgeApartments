@@ -73,8 +73,6 @@ export default function FloorPlans() {
                 
                 <CardContent className="p-8 flex-1 flex flex-col lg:w-1/2">
                   <div className="space-y-6 flex-1">
-                    <p className="text-slate-600 leading-relaxed">{plan.description}</p>
-                    
                     <div className="grid grid-cols-3 gap-6">
                       <div className="text-center">
                         <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
