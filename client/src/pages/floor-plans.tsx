@@ -81,7 +81,7 @@ export default function FloorPlans() {
                           <Bed className="w-6 h-6 text-emerald-600" />
                         </div>
                         <div className="text-sm font-medium text-slate-500 mb-1">Bedrooms</div>
-                        <div className="text-2xl font-bold text-slate-900">{plan.bedrooms}</div>
+                        <div className="text-2xl font-bold text-slate-900">{parseFloat(plan.bedrooms) % 1 === 0 ? Math.floor(parseFloat(plan.bedrooms)) : plan.bedrooms}</div>
                       </div>
                       
                       <div className="text-center">
@@ -89,7 +89,7 @@ export default function FloorPlans() {
                           <Bath className="w-6 h-6 text-teal-600" />
                         </div>
                         <div className="text-sm font-medium text-slate-500 mb-1">Bathrooms</div>
-                        <div className="text-2xl font-bold text-slate-900">{plan.bathrooms}</div>
+                        <div className="text-2xl font-bold text-slate-900">{parseFloat(plan.bathrooms) % 1 === 0 ? Math.floor(parseFloat(plan.bathrooms)) : plan.bathrooms}</div>
                       </div>
                       
                       <div className="text-center">
