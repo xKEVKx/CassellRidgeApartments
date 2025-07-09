@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { z } from "zod";
+import { sendContactNotification, sendConfirmationEmail, testEmailConnection } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Floor Plans API
@@ -63,6 +64,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertContactSubmissionSchema.parse(req.body);
       const submission = await storage.createContactSubmission(validatedData);
+      
+      // Send email notifications
+      try {
+        // Send notification email to leasing team
+        const notificationResult = await sendContactNotification(submission);
+        if (notificationResult.success) {
+          console.log('Notification email sent successfully');
+        } else {
+          console.error('Failed to send notification email:', notificationResult.error);
+        }
+        
+        // Send confirmation email to visitor
+        const confirmationResult = await sendConfirmationEmail(submission);
+        if (confirmationResult.success) {
+          console.log('Confirmation email sent successfully');
+        } else {
+          console.error('Failed to send confirmation email:', confirmationResult.error);
+        }
+      } catch (emailError) {
+        console.error('Email sending error:', emailError);
+        // Don't fail the API call if email fails
+      }
+      
       res.json(submission);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -200,6 +224,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error initializing database:", error);
       res.status(500).json({ error: "Failed to initialize database" });
+    }
+  });
+
+  // Test email connection endpoint
+  app.get("/api/test-email", async (req, res) => {
+    try {
+      const result = await testEmailConnection();
+      res.json(result);
+    } catch (error) {
+      console.error("Email connection test failed:", error);
+      res.status(500).json({ error: "Email connection test failed" });
     }
   });
 
