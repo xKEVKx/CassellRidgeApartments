@@ -40,7 +40,7 @@ export default function Gallery() {
     { id: "exterior", name: "Exterior", icon: TreePine },
     { id: "community", name: "Community", icon: Home },
     { id: "pool", name: "Pool", icon: Waves },
-    { id: "amenities", name: "Amenities", icon: Home },
+    { id: "amenities", name: "Fitness Center", icon: Home },
   ];
 
   // Navigation functions
