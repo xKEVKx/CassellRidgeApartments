@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Check, Camera } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "wouter";
 import type { Amenity, GalleryImage } from "@shared/schema";
 
 export default function Amenities() {
@@ -171,6 +173,19 @@ export default function Amenities() {
               </ul>
             )}
           </Card>
+        </div>
+        
+        {/* Gallery Button */}
+        <div className="mt-16 text-center">
+          <Button 
+            asChild 
+            className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-3 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 hover:scale-105"
+          >
+            <Link href="/gallery">
+              <Camera className="mr-2 h-5 w-5" />
+              View Property Gallery
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
