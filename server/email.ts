@@ -66,7 +66,7 @@ export async function sendContactNotification(submission: ContactSubmission) {
   `;
 
   const mailOptions = {
-    from: process.env.PROOFPOINT_SMTP_USER,
+    from: `"Bicycle Club Apartments" <${process.env.PROOFPOINT_SMTP_USER}>`,
     to: 'kkohorst@everestproperties.com', // Send notifications to this email
     subject,
     html: htmlContent,
@@ -161,7 +161,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
   `;
 
   const mailOptions = {
-    from: process.env.PROOFPOINT_SMTP_USER,
+    from: `"Bicycle Club Apartments" <${process.env.PROOFPOINT_SMTP_USER}>`,
     to: submission.email,
     subject,
     html: htmlContent,
