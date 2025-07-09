@@ -135,13 +135,28 @@ export default function Gallery() {
             {filteredImages.map((image, index) => (
               <div key={image.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
                 <div 
-                  className="relative group cursor-pointer"
+                  className="relative group cursor-pointer h-64 bg-gray-100"
                   onClick={() => openDialog(index)}
                 >
                   <img 
                     src={image.imageUrl} 
                     alt={image.title}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    style={{ 
+                      minHeight: '256px',
+                      maxHeight: '256px',
+                      objectFit: 'cover',
+                      display: 'block'
+                    }}
+                    loading="lazy"
+                    onError={(e) => {
+                      console.error('Image failed to load:', image.imageUrl);
+                      e.currentTarget.style.backgroundColor = '#f3f4f6';
+                      e.currentTarget.style.border = '1px solid #e5e7eb';
+                    }}
+                    onLoad={() => {
+                      console.log('Image loaded successfully:', image.imageUrl);
+                    }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
                     <Expand className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8" />
