@@ -367,97 +367,62 @@ export default function Home() {
             </p>
           </div>
           
-          {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            {/* Content Side */}
-            <div className="space-y-10">
-              {/* Amenity Cards */}
-              <div className="space-y-6">
-                {[
-                  { 
-                    icon: "🏊", 
-                    title: "Resort-like Pool", 
-                    desc: "Beautiful pool area with sun deck and spacious outside meeting areas overlooking the gorgeous pool.",
-                    highlight: "Sun Deck"
-                  },
-                  { 
-                    icon: "🏐", 
-                    title: "Sand Volleyball Court", 
-                    desc: "Professional sand volleyball court for active recreation and community events.",
-                    highlight: "Sand Court"
-                  },
-                  { 
-                    icon: "🏋️", 
-                    title: "24-Hour Fitness Center", 
-                    desc: "Fully equipped fitness room available 24/7 with modern workout equipment.",
-                    highlight: "24/7 Access"
-                  },
-                  { 
-                    icon: "🐕", 
-                    title: "Pet Friendly Dog Park", 
-                    desc: "Dedicated off-leash dog park area for your furry friends to play and socialize.",
-                    highlight: "Off-Leash"
-                  }
-                ].map((amenity, index) => (
-                  <div key={index} className="group relative p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                    <div className="flex items-start space-x-4">
-                      <div className="text-3xl">{amenity.icon}</div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
-                          <h4 className="text-xl font-semibold text-white">{amenity.title}</h4>
-                          <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-sm font-medium rounded-full">
-                            {amenity.highlight}
-                          </span>
-                        </div>
-                        <p className="text-slate-300 leading-relaxed">{amenity.desc}</p>
-                      </div>
+          {/* Amenity Cards in 2 Column Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {[
+              { 
+                icon: "🏊", 
+                title: "Resort-like Pool", 
+                desc: "Beautiful pool area with sun deck and spacious outside meeting areas overlooking the gorgeous pool.",
+                highlight: "Sun Deck"
+              },
+              { 
+                icon: "🏐", 
+                title: "Sand Volleyball Court", 
+                desc: "Professional sand volleyball court for active recreation and community events.",
+                highlight: "Sand Court"
+              },
+              { 
+                icon: "🏋️", 
+                title: "24-Hour Fitness Center", 
+                desc: "Fully equipped fitness room available 24/7 with modern workout equipment.",
+                highlight: "24/7 Access"
+              },
+              { 
+                icon: "🐕", 
+                title: "Pet Friendly Dog Park", 
+                desc: "Dedicated off-leash dog park area for your furry friends to play and socialize.",
+                highlight: "Off-Leash"
+              }
+            ].map((amenity, index) => (
+              <div key={index} className="group relative p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
+                <div className="flex items-start space-x-4">
+                  <div className="text-3xl">{amenity.icon}</div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="text-xl font-semibold text-white">{amenity.title}</h4>
+                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-sm font-medium rounded-full">
+                        {amenity.highlight}
+                      </span>
                     </div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* CTA */}
-              <div className="pt-8">
-                <Button 
-                  asChild 
-                  className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105"
-                >
-                  <Link href="/amenities">
-                    Discover All Amenities
-                    <div className="ml-2 transition-transform group-hover:translate-x-1">→</div>
-                  </Link>
-                </Button>
-              </div>
-            </div>
-            
-            {/* Image Side */}
-            <div className="relative">
-              <div className="relative group">
-                <img 
-                  src="/images/grove-pool.jpg" 
-                  alt="Resort-style pool at night" 
-                  className="w-full h-auto rounded-3xl shadow-2xl transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent rounded-3xl"></div>
-                
-                {/* Overlay Stats */}
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/20 backdrop-blur-md rounded-xl p-4 text-center">
-                      <div className="text-2xl font-bold text-white">2</div>
-                      <div className="text-sm text-white/80">Resort Pools</div>
-                    </div>
-                    <div className="bg-white/20 backdrop-blur-md rounded-xl p-4 text-center">
-                      <div className="text-2xl font-bold text-white">15+</div>
-                      <div className="text-sm text-white/80">Amenities</div>
-                    </div>
+                    <p className="text-slate-300 leading-relaxed">{amenity.desc}</p>
                   </div>
                 </div>
               </div>
-              
-              {/* Decorative Elements */}
-              <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-3xl -z-10 blur-xl"></div>
-            </div>
+            ))}
+          </div>
+          
+          {/* CTA */}
+          <div className="text-center pt-12">
+            <Button 
+              asChild 
+              className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105"
+            >
+              <Link href="/amenities">
+                Discover All Amenities
+                <div className="ml-2 transition-transform group-hover:translate-x-1">→</div>
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -469,9 +434,7 @@ export default function Home() {
             
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
               Find Your 
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                Perfect Space
-              </span>
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent"> Perfect Space</span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
               Choose from our spacious 1, 2, and 3 bedroom apartment homes designed for the modern lifestyle you deserve.
