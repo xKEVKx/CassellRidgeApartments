@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
 import { Expand, Home, Waves, TreePine } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -92,6 +92,7 @@ export default function Gallery() {
                     </div>
                   </DialogTrigger>
                   <DialogContent className="max-w-4xl">
+                    <DialogTitle className="sr-only">{image.title}</DialogTitle>
                     <div className="relative">
                       <img 
                         src={image.imageUrl} 
@@ -103,9 +104,6 @@ export default function Gallery() {
                 </Dialog>
                 <div className="p-4">
                   <h3 className="font-semibold text-gray-900 mb-2">{image.title}</h3>
-                  {image.description && (
-                    <p className="text-sm text-gray-600">{image.description}</p>
-                  )}
                 </div>
               </div>
             ))}
