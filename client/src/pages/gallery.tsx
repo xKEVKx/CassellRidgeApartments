@@ -30,9 +30,13 @@ export default function Gallery() {
     ? images.sort((a, b) => {
         const aIndex = categoryOrder.indexOf(a.category);
         const bIndex = categoryOrder.indexOf(b.category);
-        return aIndex - bIndex;
+        if (aIndex !== bIndex) {
+          return aIndex - bIndex;
+        }
+        // If same category, sort by ID for consistent ordering
+        return a.id - b.id;
       })
-    : images.filter(img => img.category === selectedCategory);
+    : images.filter(img => img.category === selectedCategory).sort((a, b) => a.id - b.id);
 
   const categories = [
     { id: "all", name: "All Photos", icon: Home },
