@@ -31,88 +31,81 @@ export default function Navbar() {
           
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
-            <div className="ml-6 flex items-center">
-              {/* Main Navigation Links */}
-              <div className="flex items-center space-x-8">
-                {NAVIGATION_LINKS.map((link, index) => (
-                  <div key={link.href} className="relative">
-                    {link.subItems ? (
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <button 
-                            className={`group px-4 py-2 text-sm font-semibold transition-all duration-300 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent outline-none border-none ${
-                              link.subItems.some(subItem => location === subItem.href)
-                                ? 'text-emerald-700'
-                                : 'text-slate-700 hover:text-emerald-600'
-                            }`}
-                          >
-                            <span className="relative flex items-center">
-                              {link.label}
-                              <ChevronDown className="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" />
-                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
-                                link.subItems.some(subItem => location === subItem.href) ? 'w-full' : 'w-0 group-hover:w-full'
-                              }`}></div>
-                            </span>
-                          </button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent className="w-48 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-2xl shadow-xl">
-                          {link.subItems.map((subItem) => (
-                            <DropdownMenuItem key={subItem.href} asChild>
-                              <Link 
-                                href={subItem.href}
-                                className={`w-full px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                                  location === subItem.href
-                                    ? 'text-emerald-700 font-semibold bg-emerald-50'
-                                    : 'text-slate-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 hover:text-emerald-600 hover:shadow-sm'
-                                }`}
-                              >
-                                {subItem.label}
-                              </Link>
-                            </DropdownMenuItem>
-                          ))}
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        className={`group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
-                          location === link.href
-                            ? 'text-emerald-700'
-                            : 'text-slate-700 hover:text-emerald-600'
-                        }`}
-                      >
-                        <span className="relative flex items-center">
-                          {link.isIcon ? (
-                            <>
-                              <Home className="w-5 h-5" />
-                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
-                                location === link.href ? 'w-5' : 'w-0 group-hover:w-5'
-                              }`}></div>
-                            </>
-                          ) : (
-                            <>
-                              {link.label}
-                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
-                                location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
-                              }`}></div>
-                            </>
-                          )}
-                        </span>
-                      </Link>
-                    )}
-                    {/* Subtle separator between menu items */}
-                    {index < NAVIGATION_LINKS.length - 1 && (
-                      <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
-                    )}
-                  </div>
-                ))}
-              </div>
+            <div className="ml-6 flex items-center space-x-8">
+              {/* All Navigation Items with Consistent Spacing */}
+              {NAVIGATION_LINKS.map((link, index) => (
+                <div key={link.href} className="relative">
+                  {link.subItems ? (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button 
+                          className={`group px-4 py-2 text-sm font-semibold transition-all duration-300 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent outline-none border-none ${
+                            link.subItems.some(subItem => location === subItem.href)
+                              ? 'text-emerald-700'
+                              : 'text-slate-700 hover:text-emerald-600'
+                          }`}
+                        >
+                          <span className="relative flex items-center">
+                            {link.label}
+                            <ChevronDown className="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" />
+                            <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                              link.subItems.some(subItem => location === subItem.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                            }`}></div>
+                          </span>
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-48 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-2xl shadow-xl">
+                        {link.subItems.map((subItem) => (
+                          <DropdownMenuItem key={subItem.href} asChild>
+                            <Link 
+                              href={subItem.href}
+                              className={`w-full px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                                location === subItem.href
+                                  ? 'text-emerald-700 font-semibold bg-emerald-50'
+                                  : 'text-slate-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 hover:text-emerald-600 hover:shadow-sm'
+                              }`}
+                            >
+                              {subItem.label}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={`group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
+                        location === link.href
+                          ? 'text-emerald-700'
+                          : 'text-slate-700 hover:text-emerald-600'
+                      }`}
+                    >
+                      <span className="relative flex items-center">
+                        {link.isIcon ? (
+                          <>
+                            <Home className="w-5 h-5" />
+                            <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                              location === link.href ? 'w-5' : 'w-0 group-hover:w-5'
+                            }`}></div>
+                          </>
+                        ) : (
+                          <>
+                            {link.label}
+                            <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                              location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                            }`}></div>
+                          </>
+                        )}
+                      </span>
+                    </Link>
+                  )}
+                  {/* Separator after each navigation item */}
+                  <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
+                </div>
+              ))}
               
-              {/* Separator between navigation and external links */}
-              <div className="hidden xl:block w-px h-4 bg-slate-300 mx-8"></div>
-              
-              {/* External Links - Hidden on smaller screens */}
-              <div className="hidden xl:flex items-center space-x-8">
+              {/* External Links with consistent spacing */}
+              <div className="hidden xl:contents">
                 {EXTERNAL_LINKS.map((link, index) => (
                   <div key={link.href} className="relative">
                     <Button
@@ -127,15 +120,14 @@ export default function Navbar() {
                         </span>
                       </a>
                     </Button>
-                    {/* Subtle separator between external links */}
-                    {index < EXTERNAL_LINKS.length - 1 && (
-                      <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
-                    )}
+                    {/* Separator after each external link */}
+                    <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
                   </div>
                 ))}
               </div>
               
-              <div className="ml-8">
+              {/* Call Button with consistent spacing */}
+              <div className="relative">
                 <Button 
                   className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-3 xl:px-4 py-2 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
                   asChild
