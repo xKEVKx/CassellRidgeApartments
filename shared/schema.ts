@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, jsonb, decimal } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -12,7 +12,7 @@ export const floorPlans = pgTable("floor_plans", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   bedrooms: integer("bedrooms").notNull(),
-  bathrooms: integer("bathrooms").notNull(),
+  bathrooms: decimal("bathrooms", { precision: 3, scale: 1 }).notNull(),
   sqft: integer("sqft").notNull(),
   startingPrice: integer("starting_price").notNull(),
   imageUrl: text("image_url").notNull(),
