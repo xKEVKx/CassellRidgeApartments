@@ -77,7 +77,7 @@ export default function Footer() {
               <div className="flex items-center">
                 <Mail className="w-5 h-5 mr-2 flex-shrink-0" />
                 <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-blue-400 hover:underline">
-                  {SITE_CONFIG.contact.email}
+                  Email Us
                 </a>
               </div>
               <div className="flex items-start">
