@@ -2,8 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Play, ExternalLink, Home, Building, MapPin } from "lucide-react";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
+import { useEffect } from "react";
 
 export default function VirtualTours() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const tours = [
     {
       id: 1,

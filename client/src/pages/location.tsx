@@ -3,8 +3,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Car, School, ShoppingBag, Utensils, Plane } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
+import { useEffect } from "react";
 
 export default function Location() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const nearbyAttractions = [
     {
       icon: <ShoppingBag className="h-6 w-6" />,

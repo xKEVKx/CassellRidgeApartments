@@ -1,8 +1,13 @@
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import ContactForm from "@/components/contact-form";
 import { SITE_CONFIG } from "@/lib/constants";
+import { useEffect } from "react";
 
 export default function Contact() {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
