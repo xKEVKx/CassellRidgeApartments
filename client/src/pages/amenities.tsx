@@ -83,7 +83,7 @@ export default function Amenities() {
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4 font-serif">Amenities</h1>
           <p className="text-xl text-gray-600">
-            The park-like setting of Bicycle Club offers you ample space to walk and enjoy nature
+            The lifestyle at The Bicycle Club is one that offers a retreat–like atmosphere yet easy access to city activities. Live like you are on vacation every day at The Bicycle Club. Our affordable rents make it all possible.
           </p>
         </div>
         
