@@ -118,6 +118,14 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 09, 2025 - Gallery Directory Consolidation Complete
+- **File Organization**: Consolidated all gallery images into single organized directory structure
+- **Directory Structure**: Created `/images/gallery/` with subdirectories: interior, exterior, pool, amenities, community  
+- **Database Updates**: Updated all image paths in database to reflect new consolidated structure
+- **Duplicate Removal**: Removed 60+ duplicate image files using MD5 verification for storage optimization
+- **Category Fixes**: Corrected image categorization to match actual content (interior vs exterior, pool vs amenities)
+- **Storage Optimization**: Reduced from scattered directories to clean organized structure in single location
+
 ### July 09, 2025 - ProofPoint Email Integration Complete
 - **Email System**: Implemented complete email integration using ProofPoint SMTP
 - **Contact Forms**: All contact form submissions now automatically send notifications to kkohorst@everestproperties.com
