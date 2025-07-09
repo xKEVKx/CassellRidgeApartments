@@ -1,13 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
-import { Expand, Home, Waves, TreePine } from "lucide-react";
-import { useState } from "react";
+import { Expand, Home, Waves, TreePine, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { GalleryImage } from "@shared/schema";
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   
   const { data: galleryImages, isLoading } = useQuery<GalleryImage[]>({
     queryKey: ["/api/gallery"],
@@ -35,6 +37,44 @@ export default function Gallery() {
     { id: "pool", name: "Pool", icon: Waves },
     { id: "amenities", name: "Amenities", icon: Home },
   ];
+
+  // Navigation functions
+  const goToPrevious = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? filteredImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === filteredImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isDialogOpen) return;
+      
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        goToPrevious();
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        goToNext();
+      } else if (event.key === 'Escape') {
+        setIsDialogOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isDialogOpen, filteredImages.length]);
+
+  const openDialog = (index: number) => {
+    setCurrentImageIndex(index);
+    setIsDialogOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -83,37 +123,70 @@ export default function Gallery() {
         {/* Gallery Grid */}
         {!isLoading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredImages.map((image) => (
+            {filteredImages.map((image, index) => (
               <div key={image.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <div className="relative group cursor-pointer">
-                      <img 
-                        src={image.imageUrl} 
-                        alt={image.title}
-                        className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
-                        <Expand className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8" />
-                      </div>
-                    </div>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-4xl">
-                    <DialogTitle className="sr-only">{image.title}</DialogTitle>
-                    <div className="relative">
-                      <img 
-                        src={image.imageUrl} 
-                        alt={image.title}
-                        className="w-full h-auto max-h-[80vh] object-contain"
-                      />
-                    </div>
-                  </DialogContent>
-                </Dialog>
-
+                <div 
+                  className="relative group cursor-pointer"
+                  onClick={() => openDialog(index)}
+                >
+                  <img 
+                    src={image.imageUrl} 
+                    alt={image.title}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
+                    <Expand className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8" />
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         )}
+
+        {/* Image Dialog with Navigation */}
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <DialogContent className="max-w-4xl">
+            <DialogTitle className="sr-only">
+              {filteredImages[currentImageIndex]?.title || "Gallery Image"}
+            </DialogTitle>
+            <div className="relative">
+              {filteredImages[currentImageIndex] && (
+                <img 
+                  src={filteredImages[currentImageIndex].imageUrl} 
+                  alt={filteredImages[currentImageIndex].title}
+                  className="w-full h-auto max-h-[80vh] object-contain"
+                />
+              )}
+              
+              {/* Navigation Buttons */}
+              {filteredImages.length > 1 && (
+                <>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 backdrop-blur-sm"
+                    onClick={goToPrevious}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 backdrop-blur-sm"
+                    onClick={goToNext}
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </>
+              )}
+              
+              {/* Image Counter */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                {currentImageIndex + 1} / {filteredImages.length}
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Empty State */}
         {!isLoading && filteredImages.length === 0 && (
