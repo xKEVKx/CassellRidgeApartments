@@ -31,7 +31,7 @@ export default function Navbar() {
           
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
-            <div className="ml-6 flex items-center space-x-6">
+            <div className="ml-6 flex items-center space-x-4">
               {NAVIGATION_LINKS.map((link, index) => (
                 <div key={link.href} className="relative">
                   {link.subItems ? (
@@ -93,7 +93,7 @@ export default function Navbar() {
                   )}
                   {/* Subtle separator between menu items */}
                   {index < NAVIGATION_LINKS.length - 1 && (
-                    <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
+                    <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
                   )}
                 </div>
               ))}
@@ -125,7 +125,7 @@ export default function Navbar() {
                 ))}
               </div>
               
-              <div className="ml-6 pl-6 border-l border-slate-200">
+              <div className="ml-6">
                 <Button 
                   className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-3 xl:px-4 py-2 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
                   asChild
