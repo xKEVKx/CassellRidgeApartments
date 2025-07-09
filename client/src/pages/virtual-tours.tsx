@@ -14,7 +14,7 @@ export default function VirtualTours() {
       id: 1,
       title: "Virtual Property Tour",
       description: "Take a comprehensive virtual walkthrough of our beautiful community and see what makes Bicycle Club Apartments special.",
-      thumbnail: "/images/amenities/building-exterior.jpg",
+      thumbnail: "/images/gallery/exterior/building-exterior-2.jpg",
       videoUrl: "https://www.youtube.com/watch?v=2UTDoEzRb-o",
       icon: <MapPin className="w-6 h-6" />,
       type: "Community Tour"
