@@ -87,11 +87,11 @@ export default function Amenities() {
         
         {/* Featured Amenities Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-          <div className="relative group w-full h-96 overflow-hidden rounded-lg shadow-lg">
+          <div className="relative w-full h-96 overflow-hidden rounded-lg shadow-lg">
             <img 
               src={currentImage.imageUrl} 
               alt={currentImage.title || "Amenity feature"} 
-              className={`w-full h-full object-cover transition-all duration-1000 ease-in-out group-hover:scale-105 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+              className={`w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
           </div>
