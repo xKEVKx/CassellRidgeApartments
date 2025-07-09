@@ -24,11 +24,10 @@ export default function Contact() {
                 <div>
                   <h3 className="font-semibold text-gray-900">Phone</h3>
                   <p className="text-gray-600">
-                    Main: <a href={`tel:${SITE_CONFIG.contact.phone}`} className="text-green-700 hover:underline">
+                    <a href={`tel:${SITE_CONFIG.contact.phone}`} className="text-green-700 hover:underline">
                       {SITE_CONFIG.contact.phone}
                     </a>
                   </p>
-                  <p className="text-gray-600">Fax: {SITE_CONFIG.contact.fax}</p>
                 </div>
               </div>
               
