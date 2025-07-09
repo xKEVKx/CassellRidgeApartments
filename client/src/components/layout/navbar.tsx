@@ -98,6 +98,9 @@ export default function Navbar() {
                 </div>
               ))}
               
+              {/* Separator between navigation and external links */}
+              <div className="hidden xl:block w-px h-4 bg-slate-300"></div>
+              
               {/* External Links - Hidden on smaller screens */}
               <div className="hidden xl:flex space-x-4">
                 {EXTERNAL_LINKS.map((link, index) => (
