@@ -93,6 +93,10 @@ export default function Navbar() {
                         </span>
                       </Link>
                     )}
+                    {/* Subtle separator between menu items */}
+                    {index < NAVIGATION_LINKS.length - 1 && (
+                      <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
+                    )}
                   </div>
                 ))}
               </div>
