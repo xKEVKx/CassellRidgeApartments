@@ -172,29 +172,6 @@ export default function Amenities() {
             )}
           </Card>
         </div>
-        
-        {/* Additional Images */}
-        <div className="mt-20">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Property Gallery</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { src: "/images/amenities/authentic/building-exterior.jpg", alt: "Bicycle Club Apartments building exterior" },
-              { src: "/images/amenities/authentic/pool-area.jpg", alt: "Resort-style swimming pool area" },
-              { src: "/images/amenities/authentic/fitness-center.jpg", alt: "24-hour fitness center" },
-              { src: "/images/amenities/authentic/pool-deck.jpg", alt: "Pool deck with seating area" },
-              { src: "/images/amenities/authentic/interior-living.jpg", alt: "Modern apartment living room" },
-              { src: "/images/amenities/authentic/pool-volleyball.jpg", alt: "Sand volleyball court" }
-            ].map((image, index) => (
-              <div key={index} className="relative overflow-hidden rounded-lg shadow-lg">
-                <img 
-                  src={image.src} 
-                  alt={image.alt}
-                  className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );
