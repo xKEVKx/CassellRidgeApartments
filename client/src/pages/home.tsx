@@ -29,13 +29,7 @@ export default function Home() {
   // Get all gallery images for rotation (interior, exterior, pool, community)
   const rotationImages = galleryImages?.map(img => img.imageUrl) || [
     "/images/gallery/interior-1.jpg",
-    "/images/gallery/interior-2.jpg", 
     "/images/gallery/interior-3.jpg",
-    "/images/gallery/interior-4.jpg",
-    "/images/gallery/interior-5.jpg",
-    "/images/gallery/interior-6.jpg",
-    "/images/gallery/interior-7.jpg",
-    "/images/gallery/interior-8.jpg",
     "/images/gallery/pool-area.jpg",
     "/images/gallery/pool-deck.jpg",
     "/images/gallery/pool-seating.jpg",
