@@ -18,12 +18,12 @@ const transporter = nodemailer.createTransport({
 export async function sendContactNotification(submission: ContactSubmission) {
   const subject = submission.type === 'visit' 
     ? `New Visit Scheduled - ${submission.name}`
-    : `New Contact Inquiry - ${submission.name}`;
+    : `New Website Contact Inquiry - ${submission.name}`;
 
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #059669; border-bottom: 2px solid #059669; padding-bottom: 10px;">
-        ${submission.type === 'visit' ? 'New Visit Scheduled' : 'New Contact Inquiry'}
+        ${submission.type === 'visit' ? 'New Visit Scheduled' : 'New Website Contact Inquiry'}
       </h2>
       
       <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -46,20 +46,10 @@ export async function sendContactNotification(submission: ContactSubmission) {
         </div>
       ` : ''}
       
-      <div style="background-color: #e6f3ff; padding: 15px; border-radius: 8px; margin: 20px 0;">
-        <h3 style="color: #333; margin-top: 0;">Next Steps</h3>
-        <ul>
-          <li>Review the ${submission.type === 'visit' ? 'visit request' : 'inquiry'} details above</li>
-          <li>Contact ${submission.name} at ${submission.email} or ${submission.phone}</li>
-          ${submission.type === 'visit' ? '<li>Confirm the visit date and time</li>' : ''}
-          <li>Follow up within 24 hours for best results</li>
-        </ul>
-      </div>
-      
       <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
         <p style="color: #666; font-size: 12px;">
           This email was sent from the Bicycle Club Apartments website contact form<br>
-          Submitted on ${new Date(submission.createdAt).toLocaleDateString()} at ${new Date(submission.createdAt).toLocaleTimeString()}
+          Submitted on ${new Date(submission.createdAt).toLocaleDateString('en-US', { timeZone: 'America/Chicago' })} at ${new Date(submission.createdAt).toLocaleTimeString('en-US', { timeZone: 'America/Chicago' })} CST
         </p>
       </div>
     </div>
@@ -72,7 +62,7 @@ export async function sendContactNotification(submission: ContactSubmission) {
     subject,
     html: htmlContent,
     text: `
-${submission.type === 'visit' ? 'New Visit Scheduled' : 'New Contact Inquiry'}
+${submission.type === 'visit' ? 'New Visit Scheduled' : 'New Website Contact Inquiry'}
 
 Name: ${submission.name}
 Email: ${submission.email}
@@ -83,7 +73,7 @@ ${submission.floorPlan ? `Floor Plan Interest: ${submission.floorPlan}` : ''}
 
 ${submission.message ? `Message:\n${submission.message}` : ''}
 
-Submitted on ${new Date(submission.createdAt).toLocaleDateString()} at ${new Date(submission.createdAt).toLocaleTimeString()}
+Submitted on ${new Date(submission.createdAt).toLocaleDateString('en-US', { timeZone: 'America/Chicago' })} at ${new Date(submission.createdAt).toLocaleTimeString('en-US', { timeZone: 'America/Chicago' })} CST
     `,
   };
 
