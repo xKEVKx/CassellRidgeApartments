@@ -15,17 +15,24 @@ export default function Gallery() {
 
   const images: GalleryImage[] = galleryImages || [];
 
-  // Filter images based on selected category
+  // Define category order for sorting
+  const categoryOrder = ["interior", "exterior", "community", "pool", "amenities"];
+  
+  // Filter and sort images based on selected category
   const filteredImages = selectedCategory === "all" 
-    ? images 
+    ? images.sort((a, b) => {
+        const aIndex = categoryOrder.indexOf(a.category);
+        const bIndex = categoryOrder.indexOf(b.category);
+        return aIndex - bIndex;
+      })
     : images.filter(img => img.category === selectedCategory);
 
   const categories = [
     { id: "all", name: "All Photos", icon: Home },
-    { id: "interior", name: "Interiors", icon: Home },
-    { id: "exterior", name: "Exteriors", icon: TreePine },
-    { id: "pool", name: "Pool", icon: Waves },
+    { id: "interior", name: "Interior", icon: Home },
+    { id: "exterior", name: "Exterior", icon: TreePine },
     { id: "community", name: "Community", icon: Home },
+    { id: "pool", name: "Pool", icon: Waves },
     { id: "amenities", name: "Amenities", icon: Home },
   ];
 
@@ -102,9 +109,7 @@ export default function Gallery() {
                     </div>
                   </DialogContent>
                 </Dialog>
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 mb-2">{image.title}</h3>
-                </div>
+
               </div>
             ))}
           </div>
