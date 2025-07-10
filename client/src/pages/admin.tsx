@@ -214,7 +214,7 @@ export default function Admin() {
           </div>
         </div>
 
-        <Tabs defaultValue="gallery" className="w-full">
+        <Tabs defaultValue="rents" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
             <TabsTrigger value="rents">Rents</TabsTrigger>
