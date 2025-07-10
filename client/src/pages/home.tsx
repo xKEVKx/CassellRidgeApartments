@@ -468,22 +468,24 @@ export default function Home() {
             ) : (
               floorPlans?.map((plan) => (
                 <Card key={plan.id} className="overflow-hidden hover:shadow-xl transition-shadow">
-                  <div className="aspect-w-16 aspect-h-12 relative">
+                  <div className="aspect-w-16 aspect-h-12">
                     <img 
                       src={plan.imageUrl} 
                       alt={`${plan.name} floor plan`}
                       className="w-full h-64 object-cover"
                     />
-                    {/* Promotional Banner */}
-                    {plan.promotionAvailable && (
-                      <div className="absolute top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-lg flex items-center gap-2 shadow-lg">
-                        <Tag className="w-4 h-4" />
-                        <span className="text-sm font-semibold">Promotion Available</span>
-                      </div>
-                    )}
                   </div>
                   <CardContent className="p-6">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                    <div className="flex justify-between items-center mb-2">
+                      <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
+                      {/* Promotional Banner */}
+                      {plan.promotionAvailable && (
+                        <div className="bg-red-600 text-white px-2 py-1 rounded flex items-center gap-1 text-xs">
+                          <Tag className="w-3 h-3" />
+                          <span className="font-semibold">Promotion</span>
+                        </div>
+                      )}
+                    </div>
                     <div className="flex justify-between items-center mb-4">
                       <div className="text-sm text-gray-600">
                         <span className="block">{parseFloat(plan.bedrooms) % 1 === 0 ? Math.floor(parseFloat(plan.bedrooms)) : plan.bedrooms} Bedroom{plan.bedrooms > 1 ? 's' : ''}</span>
