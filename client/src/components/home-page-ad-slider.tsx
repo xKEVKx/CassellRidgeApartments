@@ -68,10 +68,11 @@ export default function HomePageAdSlider({ isVisible, onClose, initialMinimized 
               className="h-32 w-16 bg-gradient-to-r from-emerald-500 to-teal-600 flex items-center justify-center cursor-pointer hover:from-emerald-600 hover:to-teal-700 transition-colors duration-200"
               onClick={() => setIsExpanded(true)}
             >
-              <div className="text-white transform -rotate-90 whitespace-nowrap text-sm font-medium">
-                Special Offer
+              {/* Desktop: Show text, Mobile: Show arrow only */}
+              <div className="hidden sm:block text-white transform -rotate-90 whitespace-nowrap text-sm font-medium">
+                Announcement
               </div>
-              <ChevronRight className="h-4 w-4 text-white absolute right-1" />
+              <ChevronRight className="h-5 w-5 text-white sm:absolute sm:right-1" />
             </div>
           )}
 
