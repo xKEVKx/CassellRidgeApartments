@@ -434,18 +434,7 @@ export default function Home() {
             ))}
           </div>
           
-          {/* CTA */}
-          <div className="text-center pt-12">
-            <Button 
-              asChild 
-              className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105"
-            >
-              <Link href="/amenities">
-                Discover All Amenities
-                <div className="ml-2 transition-transform group-hover:translate-x-1">→</div>
-              </Link>
-            </Button>
-          </div>
+          
         </div>
       </section>
       {/* Modern Floor Plans Showcase */}
