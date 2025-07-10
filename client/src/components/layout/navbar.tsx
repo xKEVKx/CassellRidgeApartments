@@ -21,7 +21,7 @@ export default function Navbar() {
                   <img 
                     src="/images/bicycle-club-header-logo.png" 
                     alt="Bicycle Club Apartments Logo" 
-                    className="h-8 w-auto transition-all duration-300 group-hover:scale-105"
+                    className="h-10 w-auto transition-all duration-300 group-hover:scale-105"
                   />
                   <div className="absolute -inset-2 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
                 </div>
@@ -163,7 +163,7 @@ export default function Navbar() {
                     <img 
                       src="/images/bicycle-club-header-logo.png" 
                       alt="Bicycle Club Apartments Logo" 
-                      className="h-12 w-auto"
+                      className="h-15 w-auto"
                     />
                   </div>
                   
