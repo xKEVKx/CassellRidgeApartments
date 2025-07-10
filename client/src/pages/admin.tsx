@@ -291,8 +291,8 @@ export default function Admin() {
 
         <Tabs defaultValue="rents" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="gallery">Gallery</TabsTrigger>
             <TabsTrigger value="rents">Rents</TabsTrigger>
+            <TabsTrigger value="gallery">Gallery</TabsTrigger>
           </TabsList>
 
           <TabsContent value="gallery" className="space-y-6">
