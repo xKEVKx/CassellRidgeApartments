@@ -25,6 +25,7 @@ export default function Admin() {
   const [adImageFile, setAdImageFile] = useState<File | null>(null);
   const [adImagePreview, setAdImagePreview] = useState<string>('');
   const [showAdForm, setShowAdForm] = useState(false);
+  const [editingAd, setEditingAd] = useState<HomePageAd | null>(null);
   const [adFormData, setAdFormData] = useState({
     displayFrequency: 5,
     isActive: true,
@@ -296,6 +297,9 @@ export default function Admin() {
         description: "Home page ad updated successfully",
       });
       queryClient.invalidateQueries({ queryKey: ['/api/home-page-ads'] });
+      if (editingAd && showAdForm) {
+        handleCancelAdForm();
+      }
     },
     onError: () => {
       toast({
@@ -546,7 +550,7 @@ export default function Admin() {
   };
 
   const handleCreateAd = async () => {
-    if (!adImageFile || !adImagePreview) {
+    if (!adImagePreview) {
       toast({
         title: "Missing Image",
         description: "Please select an image for the ad",
@@ -555,47 +559,84 @@ export default function Admin() {
       return;
     }
     
-    // Compress image
-    const compressedDataUrl = await new Promise<string>((resolve) => {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      const img = new Image();
-      
-      img.onload = () => {
-        const maxSize = 1200;
-        let { width, height } = img;
+    // Use existing image if editing and no new image uploaded
+    let imageUrl = adImagePreview;
+    
+    // If new image uploaded, compress it
+    if (adImageFile) {
+      imageUrl = await new Promise<string>((resolve) => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
         
-        if (width > height) {
-          if (width > maxSize) {
-            height = (height * maxSize) / width;
-            width = maxSize;
+        img.onload = () => {
+          const maxSize = 1200;
+          let { width, height } = img;
+          
+          if (width > height) {
+            if (width > maxSize) {
+              height = (height * maxSize) / width;
+              width = maxSize;
+            }
+          } else {
+            if (height > maxSize) {
+              width = (width * maxSize) / height;
+              height = maxSize;
+            }
           }
-        } else {
-          if (height > maxSize) {
-            width = (width * maxSize) / height;
-            height = maxSize;
-          }
-        }
+          
+          canvas.width = width;
+          canvas.height = height;
+          ctx?.drawImage(img, 0, 0, width, height);
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+          resolve(compressedDataUrl);
+        };
         
-        canvas.width = width;
-        canvas.height = height;
-        ctx?.drawImage(img, 0, 0, width, height);
-        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
-        resolve(compressedDataUrl);
-      };
-      
-      img.src = adImagePreview;
-    });
+        img.src = adImagePreview;
+      });
+    }
     
     const adData = {
-      imageUrl: compressedDataUrl,
+      imageUrl,
       displayFrequency: adFormData.displayFrequency,
       isActive: adFormData.isActive,
       startDate: adFormData.startDate || undefined,
       endDate: adFormData.endDate || undefined,
     };
     
-    createHomePageAdMutation.mutate(adData);
+    if (editingAd) {
+      updateHomePageAdMutation.mutate({
+        id: editingAd.id,
+        updates: adData
+      });
+    } else {
+      createHomePageAdMutation.mutate(adData);
+    }
+  };
+
+  const handleEditAd = (ad: HomePageAd) => {
+    setEditingAd(ad);
+    setAdFormData({
+      displayFrequency: ad.displayFrequency,
+      isActive: ad.isActive,
+      startDate: ad.startDate ? new Date(ad.startDate).toISOString().split('T')[0] : '',
+      endDate: ad.endDate ? new Date(ad.endDate).toISOString().split('T')[0] : '',
+    });
+    setAdImagePreview(ad.imageUrl);
+    setShowAdForm(true);
+  };
+
+  const handleCancelAdForm = () => {
+    setShowAdForm(false);
+    setEditingAd(null);
+    setAdImageFile(null);
+    setAdImagePreview('');
+    setAdFormData({
+      displayFrequency: 5,
+      isActive: true,
+      startDate: '',
+      endDate: ''
+    });
   };
 
   const categories = ['interior', 'community', 'pool', 'fitness center', 'uncategorized'];
@@ -938,7 +979,13 @@ export default function Admin() {
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold">Home Page Advertisement</h2>
               <Button
-                onClick={() => setShowAdForm(!showAdForm)}
+                onClick={() => {
+                  if (showAdForm) {
+                    handleCancelAdForm();
+                  } else {
+                    setShowAdForm(true);
+                  }
+                }}
                 className="bg-emerald-600 hover:bg-emerald-700"
               >
                 <Plus className="h-4 w-4 mr-2" />
@@ -949,7 +996,7 @@ export default function Admin() {
             {showAdForm && (
               <Card>
                 <CardHeader>
-                  <CardTitle>Create New Home Page Ad</CardTitle>
+                  <CardTitle>{editingAd ? 'Edit Advertisement' : 'Create New Home Page Ad'}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
@@ -1033,26 +1080,18 @@ export default function Admin() {
                   <div className="flex justify-end space-x-2">
                     <Button
                       variant="outline"
-                      onClick={() => {
-                        setShowAdForm(false);
-                        setAdImageFile(null);
-                        setAdImagePreview('');
-                        setAdFormData({
-                          displayFrequency: 5,
-                          isActive: true,
-                          startDate: '',
-                          endDate: ''
-                        });
-                      }}
+                      onClick={handleCancelAdForm}
                     >
                       Cancel
                     </Button>
                     <Button
                       onClick={handleCreateAd}
-                      disabled={!adImageFile || createHomePageAdMutation.isPending}
+                      disabled={(!adImageFile && !editingAd) || createHomePageAdMutation.isPending || updateHomePageAdMutation.isPending}
                       className="bg-emerald-600 hover:bg-emerald-700"
                     >
-                      {createHomePageAdMutation.isPending ? 'Creating...' : 'Create Ad'}
+                      {(createHomePageAdMutation.isPending || updateHomePageAdMutation.isPending) 
+                        ? (editingAd ? 'Updating...' : 'Creating...') 
+                        : (editingAd ? 'Update Ad' : 'Create Ad')}
                     </Button>
                   </div>
                 </CardContent>
@@ -1096,13 +1135,24 @@ export default function Admin() {
                                 <Button
                                   variant="outline"
                                   size="sm"
-                                  onClick={() => updateHomePageAdMutation.mutate({
-                                    id: ad.id,
-                                    updates: { isActive: !ad.isActive }
-                                  })}
-                                  disabled={updateHomePageAdMutation.isPending}
+                                  onClick={() => handleEditAd(ad)}
+                                  className="mr-2"
                                 >
-                                  {ad.isActive ? 'Deactivate' : 'Activate'}
+                                  Edit
+                                </Button>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => {
+                                    updateHomePageAdMutation.mutate({
+                                      id: ad.id,
+                                      updates: { isActive: !ad.isActive }
+                                    });
+                                  }}
+                                  disabled={updateHomePageAdMutation.isPending}
+                                  className="mr-2"
+                                >
+                                  {updateHomePageAdMutation.isPending ? 'Updating...' : (ad.isActive ? 'Deactivate' : 'Activate')}
                                 </Button>
                                 <AlertDialog>
                                   <AlertDialogTrigger asChild>

@@ -142,6 +142,7 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - **Sliding Advertisement UI**: Left-side popup slider that enters from left edge, expandable/collapsible design
 - **Date Range Scheduling**: Optional start/end date controls for time-limited campaigns
 - **Admin Panel Integration**: Third tab in admin interface for creating, managing, and toggling ad status
+- **Edit Functionality**: Complete edit mode for existing ads with form pre-population and image replacement
 - **Image Compression**: Automatic image optimization to max 1200px and 80% quality
 - **Database Schema**: New `home_page_ads` table with frequency, scheduling, and status fields
 - **API Endpoints**: Complete REST API for ad management (`/api/home-page-ads/*`)
@@ -150,6 +151,7 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - **Responsive Design**: Mobile-optimized slider with proper touch interactions
 - **Call-to-Action Integration**: "Learn More" button scrolls to contact section
 - **Database Storage**: Images stored as compressed base64 data URLs for optimal performance
+- **Form Management**: Dynamic form handling for both create and edit modes with proper state reset
 
 ### July 10, 2025 - Complete Admin System & Promotional Banner Implementation
 - **Photo Upload System**: Multi-file upload with JPEG and PNG support, drag-and-drop functionality
