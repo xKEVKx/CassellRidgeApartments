@@ -110,8 +110,7 @@ export default function Gallery() {
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
                 <Skeleton className="w-full h-64" />
                 <div className="p-4">
-                  <Skeleton className="h-4 w-3/4 mb-2" />
-                  <Skeleton className="h-3 w-1/2" />
+                  <Skeleton className="h-4 w-3/4" />
                 </div>
               </div>
             ))}
@@ -152,41 +151,14 @@ export default function Gallery() {
                   </div>
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 mb-2">{image.title}</h3>
-                  <p className="text-sm text-gray-600 mb-2">{image.description}</p>
-                  <p className="text-xs text-gray-400">Image path: {image.image_url}</p>
+                  <h3 className="font-semibold text-gray-900">{image.title}</h3>
                 </div>
               </div>
             ))}
           </div>
         )}
 
-        {/* Debug Information */}
-        {!isLoading && (
-          <div className="mt-8 p-4 bg-gray-100 rounded-lg">
-            <h3 className="font-bold mb-2">Debug Info:</h3>
-            <p>Total images: {filteredImages.length}</p>
-            <p>Selected category: {selectedCategory}</p>
-            <p>Loading state: {isLoading ? 'Loading' : 'Loaded'}</p>
-            {filteredImages.length > 0 && (
-              <div className="mt-2">
-                <p>First image URL: {filteredImages[0]?.imageUrl}</p>
-                <p>First image title: {filteredImages[0]?.title}</p>
-                <div className="mt-4">
-                  <h4 className="font-semibold">Test Image Loading:</h4>
-                  <img 
-                    src={filteredImages[0]?.imageUrl} 
-                    alt="Test image" 
-                    className="w-32 h-32 object-cover border rounded mt-2"
-                    onLoad={() => console.log('Test image loaded successfully')}
-                    onError={() => console.log('Test image failed to load')}
-                  />
-                  <p className="text-xs mt-1">Direct image test above</p>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
+
 
         {/* Image Dialog with Navigation */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
