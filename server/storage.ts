@@ -88,9 +88,22 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateFloorPlan(id: number, updates: Partial<FloorPlan>): Promise<FloorPlan | undefined> {
+    // Create the update object with appropriate timestamps
+    const updateData: any = { ...updates };
+    
+    // Always update lastUpdated for rent changes
+    if ('startingPrice' in updates) {
+      updateData.lastUpdated = new Date();
+    }
+    
+    // Update promoLastUpdated for promotion changes
+    if ('promotionAvailable' in updates) {
+      updateData.promoLastUpdated = new Date();
+    }
+    
     const [updated] = await db
       .update(floorPlans)
-      .set({ ...updates, lastUpdated: new Date() })
+      .set(updateData)
       .where(eq(floorPlans.id, id))
       .returning();
     return updated || undefined;

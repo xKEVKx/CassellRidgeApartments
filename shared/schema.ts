@@ -21,6 +21,7 @@ export const floorPlans = pgTable("floor_plans", {
   promotionAvailable: boolean("promotion_available").default(false),
   createdAt: timestamp("created_at").defaultNow(),
   lastUpdated: timestamp("last_updated").defaultNow(),
+  promoLastUpdated: timestamp("promo_last_updated").defaultNow(),
 });
 
 export const amenities = pgTable("amenities", {
@@ -64,6 +65,7 @@ export const insertFloorPlanSchema = createInsertSchema(floorPlans).omit({
   id: true,
   createdAt: true,
   lastUpdated: true,
+  promoLastUpdated: true,
 });
 
 export const insertAmenitySchema = createInsertSchema(amenities).omit({

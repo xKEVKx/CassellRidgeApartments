@@ -761,8 +761,9 @@ export default function Admin() {
                           Original: ${plan.startingPrice}
                         </div>
                         
-                        <div className="text-xs text-gray-400 border-t pt-2">
-                          Last updated: {formatPacificTime(plan.lastUpdated)}
+                        <div className="text-xs text-gray-400 border-t pt-2 space-y-1">
+                          <div>Rent Last Updated: {formatPacificTime(plan.lastUpdated)}</div>
+                          <div>Promo Last Updated: {formatPacificTime(plan.promoLastUpdated)}</div>
                         </div>
                       </CardContent>
                     </Card>
