@@ -329,6 +329,11 @@ export default function Admin() {
     }
     
     Promise.all(promises).then(() => {
+      // Clear both state objects on success
+      setRentUpdates({});
+      setPromotionUpdates({});
+      // Invalidate queries to refresh data
+      queryClient.invalidateQueries({ queryKey: ['/api/floor-plans'] });
       toast({
         title: "Success",
         description: "All changes saved successfully",

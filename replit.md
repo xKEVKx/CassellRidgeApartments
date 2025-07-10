@@ -118,7 +118,7 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
-### July 10, 2025 - Complete Admin Photo Management System & UI Refinements
+### July 10, 2025 - Complete Admin Photo Management System & Promotional Banner System
 - **Photo Upload**: Multi-file upload with JPEG and PNG support, drag-and-drop functionality
 - **Image Compression**: Automatic compression to max 1200px and 80% quality to handle large files
 - **Photo Deletion**: Secure deletion with confirmation dialog and database cleanup
@@ -132,7 +132,11 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - **Password Management**: Configurable admin password through Replit secrets
 - **Default Tab**: Rents tab as default for easier rent management
 - **Rent Timestamps**: Added lastUpdated field with Pacific time display
-- **API Optimization**: Fixed all photo and rent update functionality issues
+- **Promotional Banner System**: Complete implementation with admin checkboxes and display on floor plan cards
+- **Promotional Banner Position**: Banners appear next to floor plan names on home page cards
+- **API Enhancement**: Fixed PATCH `/api/floor-plans/:id` to handle both rent and promotion updates
+- **Admin Panel Fix**: "Save Changes" button now activates for promotion changes and shows combined count
+- **State Management**: Proper clearing of rent and promotion update states after successful saves
 - **UI Improvements**: Increased header logo size by 20% for better visibility
 - **Content Consistency**: Updated all "fitness room" references to "fitness center"
 - **Typography Fix**: Adjusted spacing to prevent text cutoff in "Bicycle Club Apartments" heading
