@@ -304,13 +304,13 @@ export default function Admin() {
     const files = Array.from(event.target.files || []);
     const validImageFiles = files.filter(file => {
       const fileType = file.type.toLowerCase();
-      return fileType === 'image/jpeg' || fileType === 'image/jpg';
+      return fileType === 'image/jpeg' || fileType === 'image/jpg' || fileType === 'image/png';
     });
     
     if (files.length > validImageFiles.length) {
       toast({
         title: "Invalid Files",
-        description: "Only .jpg and .jpeg files are allowed. Some files were filtered out.",
+        description: "Only .jpg, .jpeg, and .png files are allowed. Some files were filtered out.",
         variant: "destructive",
       });
     }
@@ -422,7 +422,7 @@ export default function Admin() {
               <div className="flex items-center gap-2">
                 <Input
                   type="file"
-                  accept=".jpg,.jpeg"
+                  accept=".jpg,.jpeg,.png"
                   multiple
                   onChange={handleFileUpload}
                   className="max-w-xs"
