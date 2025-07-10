@@ -45,6 +45,9 @@ export interface IStorage {
   getContactSubmissions(): Promise<ContactSubmission[]>;
   getContactSubmission(id: number): Promise<ContactSubmission | undefined>;
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
+  
+  // Gallery Image Reordering
+  updateGalleryImageOrder(imageOrders: { id: number; sortOrder: number }[]): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -109,11 +112,11 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getGalleryImages(): Promise<GalleryImage[]> {
-    return await db.select().from(galleryImages).orderBy(desc(galleryImages.featured), galleryImages.createdAt);
+    return await db.select().from(galleryImages).orderBy(galleryImages.sortOrder, galleryImages.id);
   }
 
   async getGalleryImagesByCategory(category: string): Promise<GalleryImage[]> {
-    return await db.select().from(galleryImages).where(eq(galleryImages.category, category));
+    return await db.select().from(galleryImages).where(eq(galleryImages.category, category)).orderBy(galleryImages.sortOrder, galleryImages.id);
   }
 
   async createGalleryImage(insertImage: InsertGalleryImage): Promise<GalleryImage> {
@@ -148,6 +151,17 @@ export class DatabaseStorage implements IStorage {
       .values(insertSubmission)
       .returning();
     return submission;
+  }
+
+  async updateGalleryImageOrder(imageOrders: { id: number; sortOrder: number }[]): Promise<void> {
+    // Update multiple gallery images with new sort orders
+    await Promise.all(
+      imageOrders.map(({ id, sortOrder }) =>
+        db.update(galleryImages)
+          .set({ sortOrder })
+          .where(eq(galleryImages.id, id))
+      )
+    );
   }
 }
 

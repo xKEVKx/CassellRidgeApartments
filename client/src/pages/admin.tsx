@@ -9,12 +9,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
 import { GalleryImage, FloorPlan } from '@shared/schema';
+import { ArrowUp, ArrowDown, GripVertical } from 'lucide-react';
 
 export default function Admin() {
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [photoUpdates, setPhotoUpdates] = useState<Record<number, { category: string; filename?: string }>>({});
   const [rentUpdates, setRentUpdates] = useState<Record<number, number>>({});
+  const [reorderMode, setReorderMode] = useState(false);
+  const [reorderedImages, setReorderedImages] = useState<GalleryImage[]>([]);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -83,6 +86,28 @@ export default function Admin() {
       toast({
         title: "Error",
         description: "Failed to update rent prices",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const reorderImagesMutation = useMutation({
+    mutationFn: async (imageOrders: { id: number; sortOrder: number }[]) => {
+      return apiRequest('PATCH', '/api/gallery/reorder', { imageOrders });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Success",
+        description: "Photo order updated successfully",
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/gallery'] });
+      setReorderMode(false);
+      setReorderedImages([]);
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update photo order",
         variant: "destructive",
       });
     },
@@ -183,6 +208,40 @@ export default function Admin() {
     }));
   };
 
+  const handleStartReorder = () => {
+    setReorderMode(true);
+    setReorderedImages([...(images || [])]);
+  };
+
+  const handleCancelReorder = () => {
+    setReorderMode(false);
+    setReorderedImages([]);
+  };
+
+  const handleMoveUp = (index: number) => {
+    if (index > 0) {
+      const newImages = [...reorderedImages];
+      [newImages[index], newImages[index - 1]] = [newImages[index - 1], newImages[index]];
+      setReorderedImages(newImages);
+    }
+  };
+
+  const handleMoveDown = (index: number) => {
+    if (index < reorderedImages.length - 1) {
+      const newImages = [...reorderedImages];
+      [newImages[index], newImages[index + 1]] = [newImages[index + 1], newImages[index]];
+      setReorderedImages(newImages);
+    }
+  };
+
+  const handleSaveOrder = () => {
+    const imageOrders = reorderedImages.map((image, index) => ({
+      id: image.id,
+      sortOrder: index + 1
+    }));
+    reorderImagesMutation.mutate(imageOrders);
+  };
+
   const categories = ['interior', 'community', 'pool', 'fitness center'];
 
   if (!isAuthenticated) {
@@ -245,10 +304,81 @@ export default function Admin() {
               >
                 {savePhotosMutation.isPending ? 'Saving...' : `Save Photo Changes (${Object.keys(photoUpdates).length})`}
               </Button>
+              
+              {!reorderMode ? (
+                <Button 
+                  onClick={handleStartReorder}
+                  variant="outline"
+                  className="flex items-center gap-2"
+                >
+                  <GripVertical className="h-4 w-4" />
+                  Reorder Photos
+                </Button>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Button 
+                    onClick={handleSaveOrder}
+                    disabled={reorderImagesMutation.isPending}
+                    className="bg-emerald-600 hover:bg-emerald-700"
+                  >
+                    {reorderImagesMutation.isPending ? 'Saving...' : 'Save Order'}
+                  </Button>
+                  <Button 
+                    onClick={handleCancelReorder}
+                    variant="outline"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              )}
             </div>
 
             {imagesLoading ? (
               <div className="text-center py-8">Loading photos...</div>
+            ) : reorderMode ? (
+              <div className="space-y-4">
+                <div className="text-sm text-gray-600 mb-4">
+                  Use the arrows to reorder photos. The first photo will appear first in the gallery.
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {reorderedImages.map((image, index) => (
+                    <Card key={image.id} className="overflow-hidden">
+                      <div className="aspect-video bg-gray-100">
+                        <img 
+                          src={image.imageUrl} 
+                          alt={image.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <CardContent className="p-4">
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm text-gray-600">
+                            #{index + 1} - {image.category}
+                          </div>
+                          <div className="flex gap-1">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleMoveUp(index)}
+                              disabled={index === 0}
+                            >
+                              <ArrowUp className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleMoveDown(index)}
+                              disabled={index === reorderedImages.length - 1}
+                            >
+                              <ArrowDown className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {images?.map((image) => {

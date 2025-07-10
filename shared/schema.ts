@@ -38,6 +38,7 @@ export const galleryImages = pgTable("gallery_images", {
   imageUrl: text("image_url").notNull(),
   category: text("category").notNull(), // 'interior', 'exterior', 'amenities', 'pool'
   featured: boolean("featured").default(false),
+  sortOrder: integer("sort_order").default(0),
   createdAt: timestamp("created_at").defaultNow(),
 });
 

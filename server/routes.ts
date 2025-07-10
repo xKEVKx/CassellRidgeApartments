@@ -101,6 +101,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.patch("/api/gallery/reorder", async (req, res) => {
+    try {
+      const { imageOrders } = req.body;
+      
+      if (!Array.isArray(imageOrders)) {
+        return res.status(400).json({ error: "Image orders must be an array" });
+      }
+
+      await storage.updateGalleryImageOrder(imageOrders);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error reordering gallery images:", error);
+      res.status(500).json({ error: "Failed to reorder gallery images" });
+    }
+  });
+
   // Admin Login API
   app.post("/api/admin/login", async (req, res) => {
     try {
