@@ -436,42 +436,42 @@ export default function Home() {
           <div className="text-center mb-16">
             
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
-              Luxury 
+              Nature 
               <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                {" "}Amenities
+                {" "}Meets City
               </span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              Resort-like pool, 24-hour fitness center, sand volleyball court, and pet-friendly dog park designed for your active lifestyle.
+              Best of all, you're just steps from North Platte Brook Park, where you'll find paved walking and biking trails, athletic fields and courts, and picnic shelters for relaxing days outdoors. Whether you're throwing a blanket down for a picnic, playing a pickup game, or simply soaking in the natural surroundings, this is outdoor living at its best. Come experience the lifestyle you've been looking for—right where city convenience meets the peaceful rhythm of nature.
             </p>
           </div>
           
-          {/* Amenity Cards in 2 Column Grid */}
+          {/* Park Feature Cards in 2 Column Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
               { 
-                icon: "🏊", 
-                title: "Resort-like Pool", 
-                desc: "Beautiful pool area with sun deck and spacious outside meeting areas overlooking the gorgeous pool.",
-                highlight: "Sun Deck"
+                icon: "🚴", 
+                title: "Walking & Biking Trails", 
+                desc: "Paved trails perfect for morning walks, evening runs, or biking adventures through nature.",
+                highlight: "Paved"
               },
               { 
-                icon: "🏐", 
-                title: "Sand Volleyball Court", 
-                desc: "Professional sand volleyball court for active recreation and community events.",
-                highlight: "Sand Court"
+                icon: "⚽", 
+                title: "Athletic Fields & Courts", 
+                desc: "Multiple courts and fields for pickup games, sports activities, and active recreation.",
+                highlight: "Multi-Sport"
               },
               { 
-                icon: "🏋️", 
-                title: "24-Hour Fitness Center", 
-                desc: "Fully equipped fitness center available 24/7 with modern workout equipment.",
-                highlight: "24/7 Access"
+                icon: "🏞️", 
+                title: "Picnic Shelters", 
+                desc: "Covered shelters perfect for outdoor dining, family gatherings, and relaxing days in nature.",
+                highlight: "Covered"
               },
               { 
-                icon: "🐕", 
-                title: "Pet Friendly Dog Park", 
-                desc: "Dedicated off-leash dog park area for your furry friends to play and socialize.",
-                highlight: "Off-Leash"
+                icon: "🌳", 
+                title: "Natural Surroundings", 
+                desc: "Beautiful park setting where you can soak in nature's beauty and find peaceful moments.",
+                highlight: "Serene"
               }
             ].map((amenity, index) => (
               <div key={index} className="group relative p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
