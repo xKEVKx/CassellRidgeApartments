@@ -52,6 +52,7 @@ export default function Home() {
   
   // Home Page Ad state
   const [showAdSlider, setShowAdSlider] = useState(false);
+  const [adMinimized, setAdMinimized] = useState(false);
 
   useEffect(() => {
     if (rotationImages.length <= 1) return; // Don't rotate if only 1 or no images
@@ -89,7 +90,6 @@ export default function Home() {
   // Handle Home Page Ad visibility based on display frequency
   useEffect(() => {
     if (!activeAd || !activeAd.isActive) {
-      console.log('No active ad or ad not active:', { activeAd });
       return;
     }
     
@@ -98,20 +98,11 @@ export default function Home() {
     localStorage.setItem('bicycle-club-visit-count', newVisitCount.toString());
     
     // Show ad during the first N visits (displayFrequency), then minimize after
-    const shouldShow = newVisitCount <= activeAd.displayFrequency;
+    const shouldShowExpanded = newVisitCount <= activeAd.displayFrequency;
     
-    console.log('Visit tracking:', {
-      visitCount: newVisitCount,
-      displayFrequency: activeAd.displayFrequency,
-      shouldShow: shouldShow,
-      adId: activeAd.id
-    });
-    
-    // Show ad for the first displayFrequency visits
-    if (shouldShow) {
-      console.log('Showing ad for visit', newVisitCount, 'of', activeAd.displayFrequency);
-      setShowAdSlider(true);
-    }
+    // Always show the ad component, but determine if it should start expanded or minimized
+    setShowAdSlider(true);
+    setAdMinimized(!shouldShowExpanded);
   }, [activeAd]);
 
   return (
@@ -119,7 +110,8 @@ export default function Home() {
       {/* Home Page Ad Slider */}
       <HomePageAdSlider 
         isVisible={showAdSlider}
-        onClose={() => setShowAdSlider(false)}
+        onClose={() => setAdMinimized(true)}
+        initialMinimized={adMinimized}
       />
       {/* Ultra Modern Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">

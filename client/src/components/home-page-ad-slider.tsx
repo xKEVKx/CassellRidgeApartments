@@ -7,10 +7,11 @@ import { HomePageAd } from '@shared/schema';
 interface HomePageAdSliderProps {
   isVisible: boolean;
   onClose: () => void;
+  initialMinimized?: boolean;
 }
 
-export default function HomePageAdSlider({ isVisible, onClose }: HomePageAdSliderProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+export default function HomePageAdSlider({ isVisible, onClose, initialMinimized = false }: HomePageAdSliderProps) {
+  const [isExpanded, setIsExpanded] = useState(!initialMinimized);
 
   const { data: activeAd } = useQuery<HomePageAd | null>({
     queryKey: ['/api/home-page-ads/active'],
@@ -21,8 +22,10 @@ export default function HomePageAdSlider({ isVisible, onClose }: HomePageAdSlide
   useEffect(() => {
     if (!isVisible) {
       setIsExpanded(false);
+    } else {
+      setIsExpanded(!initialMinimized);
     }
-  }, [isVisible]);
+  }, [isVisible, initialMinimized]);
 
   if (!isVisible || !activeAd) {
     return null;
@@ -95,30 +98,7 @@ export default function HomePageAdSlider({ isVisible, onClose }: HomePageAdSlide
                   className="w-full h-auto rounded-lg border"
                 />
                 
-                <div className="text-center space-y-2">
-                  <Button 
-                    className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-medium py-2"
-                    onClick={() => {
-                      // Scroll to contact section or open contact modal
-                      const contactSection = document.getElementById('contact');
-                      if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' });
-                      }
-                      onClose();
-                    }}
-                  >
-                    Learn More
-                  </Button>
-                  
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    onClick={() => setIsExpanded(false)}
-                    className="w-full text-gray-500 hover:text-gray-700"
-                  >
-                    Minimize
-                  </Button>
-                </div>
+
               </div>
             </div>
           )}
