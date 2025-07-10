@@ -137,7 +137,6 @@ export default function Gallery() {
                       objectFit: 'cover',
                       display: 'block'
                     }}
-                    loading="lazy"
                     onError={(e) => {
                       console.error('Image failed to load:', image.image_url);
                       console.error('Error details:', e);
@@ -152,8 +151,29 @@ export default function Gallery() {
                     <Expand className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8" />
                   </div>
                 </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-gray-900 mb-2">{image.title}</h3>
+                  <p className="text-sm text-gray-600 mb-2">{image.description}</p>
+                  <p className="text-xs text-gray-400">Image path: {image.image_url}</p>
+                </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Debug Information */}
+        {!isLoading && (
+          <div className="mt-8 p-4 bg-gray-100 rounded-lg">
+            <h3 className="font-bold mb-2">Debug Info:</h3>
+            <p>Total images: {filteredImages.length}</p>
+            <p>Selected category: {selectedCategory}</p>
+            <p>Loading state: {isLoading ? 'Loading' : 'Loaded'}</p>
+            {filteredImages.length > 0 && (
+              <div className="mt-2">
+                <p>First image URL: {filteredImages[0]?.image_url}</p>
+                <p>First image title: {filteredImages[0]?.title}</p>
+              </div>
+            )}
           </div>
         )}
 
