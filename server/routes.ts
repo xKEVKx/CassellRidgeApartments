@@ -463,7 +463,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         hasPassword: !!adminPassword,
         passwordLength: adminPassword ? adminPassword.length : 0,
         environment: process.env.NODE_ENV || 'development',
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        // Temporary: show character codes to identify encoding issues
+        charCodes: adminPassword ? Array.from(adminPassword).map(char => char.charCodeAt(0)) : []
       });
     } catch (error) {
       console.error("Debug endpoint error:", error);
