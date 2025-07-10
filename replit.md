@@ -118,6 +118,22 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 10, 2025 - Critical Admin Authentication Fix & Anchor Navigation Enhancement
+- **Admin Session Middleware Fix**: Resolved critical TypeError "Cannot set properties of undefined (setting 'isAdmin')" by adding missing express-session middleware to routes
+- **Production Authentication Restored**: Fixed admin login functionality in production environment with proper session configuration
+- **Security Enhancement**: Removed diagnostic endpoint `/api/admin/debug` from production for security compliance
+- **Session Security Configuration**: Added proper cookie settings with secure flags, httpOnly protection, and 24-hour session duration
+- **Anchor Navigation Fix**: Corrected `/#amenities` anchor link to scroll to proper "AMENITIES" section instead of "ACCOMMODATIONS" section
+- **Smooth Scrolling Implementation**: Added JavaScript-based anchor scrolling with 100ms delay for proper content loading
+- **Duplicate ID Resolution**: Removed conflicting anchor IDs to ensure single, correct scroll target
+- **Admin System Fully Operational**: Confirmed complete functionality of gallery management, rent updates, promotional banners, and home page ad system
+
+#### Technical Details
+- **Session Middleware**: Added express-session configuration with environment-specific security settings
+- **Anchor Positioning**: Moved `id="amenities"` from line 315 to line 249 targeting apartment features section
+- **Error Resolution**: Fixed "Cannot set properties of undefined" error that was blocking admin authentication
+- **Production Validation**: Verified admin password "Everest200$" works correctly with proper character encoding
+
 ### July 10, 2025 - Content Enhancement & Nature-Focused Design Updates
 - **Modern Card Design**: Converted all amenities bullet points to modern card components with emoji icons and descriptions
 - **Responsive Layout Optimization**: Updated photo positioning for mobile - photo appears below text on mobile, to side on desktop
