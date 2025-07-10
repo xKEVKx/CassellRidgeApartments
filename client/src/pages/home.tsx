@@ -259,8 +259,7 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light mt-4">
-              Resort-like pool, great schools, natural setting, 24-hr fitness center and so much more make 
-              <strong className="text-emerald-600"> Bicycle Club</strong> a truly great place to live.
+              Discover the perfect blend of comfort, convenience, and natural beauty at Bicycle Club. Our community is nestled in a serene, park-like setting with mature trees and expansive green space, our apartment homes offer thoughtfully designed interiors and exceptional amenities. Enjoy the charm of wood-burning fireplaces and sunrooms along with spacious closets, separate dining rooms, private patios and so much more.
             </p>
           </div>
           
