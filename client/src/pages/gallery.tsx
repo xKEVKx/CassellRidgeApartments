@@ -128,7 +128,7 @@ export default function Gallery() {
                   onClick={() => openDialog(index)}
                 >
                   <img 
-                    src={image.imageUrl} 
+                    src={image.image_url} 
                     alt={image.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     style={{ 
@@ -139,12 +139,12 @@ export default function Gallery() {
                     }}
                     loading="lazy"
                     onError={(e) => {
-                      console.error('Image failed to load:', image.imageUrl);
+                      console.error('Image failed to load:', image.image_url);
                       e.currentTarget.style.backgroundColor = '#f3f4f6';
                       e.currentTarget.style.border = '1px solid #e5e7eb';
                     }}
                     onLoad={() => {
-                      console.log('Image loaded successfully:', image.imageUrl);
+                      console.log('Image loaded successfully:', image.image_url);
                     }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
@@ -165,7 +165,7 @@ export default function Gallery() {
             <div className="relative">
               {filteredImages[currentImageIndex] && (
                 <img 
-                  src={filteredImages[currentImageIndex].imageUrl} 
+                  src={filteredImages[currentImageIndex].image_url} 
                   alt={filteredImages[currentImageIndex].title}
                   className="w-full h-auto max-h-[80vh] object-contain"
                 />
