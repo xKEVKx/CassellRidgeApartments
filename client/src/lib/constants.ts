@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: "Bicycle Club Apartments",
   tagline: "Enjoy the Bicycle Club Lifestyle",
-  description: "With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness room, Bicycle Club is an ideal place to live in Kansas City.",
+  description: "With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness center, Bicycle Club is an ideal place to live in Kansas City.",
   
   contact: {
     phone: "816.587.8660",

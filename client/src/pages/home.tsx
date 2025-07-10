@@ -394,7 +394,7 @@ export default function Home() {
               { 
                 icon: "🏋️", 
                 title: "24-Hour Fitness Center", 
-                desc: "Fully equipped fitness room available 24/7 with modern workout equipment.",
+                desc: "Fully equipped fitness center available 24/7 with modern workout equipment.",
                 highlight: "24/7 Access"
               },
               { 
