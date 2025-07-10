@@ -65,15 +65,18 @@ export default function Admin() {
 
   const saveRentsMutation = useMutation({
     mutationFn: async (updates: Record<number, number>) => {
-      const updatePromises = Object.entries(updates).map(([id, startingPrice]) => 
-        apiRequest(`/api/floor-plans/${id}`, {
+      console.log('Attempting to save rent updates:', updates);
+      const updatePromises = Object.entries(updates).map(([id, startingPrice]) => {
+        console.log(`Updating floor plan ${id} with price ${startingPrice}`);
+        return apiRequest(`/api/floor-plans/${id}`, {
           method: 'PATCH',
           body: JSON.stringify({ startingPrice }),
-        })
-      );
+        });
+      });
       return Promise.all(updatePromises);
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log('Rent update successful:', data);
       toast({
         title: "Success",
         description: "Rent prices updated successfully",
@@ -81,7 +84,8 @@ export default function Admin() {
       queryClient.invalidateQueries({ queryKey: ['/api/floor-plans'] });
       setRentUpdates({});
     },
-    onError: () => {
+    onError: (error) => {
+      console.error('Rent update failed:', error);
       toast({
         title: "Error",
         description: "Failed to update rent prices",
@@ -162,6 +166,7 @@ export default function Admin() {
       return;
     }
     
+    console.log(`Setting rent update for floor plan ${floorPlanId}: ${rentValue}`);
     setRentUpdates(prev => ({
       ...prev,
       [floorPlanId]: rentValue
