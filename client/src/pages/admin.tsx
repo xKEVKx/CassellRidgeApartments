@@ -682,10 +682,10 @@ export default function Admin() {
             <div className="flex items-center gap-4">
               <Button 
                 onClick={handleSaveRents}
-                disabled={Object.keys(rentUpdates).length === 0 || saveRentsMutation.isPending}
+                disabled={Object.keys(rentUpdates).length === 0 && Object.keys(promotionUpdates).length === 0 || saveRentsMutation.isPending || savePromotionsMutation.isPending}
                 className="bg-emerald-600 hover:bg-emerald-700"
               >
-                {saveRentsMutation.isPending ? 'Saving...' : `Save Rent Changes (${Object.keys(rentUpdates).length})`}
+                {(saveRentsMutation.isPending || savePromotionsMutation.isPending) ? 'Saving...' : `Save Changes (${Object.keys(rentUpdates).length + Object.keys(promotionUpdates).length})`}
               </Button>
             </div>
 
