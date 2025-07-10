@@ -86,7 +86,7 @@ export class DatabaseStorage implements IStorage {
   async updateFloorPlan(id: number, updates: Partial<FloorPlan>): Promise<FloorPlan | undefined> {
     const [updated] = await db
       .update(floorPlans)
-      .set(updates)
+      .set({ ...updates, lastUpdated: new Date() })
       .where(eq(floorPlans.id, id))
       .returning();
     return updated || undefined;

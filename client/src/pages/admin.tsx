@@ -310,6 +310,22 @@ export default function Admin() {
                 {floorPlans?.map((plan) => {
                   const currentRent = rentUpdates[plan.id] || plan.startingPrice;
                   const hasChanges = rentUpdates[plan.id];
+                  
+                  // Format the last updated date in Pacific time
+                  const formatPacificTime = (dateString: string | null) => {
+                    if (!dateString) return 'Not set';
+                    
+                    const date = new Date(dateString);
+                    return date.toLocaleString('en-US', {
+                      timeZone: 'America/Los_Angeles',
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hour12: true
+                    });
+                  };
 
                   return (
                     <Card key={plan.id} className={`${hasChanges ? 'ring-2 ring-emerald-500' : ''}`}>
@@ -336,6 +352,10 @@ export default function Admin() {
 
                         <div className="text-sm text-gray-500">
                           Original: ${plan.startingPrice}
+                        </div>
+                        
+                        <div className="text-xs text-gray-400 border-t pt-2">
+                          Last updated: {formatPacificTime(plan.lastUpdated)}
                         </div>
                       </CardContent>
                     </Card>
