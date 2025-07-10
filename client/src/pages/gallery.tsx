@@ -188,9 +188,14 @@ export default function Gallery() {
                 </>
               )}
               
-              {/* Image Counter */}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-                {currentImageIndex + 1} / {filteredImages.length}
+              {/* Image Counter and Filename */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-lg text-sm max-w-sm text-center">
+                <div className="font-medium">
+                  {currentImageIndex + 1} / {filteredImages.length}
+                </div>
+                <div className="text-xs text-gray-300 mt-1">
+                  {filteredImages[currentImageIndex]?.imageUrl?.split('/').pop() || 'Unknown'}
+                </div>
               </div>
             </div>
           </DialogContent>
