@@ -243,7 +243,7 @@ export default function Home() {
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             {/* Content Side */}
-            <div className="space-y-12">
+            <div className="space-y-12" id="amenities">
               <div className="space-y-6">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
@@ -309,7 +309,7 @@ export default function Home() {
         </div>
       </section>
       {/* Amenities Overview Section - Moved from separate page */}
-      <section id="amenities" className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Featured Amenities Section with Photo Slider */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
