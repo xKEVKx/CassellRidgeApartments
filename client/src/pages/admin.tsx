@@ -138,10 +138,42 @@ export default function Admin() {
   const uploadImagesMutation = useMutation({
     mutationFn: async (files: File[]) => {
       const uploadPromises = files.map(async (file) => {
-        // Create a data URL for the image preview
-        const dataUrl = await new Promise<string>((resolve) => {
+        // Compress and create a data URL for the image preview
+        const compressedDataUrl = await new Promise<string>((resolve) => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          const img = new Image();
+          
+          img.onload = () => {
+            // Calculate new dimensions (max 1200px width/height)
+            const maxSize = 1200;
+            let { width, height } = img;
+            
+            if (width > height) {
+              if (width > maxSize) {
+                height = (height * maxSize) / width;
+                width = maxSize;
+              }
+            } else {
+              if (height > maxSize) {
+                width = (width * maxSize) / height;
+                height = maxSize;
+              }
+            }
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Draw and compress the image
+            ctx?.drawImage(img, 0, 0, width, height);
+            const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            resolve(compressedDataUrl);
+          };
+          
           const reader = new FileReader();
-          reader.onload = () => resolve(reader.result as string);
+          reader.onload = () => {
+            img.src = reader.result as string;
+          };
           reader.readAsDataURL(file);
         });
         
@@ -151,7 +183,7 @@ export default function Admin() {
         return apiRequest('POST', '/api/gallery', {
           title,
           description: '',
-          imageUrl: dataUrl, // Use data URL for immediate preview
+          imageUrl: compressedDataUrl, // Use compressed data URL
           category: 'uncategorized',
           featured: false,
           sortOrder: maxSortOrder + 1 // Add to end of list
