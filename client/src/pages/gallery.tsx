@@ -142,6 +142,7 @@ export default function Gallery() {
                       console.error('Error details:', e);
                       e.currentTarget.style.backgroundColor = '#f3f4f6';
                       e.currentTarget.style.border = '1px solid #e5e7eb';
+                      e.currentTarget.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500">Image failed to load</div>';
                     }}
                     onLoad={() => {
                       console.log('Image loaded successfully:', image.image_url);
@@ -172,6 +173,17 @@ export default function Gallery() {
               <div className="mt-2">
                 <p>First image URL: {filteredImages[0]?.image_url}</p>
                 <p>First image title: {filteredImages[0]?.title}</p>
+                <div className="mt-4">
+                  <h4 className="font-semibold">Test Image Loading:</h4>
+                  <img 
+                    src={filteredImages[0]?.image_url} 
+                    alt="Test image" 
+                    className="w-32 h-32 object-cover border rounded mt-2"
+                    onLoad={() => console.log('Test image loaded successfully')}
+                    onError={() => console.log('Test image failed to load')}
+                  />
+                  <p className="text-xs mt-1">Direct image test above</p>
+                </div>
               </div>
             )}
           </div>
