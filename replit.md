@@ -119,17 +119,20 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 ## Changelog
 
 ### July 10, 2025 - Complete Admin Photo Management System
-- **Photo Upload**: Added multi-file upload functionality with JPEG and PNG support
-- **Photo Deletion**: Implemented photo deletion with confirmation dialog
-- **Image Preview**: Fixed photo preview using data URLs for immediate display
-- **Photo Ordering**: New uploaded photos automatically added to end of gallery list
+- **Photo Upload**: Multi-file upload with JPEG and PNG support, drag-and-drop functionality
+- **Image Compression**: Automatic compression to max 1200px and 80% quality to handle large files
+- **Photo Deletion**: Secure deletion with confirmation dialog and database cleanup
+- **Image Preview**: Instant preview using compressed data URLs for immediate display
+- **Photo Ordering**: New uploads automatically added to end of gallery with proper sort order
+- **File Input Management**: Automatic clearing of file input after successful upload
 - **Uncategorized Filter**: Photos uploaded as "uncategorized" are hidden from public gallery until categorized
-- **Admin Security**: Converted hardcoded admin password to environment variable (ADMIN_PASSWORD secret)
-- **Authentication API**: Added `/api/admin/login` endpoint for secure password validation
-- **Password Management**: Admin password now configurable through Replit secrets without code changes
-- **Default Tab**: Changed admin page default tab from Gallery to Rents for easier rent management
-- **Rent Timestamps**: Added lastUpdated field to floor plans with Pacific time display
-- **API Fixes**: Resolved rent update functionality issues with proper API call formatting
+- **Payload Handling**: Increased Express server limit to 10MB for large image uploads
+- **Admin Security**: Environment variable-based password (ADMIN_PASSWORD secret)
+- **Authentication API**: Secure `/api/admin/login` endpoint with session management
+- **Password Management**: Configurable admin password through Replit secrets
+- **Default Tab**: Rents tab as default for easier rent management
+- **Rent Timestamps**: Added lastUpdated field with Pacific time display
+- **API Optimization**: Fixed all photo and rent update functionality issues
 
 ### July 10, 2025 - Gallery Image Consolidation & Database Optimization
 - **File Consolidation**: Merged all gallery images from multiple directories into single `/images/gallery/consolidated/` directory
