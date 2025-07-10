@@ -58,12 +58,12 @@ NOTIFICATION_EMAIL=recipient@domain.com
 ADMIN_PASSWORD=your_admin_password_here
 ```
 
-### No Longer Used (Can Remove)
+### Removed (No Longer Used)
 ```bash
-PROOFPOINT_SMTP_HOST
-PROOFPOINT_SMTP_PORT
-PROOFPOINT_SMTP_USER
-PROOFPOINT_SMTP_PASS
+PROOFPOINT_SMTP_HOST - Removed from Replit secrets
+PROOFPOINT_SMTP_PORT - Removed from Replit secrets
+PROOFPOINT_SMTP_USER - Removed from Replit secrets
+PROOFPOINT_SMTP_PASS - Removed from Replit secrets
 ```
 
 ## 📊 Production Status Validation

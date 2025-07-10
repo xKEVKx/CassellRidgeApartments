@@ -96,11 +96,11 @@ POSTMARK_SERVER_TOKEN=server_token_here
 NOTIFICATION_EMAIL=recipient@domain.com
 ADMIN_PASSWORD=admin_password_here
 
-# Deprecated (No longer used)
-PROOFPOINT_SMTP_HOST
-PROOFPOINT_SMTP_PORT
-PROOFPOINT_SMTP_USER  
-PROOFPOINT_SMTP_PASS
+# Removed (No longer used)
+PROOFPOINT_SMTP_HOST - Deleted from environment
+PROOFPOINT_SMTP_PORT - Deleted from environment
+PROOFPOINT_SMTP_USER - Deleted from environment
+PROOFPOINT_SMTP_PASS - Deleted from environment
 ```
 
 ### 📈 Performance Metrics
