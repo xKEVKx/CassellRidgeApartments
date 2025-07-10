@@ -118,6 +118,15 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 10, 2025 - Content Enhancement & Nature-Focused Design Updates
+- **Modern Card Design**: Converted all amenities bullet points to modern card components with emoji icons and descriptions
+- **Responsive Layout Optimization**: Updated photo positioning for mobile - photo appears below text on mobile, to side on desktop
+- **Content Refinement**: Updated welcome text to emphasize natural setting, mature trees, and specific apartment features
+- **Accommodations Text Update**: Enhanced description to highlight active lifestyle and community features
+- **Nature Meets City Section**: Replaced "Luxury Amenities" with "Nature Meets City" theme focusing on North Platte Brook Park
+- **Park Feature Integration**: Added cards for walking/biking trails, athletic fields, picnic shelters, and natural surroundings
+- **UI Cleanup**: Removed redundant "Explore All Amenities" button for cleaner navigation flow
+
 ### July 10, 2025 - Navigation Restructuring & Amenities Page Consolidation
 - **Content Consolidation**: Moved entire Amenities page content to new section on Home page above existing amenities
 - **Anchor Navigation**: Updated "Amenities" navigation link to use anchor-based navigation (`/#amenities`) instead of separate page
