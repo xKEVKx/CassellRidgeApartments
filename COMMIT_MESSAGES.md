@@ -1,6 +1,6 @@
 # Commit Messages
 
-## July 10, 2025 - Complete Admin Photo Management System
+## July 10, 2025 - Complete Admin Photo Management System & UI Refinements
 
 ### Core Features
 ```
@@ -43,6 +43,16 @@ refactor: Optimize gallery database and file structure
 - Eliminate duplicate images and standardize file structure
 - Fix imageUrl/image_url schema mapping issues
 - Ensure all images load successfully with proper error handling
+```
+
+### UI/UX Improvements
+```
+feat: Enhance logo visibility and content consistency
+
+- Increase header logo size by 20% for better brand visibility
+- Update all "fitness room" references to "fitness center" for consistency
+- Fix typography spacing to prevent text cutoff in main heading
+- Improve overall visual hierarchy and readability
 ```
 
 ## Previous Major Commits

@@ -118,7 +118,7 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
-### July 10, 2025 - Complete Admin Photo Management System
+### July 10, 2025 - Complete Admin Photo Management System & UI Refinements
 - **Photo Upload**: Multi-file upload with JPEG and PNG support, drag-and-drop functionality
 - **Image Compression**: Automatic compression to max 1200px and 80% quality to handle large files
 - **Photo Deletion**: Secure deletion with confirmation dialog and database cleanup
@@ -133,6 +133,9 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - **Default Tab**: Rents tab as default for easier rent management
 - **Rent Timestamps**: Added lastUpdated field with Pacific time display
 - **API Optimization**: Fixed all photo and rent update functionality issues
+- **UI Improvements**: Increased header logo size by 20% for better visibility
+- **Content Consistency**: Updated all "fitness room" references to "fitness center"
+- **Typography Fix**: Adjusted spacing to prevent text cutoff in "Bicycle Club Apartments" heading
 
 ### July 10, 2025 - Gallery Image Consolidation & Database Optimization
 - **File Consolidation**: Merged all gallery images from multiple directories into single `/images/gallery/consolidated/` directory
