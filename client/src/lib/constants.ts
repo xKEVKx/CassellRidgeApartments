@@ -35,7 +35,7 @@ export const HERO_IMAGE = "/images/hero-pool-bicycle-club.jpg";
 export const NAVIGATION_LINKS = [
   { href: "/", label: "Home", isIcon: true },
   { href: "/floor-plans", label: "Floor Plans" },
-  { href: "/amenities", label: "Amenities" },
+  { href: "/#amenities", label: "Amenities" },
   { 
     href: "/property", 
     label: "Property",

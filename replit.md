@@ -118,6 +118,15 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 10, 2025 - Navigation Restructuring & Amenities Page Consolidation
+- **Content Consolidation**: Moved entire Amenities page content to new section on Home page above existing amenities
+- **Anchor Navigation**: Updated "Amenities" navigation link to use anchor-based navigation (`/#amenities`) instead of separate page
+- **Page Removal**: Removed separate `/amenities` route and page file as content now lives on home page
+- **Photo Slider Integration**: Preserved amenities photo slider functionality within home page section
+- **Navigation Enhancement**: Enhanced navbar to handle both anchor links and regular routes properly
+- **Mobile Navigation**: Updated mobile menu to support anchor links with proper URL handling
+- **Smooth Scrolling**: Amenities section now accessible via anchor link with proper scroll positioning
+
 ### July 10, 2025 - Complete Admin System & Promotional Banner Implementation
 - **Photo Upload System**: Multi-file upload with JPEG and PNG support, drag-and-drop functionality
 - **Image Compression**: Automatic compression to max 1200px and 80% quality to handle large files

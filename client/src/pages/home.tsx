@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { Check, Phone, ExternalLink, Tag } from "lucide-react";
+import { Check, Phone, ExternalLink, Tag, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -315,10 +315,10 @@ export default function Home() {
                   asChild 
                   className="group bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
                 >
-                  <Link href="/amenities">
+                  <a href="#amenities">
                     Explore All Amenities
                     <div className="ml-2 transition-transform group-hover:translate-x-1">→</div>
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </div>
@@ -354,6 +354,79 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Amenities Overview Section - Moved from separate page */}
+      <section id="amenities" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Amenities</h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+              Discover the park-like setting of Bicycle Club, where you'll find plenty of space to stroll and enjoy the beauty of nature. Your furry friends will love our Off-Leash Bark Park, the perfect place to play and socialize. Don't forget to visit our fully equipped fitness center, and enjoy the spacious outdoor gathering areas overlooking the stunning pool and community BBQ area.
+            </p>
+          </div>
+          
+          {/* Featured Amenities Section with Photo Slider */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+            <div className="relative w-full h-96 overflow-hidden rounded-lg shadow-lg">
+              <img 
+                src={galleryImages?.filter(img => 
+                  img.category === 'pool' || 
+                  img.category === 'amenities' || 
+                  img.category === 'community' ||
+                  img.category === 'exterior'
+                )[currentImageIndex % (galleryImages?.filter(img => 
+                  img.category === 'pool' || 
+                  img.category === 'amenities' || 
+                  img.category === 'community' ||
+                  img.category === 'exterior'
+                ).length || 1)]?.imageUrl || "/images/gallery/consolidated/bicycle-club-pool-area.jpg"} 
+                alt="Amenity feature" 
+                className={`w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">Resort-Style Living</h3>
+              <p className="text-lg text-gray-600 mb-6">
+                The park-like setting of Bicycle Club offers you <strong>ample space to walk and enjoy nature</strong>. 
+                And, don't forget to check out our <strong>fully equipped fitness center</strong>, with spacious outside meeting areas overlooking the <strong>gorgeous pool and community BBQ area!</strong>
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex items-center text-gray-600">
+                  <div className="w-3 h-3 bg-green-700 rounded-full mr-3"></div>
+                  Resort-like pool
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <div className="w-3 h-3 bg-green-700 rounded-full mr-3"></div>
+                  24-Hour fitness center
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <div className="w-3 h-3 bg-green-700 rounded-full mr-3"></div>
+                  Sand volleyball court
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <div className="w-3 h-3 bg-green-700 rounded-full mr-3"></div>
+                  Pet friendly dog park
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Gallery Button */}
+          <div className="text-center">
+            <Button 
+              asChild 
+              className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-3 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 hover:scale-105"
+            >
+              <Link href="/gallery">
+                <Camera className="mr-2 h-5 w-5" />
+                View Property Gallery
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Ultra Modern Amenities Showcase */}
       <section className="py-20 bg-slate-900 relative overflow-hidden">
         {/* Background Pattern */}

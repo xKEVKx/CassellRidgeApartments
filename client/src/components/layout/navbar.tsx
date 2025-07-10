@@ -74,32 +74,61 @@ export default function Navbar() {
                         </DropdownMenuContent>
                       </DropdownMenu>
                     ) : (
-                      <Link
-                        href={link.href}
-                        className={`group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
-                          location === link.href
-                            ? 'text-emerald-700'
-                            : 'text-slate-700 hover:text-emerald-600'
-                        }`}
-                      >
-                        <span className="relative flex items-center">
-                          {link.isIcon ? (
-                            <>
-                              <Home className="w-5 h-5" />
-                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
-                                location === link.href ? 'w-5' : 'w-0 group-hover:w-5'
-                              }`}></div>
-                            </>
-                          ) : (
-                            <>
-                              {link.label}
-                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
-                                location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
-                              }`}></div>
-                            </>
-                          )}
-                        </span>
-                      </Link>
+                      link.href.startsWith('#') || link.href.startsWith('/#') ? (
+                        <a
+                          href={link.href}
+                          className={`group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
+                            location === link.href
+                              ? 'text-emerald-700'
+                              : 'text-slate-700 hover:text-emerald-600'
+                          }`}
+                        >
+                          <span className="relative flex items-center">
+                            {link.isIcon ? (
+                              <>
+                                <Home className="w-5 h-5" />
+                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                  location === link.href ? 'w-5' : 'w-0 group-hover:w-5'
+                                }`}></div>
+                              </>
+                            ) : (
+                              <>
+                                {link.label}
+                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                  location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                                }`}></div>
+                              </>
+                            )}
+                          </span>
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className={`group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
+                            location === link.href
+                              ? 'text-emerald-700'
+                              : 'text-slate-700 hover:text-emerald-600'
+                          }`}
+                        >
+                          <span className="relative flex items-center">
+                            {link.isIcon ? (
+                              <>
+                                <Home className="w-5 h-5" />
+                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                  location === link.href ? 'w-5' : 'w-0 group-hover:w-5'
+                                }`}></div>
+                              </>
+                            ) : (
+                              <>
+                                {link.label}
+                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                  location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                                }`}></div>
+                              </>
+                            )}
+                          </span>
+                        </Link>
+                      )
                     )}
                     {/* Separator after each navigation item */}
                     <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
@@ -196,29 +225,55 @@ export default function Navbar() {
                           ))}
                         </div>
                       ) : (
-                        <Link
-                          href={link.href}
-                          onClick={() => setIsOpen(false)}
-                          className={`group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block ${
-                            location === link.href
-                              ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
-                              : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
-                          }`}
-                        >
-                          <span className="relative flex items-center">
-                            {link.isIcon ? (
-                              <>
-                                <Home className="w-5 h-5 mr-3" />
-                                Home
-                              </>
-                            ) : (
-                              link.label
-                            )}
-                            <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
-                              location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
-                            }`}></div>
-                          </span>
-                        </Link>
+                        link.href.startsWith('#') || link.href.startsWith('/#') ? (
+                          <a
+                            href={link.href}
+                            onClick={() => setIsOpen(false)}
+                            className={`group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block ${
+                              location === link.href
+                                ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
+                                : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                            }`}
+                          >
+                            <span className="relative flex items-center">
+                              {link.isIcon ? (
+                                <>
+                                  <Home className="w-5 h-5 mr-3" />
+                                  Home
+                                </>
+                              ) : (
+                                link.label
+                              )}
+                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                              }`}></div>
+                            </span>
+                          </a>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            onClick={() => setIsOpen(false)}
+                            className={`group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block ${
+                              location === link.href
+                                ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
+                                : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                            }`}
+                          >
+                            <span className="relative flex items-center">
+                              {link.isIcon ? (
+                                <>
+                                  <Home className="w-5 h-5 mr-3" />
+                                  Home
+                                </>
+                              ) : (
+                                link.label
+                              )}
+                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                              }`}></div>
+                            </span>
+                          </Link>
+                        )
                       )}
                     </div>
                   ))}
