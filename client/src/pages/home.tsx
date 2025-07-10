@@ -306,18 +306,7 @@ export default function Home() {
                 ))}
               </div>
               
-              {/* CTA */}
-              <div className="pt-8">
-                <Button 
-                  asChild 
-                  className="group bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-lg transition-all duration-300 hover:scale-105"
-                >
-                  <a href="#amenities">
-                    Explore All Amenities
-                    <div className="ml-2 transition-transform group-hover:translate-x-1">→</div>
-                  </a>
-                </Button>
-              </div>
+              
             </div>
             
             {/* Image Side */}
