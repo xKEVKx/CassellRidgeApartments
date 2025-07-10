@@ -109,9 +109,6 @@ export default function Gallery() {
             {Array.from({ length: 6 }).map((_, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
                 <Skeleton className="w-full h-64" />
-                <div className="p-4">
-                  <Skeleton className="h-4 w-3/4" />
-                </div>
               </div>
             ))}
           </div>
@@ -121,9 +118,9 @@ export default function Gallery() {
         {!isLoading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredImages.map((image, index) => (
-              <div key={image.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+              <div key={image.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow h-64">
                 <div 
-                  className="relative group cursor-pointer h-64 bg-gray-100"
+                  className="relative group cursor-pointer h-full bg-gray-100"
                   onClick={() => openDialog(index)}
                 >
                   <img 
@@ -137,22 +134,15 @@ export default function Gallery() {
                       display: 'block'
                     }}
                     onError={(e) => {
-                      console.error('Image failed to load:', image.imageUrl);
-                      console.error('Error details:', e);
                       e.currentTarget.style.backgroundColor = '#f3f4f6';
                       e.currentTarget.style.border = '1px solid #e5e7eb';
-                    }}
-                    onLoad={() => {
-                      console.log('Image loaded successfully:', image.imageUrl);
                     }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
                     <Expand className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8" />
                   </div>
                 </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900">{image.title}</h3>
-                </div>
+
               </div>
             ))}
           </div>
