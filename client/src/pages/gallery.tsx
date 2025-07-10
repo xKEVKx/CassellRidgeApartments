@@ -140,6 +140,7 @@ export default function Gallery() {
                     loading="lazy"
                     onError={(e) => {
                       console.error('Image failed to load:', image.image_url);
+                      console.error('Error details:', e);
                       e.currentTarget.style.backgroundColor = '#f3f4f6';
                       e.currentTarget.style.border = '1px solid #e5e7eb';
                     }}
