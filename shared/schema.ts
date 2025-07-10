@@ -59,8 +59,8 @@ export const contactSubmissions = pgTable("contact_submissions", {
 export const homePageAds = pgTable("home_page_ads", {
   id: serial("id").primaryKey(),
   imageUrl: text("image_url").notNull(),
-  displayCount: integer("display_count").default(3),
-  isEnabled: boolean("is_enabled").default(true),
+  displayFrequency: integer("display_frequency").default(5),
+  isActive: boolean("is_active").default(true),
   startDate: timestamp("start_date"),
   endDate: timestamp("end_date"),
   createdAt: timestamp("created_at").defaultNow(),
