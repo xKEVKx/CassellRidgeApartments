@@ -1,11 +1,23 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import session from "express-session";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema, insertGalleryImageSchema, insertHomePageAdSchema } from "@shared/schema";
 import { z } from "zod";
 import { sendContactNotification, sendConfirmationEmail, testEmailConnection } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Session configuration
+  app.use(session({
+    secret: process.env.SESSION_SECRET || 'bicycle-club-secret-key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === 'production',
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }
+  }));
   // Floor Plans API
   app.get("/api/floor-plans", async (req, res) => {
     try {
@@ -463,9 +475,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         hasPassword: !!adminPassword,
         passwordLength: adminPassword ? adminPassword.length : 0,
         environment: process.env.NODE_ENV || 'development',
-        timestamp: new Date().toISOString(),
-        // Temporary: show character codes to identify encoding issues
-        charCodes: adminPassword ? Array.from(adminPassword).map(char => char.charCodeAt(0)) : []
+        timestamp: new Date().toISOString()
       });
     } catch (error) {
       console.error("Debug endpoint error:", error);
