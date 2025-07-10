@@ -168,18 +168,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { password } = req.body;
       const adminPassword = process.env.ADMIN_PASSWORD;
       
-      console.log(`Admin login attempt - Password provided: ${password ? 'yes' : 'no'}, Config exists: ${adminPassword ? 'yes' : 'no'}`);
+      console.log(`Admin login attempt:`);
+      console.log(`- Password provided: ${password ? 'yes' : 'no'}`);
+      console.log(`- Config exists: ${adminPassword ? 'yes' : 'no'}`);
+      console.log(`- Config length: ${adminPassword ? adminPassword.length : 'N/A'}`);
+      console.log(`- Input length: ${password ? password.length : 'N/A'}`);
+      console.log(`- Environment: ${process.env.NODE_ENV || 'development'}`);
       
       if (!adminPassword) {
+        console.log('ERROR: Admin password not configured');
         return res.status(500).json({ error: "Admin password not configured" });
       }
       
       if (password === adminPassword) {
         req.session.isAdmin = true;
-        console.log('Admin login successful');
+        console.log('SUCCESS: Admin login successful');
         res.json({ success: true });
       } else {
-        console.log('Admin login failed - password mismatch');
+        console.log('FAILED: Admin login failed - password mismatch');
+        console.log(`- Expected length: ${adminPassword.length}`);
+        console.log(`- Received length: ${password ? password.length : 0}`);
         res.status(401).json({ error: "Invalid password" });
       }
     } catch (error) {
