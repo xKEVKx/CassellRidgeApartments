@@ -118,7 +118,12 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
-### July 10, 2025 - Admin Password Security & Database Optimization
+### July 10, 2025 - Complete Admin Photo Management System
+- **Photo Upload**: Added multi-file upload functionality with JPEG and PNG support
+- **Photo Deletion**: Implemented photo deletion with confirmation dialog
+- **Image Preview**: Fixed photo preview using data URLs for immediate display
+- **Photo Ordering**: New uploaded photos automatically added to end of gallery list
+- **Uncategorized Filter**: Photos uploaded as "uncategorized" are hidden from public gallery until categorized
 - **Admin Security**: Converted hardcoded admin password to environment variable (ADMIN_PASSWORD secret)
 - **Authentication API**: Added `/api/admin/login` endpoint for secure password validation
 - **Password Management**: Admin password now configurable through Replit secrets without code changes

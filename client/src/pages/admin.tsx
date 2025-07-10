@@ -138,17 +138,23 @@ export default function Admin() {
   const uploadImagesMutation = useMutation({
     mutationFn: async (files: File[]) => {
       const uploadPromises = files.map(async (file) => {
-        // Create a simple URL for the image (in a real app, you'd upload to a service)
-        const imageUrl = `/images/gallery/uploaded/${file.name}`;
+        // Create a data URL for the image preview
+        const dataUrl = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.readAsDataURL(file);
+        });
+        
         const title = file.name.replace(/\.[^/.]+$/, ""); // Remove file extension
+        const maxSortOrder = Math.max(...(images?.map(img => img.sortOrder || 0) || [0]));
         
         return apiRequest('POST', '/api/gallery', {
           title,
           description: '',
-          imageUrl,
+          imageUrl: dataUrl, // Use data URL for immediate preview
           category: 'uncategorized',
           featured: false,
-          sortOrder: 0
+          sortOrder: maxSortOrder + 1 // Add to end of list
         });
       });
       return Promise.all(uploadPromises);
