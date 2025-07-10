@@ -168,18 +168,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { password } = req.body;
       const adminPassword = process.env.ADMIN_PASSWORD;
       
+      console.log(`Admin login attempt - Password provided: ${password ? 'yes' : 'no'}, Config exists: ${adminPassword ? 'yes' : 'no'}`);
+      
       if (!adminPassword) {
         return res.status(500).json({ error: "Admin password not configured" });
       }
       
       if (password === adminPassword) {
+        req.session.isAdmin = true;
+        console.log('Admin login successful');
         res.json({ success: true });
       } else {
+        console.log('Admin login failed - password mismatch');
         res.status(401).json({ error: "Invalid password" });
       }
     } catch (error) {
       console.error("Error during admin login:", error);
       res.status(500).json({ error: "Login failed" });
+    }
+  });
+
+  // Admin Logout API
+  app.post("/api/admin/logout", async (req, res) => {
+    try {
+      req.session.destroy((err) => {
+        if (err) {
+          console.error("Error destroying session:", err);
+          return res.status(500).json({ error: "Logout failed" });
+        }
+        res.json({ success: true });
+      });
+    } catch (error) {
+      console.error("Error during admin logout:", error);
+      res.status(500).json({ error: "Logout failed" });
     }
   });
 

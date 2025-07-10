@@ -363,6 +363,32 @@ export default function Admin() {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/admin/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      setIsAuthenticated(false);
+      sessionStorage.removeItem('admin_auth');
+      setPassword('');
+      
+      toast({
+        title: "Success",
+        description: "Successfully logged out",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Logout failed",
+        variant: "destructive",
+      });
+    }
+  };
+
   const handleCategoryChange = (photoId: number, category: string) => {
     setPhotoUpdates(prev => ({
       ...prev,
@@ -676,10 +702,7 @@ export default function Admin() {
             <h1 className="text-3xl font-bold text-gray-900">Admin Panel</h1>
             <Button 
               variant="outline"
-              onClick={() => {
-                setIsAuthenticated(false);
-                sessionStorage.removeItem('admin_auth');
-              }}
+              onClick={handleLogout}
             >
               Logout
             </Button>
