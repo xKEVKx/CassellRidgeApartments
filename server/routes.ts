@@ -467,21 +467,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Admin password diagnostic endpoint
-  app.get("/api/admin/debug", async (req, res) => {
-    try {
-      const adminPassword = process.env.ADMIN_PASSWORD;
-      res.json({
-        hasPassword: !!adminPassword,
-        passwordLength: adminPassword ? adminPassword.length : 0,
-        environment: process.env.NODE_ENV || 'development',
-        timestamp: new Date().toISOString()
-      });
-    } catch (error) {
-      console.error("Debug endpoint error:", error);
-      res.status(500).json({ error: "Debug failed" });
-    }
-  });
+
 
   const httpServer = createServer(app);
   return httpServer;
