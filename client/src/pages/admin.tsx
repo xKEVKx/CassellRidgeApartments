@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
-import { GalleryImage, FloorPlan } from '@shared/schema';
+import { GalleryImage, FloorPlan, HomePageAd } from '@shared/schema';
 import { ArrowUp, ArrowDown, GripVertical, Trash2, Upload, Plus } from 'lucide-react';
 
 export default function Admin() {
@@ -22,6 +22,15 @@ export default function Admin() {
   const [reorderMode, setReorderMode] = useState(false);
   const [reorderedImages, setReorderedImages] = useState<GalleryImage[]>([]);
   const [uploadFiles, setUploadFiles] = useState<File[]>([]);
+  const [adImageFile, setAdImageFile] = useState<File | null>(null);
+  const [adImagePreview, setAdImagePreview] = useState<string>('');
+  const [showAdForm, setShowAdForm] = useState(false);
+  const [adFormData, setAdFormData] = useState({
+    displayFrequency: 5,
+    isActive: true,
+    startDate: '',
+    endDate: ''
+  });
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -40,6 +49,11 @@ export default function Admin() {
 
   const { data: floorPlans, isLoading: floorPlansLoading } = useQuery<FloorPlan[]>({
     queryKey: ['/api/floor-plans'],
+    enabled: isAuthenticated,
+  });
+
+  const { data: homePageAds, isLoading: homePageAdsLoading } = useQuery<HomePageAd[]>({
+    queryKey: ['/api/home-page-ads'],
     enabled: isAuthenticated,
   });
 
@@ -243,6 +257,75 @@ export default function Admin() {
     },
   });
 
+  const createHomePageAdMutation = useMutation({
+    mutationFn: async (adData: { imageUrl: string; displayFrequency: number; isActive: boolean; startDate?: string; endDate?: string }) => {
+      return apiRequest('POST', '/api/home-page-ads', adData);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Success",
+        description: "Home page ad created successfully",
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/home-page-ads'] });
+      setShowAdForm(false);
+      setAdImageFile(null);
+      setAdImagePreview('');
+      setAdFormData({
+        displayFrequency: 5,
+        isActive: true,
+        startDate: '',
+        endDate: ''
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to create home page ad",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const updateHomePageAdMutation = useMutation({
+    mutationFn: async ({ id, updates }: { id: number; updates: Partial<HomePageAd> }) => {
+      return apiRequest('PATCH', `/api/home-page-ads/${id}`, updates);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Success",
+        description: "Home page ad updated successfully",
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/home-page-ads'] });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update home page ad",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const deleteHomePageAdMutation = useMutation({
+    mutationFn: async (id: number) => {
+      return apiRequest('DELETE', `/api/home-page-ads/${id}`);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Success",
+        description: "Home page ad deleted successfully",
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/home-page-ads'] });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to delete home page ad",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleLogin = async () => {
     try {
       const response = await fetch('/api/admin/login', {
@@ -438,6 +521,83 @@ export default function Admin() {
     uploadImagesMutation.mutate(uploadFiles);
   };
 
+  const handleAdImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    
+    const fileType = file.type.toLowerCase();
+    if (fileType !== 'image/jpeg' && fileType !== 'image/jpg' && fileType !== 'image/png') {
+      toast({
+        title: "Invalid File",
+        description: "Only .jpg, .jpeg, and .png files are allowed.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    setAdImageFile(file);
+    
+    // Create preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      setAdImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleCreateAd = async () => {
+    if (!adImageFile || !adImagePreview) {
+      toast({
+        title: "Missing Image",
+        description: "Please select an image for the ad",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Compress image
+    const compressedDataUrl = await new Promise<string>((resolve) => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      
+      img.onload = () => {
+        const maxSize = 1200;
+        let { width, height } = img;
+        
+        if (width > height) {
+          if (width > maxSize) {
+            height = (height * maxSize) / width;
+            width = maxSize;
+          }
+        } else {
+          if (height > maxSize) {
+            width = (width * maxSize) / height;
+            height = maxSize;
+          }
+        }
+        
+        canvas.width = width;
+        canvas.height = height;
+        ctx?.drawImage(img, 0, 0, width, height);
+        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+        resolve(compressedDataUrl);
+      };
+      
+      img.src = adImagePreview;
+    });
+    
+    const adData = {
+      imageUrl: compressedDataUrl,
+      displayFrequency: adFormData.displayFrequency,
+      isActive: adFormData.isActive,
+      startDate: adFormData.startDate || undefined,
+      endDate: adFormData.endDate || undefined,
+    };
+    
+    createHomePageAdMutation.mutate(adData);
+  };
+
   const categories = ['interior', 'community', 'pool', 'fitness center', 'uncategorized'];
 
   if (!isAuthenticated) {
@@ -486,9 +646,10 @@ export default function Admin() {
         </div>
 
         <Tabs defaultValue="rents" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="rents">Rents</TabsTrigger>
             <TabsTrigger value="gallery">Gallery</TabsTrigger>
+            <TabsTrigger value="homepage-ad">Home Page Ad</TabsTrigger>
           </TabsList>
 
           <TabsContent value="gallery" className="space-y-6">
@@ -769,6 +930,220 @@ export default function Admin() {
                     </Card>
                   );
                 })}
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="homepage-ad" className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Home Page Advertisement</h2>
+              <Button
+                onClick={() => setShowAdForm(!showAdForm)}
+                className="bg-emerald-600 hover:bg-emerald-700"
+              >
+                <Plus className="h-4 w-4 mr-2" />
+                {showAdForm ? 'Cancel' : 'Create New Ad'}
+              </Button>
+            </div>
+
+            {showAdForm && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Create New Home Page Ad</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="ad-image">Advertisement Image</Label>
+                    <Input
+                      id="ad-image"
+                      type="file"
+                      accept="image/jpeg,image/jpg,image/png"
+                      onChange={handleAdImageUpload}
+                    />
+                    {adImagePreview && (
+                      <div className="mt-4">
+                        <img
+                          src={adImagePreview}
+                          alt="Ad preview"
+                          className="max-w-md h-auto rounded-lg border"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="display-frequency">Display Frequency (every X visits)</Label>
+                      <Input
+                        id="display-frequency"
+                        type="number"
+                        min="1"
+                        max="100"
+                        value={adFormData.displayFrequency}
+                        onChange={(e) => setAdFormData(prev => ({
+                          ...prev,
+                          displayFrequency: parseInt(e.target.value) || 5
+                        }))}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox
+                          id="is-active"
+                          checked={adFormData.isActive}
+                          onCheckedChange={(checked) => setAdFormData(prev => ({
+                            ...prev,
+                            isActive: !!checked
+                          }))}
+                        />
+                        <Label htmlFor="is-active">Active</Label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="start-date">Start Date (optional)</Label>
+                      <Input
+                        id="start-date"
+                        type="date"
+                        value={adFormData.startDate}
+                        onChange={(e) => setAdFormData(prev => ({
+                          ...prev,
+                          startDate: e.target.value
+                        }))}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="end-date">End Date (optional)</Label>
+                      <Input
+                        id="end-date"
+                        type="date"
+                        value={adFormData.endDate}
+                        onChange={(e) => setAdFormData(prev => ({
+                          ...prev,
+                          endDate: e.target.value
+                        }))}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end space-x-2">
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setShowAdForm(false);
+                        setAdImageFile(null);
+                        setAdImagePreview('');
+                        setAdFormData({
+                          displayFrequency: 5,
+                          isActive: true,
+                          startDate: '',
+                          endDate: ''
+                        });
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      onClick={handleCreateAd}
+                      disabled={!adImageFile || createHomePageAdMutation.isPending}
+                      className="bg-emerald-600 hover:bg-emerald-700"
+                    >
+                      {createHomePageAdMutation.isPending ? 'Creating...' : 'Create Ad'}
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {homePageAdsLoading ? (
+              <div className="text-center py-8">Loading home page ads...</div>
+            ) : (
+              <div className="space-y-4">
+                {homePageAds?.length === 0 ? (
+                  <Card>
+                    <CardContent className="text-center py-8">
+                      <p className="text-gray-500">No home page ads created yet.</p>
+                      <p className="text-sm text-gray-400 mt-2">Create your first ad to get started.</p>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  homePageAds?.map((ad) => (
+                    <Card key={ad.id}>
+                      <CardContent className="p-6">
+                        <div className="flex items-start space-x-4">
+                          <div className="flex-shrink-0">
+                            <img
+                              src={ad.imageUrl}
+                              alt="Home page ad"
+                              className="w-32 h-20 object-cover rounded-lg border"
+                            />
+                          </div>
+                          <div className="flex-1 space-y-2">
+                            <div className="flex items-center justify-between">
+                              <h3 className="font-semibold">Ad #{ad.id}</h3>
+                              <div className="flex items-center space-x-2">
+                                <span className={`px-2 py-1 text-xs rounded-full ${
+                                  ad.isActive 
+                                    ? 'bg-green-100 text-green-800' 
+                                    : 'bg-gray-100 text-gray-800'
+                                }`}>
+                                  {ad.isActive ? 'Active' : 'Inactive'}
+                                </span>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => updateHomePageAdMutation.mutate({
+                                    id: ad.id,
+                                    updates: { isActive: !ad.isActive }
+                                  })}
+                                  disabled={updateHomePageAdMutation.isPending}
+                                >
+                                  {ad.isActive ? 'Deactivate' : 'Activate'}
+                                </Button>
+                                <AlertDialog>
+                                  <AlertDialogTrigger asChild>
+                                    <Button variant="destructive" size="sm">
+                                      <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                  </AlertDialogTrigger>
+                                  <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                      <AlertDialogTitle>Delete Advertisement</AlertDialogTitle>
+                                      <AlertDialogDescription>
+                                        Are you sure you want to delete this home page advertisement? This action cannot be undone.
+                                      </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                      <AlertDialogAction
+                                        onClick={() => deleteHomePageAdMutation.mutate(ad.id)}
+                                        className="bg-red-600 hover:bg-red-700"
+                                      >
+                                        Delete
+                                      </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                  </AlertDialogContent>
+                                </AlertDialog>
+                              </div>
+                            </div>
+                            <div className="text-sm text-gray-600">
+                              <p>Display Frequency: Every {ad.displayFrequency} visits</p>
+                              {ad.startDate && <p>Start Date: {new Date(ad.startDate).toLocaleDateString()}</p>}
+                              {ad.endDate && <p>End Date: {new Date(ad.endDate).toLocaleDateString()}</p>}
+                              <p className="text-xs text-gray-400 mt-1">
+                                Created: {new Date(ad.createdAt).toLocaleString()}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))
+                )}
               </div>
             )}
           </TabsContent>

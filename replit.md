@@ -136,6 +136,21 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - **Mobile Navigation**: Updated mobile menu to support anchor links with proper URL handling
 - **Smooth Scrolling**: Amenities section now accessible via anchor link with proper scroll positioning
 
+### July 10, 2025 - Home Page Advertisement System Implementation
+- **Complete Ad Management System**: Full CRUD operations for home page advertisements in admin panel
+- **Smart Display Logic**: Configurable display frequency (every X visits) with localStorage visit tracking
+- **Sliding Advertisement UI**: Left-side popup slider that enters from left edge, expandable/collapsible design
+- **Date Range Scheduling**: Optional start/end date controls for time-limited campaigns
+- **Admin Panel Integration**: Third tab in admin interface for creating, managing, and toggling ad status
+- **Image Compression**: Automatic image optimization to max 1200px and 80% quality
+- **Database Schema**: New `home_page_ads` table with frequency, scheduling, and status fields
+- **API Endpoints**: Complete REST API for ad management (`/api/home-page-ads/*`)
+- **Visit Tracking**: Local storage-based visit counter with customizable display frequency
+- **Active Status Toggle**: Admin can enable/disable ads with real-time status updates
+- **Responsive Design**: Mobile-optimized slider with proper touch interactions
+- **Call-to-Action Integration**: "Learn More" button scrolls to contact section
+- **Database Storage**: Images stored as compressed base64 data URLs for optimal performance
+
 ### July 10, 2025 - Complete Admin System & Promotional Banner Implementation
 - **Photo Upload System**: Multi-file upload with JPEG and PNG support, drag-and-drop functionality
 - **Image Compression**: Automatic compression to max 1200px and 80% quality to handle large files

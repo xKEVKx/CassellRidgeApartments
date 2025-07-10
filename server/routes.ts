@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSubmissionSchema, insertGalleryImageSchema } from "@shared/schema";
+import { insertContactSubmissionSchema, insertGalleryImageSchema, insertHomePageAdSchema } from "@shared/schema";
 import { z } from "zod";
 import { sendContactNotification, sendConfirmationEmail, testEmailConnection } from "./email";
 
@@ -228,6 +228,70 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching contact submissions:", error);
       res.status(500).json({ error: "Failed to fetch contact submissions" });
+    }
+  });
+
+  // Home Page Ads API
+  app.get("/api/home-page-ads", async (req, res) => {
+    try {
+      const ads = await storage.getHomePageAds();
+      res.json(ads);
+    } catch (error) {
+      console.error("Error fetching home page ads:", error);
+      res.status(500).json({ error: "Failed to fetch home page ads" });
+    }
+  });
+
+  app.get("/api/home-page-ads/active", async (req, res) => {
+    try {
+      const ad = await storage.getActiveHomePageAd();
+      res.json(ad || null);
+    } catch (error) {
+      console.error("Error fetching active home page ad:", error);
+      res.status(500).json({ error: "Failed to fetch active home page ad" });
+    }
+  });
+
+  app.post("/api/home-page-ads", async (req, res) => {
+    try {
+      const adData = insertHomePageAdSchema.parse(req.body);
+      const ad = await storage.createHomePageAd(adData);
+      res.json(ad);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ error: "Invalid ad data", details: error.errors });
+      }
+      console.error("Error creating home page ad:", error);
+      res.status(500).json({ error: "Failed to create home page ad" });
+    }
+  });
+
+  app.patch("/api/home-page-ads/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = req.body;
+      const ad = await storage.updateHomePageAd(id, updates);
+      if (!ad) {
+        return res.status(404).json({ error: "Home page ad not found" });
+      }
+      res.json(ad);
+    } catch (error) {
+      console.error("Error updating home page ad:", error);
+      res.status(500).json({ error: "Failed to update home page ad" });
+    }
+  });
+
+  app.delete("/api/home-page-ads/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const success = await storage.deleteHomePageAd(id);
+      if (!success) {
+        return res.status(404).json({ error: "Home page ad not found" });
+      }
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting home page ad:", error);
+      res.status(500).json({ error: "Failed to delete home page ad" });
     }
   });
 

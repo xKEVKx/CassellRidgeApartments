@@ -4,6 +4,7 @@ import {
   amenities, 
   galleryImages, 
   contactSubmissions,
+  homePageAds,
   type User, 
   type InsertUser,
   type FloorPlan,
@@ -13,7 +14,9 @@ import {
   type GalleryImage,
   type InsertGalleryImage,
   type ContactSubmission,
-  type InsertContactSubmission
+  type InsertContactSubmission,
+  type HomePageAd,
+  type InsertHomePageAd
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc } from "drizzle-orm";
@@ -191,6 +194,53 @@ export class DatabaseStorage implements IStorage {
           .where(eq(galleryImages.id, id))
       )
     );
+  }
+
+  async getHomePageAds(): Promise<HomePageAd[]> {
+    return await db.select().from(homePageAds).orderBy(desc(homePageAds.createdAt));
+  }
+
+  async getActiveHomePageAd(): Promise<HomePageAd | undefined> {
+    const currentDate = new Date();
+    const [ad] = await db
+      .select()
+      .from(homePageAds)
+      .where(eq(homePageAds.isEnabled, true))
+      .orderBy(desc(homePageAds.createdAt))
+      .limit(1);
+    
+    if (!ad) return undefined;
+    
+    // Check if ad is within date range if dates are specified
+    if (ad.startDate && new Date(ad.startDate) > currentDate) return undefined;
+    if (ad.endDate && new Date(ad.endDate) < currentDate) return undefined;
+    
+    return ad;
+  }
+
+  async createHomePageAd(insertAd: InsertHomePageAd): Promise<HomePageAd> {
+    const [ad] = await db
+      .insert(homePageAds)
+      .values(insertAd)
+      .returning();
+    return ad;
+  }
+
+  async updateHomePageAd(id: number, updates: Partial<HomePageAd>): Promise<HomePageAd | undefined> {
+    const [updated] = await db
+      .update(homePageAds)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(homePageAds.id, id))
+      .returning();
+    return updated || undefined;
+  }
+
+  async deleteHomePageAd(id: number): Promise<boolean> {
+    const result = await db
+      .delete(homePageAds)
+      .where(eq(homePageAds.id, id))
+      .returning();
+    return result.length > 0;
   }
 }
 
