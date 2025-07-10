@@ -22,20 +22,9 @@ export default function Gallery() {
 
   const images: GalleryImage[] = galleryImages || [];
 
-  // Define category order for sorting
-  const categoryOrder = ["interior", "exterior", "community", "pool", "amenities"];
-  
   // Filter and sort images based on selected category
   const filteredImages = selectedCategory === "all" 
-    ? images.sort((a, b) => {
-        const aIndex = categoryOrder.indexOf(a.category);
-        const bIndex = categoryOrder.indexOf(b.category);
-        if (aIndex !== bIndex) {
-          return aIndex - bIndex;
-        }
-        // If same category, sort by ID for consistent ordering
-        return a.id - b.id;
-      })
+    ? images.sort((a, b) => a.id - b.id) // Sort by ID to maintain website order
     : images.filter(img => img.category === selectedCategory).sort((a, b) => a.id - b.id);
 
   const categories = [
