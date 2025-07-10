@@ -57,7 +57,7 @@ export async function sendContactNotification(submission: ContactSubmission) {
 
   const mailOptions = {
     from: `"Bicycle Club Apartments" <${process.env.PROOFPOINT_SMTP_USER}>`,
-    to: process.env.NOTIFICATION_EMAIL, // Configurable notification recipient
+    to: process.env.NOTIFICATION_EMAIL || 'kkohorst@everestproperties.com', // Default to correct recipient
     replyTo: `"Bicycle Club Apartments" <${process.env.PROOFPOINT_SMTP_USER}>`,
     subject,
     html: htmlContent,
