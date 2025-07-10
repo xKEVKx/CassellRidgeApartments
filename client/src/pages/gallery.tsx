@@ -30,11 +30,9 @@ export default function Gallery() {
   const categories = [
     { id: "all", name: "All Photos", icon: Home },
     { id: "interior", name: "Interior", icon: Home },
-    { id: "exterior", name: "Exterior", icon: TreePine },
     { id: "community", name: "Community", icon: Home },
     { id: "pool", name: "Pool", icon: Waves },
     { id: "fitness center", name: "Fitness Center", icon: Home },
-    { id: "amenities", name: "Amenities", icon: Home },
   ];
 
   // Navigation functions
