@@ -39,10 +39,7 @@ export default function Admin() {
   const savePhotosMutation = useMutation({
     mutationFn: async (updates: Record<number, { category: string; filename?: string }>) => {
       const updatePromises = Object.entries(updates).map(([id, data]) => 
-        apiRequest(`/api/gallery/${id}`, {
-          method: 'PATCH',
-          body: JSON.stringify({ category: data.category }),
-        })
+        apiRequest('PATCH', `/api/gallery/${id}`, { category: data.category })
       );
       return Promise.all(updatePromises);
     },
@@ -68,10 +65,7 @@ export default function Admin() {
       console.log('Attempting to save rent updates:', updates);
       const updatePromises = Object.entries(updates).map(([id, startingPrice]) => {
         console.log(`Updating floor plan ${id} with price ${startingPrice}`);
-        return apiRequest(`/api/floor-plans/${id}`, {
-          method: 'PATCH',
-          body: JSON.stringify({ startingPrice }),
-        });
+        return apiRequest('PATCH', `/api/floor-plans/${id}`, { startingPrice });
       });
       return Promise.all(updatePromises);
     },
