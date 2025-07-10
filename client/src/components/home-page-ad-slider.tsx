@@ -83,7 +83,7 @@ export default function HomePageAdSlider({ isVisible, onClose, initialMinimized 
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={onClose}
+                  onClick={() => setIsExpanded(false)}
                   className="h-8 w-8 p-0 hover:bg-gray-100"
                 >
                   <X className="h-4 w-4" />
