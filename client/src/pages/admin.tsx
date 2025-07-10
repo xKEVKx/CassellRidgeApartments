@@ -302,8 +302,20 @@ export default function Admin() {
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(event.target.files || []);
-    const imageFiles = files.filter(file => file.type.startsWith('image/'));
-    setUploadFiles(imageFiles);
+    const validImageFiles = files.filter(file => {
+      const fileType = file.type.toLowerCase();
+      return fileType === 'image/jpeg' || fileType === 'image/jpg';
+    });
+    
+    if (files.length > validImageFiles.length) {
+      toast({
+        title: "Invalid Files",
+        description: "Only .jpg and .jpeg files are allowed. Some files were filtered out.",
+        variant: "destructive",
+      });
+    }
+    
+    setUploadFiles(validImageFiles);
   };
 
   const handleUploadImages = () => {
@@ -410,7 +422,7 @@ export default function Admin() {
               <div className="flex items-center gap-2">
                 <Input
                   type="file"
-                  accept="image/*"
+                  accept=".jpg,.jpeg"
                   multiple
                   onChange={handleFileUpload}
                   className="max-w-xs"
