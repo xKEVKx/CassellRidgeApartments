@@ -381,7 +381,7 @@ export default function Home() {
                   <h2 className="text-4xl font-bold text-gray-900">ACCOMMODATIONS</h2>
                 </div>
                 <p className="text-xl text-gray-600 leading-relaxed font-light">
-                  The lifestyle at Bicycle Club is one that offers a retreat-like atmosphere yet easy access to city activities. Live like you are on vacation every day at Bicycle Club. Our affordable rents make it all possible.
+                  Stay active and social with community features like a 24-hour fitness center, resort-style pool and grill, perfect for summer gatherings, sand volleyball court, and multiple outdoor patio conversation areas. Pet lovers will appreciate the on-site dog park, and students benefit from access to the AAA-rated Park Hill School District.
                 </p>
               </div>
               
