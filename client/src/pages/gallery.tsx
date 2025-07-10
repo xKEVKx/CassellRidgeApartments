@@ -142,7 +142,6 @@ export default function Gallery() {
                       console.error('Error details:', e);
                       e.currentTarget.style.backgroundColor = '#f3f4f6';
                       e.currentTarget.style.border = '1px solid #e5e7eb';
-                      e.currentTarget.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500">Image failed to load</div>';
                     }}
                     onLoad={() => {
                       console.log('Image loaded successfully:', image.image_url);
