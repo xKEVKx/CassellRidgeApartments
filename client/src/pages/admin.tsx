@@ -190,22 +190,19 @@ export default function Admin() {
   };
 
   const handleRentChange = (floorPlanId: number, rent: string) => {
-    const rentValue = parseFloat(rent);
-    if (isNaN(rentValue) || rentValue <= 0) {
-      // Remove from updates if invalid
-      setRentUpdates(prev => {
-        const newUpdates = { ...prev };
-        delete newUpdates[floorPlanId];
-        return newUpdates;
-      });
-      return;
+    // Only allow empty string or numeric values
+    if (rent === '' || /^\d+$/.test(rent)) {
+      const rentValue = rent === '' ? 0 : parseInt(rent);
+      
+      if (rent === '' || (rentValue > 0 && rentValue <= 999999)) {
+        console.log(`Setting rent update for floor plan ${floorPlanId}: ${rentValue}`);
+        setRentUpdates(prev => ({
+          ...prev,
+          [floorPlanId]: rentValue
+        }));
+      }
     }
-    
-    console.log(`Setting rent update for floor plan ${floorPlanId}: ${rentValue}`);
-    setRentUpdates(prev => ({
-      ...prev,
-      [floorPlanId]: rentValue
-    }));
+    // If input is not numeric, don't update the state (input will be rejected)
   };
 
   const handleStartReorder = () => {
@@ -486,12 +483,11 @@ export default function Admin() {
                           <Label htmlFor={`rent-${plan.id}`}>Starting Price</Label>
                           <Input
                             id={`rent-${plan.id}`}
-                            type="number"
+                            type="text"
                             value={currentRent}
                             onChange={(e) => handleRentChange(plan.id, e.target.value)}
                             placeholder="Enter rent amount"
-                            min="0"
-                            step="1"
+                            className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           />
                         </div>
 
