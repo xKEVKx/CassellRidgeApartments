@@ -80,6 +80,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.patch("/api/gallery/reorder", async (req, res) => {
+    try {
+      const { imageOrders } = req.body;
+      
+      if (!Array.isArray(imageOrders)) {
+        return res.status(400).json({ error: "Image orders must be an array" });
+      }
+
+      await storage.updateGalleryImageOrder(imageOrders);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error reordering gallery images:", error);
+      res.status(500).json({ error: "Failed to reorder gallery images" });
+    }
+  });
+
   app.patch("/api/gallery/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
@@ -98,22 +114,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error updating gallery image:", error);
       res.status(500).json({ error: "Failed to update gallery image" });
-    }
-  });
-
-  app.patch("/api/gallery/reorder", async (req, res) => {
-    try {
-      const { imageOrders } = req.body;
-      
-      if (!Array.isArray(imageOrders)) {
-        return res.status(400).json({ error: "Image orders must be an array" });
-      }
-
-      await storage.updateGalleryImageOrder(imageOrders);
-      res.json({ success: true });
-    } catch (error) {
-      console.error("Error reordering gallery images:", error);
-      res.status(500).json({ error: "Failed to reorder gallery images" });
     }
   });
 
