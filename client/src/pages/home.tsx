@@ -360,7 +360,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Featured Amenities Section with Photo Slider */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-            <div className="relative w-full h-96 overflow-hidden rounded-lg shadow-lg">
+            <div className="relative w-full h-96 overflow-hidden rounded-lg shadow-lg order-2 lg:order-1">
               <img 
                 src={galleryImages?.filter(img => 
                   img.category === 'pool' || 
@@ -378,7 +378,7 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
             </div>
-            <div className="relative">
+            <div className="relative order-1 lg:order-2">
               <div className="space-y-6">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
