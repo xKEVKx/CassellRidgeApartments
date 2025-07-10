@@ -97,16 +97,19 @@ export default function Home() {
     const newVisitCount = visitCount + 1;
     localStorage.setItem('bicycle-club-visit-count', newVisitCount.toString());
     
+    // Show ad during the first N visits (displayFrequency), then minimize after
+    const shouldShow = newVisitCount <= activeAd.displayFrequency;
+    
     console.log('Visit tracking:', {
       visitCount: newVisitCount,
       displayFrequency: activeAd.displayFrequency,
-      shouldShow: newVisitCount % activeAd.displayFrequency === 0,
+      shouldShow: shouldShow,
       adId: activeAd.id
     });
     
-    // Show ad based on display frequency
-    if (newVisitCount % activeAd.displayFrequency === 0) {
-      console.log('Showing ad for visit', newVisitCount);
+    // Show ad for the first displayFrequency visits
+    if (shouldShow) {
+      console.log('Showing ad for visit', newVisitCount, 'of', activeAd.displayFrequency);
       setShowAdSlider(true);
     }
   }, [activeAd]);
