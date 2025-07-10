@@ -1,28 +1,30 @@
-# Bicycle Club Apartments - Website & Admin Management System
+# Bicycle Club Apartments - Complete Website & Admin Platform
 
-A comprehensive full-stack web application for Bicycle Club Apartments in Kansas City, Missouri. This modern luxury apartment complex website features interactive property listings, photo galleries, and a powerful admin management system.
+A sophisticated, full-stack web application for Bicycle Club Apartments in Kansas City, Missouri. This comprehensive platform combines modern marketing website functionality with powerful administrative tools for complete property management.
 
-## 🏢 About
+## 🌟 Key Features
 
-Bicycle Club Apartments is a luxury apartment complex offering modern living spaces with premium amenities. This website serves as the primary marketing and leasing platform, providing potential residents with detailed information about floor plans, amenities, and the surrounding area.
-
-## ✨ Key Features
-
-### Public Website
-- **Modern Design**: Ultra-modern luxury apartment website with contemporary gradients and glass effects
-- **Interactive Floor Plans**: Detailed apartment layouts with pricing and scheduling capabilities
-- **Photo Gallery**: High-quality images organized by category with lightbox functionality
-- **Contact System**: Multiple contact forms with email integration and lead capture
-- **Virtual Tours**: Integration with YouTube property videos
-- **Location Information**: Interactive maps and nearby attractions
+### Marketing Website
+- **Modern Hero Section**: Immersive full-screen design with animated gradients and floating elements
+- **Interactive Floor Plans**: Detailed apartment layouts with real-time pricing and tour scheduling
+- **Professional Gallery**: Category-organized photo system with lightbox functionality and mobile optimization
+- **Smart Amenities**: Modern card-based design showcasing property features with emoji icons
+- **Contact Integration**: Multi-purpose forms with automated email notifications and lead capture
+- **Home Page Ads**: Intelligent advertisement system with visit tracking and responsive design
 
 ### Admin Management System
-- **Photo Management**: Complete CRUD operations for gallery images
-- **Multi-file Upload**: Drag-and-drop interface with JPEG/PNG support
-- **Image Compression**: Automatic resizing and compression for optimal performance
-- **Rent Management**: Real-time pricing updates with timestamp tracking
-- **Secure Authentication**: Environment variable-based password protection
-- **Categorization System**: Organize photos by interior, exterior, pool, and amenities
+- **Secure Authentication**: Environment-based password protection with session management
+- **Real-time Rent Management**: Live pricing updates with change tracking and dual timestamps
+- **Gallery Administration**: Photo upload, compression, categorization, and deletion with drag-drop interface
+- **Promotional Controls**: Toggle promotional banners per floor plan with independent tracking
+- **Advertisement Management**: Complete CRUD system for home page ads with smart display logic
+
+### Advanced Features
+- **Smart Ad Display**: Shows expanded for first N visits, then minimizes to persistent tab
+- **Mobile Optimization**: Responsive design with "Announcement" text on desktop, arrow-only on mobile
+- **Image Processing**: Automatic compression to 1200px max width with 80% quality optimization
+- **Email Integration**: ProofPoint SMTP with HTML templates for professional communication
+- **Visit Tracking**: localStorage-based system for personalized user experience
 
 ## 🛠 Technical Architecture
 
