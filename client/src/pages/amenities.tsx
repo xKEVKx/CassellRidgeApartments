@@ -124,56 +124,7 @@ export default function Amenities() {
           </div>
         </div>
         
-        {/* Amenities Lists */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Property Amenities */}
-          <Card className="p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Property Amenities</h3>
-            {isLoading ? (
-              <div className="space-y-3">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="flex items-center">
-                    <Skeleton className="h-4 w-4 mr-3" />
-                    <Skeleton className="h-4 w-48" />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <ul className="space-y-3">
-                {propertyAmenities.map((amenity) => (
-                  <li key={amenity.id} className="flex items-center text-gray-600">
-                    <Check className="text-green-700 mr-3 h-5 w-5 flex-shrink-0" />
-                    <span>{amenity.name}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </Card>
-          
-          {/* Apartment Features */}
-          <Card className="p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Apartment Features</h3>
-            {isLoading ? (
-              <div className="space-y-3">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="flex items-center">
-                    <Skeleton className="h-4 w-4 mr-3" />
-                    <Skeleton className="h-4 w-48" />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <ul className="space-y-3">
-                {apartmentAmenities.map((amenity) => (
-                  <li key={amenity.id} className="flex items-center text-gray-600">
-                    <Check className="text-green-700 mr-3 h-5 w-5 flex-shrink-0" />
-                    <span>{amenity.name}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </Card>
-        </div>
+
         
         {/* Gallery Button */}
         <div className="mt-16 text-center">
