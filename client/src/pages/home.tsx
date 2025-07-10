@@ -46,9 +46,6 @@ export default function Home() {
   // Summer sale popup state - disabled for Bicycle Club
   const [showSalePopup, setShowSalePopup] = useState(false);
   const [isPopupMinimized, setIsPopupMinimized] = useState(false);
-  
-  // Check if any floor plan has a promotion available
-  const hasPromotion = floorPlans?.some(plan => plan.promotionAvailable) || false;
 
   useEffect(() => {
     if (rotationImages.length <= 1) return; // Don't rotate if only 1 or no images
@@ -161,15 +158,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      {/* Promotional Banner */}
-      {hasPromotion && (
-        <div className="fixed top-20 right-4 z-50">
-          <div className="bg-red-600 text-white px-4 py-3 rounded-lg flex items-center gap-2 shadow-lg">
-            <Tag className="w-5 h-5" />
-            <span className="font-semibold">Promotion Available</span>
-          </div>
-        </div>
-      )}
+
       
       {/* Ultra Modern Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
@@ -479,12 +468,19 @@ export default function Home() {
             ) : (
               floorPlans?.map((plan) => (
                 <Card key={plan.id} className="overflow-hidden hover:shadow-xl transition-shadow">
-                  <div className="aspect-w-16 aspect-h-12">
+                  <div className="aspect-w-16 aspect-h-12 relative">
                     <img 
                       src={plan.imageUrl} 
                       alt={`${plan.name} floor plan`}
                       className="w-full h-64 object-cover"
                     />
+                    {/* Promotional Banner */}
+                    {plan.promotionAvailable && (
+                      <div className="absolute top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-lg flex items-center gap-2 shadow-lg">
+                        <Tag className="w-4 h-4" />
+                        <span className="text-sm font-semibold">Promotion Available</span>
+                      </div>
+                    )}
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
