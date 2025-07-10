@@ -480,7 +480,7 @@ export default function Admin() {
                         </div>
                         
                         <div className="space-y-2">
-                          <Label htmlFor={`rent-${plan.id}`}>Rent</Label>
+                          <Label htmlFor={`rent-${plan.id}`}>Rent:</Label>
                           <Input
                             id={`rent-${plan.id}`}
                             type="text"
