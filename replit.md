@@ -118,6 +118,14 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 10, 2025 - Admin Password Security & Database Optimization
+- **Admin Security**: Converted hardcoded admin password to environment variable (ADMIN_PASSWORD secret)
+- **Authentication API**: Added `/api/admin/login` endpoint for secure password validation
+- **Password Management**: Admin password now configurable through Replit secrets without code changes
+- **Default Tab**: Changed admin page default tab from Gallery to Rents for easier rent management
+- **Rent Timestamps**: Added lastUpdated field to floor plans with Pacific time display
+- **API Fixes**: Resolved rent update functionality issues with proper API call formatting
+
 ### July 10, 2025 - Gallery Image Consolidation & Database Optimization
 - **File Consolidation**: Merged all gallery images from multiple directories into single `/images/gallery/consolidated/` directory
 - **Storage Optimization**: Reduced from 73 files across 8 directories to 36 files in 1 directory, eliminating duplicates

@@ -88,18 +88,34 @@ export default function Admin() {
     },
   });
 
-  const handleLogin = () => {
-    if (password === 'Everest') {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('admin_auth', 'true');
-      toast({
-        title: "Access Granted",
-        description: "Welcome to the admin panel",
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
       });
-    } else {
+      
+      if (response.ok) {
+        setIsAuthenticated(true);
+        sessionStorage.setItem('admin_auth', 'true');
+        toast({
+          title: "Access Granted",
+          description: "Welcome to the admin panel",
+        });
+      } else {
+        toast({
+          title: "Access Denied",
+          description: "Invalid password",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
       toast({
-        title: "Access Denied",
-        description: "Invalid password",
+        title: "Error",
+        description: "Failed to authenticate",
         variant: "destructive",
       });
     }
