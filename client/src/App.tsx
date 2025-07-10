@@ -12,6 +12,7 @@ import Gallery from "@/pages/gallery";
 import Contact from "@/pages/contact";
 import Location from "@/pages/location";
 import VirtualTours from "@/pages/virtual-tours";
+import Admin from "@/pages/admin";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/location" component={Location} />
       <Route path="/virtual-tours" component={VirtualTours} />
       <Route path="/contact" component={Contact} />
+      <Route path="/admin" component={Admin} />
       <Route component={NotFound} />
     </Switch>
   );
