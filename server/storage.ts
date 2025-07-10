@@ -205,7 +205,7 @@ export class DatabaseStorage implements IStorage {
     const [ad] = await db
       .select()
       .from(homePageAds)
-      .where(eq(homePageAds.isEnabled, true))
+      .where(eq(homePageAds.isActive, true))
       .orderBy(desc(homePageAds.createdAt))
       .limit(1);
     
