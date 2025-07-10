@@ -117,6 +117,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.delete("/api/gallery/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const success = await storage.deleteGalleryImage(id);
+      
+      if (!success) {
+        return res.status(404).json({ error: "Gallery image not found" });
+      }
+      
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting gallery image:", error);
+      res.status(500).json({ error: "Failed to delete gallery image" });
+    }
+  });
+
+  app.post("/api/gallery", async (req, res) => {
+    try {
+      const galleryData = insertGalleryImageSchema.parse(req.body);
+      const image = await storage.createGalleryImage(galleryData);
+      res.json(image);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ error: "Invalid gallery data", details: error.errors });
+      }
+      console.error("Error creating gallery image:", error);
+      res.status(500).json({ error: "Failed to create gallery image" });
+    }
+  });
+
   // Admin Login API
   app.post("/api/admin/login", async (req, res) => {
     try {

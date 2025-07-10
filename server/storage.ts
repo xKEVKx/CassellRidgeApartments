@@ -40,6 +40,7 @@ export interface IStorage {
   getGalleryImagesByCategory(category: string): Promise<GalleryImage[]>;
   createGalleryImage(image: InsertGalleryImage): Promise<GalleryImage>;
   updateGalleryImage(id: number, updates: Partial<GalleryImage>): Promise<GalleryImage | undefined>;
+  deleteGalleryImage(id: number): Promise<boolean>;
   
   // Contact Submissions
   getContactSubmissions(): Promise<ContactSubmission[]>;
@@ -134,6 +135,14 @@ export class DatabaseStorage implements IStorage {
       .where(eq(galleryImages.id, id))
       .returning();
     return updated || undefined;
+  }
+
+  async deleteGalleryImage(id: number): Promise<boolean> {
+    const result = await db
+      .delete(galleryImages)
+      .where(eq(galleryImages.id, id))
+      .returning();
+    return result.length > 0;
   }
 
   async getContactSubmissions(): Promise<ContactSubmission[]> {

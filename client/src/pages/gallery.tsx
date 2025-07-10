@@ -22,10 +22,10 @@ export default function Gallery() {
 
   const images: GalleryImage[] = galleryImages || [];
 
-  // Filter and sort images based on selected category
+  // Filter out uncategorized images and sort based on selected category
   const filteredImages = selectedCategory === "all" 
-    ? images.sort((a, b) => a.id - b.id) // Sort by ID to maintain website order
-    : images.filter(img => img.category === selectedCategory).sort((a, b) => a.id - b.id);
+    ? images.filter(img => img.category !== 'uncategorized').sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0) || a.id - b.id) // Sort by sortOrder first, then ID
+    : images.filter(img => img.category === selectedCategory && img.category !== 'uncategorized').sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0) || a.id - b.id);
 
   const categories = [
     { id: "all", name: "All Photos", icon: Home },

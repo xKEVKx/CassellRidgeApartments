@@ -6,10 +6,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
 import { GalleryImage, FloorPlan } from '@shared/schema';
-import { ArrowUp, ArrowDown, GripVertical } from 'lucide-react';
+import { ArrowUp, ArrowDown, GripVertical, Trash2, Upload, Plus } from 'lucide-react';
 
 export default function Admin() {
   const [password, setPassword] = useState('');
@@ -18,6 +19,7 @@ export default function Admin() {
   const [rentUpdates, setRentUpdates] = useState<Record<number, number>>({});
   const [reorderMode, setReorderMode] = useState(false);
   const [reorderedImages, setReorderedImages] = useState<GalleryImage[]>([]);
+  const [uploadFiles, setUploadFiles] = useState<File[]>([]);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -108,6 +110,61 @@ export default function Admin() {
       toast({
         title: "Error",
         description: "Failed to update photo order",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const deleteImageMutation = useMutation({
+    mutationFn: async (imageId: number) => {
+      return apiRequest('DELETE', `/api/gallery/${imageId}`);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Success",
+        description: "Photo deleted successfully",
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/gallery'] });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to delete photo",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const uploadImagesMutation = useMutation({
+    mutationFn: async (files: File[]) => {
+      const uploadPromises = files.map(async (file) => {
+        // Create a simple URL for the image (in a real app, you'd upload to a service)
+        const imageUrl = `/images/gallery/uploaded/${file.name}`;
+        const title = file.name.replace(/\.[^/.]+$/, ""); // Remove file extension
+        
+        return apiRequest('POST', '/api/gallery', {
+          title,
+          description: '',
+          imageUrl,
+          category: 'uncategorized',
+          featured: false,
+          sortOrder: 0
+        });
+      });
+      return Promise.all(uploadPromises);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Success",
+        description: "Photos uploaded successfully",
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/gallery'] });
+      setUploadFiles([]);
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to upload photos",
         variant: "destructive",
       });
     },
@@ -239,7 +296,28 @@ export default function Admin() {
     reorderImagesMutation.mutate(imageOrders);
   };
 
-  const categories = ['interior', 'community', 'pool', 'fitness center'];
+  const handleDeleteImage = (imageId: number) => {
+    deleteImageMutation.mutate(imageId);
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files || []);
+    const imageFiles = files.filter(file => file.type.startsWith('image/'));
+    setUploadFiles(imageFiles);
+  };
+
+  const handleUploadImages = () => {
+    if (uploadFiles.length === 0) {
+      toast({
+        title: "No Files",
+        description: "Please select images to upload",
+      });
+      return;
+    }
+    uploadImagesMutation.mutate(uploadFiles);
+  };
+
+  const categories = ['interior', 'community', 'pool', 'fitness center', 'uncategorized'];
 
   if (!isAuthenticated) {
     return (
@@ -293,7 +371,7 @@ export default function Admin() {
           </TabsList>
 
           <TabsContent value="gallery" className="space-y-6">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-wrap">
               <Button 
                 onClick={handleSavePhotos}
                 disabled={Object.keys(photoUpdates).length === 0 || savePhotosMutation.isPending}
@@ -328,6 +406,24 @@ export default function Admin() {
                   </Button>
                 </div>
               )}
+              
+              <div className="flex items-center gap-2">
+                <Input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleFileUpload}
+                  className="max-w-xs"
+                />
+                <Button 
+                  onClick={handleUploadImages}
+                  disabled={uploadFiles.length === 0 || uploadImagesMutation.isPending}
+                  className="flex items-center gap-2"
+                >
+                  <Upload className="h-4 w-4" />
+                  {uploadImagesMutation.isPending ? 'Uploading...' : `Upload ${uploadFiles.length} Photo${uploadFiles.length !== 1 ? 's' : ''}`}
+                </Button>
+              </div>
             </div>
 
             {imagesLoading ? (
@@ -425,6 +521,38 @@ export default function Admin() {
                             onChange={(e) => handleFilenameChange(image.id, e.target.value)}
                             placeholder="Enter filename"
                           />
+                        </div>
+                        
+                        <div className="flex justify-end pt-2">
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button 
+                                variant="destructive" 
+                                size="sm"
+                                className="flex items-center gap-2"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                                Delete
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  This action cannot be undone. This will permanently delete the photo from the gallery.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction 
+                                  onClick={() => handleDeleteImage(image.id)}
+                                  className="bg-red-600 hover:bg-red-700"
+                                >
+                                  Delete
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
                         </div>
                       </CardContent>
                     </Card>
