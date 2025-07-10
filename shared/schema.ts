@@ -56,6 +56,17 @@ export const contactSubmissions = pgTable("contact_submissions", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const homePageAds = pgTable("home_page_ads", {
+  id: serial("id").primaryKey(),
+  imageUrl: text("image_url").notNull(),
+  displayCount: integer("display_count").default(3),
+  isEnabled: boolean("is_enabled").default(true),
+  startDate: timestamp("start_date"),
+  endDate: timestamp("end_date"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -83,6 +94,12 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
   createdAt: true,
 });
 
+export const insertHomePageAdSchema = createInsertSchema(homePageAds).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
@@ -97,3 +114,6 @@ export type GalleryImage = typeof galleryImages.$inferSelect;
 
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+
+export type InsertHomePageAd = z.infer<typeof insertHomePageAdSchema>;
+export type HomePageAd = typeof homePageAds.$inferSelect;

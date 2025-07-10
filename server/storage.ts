@@ -49,6 +49,13 @@ export interface IStorage {
   
   // Gallery Image Reordering
   updateGalleryImageOrder(imageOrders: { id: number; sortOrder: number }[]): Promise<void>;
+  
+  // Home Page Ads
+  getHomePageAds(): Promise<HomePageAd[]>;
+  getActiveHomePageAd(): Promise<HomePageAd | undefined>;
+  createHomePageAd(ad: InsertHomePageAd): Promise<HomePageAd>;
+  updateHomePageAd(id: number, updates: Partial<HomePageAd>): Promise<HomePageAd | undefined>;
+  deleteHomePageAd(id: number): Promise<boolean>;
 }
 
 export class DatabaseStorage implements IStorage {
