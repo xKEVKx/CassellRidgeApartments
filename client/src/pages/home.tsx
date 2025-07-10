@@ -390,23 +390,23 @@ export default function Home() {
               </div>
               
               {/* Feature Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-                <div className="flex items-center text-gray-600">
-                  <div className="w-3 h-3 bg-green-700 rounded-full mr-3"></div>
-                  Resort-like pool
-                </div>
-                <div className="flex items-center text-gray-600">
-                  <div className="w-3 h-3 bg-green-700 rounded-full mr-3"></div>
-                  24-Hour fitness center
-                </div>
-                <div className="flex items-center text-gray-600">
-                  <div className="w-3 h-3 bg-green-700 rounded-full mr-3"></div>
-                  Sand volleyball court
-                </div>
-                <div className="flex items-center text-gray-600">
-                  <div className="w-3 h-3 bg-green-700 rounded-full mr-3"></div>
-                  Pet friendly dog park
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+                {[
+                  { icon: "🏊", title: "Resort-like pool", desc: "Beautiful pool area with sun deck" },
+                  { icon: "🏋️", title: "24-Hour fitness center", desc: "Fully equipped fitness facilities" },
+                  { icon: "🏐", title: "Sand volleyball court", desc: "Professional sand court for recreation" },
+                  { icon: "🐕", title: "Pet friendly dog park", desc: "Off-leash area for your furry friends" }
+                ].map((feature, index) => (
+                  <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200">
+                    <div className="flex items-start space-x-4">
+                      <div className="text-2xl">{feature.icon}</div>
+                      <div>
+                        <h4 className="font-semibold text-slate-900 mb-1">{feature.title}</h4>
+                        <p className="text-sm text-slate-500">{feature.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
