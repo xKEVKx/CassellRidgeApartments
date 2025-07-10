@@ -159,8 +159,6 @@ export default function Home() {
           </div>
         </div>
       )}
-
-      
       {/* Ultra Modern Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         {/* Background Video/Image */}
@@ -282,7 +280,7 @@ export default function Home() {
               <div className="space-y-6">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
-                  <h3 className="text-3xl sm:text-4xl font-bold text-slate-900">ACCOMMODATIONS</h3>
+                  <h3 className="text-3xl sm:text-4xl font-bold text-slate-900">AMENITIES</h3>
                 </div>
                 <p className="text-xl text-slate-600 leading-relaxed font-light">The lifestyle at Bicycle Club is one that offers a retreat-like atmosphere yet easy access to city activities. Live like you are on vacation every day at Bicycle Club. Our affordable rents make it all possible.</p>
               </div>
@@ -354,7 +352,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Amenities Overview Section - Moved from separate page */}
       <section id="amenities" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -425,7 +422,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Ultra Modern Amenities Showcase */}
       <section className="py-20 bg-slate-900 relative overflow-hidden">
         {/* Background Pattern */}
