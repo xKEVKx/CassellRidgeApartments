@@ -1,5 +1,42 @@
 # Recent Changes - Bicycle Club Apartments Website
 
+## July 10, 2025 - Admin Security & Rent Management Enhancement
+
+### Admin Password Security Implementation
+- **Security Enhancement**: Converted hardcoded admin password to environment variable
+- **New Secret**: Added `ADMIN_PASSWORD` as configurable Replit secret
+- **API Endpoint**: Created `/api/admin/login` for secure password validation
+- **Benefits**: Admin password now changeable without code modifications
+
+### Rent Management System Improvements
+- **Default Tab**: Changed admin page default from Gallery to Rents tab
+- **Timestamp Tracking**: Added `lastUpdated` field to floor plans database schema
+- **Pacific Time Display**: Timestamps show in Pacific timezone with readable format
+- **Database Schema**: Updated floor_plans table with `last_updated` column
+- **API Fixes**: Resolved rent update failures with proper API call formatting
+
+### Technical Fixes
+- **API Call Format**: Fixed `apiRequest` function calls to use correct parameter order
+- **Error Handling**: Enhanced debugging with console logging for rent updates
+- **Database Updates**: Automatic timestamp setting on rent price changes
+- **Mutation Logic**: Improved error handling for both photo and rent updates
+
+### Files Modified
+- `client/src/pages/admin.tsx` - Security, default tab, timestamp display
+- `server/routes.ts` - Added admin login API endpoint
+- `server/storage.ts` - Updated floor plan updates with timestamps
+- `shared/schema.ts` - Added lastUpdated field to floor plans
+- `replit.md` - Updated changelog and project documentation
+
+### Database Changes Applied
+```sql
+-- Add timestamp tracking to floor plans
+ALTER TABLE floor_plans ADD COLUMN last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+-- Set initial timestamps for existing records
+UPDATE floor_plans SET last_updated = CURRENT_TIMESTAMP;
+```
+
 ## July 09, 2025 - Bug Fixes & UI Improvements
 
 ### Gallery Image Loading & Duplication Issues Fixed

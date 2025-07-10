@@ -2,7 +2,32 @@
 
 ## Suggested Commit Structure
 
-### Main Commit
+### Main Commit (July 10, 2025)
+```
+feat: Admin security & rent management system enhancements
+
+- Convert hardcoded admin password to configurable ADMIN_PASSWORD secret
+- Add secure /api/admin/login endpoint for password validation
+- Change admin page default tab from Gallery to Rents for better UX
+- Add lastUpdated timestamp tracking to floor plans with Pacific time display
+- Fix rent update API call formatting issues causing save failures
+- Enhance error handling and debugging for admin operations
+- Update database schema with last_updated column for floor plans
+- Improve admin interface with timestamp display and change tracking
+
+Database changes:
+- Added last_updated column to floor_plans table
+- Set initial timestamps for existing floor plan records
+
+Files modified:
+- client/src/pages/admin.tsx (security, default tab, timestamps)
+- server/routes.ts (admin login API)
+- server/storage.ts (timestamp updates)
+- shared/schema.ts (database schema)
+- replit.md (documentation)
+```
+
+### Previous Commit (July 09, 2025)
 ```
 fix: Gallery image loading, contact typography, and email updates
 
@@ -59,13 +84,19 @@ update: Change email address and display text
 
 ## Files to Stage for Commit
 
-### Modified Files
+### Modified Files (July 10, 2025)
+- `client/src/pages/admin.tsx` (security, default tab, timestamps)
+- `server/routes.ts` (admin login API)
+- `server/storage.ts` (timestamp updates)
+- `shared/schema.ts` (database schema)
+- `replit.md` (documentation updates)
+- `RECENT_CHANGES.md` (updated documentation)
+- `COMMIT_MESSAGES.md` (this file)
+
+### Previous Modified Files (July 09, 2025)
 - `client/src/pages/contact.tsx` (font fix + email display)
 - `client/src/components/layout/footer.tsx` (email display)
 - `client/src/lib/constants.ts` (email address)
-- `RECENT_CHANGES.md` (updated documentation)
-- `replit.md` (updated changelog)
-- `COMMIT_MESSAGES.md` (this file)
 
 ### Database Changes (Applied via SQL)
 - gallery_images table: Updated records 1 and 3
@@ -73,6 +104,15 @@ update: Change email address and display text
 
 ## Pre-Deploy Checklist
 
+### July 10, 2025 Features
+- [ ] Admin password authentication works with ADMIN_PASSWORD secret
+- [ ] Rent management default tab loads correctly
+- [ ] Timestamp display shows Pacific time format
+- [ ] Rent updates save successfully without errors
+- [ ] Database schema includes last_updated column
+- [ ] Admin login API endpoint responds properly
+
+### Previous Features (July 09, 2025)
 - [ ] All gallery images load properly without duplicates
 - [ ] Contact page typography is consistent
 - [ ] Navigation menu spacing is uniform
@@ -83,6 +123,14 @@ update: Change email address and display text
 
 ## Production Deployment Notes
 
+### July 10, 2025 Deployment
+1. **Secrets**: Configure ADMIN_PASSWORD secret in production environment
+2. **Database**: Apply SQL updates to add last_updated column to floor_plans
+3. **API**: Verify /api/admin/login endpoint works with production secrets
+4. **Testing**: Test admin login, rent updates, and timestamp display
+5. **Monitoring**: Check for any admin authentication or rent update errors
+
+### Previous Deployment (July 09, 2025)
 1. **Database**: Apply SQL updates to production database
 2. **Assets**: Ensure all images in /public/images/gallery/ are deployed
 3. **Environment**: No new environment variables required
