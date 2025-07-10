@@ -358,13 +358,6 @@ export default function Home() {
       {/* Amenities Overview Section - Moved from separate page */}
       <section id="amenities" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Amenities</h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Discover the park-like setting of Bicycle Club, where you'll find plenty of space to stroll and enjoy the beauty of nature. Your furry friends will love our Off-Leash Bark Park, the perfect place to play and socialize. Don't forget to visit our fully equipped fitness center, and enjoy the spacious outdoor gathering areas overlooking the stunning pool and community BBQ area.
-            </p>
-          </div>
-          
           {/* Featured Amenities Section with Photo Slider */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="relative w-full h-96 overflow-hidden rounded-lg shadow-lg">
@@ -385,13 +378,19 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
             </div>
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">Resort-Style Living</h3>
-              <p className="text-lg text-gray-600 mb-6">
-                The park-like setting of Bicycle Club offers you <strong>ample space to walk and enjoy nature</strong>. 
-                And, don't forget to check out our <strong>fully equipped fitness center</strong>, with spacious outside meeting areas overlooking the <strong>gorgeous pool and community BBQ area!</strong>
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="relative">
+              <div className="space-y-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
+                  <h2 className="text-4xl font-bold text-gray-900">ACCOMMODATIONS</h2>
+                </div>
+                <p className="text-xl text-gray-600 leading-relaxed font-light">
+                  The lifestyle at Bicycle Club is one that offers a retreat-like atmosphere yet easy access to city activities. Live like you are on vacation every day at Bicycle Club. Our affordable rents make it all possible.
+                </p>
+              </div>
+              
+              {/* Feature Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
                 <div className="flex items-center text-gray-600">
                   <div className="w-3 h-3 bg-green-700 rounded-full mr-3"></div>
                   Resort-like pool
