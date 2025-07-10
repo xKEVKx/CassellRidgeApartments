@@ -18,6 +18,7 @@ export const floorPlans = pgTable("floor_plans", {
   imageUrl: text("image_url").notNull(),
   description: text("description"),
   available: boolean("available").default(true),
+  promotionAvailable: boolean("promotion_available").default(false),
   createdAt: timestamp("created_at").defaultNow(),
   lastUpdated: timestamp("last_updated").defaultNow(),
 });

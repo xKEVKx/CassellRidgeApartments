@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -17,6 +18,7 @@ export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [photoUpdates, setPhotoUpdates] = useState<Record<number, { category: string; filename?: string }>>({});
   const [rentUpdates, setRentUpdates] = useState<Record<number, number>>({});
+  const [promotionUpdates, setPromotionUpdates] = useState<Record<number, boolean>>({});
   const [reorderMode, setReorderMode] = useState(false);
   const [reorderedImages, setReorderedImages] = useState<GalleryImage[]>([]);
   const [uploadFiles, setUploadFiles] = useState<File[]>([]);
@@ -88,6 +90,34 @@ export default function Admin() {
       toast({
         title: "Error",
         description: "Failed to update rent prices",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const savePromotionsMutation = useMutation({
+    mutationFn: async (updates: Record<number, boolean>) => {
+      console.log('Attempting to save promotion updates:', updates);
+      const updatePromises = Object.entries(updates).map(([id, promotionAvailable]) => {
+        console.log(`Updating floor plan ${id} with promotion ${promotionAvailable}`);
+        return apiRequest('PATCH', `/api/floor-plans/${id}`, { promotionAvailable });
+      });
+      return Promise.all(updatePromises);
+    },
+    onSuccess: (data) => {
+      console.log('Promotion update successful:', data);
+      toast({
+        title: "Success",
+        description: "Promotional banners updated successfully",
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/floor-plans'] });
+      setPromotionUpdates({});
+    },
+    onError: (error) => {
+      console.error('Promotion update failed:', error);
+      toast({
+        title: "Error",
+        description: "Failed to update promotional banners",
         variant: "destructive",
       });
     },
@@ -279,14 +309,37 @@ export default function Admin() {
   };
 
   const handleSaveRents = () => {
-    if (Object.keys(rentUpdates).length === 0) {
+    const hasRentChanges = Object.keys(rentUpdates).length > 0;
+    const hasPromotionChanges = Object.keys(promotionUpdates).length > 0;
+    
+    if (!hasRentChanges && !hasPromotionChanges) {
       toast({
         title: "No Changes",
-        description: "No rent changes to save",
+        description: "No rent or promotion changes to save",
       });
       return;
     }
-    saveRentsMutation.mutate(rentUpdates);
+    
+    const promises = [];
+    if (hasRentChanges) {
+      promises.push(saveRentsMutation.mutateAsync(rentUpdates));
+    }
+    if (hasPromotionChanges) {
+      promises.push(savePromotionsMutation.mutateAsync(promotionUpdates));
+    }
+    
+    Promise.all(promises).then(() => {
+      toast({
+        title: "Success",
+        description: "All changes saved successfully",
+      });
+    }).catch(() => {
+      toast({
+        title: "Error",
+        description: "Some changes failed to save",
+        variant: "destructive",
+      });
+    });
   };
 
   const handleRentChange = (floorPlanId: number, rent: string) => {
@@ -303,6 +356,14 @@ export default function Admin() {
       }
     }
     // If input is not numeric, don't update the state (input will be rejected)
+  };
+
+  const handlePromotionChange = (floorPlanId: number, promotionAvailable: boolean) => {
+    console.log(`Setting promotion update for floor plan ${floorPlanId}: ${promotionAvailable}`);
+    setPromotionUpdates(prev => ({
+      ...prev,
+      [floorPlanId]: promotionAvailable
+    }));
   };
 
   const handleStartReorder = () => {
@@ -634,7 +695,10 @@ export default function Admin() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {floorPlans?.map((plan) => {
                   const currentRent = rentUpdates[plan.id] || plan.startingPrice;
-                  const hasChanges = rentUpdates[plan.id];
+                  const currentPromotion = promotionUpdates[plan.id] !== undefined ? promotionUpdates[plan.id] : plan.promotionAvailable;
+                  const hasRentChanges = rentUpdates[plan.id] !== undefined;
+                  const hasPromotionChanges = promotionUpdates[plan.id] !== undefined;
+                  const hasChanges = hasRentChanges || hasPromotionChanges;
                   
                   // Format the last updated date in Pacific time
                   const formatPacificTime = (dateString: string | null) => {
@@ -672,6 +736,20 @@ export default function Admin() {
                             placeholder="Enter rent amount"
                             className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           />
+                        </div>
+
+                        <div className="space-y-2">
+                          <div className="flex items-center space-x-2">
+                            <Checkbox
+                              id={`promotion-${plan.id}`}
+                              checked={currentPromotion}
+                              onCheckedChange={(checked) => handlePromotionChange(plan.id, !!checked)}
+                            />
+                            <Label htmlFor={`promotion-${plan.id}`} className="text-sm font-medium">
+                              Promotion Available
+                            </Label>
+                          </div>
+                          <p className="text-xs text-gray-500">Show promotional banner on this floor plan</p>
                         </div>
 
                         <div className="text-sm text-gray-500">

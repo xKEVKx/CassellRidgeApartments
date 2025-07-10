@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Bed, Bath, Square, Home, MapPin, Expand } from "lucide-react";
+import { Bed, Bath, Square, Home, MapPin, Expand, Tag } from "lucide-react";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
 import { SITE_CONFIG } from "@/lib/constants";
 import { useEffect } from "react";
@@ -69,6 +69,14 @@ export default function FloorPlans() {
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2">
                     <h3 className="text-xl font-bold text-slate-900">{plan.name}</h3>
                   </div>
+                  
+                  {/* Promotional Banner */}
+                  {plan.promotionAvailable && (
+                    <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-2 rounded-lg flex items-center gap-2 shadow-lg">
+                      <Tag className="w-4 h-4" />
+                      <span className="text-sm font-semibold">Promotion Available</span>
+                    </div>
+                  )}
                 </div>
                 
                 <CardContent className="p-8 flex-1 flex flex-col lg:w-1/2">
@@ -101,6 +109,14 @@ export default function FloorPlans() {
                   </div>
                   
                   <div className="bg-slate-50 rounded-2xl p-6 mt-6">
+                    {/* Promotional Banner */}
+                    {plan.promotionAvailable && (
+                      <div className="bg-red-600 text-white px-4 py-2 rounded-lg mb-4 flex items-center gap-2">
+                        <Tag className="w-4 h-4" />
+                        <span className="font-semibold">Promotion Available</span>
+                      </div>
+                    )}
+                    
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-slate-600 font-medium">Rent Starting at:</span>
                       <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 text-lg font-bold">
