@@ -128,7 +128,7 @@ export default function Gallery() {
                   onClick={() => openDialog(index)}
                 >
                   <img 
-                    src={image.image_url} 
+                    src={image.imageUrl} 
                     alt={image.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     style={{ 
@@ -138,13 +138,13 @@ export default function Gallery() {
                       display: 'block'
                     }}
                     onError={(e) => {
-                      console.error('Image failed to load:', image.image_url);
+                      console.error('Image failed to load:', image.imageUrl);
                       console.error('Error details:', e);
                       e.currentTarget.style.backgroundColor = '#f3f4f6';
                       e.currentTarget.style.border = '1px solid #e5e7eb';
                     }}
                     onLoad={() => {
-                      console.log('Image loaded successfully:', image.image_url);
+                      console.log('Image loaded successfully:', image.imageUrl);
                     }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
@@ -170,12 +170,12 @@ export default function Gallery() {
             <p>Loading state: {isLoading ? 'Loading' : 'Loaded'}</p>
             {filteredImages.length > 0 && (
               <div className="mt-2">
-                <p>First image URL: {filteredImages[0]?.image_url}</p>
+                <p>First image URL: {filteredImages[0]?.imageUrl}</p>
                 <p>First image title: {filteredImages[0]?.title}</p>
                 <div className="mt-4">
                   <h4 className="font-semibold">Test Image Loading:</h4>
                   <img 
-                    src={filteredImages[0]?.image_url} 
+                    src={filteredImages[0]?.imageUrl} 
                     alt="Test image" 
                     className="w-32 h-32 object-cover border rounded mt-2"
                     onLoad={() => console.log('Test image loaded successfully')}
@@ -197,7 +197,7 @@ export default function Gallery() {
             <div className="relative">
               {filteredImages[currentImageIndex] && (
                 <img 
-                  src={filteredImages[currentImageIndex].image_url} 
+                  src={filteredImages[currentImageIndex].imageUrl} 
                   alt={filteredImages[currentImageIndex].title}
                   className="w-full h-auto max-h-[80vh] object-contain"
                 />
