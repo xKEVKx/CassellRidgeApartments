@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
+import { AccommodationsHeader, AccommodationsFeatures } from "@/components/accommodations-section";
 import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
 import type { FloorPlan, GalleryImage } from "@shared/schema";
 import { useState, useEffect } from "react";
