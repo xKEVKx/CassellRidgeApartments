@@ -182,9 +182,9 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-4 pt-8">
               {[
                 { icon: "🏠", text: "1-2 Bedrooms", href: "/floor-plans" },
-                { icon: "🏊", text: "Resort-like Pool", href: "/amenities" },
-                { icon: "🏋️", text: "24hr Fitness", href: "/amenities" },
-                { icon: "🐕", text: "Dog Park", href: "/amenities" }
+                { icon: "🏊", text: "Resort-like Pool", href: "/#amenities" },
+                { icon: "🏋️", text: "24hr Fitness", href: "/#amenities" },
+                { icon: "🐕", text: "Dog Park", href: "/#amenities" }
               ].map((feature, index) => (
                 <Link 
                   key={index}
