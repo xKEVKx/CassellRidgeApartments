@@ -88,14 +88,25 @@ export default function Home() {
 
   // Handle Home Page Ad visibility based on display frequency
   useEffect(() => {
-    if (!activeAd || !activeAd.isActive) return;
+    if (!activeAd || !activeAd.isActive) {
+      console.log('No active ad or ad not active:', { activeAd });
+      return;
+    }
     
     const visitCount = parseInt(localStorage.getItem('bicycle-club-visit-count') || '0');
     const newVisitCount = visitCount + 1;
     localStorage.setItem('bicycle-club-visit-count', newVisitCount.toString());
     
+    console.log('Visit tracking:', {
+      visitCount: newVisitCount,
+      displayFrequency: activeAd.displayFrequency,
+      shouldShow: newVisitCount % activeAd.displayFrequency === 0,
+      adId: activeAd.id
+    });
+    
     // Show ad based on display frequency
     if (newVisitCount % activeAd.displayFrequency === 0) {
+      console.log('Showing ad for visit', newVisitCount);
       setShowAdSlider(true);
     }
   }, [activeAd]);
