@@ -118,10 +118,10 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
-### July 10, 2025 - Complete Admin Photo Management System & Promotional Banner System
-- **Photo Upload**: Multi-file upload with JPEG and PNG support, drag-and-drop functionality
+### July 10, 2025 - Complete Admin System & Promotional Banner Implementation
+- **Photo Upload System**: Multi-file upload with JPEG and PNG support, drag-and-drop functionality
 - **Image Compression**: Automatic compression to max 1200px and 80% quality to handle large files
-- **Photo Deletion**: Secure deletion with confirmation dialog and database cleanup
+- **Photo Management**: Secure deletion with confirmation dialog and database cleanup
 - **Image Preview**: Instant preview using compressed data URLs for immediate display
 - **Photo Ordering**: New uploads automatically added to end of gallery with proper sort order
 - **File Input Management**: Automatic clearing of file input after successful upload
@@ -131,15 +131,22 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - **Authentication API**: Secure `/api/admin/login` endpoint with session management
 - **Password Management**: Configurable admin password through Replit secrets
 - **Default Tab**: Rents tab as default for easier rent management
-- **Rent Timestamps**: Added lastUpdated field with Pacific time display
-- **Promotional Banner System**: Complete implementation with admin checkboxes and display on floor plan cards
-- **Promotional Banner Position**: Banners appear next to floor plan names on home page cards
-- **API Enhancement**: Fixed PATCH `/api/floor-plans/:id` to handle both rent and promotion updates
-- **Admin Panel Fix**: "Save Changes" button now activates for promotion changes and shows combined count
-- **State Management**: Proper clearing of rent and promotion update states after successful saves
-- **UI Improvements**: Increased header logo size by 20% for better visibility
+
+#### Promotional Banner System
+- **Database Schema**: Added `promotion_available` and `promo_last_updated` fields to floor plans
+- **Admin Controls**: Checkboxes to toggle promotional banners per floor plan
+- **Smart Save Button**: "Save Changes" activates for rent OR promotion changes with combined counter
+- **Dual Timestamps**: "Rent Last Updated" and "Promo Last Updated" tracked separately
+- **API Enhancement**: PATCH `/api/floor-plans/:id` handles both rent and promotion updates independently
+- **Frontend Display**: Promotional banners appear next to floor plan names on home page cards
+- **State Management**: Proper clearing of both rent and promotion update states after saves
+- **Conditional Updates**: Timestamps update only when relevant fields change
+
+#### UI/UX Improvements
+- **Logo Enhancement**: Increased header logo size by 20% for better visibility
 - **Content Consistency**: Updated all "fitness room" references to "fitness center"
 - **Typography Fix**: Adjusted spacing to prevent text cutoff in "Bicycle Club Apartments" heading
+- **Banner Positioning**: Promotional banners positioned next to floor plan names for clarity
 
 ### July 10, 2025 - Gallery Image Consolidation & Database Optimization
 - **File Consolidation**: Merged all gallery images from multiple directories into single `/images/gallery/consolidated/` directory

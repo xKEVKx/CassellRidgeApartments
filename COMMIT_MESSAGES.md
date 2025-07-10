@@ -1,78 +1,75 @@
-# Commit Messages
+# Suggested Commit Messages for GitHub Push
 
-## July 10, 2025 - Complete Admin Photo Management System & UI Refinements
-
-### Core Features
+## Main Commit
 ```
-feat: Complete admin photo management system with multi-file upload
+feat: Complete promotional banner system with admin controls and dual timestamp tracking
 
-- Add drag-and-drop photo upload with JPEG/PNG support
-- Implement automatic image compression (max 1200px, 80% quality)
-- Add instant preview using compressed data URLs
-- Ensure new uploads are added to end of gallery list
-- Clear file input automatically after successful upload
-- Add uncategorized system to hide new uploads from public gallery
-```
-
-### Technical Infrastructure
-```
-fix: Resolve large image upload issues and server configuration
-
-- Increase Express server payload limit to 10MB for large images
-- Fix PayloadTooLargeError through proper server configuration
-- Add insertGalleryImageSchema import for proper API validation
-- Implement full CRUD operations with error handling
+- Add promotional banner toggles in admin panel for individual floor plans
+- Implement separate timestamp tracking for rent vs promotion changes  
+- Display promotional banners on home page floor plan cards
+- Enhance PATCH API to handle both rent and promotion updates independently
+- Update admin "Save Changes" button to activate for any pending changes
+- Add dual timestamp display: "Rent Last Updated" and "Promo Last Updated"
+- Fix content consistency: update "fitness room" to "fitness center" 
+- Improve UI: increase logo size 20% and fix typography spacing
 ```
 
-### Security & UX Improvements
-```
-feat: Enhance admin security and user experience
+## Alternative Detailed Commits (if you prefer smaller commits)
 
-- Convert hardcoded admin password to ADMIN_PASSWORD environment variable
-- Add secure login API with proper session management
-- Set Rents tab as default for easier management
-- Add confirmation dialogs for safe photo deletion
-- Improve admin interface layout with right-aligned logout
+### Database & Backend
 ```
+feat(db): Add promotional banner fields and conditional timestamp tracking
 
-### Database Optimization
-```
-refactor: Optimize gallery database and file structure
-
-- Consolidate 73 files from 8 directories into 36 optimized files
-- Eliminate duplicate images and standardize file structure
-- Fix imageUrl/image_url schema mapping issues
-- Ensure all images load successfully with proper error handling
+- Add promotion_available boolean and promo_last_updated timestamp to floor_plans
+- Update storage layer to conditionally update timestamps based on changed fields
+- Enhance PATCH /api/floor-plans/:id to handle rent and promotion updates separately
 ```
 
-### UI/UX Improvements
+### Admin Panel
 ```
-feat: Enhance logo visibility and content consistency
+feat(admin): Complete promotional banner controls with dual timestamps
 
-- Increase header logo size by 20% for better brand visibility
-- Update all "fitness room" references to "fitness center" for consistency
-- Fix typography spacing to prevent text cutoff in main heading
+- Add "Promotion Available" checkboxes for each floor plan
+- Fix "Save Changes" button to activate for promotion changes
+- Display combined count of rent and promotion pending changes  
+- Show separate "Rent Last Updated" and "Promo Last Updated" timestamps
+- Improve state management with proper clearing after successful saves
+```
+
+### Frontend Display
+```
+feat(ui): Add promotional banners to home page floor plan cards
+
+- Display promotional banners next to floor plan names when enabled
+- Style banners with red background, tag icon, and compact design
+- Conditionally show banners based on admin promotional settings
+- Update content consistency: "fitness room" to "fitness center"
+```
+
+### UI Improvements
+```
+style: Enhance header logo and fix typography spacing
+
+- Increase header logo size by 20% for better visibility
+- Fix spacing in "Bicycle Club Apartments" heading to prevent text cutoff
 - Improve overall visual hierarchy and readability
 ```
 
-## Previous Major Commits
+## Files Changed Summary
+```
+Modified files:
+- shared/schema.ts (database schema updates)
+- server/storage.ts (conditional timestamp logic)  
+- server/routes.ts (enhanced PATCH route)
+- client/src/pages/admin.tsx (promotional controls & timestamps)
+- client/src/pages/home.tsx (promotional banner display)
+- client/src/lib/constants.ts (content consistency updates)
+- replit.md (project documentation updates)
 
-### July 10, 2025 - Gallery Consolidation
-```
-refactor: Consolidate gallery images and optimize database structure
-```
-
-### July 09, 2025 - Email Integration
-```
-feat: Complete ProofPoint email integration for contact forms
+New files:
+- RECENT_CHANGES.md (detailed change documentation)
+- COMMIT_MESSAGES.md (this file)
 ```
 
-### July 08, 2025 - Website Transformation
-```
-feat: Transform website from Grove at Deerwood to Bicycle Club Apartments
-```
-
-### July 08, 2025 - Modern Design
-```
-feat: Implement ultra-modern luxury apartment website design
-```
+## Recommended Approach
+Use the main commit message for a single comprehensive commit, or break it into the 4 detailed commits if you prefer more granular version control. All changes are backwards compatible and non-breaking.

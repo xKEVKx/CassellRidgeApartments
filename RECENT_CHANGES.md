@@ -1,53 +1,107 @@
-# Recent Changes
+# Recent Changes - July 10, 2025
 
-## July 10, 2025 - Complete Admin Photo Management System & UI Refinements
+## Promotional Banner System Implementation
 
-### Photo Upload & Management
-- **Multi-file Upload**: Drag-and-drop interface supporting JPEG and PNG files
-- **Image Compression**: Automatic resizing to max 1200px and 80% quality compression
-- **Instant Preview**: Data URL-based previews for immediate image display
-- **Smart Ordering**: New uploads automatically added to end of gallery list
-- **File Input Cleanup**: Automatic clearing of file selector after successful upload
-- **Uncategorized System**: New uploads default to "uncategorized" status, hidden from public gallery
+### Overview
+Implemented a complete promotional banner system that allows administrators to toggle promotional banners on individual floor plans and display them on the website.
 
-### Technical Infrastructure
-- **Payload Handling**: Increased Express server limit to 10MB for large image uploads
-- **Error Prevention**: Fixed "PayloadTooLargeError" through proper server configuration
-- **Schema Validation**: Added `insertGalleryImageSchema` import for proper API validation
-- **Database Integration**: Full CRUD operations with proper error handling and rollback
+### Database Changes
+- Added `promotion_available` boolean field to `floor_plans` table (default: false)
+- Added `promo_last_updated` timestamp field to track when promotions were last modified
+- Applied schema changes with `npm run db:push`
 
-### Admin Security & UX
-- **Environment Security**: Converted hardcoded admin password to ADMIN_PASSWORD environment variable
-- **Session Management**: Secure login API with proper authentication flow
-- **Interface Optimization**: Rents tab as default, improved layout with right-aligned logout
-- **Confirmation Dialogs**: Safe deletion with user confirmation to prevent accidental data loss
+### Backend API Enhancements
+- **Enhanced PATCH `/api/floor-plans/:id`**: Now accepts both `startingPrice` and `promotionAvailable` fields
+- **Conditional Validation**: Only validates `startingPrice` when provided, allows promotion-only updates
+- **Separate Timestamp Tracking**: 
+  - Updates `lastUpdated` when `startingPrice` changes
+  - Updates `promoLastUpdated` when `promotionAvailable` changes
 
-### Database Optimization
-- **Directory Consolidation**: Merged 73 files from 8 directories into 36 optimized files
-- **Storage Efficiency**: Eliminated duplicates and standardized file structure
-- **Schema Fixes**: Resolved imageUrl/image_url mapping issues for proper display
-- **Performance**: All images load successfully with proper error handling
+### Admin Panel Features
+- **Promotional Checkboxes**: Added "Promotion Available" toggle for each floor plan
+- **Smart Save Button**: "Save Changes" button activates for either rent or promotion changes
+- **Combined Change Counter**: Shows total count of pending rent and promotion changes
+- **Dual Timestamp Display**:
+  - "Rent Last Updated:" shows when prices were last modified
+  - "Promo Last Updated:" shows when promotions were last toggled
+- **Proper State Management**: Both `rentUpdates` and `promotionUpdates` states clear after successful saves
+
+### Frontend Display
+- **Home Page Banners**: Promotional banners appear next to floor plan names on home page cards
+- **Conditional Display**: Banners only show for floor plans with `promotionAvailable: true`
+- **Styled Banners**: Red background with tag icon and "Promotion" text
+- **Dynamic Updates**: Banners appear/disappear based on admin changes
 
 ### UI/UX Improvements
-- **Logo Enhancement**: Increased header logo size by 20% (h-10→h-12 desktop, h-15→h-18 mobile)
-- **Content Consistency**: Updated all "fitness room" references to "fitness center" across site
-- **Typography Fix**: Adjusted heading spacing (mb-8→mb-10, +mt-4) to prevent "Bicycle" text cutoff
-- **Visual Polish**: Improved header navigation and content readability
+- **Content Consistency**: Updated all "fitness room" references to "fitness center" throughout site
+- **Typography Fix**: Adjusted spacing to prevent text cutoff in "Bicycle Club Apartments" heading
+- **Logo Enhancement**: Increased header logo size by 20% for better visibility
 
-## Previous Changes
+### Technical Implementation Details
 
-### July 10, 2025 - Gallery Image Consolidation & Database Optimization
-- Complete file system reorganization and database optimization
-- Fixed all gallery image loading and display issues
-- Streamlined photo management with proper categorization
+#### Database Schema
+```sql
+-- Added to floor_plans table
+promotion_available BOOLEAN DEFAULT false,
+promo_last_updated TIMESTAMP DEFAULT NOW()
+```
 
-### July 09, 2025 - Gallery & Contact System Updates
-- Fixed gallery image loading and font consistency issues
-- Updated contact information and email integration
-- Improved user experience across all pages
+#### API Route Logic
+```javascript
+// Conditional field updates
+if (startingPrice !== undefined) {
+  updates.startingPrice = startingPrice;
+  updates.lastUpdated = new Date();
+}
 
-### July 08, 2025 - Complete Website Transformation
-- Transformed entire website from Grove at Deerwood to Bicycle Club Apartments
-- Updated all content, images, and branding for Kansas City location
-- Implemented modern luxury apartment website design
-- Added comprehensive navigation structure and external integrations
+if (promotionAvailable !== undefined) {
+  updates.promotionAvailable = promotionAvailable;  
+  updates.promoLastUpdated = new Date();
+}
+```
+
+#### Admin Panel State Management
+```javascript
+// Button enables for any changes
+disabled={Object.keys(rentUpdates).length === 0 && Object.keys(promotionUpdates).length === 0}
+
+// Combined change counter
+{Object.keys(rentUpdates).length + Object.keys(promotionUpdates).length}
+```
+
+#### Home Page Banner Component
+```jsx
+{plan.promotionAvailable && (
+  <div className="bg-red-600 text-white px-2 py-1 rounded flex items-center gap-1 text-xs">
+    <Tag className="w-3 h-3" />
+    <span className="font-semibold">Promotion</span>
+  </div>
+)}
+```
+
+### Testing Verification
+- ✅ Admin can toggle promotional banners on/off for individual floor plans
+- ✅ "Save Changes" button activates for promotion checkbox changes
+- ✅ Button shows correct combined count of all pending changes
+- ✅ Promotional banners appear on correct floor plan cards on home page
+- ✅ Separate timestamps track rent vs promotion changes accurately
+- ✅ State management properly clears after successful saves
+- ✅ API handles both rent and promotion updates independently
+
+### Files Modified
+- `shared/schema.ts` - Added promotional fields to database schema
+- `server/storage.ts` - Enhanced update logic with conditional timestamps
+- `server/routes.ts` - Updated PATCH route to handle multiple field types
+- `client/src/pages/admin.tsx` - Added promotional controls and dual timestamps
+- `client/src/pages/home.tsx` - Added promotional banner display
+- `client/src/lib/constants.ts` - Updated "fitness room" to "fitness center"
+- `replit.md` - Updated project documentation
+
+### Deployment Notes
+- Database schema changes applied automatically via Drizzle migrations
+- No breaking changes to existing functionality
+- All existing rent management features preserved
+- New promotional features optional and backwards compatible
+
+## Summary
+The promotional banner system is now fully operational, providing administrators with granular control over promotional messaging while maintaining clean separation between rent and promotion management. The system includes comprehensive timestamp tracking and intuitive UI feedback for all administrative actions.
