@@ -13,8 +13,6 @@ export default function Gallery() {
   
   const { data: galleryImages, isLoading } = useQuery<GalleryImage[]>({
     queryKey: ["/api/gallery"],
-    staleTime: 0, // Force fresh data
-    cacheTime: 0, // Don't cache
   });
 
   // Scroll to top when component mounts
