@@ -5,14 +5,16 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
-import { GalleryImage } from '@shared/schema';
+import { GalleryImage, FloorPlan } from '@shared/schema';
 
 export default function Admin() {
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [photoUpdates, setPhotoUpdates] = useState<Record<number, { category: string; filename?: string }>>({});
+  const [rentUpdates, setRentUpdates] = useState<Record<number, number>>({});
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -24,8 +26,13 @@ export default function Admin() {
     }
   }, []);
 
-  const { data: images, isLoading } = useQuery<GalleryImage[]>({
+  const { data: images, isLoading: imagesLoading } = useQuery<GalleryImage[]>({
     queryKey: ['/api/gallery'],
+    enabled: isAuthenticated,
+  });
+
+  const { data: floorPlans, isLoading: floorPlansLoading } = useQuery<FloorPlan[]>({
+    queryKey: ['/api/floor-plans'],
     enabled: isAuthenticated,
   });
 
@@ -51,6 +58,33 @@ export default function Admin() {
       toast({
         title: "Error",
         description: "Failed to update photo categorizations",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const saveRentsMutation = useMutation({
+    mutationFn: async (updates: Record<number, number>) => {
+      const updatePromises = Object.entries(updates).map(([id, startingPrice]) => 
+        apiRequest(`/api/floor-plans/${id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ startingPrice }),
+        })
+      );
+      return Promise.all(updatePromises);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Success",
+        description: "Rent prices updated successfully",
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/floor-plans'] });
+      setRentUpdates({});
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update rent prices",
         variant: "destructive",
       });
     },
@@ -94,15 +128,44 @@ export default function Admin() {
     }));
   };
 
-  const handleSaveAll = () => {
+  const handleSavePhotos = () => {
     if (Object.keys(photoUpdates).length === 0) {
       toast({
         title: "No Changes",
-        description: "No changes to save",
+        description: "No photo changes to save",
       });
       return;
     }
     savePhotosMutation.mutate(photoUpdates);
+  };
+
+  const handleSaveRents = () => {
+    if (Object.keys(rentUpdates).length === 0) {
+      toast({
+        title: "No Changes",
+        description: "No rent changes to save",
+      });
+      return;
+    }
+    saveRentsMutation.mutate(rentUpdates);
+  };
+
+  const handleRentChange = (floorPlanId: number, rent: string) => {
+    const rentValue = parseFloat(rent);
+    if (isNaN(rentValue) || rentValue <= 0) {
+      // Remove from updates if invalid
+      setRentUpdates(prev => {
+        const newUpdates = { ...prev };
+        delete newUpdates[floorPlanId];
+        return newUpdates;
+      });
+      return;
+    }
+    
+    setRentUpdates(prev => ({
+      ...prev,
+      [floorPlanId]: rentValue
+    }));
   };
 
   const categories = ['interior', 'community', 'pool', 'fitness center'];
@@ -138,15 +201,8 @@ export default function Admin() {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Photo Management Admin</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Admin Panel</h1>
           <div className="flex items-center gap-4">
-            <Button 
-              onClick={handleSaveAll}
-              disabled={Object.keys(photoUpdates).length === 0 || savePhotosMutation.isPending}
-              className="bg-emerald-600 hover:bg-emerald-700"
-            >
-              {savePhotosMutation.isPending ? 'Saving...' : `Save Changes (${Object.keys(photoUpdates).length})`}
-            </Button>
             <Button 
               variant="outline"
               onClick={() => {
@@ -159,64 +215,136 @@ export default function Admin() {
           </div>
         </div>
 
-        {isLoading ? (
-          <div className="text-center py-8">Loading photos...</div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {images?.map((image) => {
-              const filename = image.imageUrl?.split('/').pop()?.split('.')[0] || '';
-              const currentCategory = photoUpdates[image.id]?.category || image.category;
-              const currentFilename = photoUpdates[image.id]?.filename || filename;
-              const hasChanges = photoUpdates[image.id];
+        <Tabs defaultValue="gallery" className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="gallery">Gallery</TabsTrigger>
+            <TabsTrigger value="rents">Rents</TabsTrigger>
+          </TabsList>
 
-              return (
-                <Card key={image.id} className={`overflow-hidden ${hasChanges ? 'ring-2 ring-emerald-500' : ''}`}>
-                  <div className="aspect-video bg-gray-100">
-                    <img 
-                      src={image.imageUrl} 
-                      alt={image.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <CardContent className="p-4 space-y-3">
-                    <div className="text-sm text-gray-600">
-                      ID: {image.id} | Original: {filename}
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor={`category-${image.id}`}>Category</Label>
-                      <Select 
-                        value={currentCategory} 
-                        onValueChange={(value) => handleCategoryChange(image.id, value)}
-                      >
-                        <SelectTrigger id={`category-${image.id}`}>
-                          <SelectValue placeholder="Select category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {categories.map((cat) => (
-                            <SelectItem key={cat} value={cat}>
-                              {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
+          <TabsContent value="gallery" className="space-y-6">
+            <div className="flex items-center gap-4">
+              <Button 
+                onClick={handleSavePhotos}
+                disabled={Object.keys(photoUpdates).length === 0 || savePhotosMutation.isPending}
+                className="bg-emerald-600 hover:bg-emerald-700"
+              >
+                {savePhotosMutation.isPending ? 'Saving...' : `Save Photo Changes (${Object.keys(photoUpdates).length})`}
+              </Button>
+            </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor={`filename-${image.id}`}>Filename (without extension)</Label>
-                      <Input
-                        id={`filename-${image.id}`}
-                        value={currentFilename}
-                        onChange={(e) => handleFilenameChange(image.id, e.target.value)}
-                        placeholder="Enter filename"
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        )}
+            {imagesLoading ? (
+              <div className="text-center py-8">Loading photos...</div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {images?.map((image) => {
+                  const filename = image.imageUrl?.split('/').pop()?.split('.')[0] || '';
+                  const currentCategory = photoUpdates[image.id]?.category || image.category;
+                  const currentFilename = photoUpdates[image.id]?.filename || filename;
+                  const hasChanges = photoUpdates[image.id];
+
+                  return (
+                    <Card key={image.id} className={`overflow-hidden ${hasChanges ? 'ring-2 ring-emerald-500' : ''}`}>
+                      <div className="aspect-video bg-gray-100">
+                        <img 
+                          src={image.imageUrl} 
+                          alt={image.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <CardContent className="p-4 space-y-3">
+                        <div className="text-sm text-gray-600">
+                          ID: {image.id} | Original: {filename}
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <Label htmlFor={`category-${image.id}`}>Category</Label>
+                          <Select 
+                            value={currentCategory} 
+                            onValueChange={(value) => handleCategoryChange(image.id, value)}
+                          >
+                            <SelectTrigger id={`category-${image.id}`}>
+                              <SelectValue placeholder="Select category" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {categories.map((cat) => (
+                                <SelectItem key={cat} value={cat}>
+                                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor={`filename-${image.id}`}>Filename (without extension)</Label>
+                          <Input
+                            id={`filename-${image.id}`}
+                            value={currentFilename}
+                            onChange={(e) => handleFilenameChange(image.id, e.target.value)}
+                            placeholder="Enter filename"
+                          />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="rents" className="space-y-6">
+            <div className="flex items-center gap-4">
+              <Button 
+                onClick={handleSaveRents}
+                disabled={Object.keys(rentUpdates).length === 0 || saveRentsMutation.isPending}
+                className="bg-emerald-600 hover:bg-emerald-700"
+              >
+                {saveRentsMutation.isPending ? 'Saving...' : `Save Rent Changes (${Object.keys(rentUpdates).length})`}
+              </Button>
+            </div>
+
+            {floorPlansLoading ? (
+              <div className="text-center py-8">Loading floor plans...</div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {floorPlans?.map((plan) => {
+                  const currentRent = rentUpdates[plan.id] || plan.startingPrice;
+                  const hasChanges = rentUpdates[plan.id];
+
+                  return (
+                    <Card key={plan.id} className={`${hasChanges ? 'ring-2 ring-emerald-500' : ''}`}>
+                      <CardHeader>
+                        <CardTitle className="text-lg">{plan.name}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div className="text-sm text-gray-600">
+                          {plan.bedrooms} bed, {plan.bathrooms} bath | {plan.sqft} sq ft
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <Label htmlFor={`rent-${plan.id}`}>Starting Price</Label>
+                          <Input
+                            id={`rent-${plan.id}`}
+                            type="number"
+                            value={currentRent}
+                            onChange={(e) => handleRentChange(plan.id, e.target.value)}
+                            placeholder="Enter rent amount"
+                            min="0"
+                            step="1"
+                          />
+                        </div>
+
+                        <div className="text-sm text-gray-500">
+                          Original: ${plan.startingPrice}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            )}
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );

@@ -31,6 +31,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.patch("/api/floor-plans/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { startingPrice } = req.body;
+      
+      if (!startingPrice || startingPrice <= 0) {
+        return res.status(400).json({ error: "Valid starting price is required" });
+      }
+
+      const updated = await storage.updateFloorPlan(id, { startingPrice });
+      if (!updated) {
+        return res.status(404).json({ error: "Floor plan not found" });
+      }
+      
+      res.json(updated);
+    } catch (error) {
+      console.error("Error updating floor plan:", error);
+      res.status(500).json({ error: "Failed to update floor plan" });
+    }
+  });
+
   // Amenities API
   app.get("/api/amenities", async (req, res) => {
     try {

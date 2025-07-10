@@ -28,6 +28,7 @@ export interface IStorage {
   getFloorPlans(): Promise<FloorPlan[]>;
   getFloorPlan(id: number): Promise<FloorPlan | undefined>;
   createFloorPlan(floorPlan: InsertFloorPlan): Promise<FloorPlan>;
+  updateFloorPlan(id: number, updates: Partial<FloorPlan>): Promise<FloorPlan | undefined>;
   
   // Amenities
   getAmenities(): Promise<Amenity[]>;
@@ -80,6 +81,15 @@ export class DatabaseStorage implements IStorage {
       .values(insertFloorPlan)
       .returning();
     return floorPlan;
+  }
+
+  async updateFloorPlan(id: number, updates: Partial<FloorPlan>): Promise<FloorPlan | undefined> {
+    const [updated] = await db
+      .update(floorPlans)
+      .set(updates)
+      .where(eq(floorPlans.id, id))
+      .returning();
+    return updated || undefined;
   }
 
   async getAmenities(): Promise<Amenity[]> {
