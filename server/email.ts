@@ -1,18 +1,15 @@
 import nodemailer from 'nodemailer';
 import type { ContactSubmission } from '@shared/schema';
 
-// Create reusable transporter object using ProofPoint SMTP
+// Create reusable transporter object using Postmark SMTP
 const transporter = nodemailer.createTransport({
-  host: process.env.PROOFPOINT_SMTP_HOST,
-  port: parseInt(process.env.PROOFPOINT_SMTP_PORT || '587'),
-  secure: process.env.PROOFPOINT_SMTP_PORT === '465', // true for 465, false for other ports
+  host: 'smtp.postmarkapp.com',
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.PROOFPOINT_SMTP_USER,
-    pass: process.env.PROOFPOINT_SMTP_PASS,
+    user: process.env.POSTMARK_SERVER_TOKEN,
+    pass: process.env.POSTMARK_SERVER_TOKEN,
   },
-  tls: {
-    rejectUnauthorized: false
-  }
 });
 
 export async function sendContactNotification(submission: ContactSubmission) {
@@ -56,9 +53,9 @@ export async function sendContactNotification(submission: ContactSubmission) {
   `;
 
   const mailOptions = {
-    from: `"Bicycle Club Apartments" <${process.env.PROOFPOINT_SMTP_USER}>`,
+    from: `"Bicycle Club Apartments" <manager@bicycleclubapts.com>`,
     to: process.env.NOTIFICATION_EMAIL || 'kkohorst@everestproperties.com', // Default to correct recipient
-    replyTo: `"Bicycle Club Apartments" <${process.env.PROOFPOINT_SMTP_USER}>`,
+    replyTo: `"Bicycle Club Apartments" <manager@bicycleclubapts.com>`,
     subject,
     html: htmlContent,
     text: `
@@ -152,7 +149,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
   `;
 
   const mailOptions = {
-    from: `"Bicycle Club Apartments" <${process.env.PROOFPOINT_SMTP_USER}>`,
+    from: `"Bicycle Club Apartments" <manager@bicycleclubapts.com>`,
     to: submission.email,
     subject,
     html: htmlContent,
@@ -172,10 +169,10 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
 export async function testEmailConnection() {
   try {
     await transporter.verify();
-    console.log('ProofPoint SMTP connection verified successfully');
+    console.log('Postmark SMTP connection verified successfully');
     return { success: true };
   } catch (error) {
-    console.error('ProofPoint SMTP connection failed:', error);
+    console.error('Postmark SMTP connection failed:', error);
     return { success: false, error: error.message };
   }
 }
