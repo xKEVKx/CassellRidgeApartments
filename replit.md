@@ -118,6 +118,15 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 10, 2025 - Gallery Image Consolidation & Database Optimization
+- **File Consolidation**: Merged all gallery images from multiple directories into single `/images/gallery/consolidated/` directory
+- **Storage Optimization**: Reduced from 73 files across 8 directories to 36 files in 1 directory, eliminating duplicates
+- **Database Updates**: Updated all 35 gallery image references to use consolidated directory structure
+- **Directory Cleanup**: Removed redundant directories (`interior/`, `exterior/`, `pool/`, `amenities/`, `community/`, `website-order/`, `exact-order/`)
+- **Property Mapping Fix**: Resolved schema mismatch between imageUrl (TypeScript) and image_url (database) causing display issues
+- **Gallery Streamlining**: Removed all photo titles and descriptions for clean, minimal image-only display
+- **Performance**: All images now load successfully with proper error handling and no missing files
+
 ### July 09, 2025 - Gallery Image Loading, Contact Page Font, & Email Updates
 - **Image Loading Issue**: Fixed first gallery image not displaying due to problematic image with large gray area
 - **Duplicate Prevention**: Resolved duplicate images in gallery by updating first image to use different file
