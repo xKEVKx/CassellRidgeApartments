@@ -239,15 +239,6 @@ export default function Home() {
               />
             </div>
           </div>
-          
-          {/* Bike Club Image */}
-          <div className="flex justify-center mb-16">
-            <img 
-              src="/images/bike-club.png" 
-              alt="Bicycle Club Apartments" 
-              className="h-32 w-auto"
-            />
-          </div>
 
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
