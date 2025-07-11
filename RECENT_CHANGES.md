@@ -49,6 +49,28 @@ Updated phone number throughout the site, enhanced email confirmation system, im
   - `package.json` - Removed @sendgrid/mail dependency
 - **Impact:** Streamlined to use only Postmark SMTP for email delivery
 
+### 6. Location Page Contact Information Updates
+- **Fixed office hours display to match Contact page**
+- **Made contact information clickable**
+- **Files modified:**
+  - `client/src/pages/location.tsx` - Updated office hours and contact links
+- **Changes made:**
+  - Added missing Wednesday (9:00AM-7:00PM) and Saturday (10AM-4PM) office hours
+  - Made phone number clickable with tel: link
+  - Made email address clickable with mailto: link displaying "Email Us"
+  - Added consistent emerald color styling with hover effects
+
+### 6. Location Page Contact Information Updates
+- **Fixed office hours display** - Added missing Wednesday and Saturday hours
+- **Enhanced contact links** - Made phone and email clickable with proper styling
+- **Files modified:**
+  - `client/src/pages/location.tsx` - Updated office hours and contact links
+- **Features added:**
+  - Complete office hours display matching Contact page format
+  - Clickable phone number with tel: link
+  - Clickable email showing "Email Us" text with mailto: link
+  - Emerald color scheme with hover effects for links
+
 ## Technical Details
 
 ### Email Configuration
@@ -81,6 +103,7 @@ Updated phone number throughout the site, enhanced email confirmation system, im
 ```
 client/src/lib/constants.ts
 client/src/pages/gallery.tsx
+client/src/pages/location.tsx
 server/email.ts
 server/routes.ts
 package.json
