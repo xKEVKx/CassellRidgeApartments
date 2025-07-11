@@ -235,7 +235,7 @@ export default function Home() {
               <img 
                 src="/images/eplq-ranking.png" 
                 alt="eplQ City Rank #1, State Rank #16" 
-                className="h-12 w-auto"
+                className="h-18 w-auto"
               />
             </div>
           </div>
