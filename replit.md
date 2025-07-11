@@ -129,6 +129,7 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - **Dual Email System**: Both notification emails to property management AND confirmation emails to users now working
 - **Gallery UX Enhancement**: Removed filename display from gallery photo popups for cleaner presentation
 - **Gallery Photo Organization**: Re-sorted all 35 photos in specified order: Interior (12), Community (15), Pool (5), Fitness Center (3)
+- **Dependency Cleanup**: Removed SendGrid references and dependencies, streamlined to use only Postmark SMTP
 
 #### Technical Implementation
 - **Email Configuration**: Postmark SMTP integration with dual email delivery system
@@ -136,6 +137,7 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - **Email Templates**: Professional HTML templates with responsive design and proper contact formatting
 - **Error Handling**: Enhanced error logging and confirmation tracking for email delivery
 - **Database Updates**: Verified gallery photo sort order with sequential numbering 1-35
+- **Package Management**: Removed @sendgrid/mail dependency, using only nodemailer with Postmark SMTP
 
 ### July 11, 2025 - eplQ Ranking Image Addition & Home Page Enhancement
 - **eplQ Ranking Display**: Added eplQ City Rank #1, State Rank #16 image to home page under welcome paragraph
