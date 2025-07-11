@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   description: "With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness center, Bicycle Club is an ideal place to live in Kansas City.",
   
   contact: {
-    phone: "816.587.8660",
+    phone: "(816) 323-8797",
     fax: "",
     email: "bicycleclub-w@m.knck.io",
     address: {
