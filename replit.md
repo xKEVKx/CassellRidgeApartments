@@ -118,6 +118,20 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 11, 2025 - eplQ Ranking Image Addition & Home Page Enhancement
+- **eplQ Ranking Display**: Added eplQ City Rank #1, State Rank #16 image to home page under welcome paragraph
+- **Image Integration**: Positioned ranking image with centered alignment between welcome text and main content
+- **Broken Image Cleanup**: Removed broken "Bike Club Image" section that was displaying placeholder icon
+- **Image Sizing**: Optimized eplQ image size to `h-16` (64px) for proper visual balance
+- **Content Flow**: Streamlined home page content from welcome text directly to main amenities section
+- **Visual Enhancement**: Added professional ranking credibility to home page without cluttering layout
+
+#### Technical Implementation
+- **Image Asset**: Saved ranking image as `/public/images/eplq-ranking.png` from user attachment
+- **Component Update**: Added eplQ image section to home page with proper alt text and responsive sizing
+- **Cleanup**: Removed broken `/images/bike-club.png` reference that was causing 404 errors
+- **Styling**: Used Tailwind classes for centered positioning and consistent spacing
+
 ### July 11, 2025 - Complete Gallery Photo Consolidation & Loading Fix
 - **Photo Storage Consolidation**: Consolidated all gallery photos to single `/public/images/gallery/` directory
 - **Database Path Updates**: Updated all 34 gallery image references to use consistent `/images/gallery/bicycleclub-XX.jpg` format
