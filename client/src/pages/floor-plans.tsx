@@ -159,7 +159,7 @@ export default function FloorPlans() {
                   <DialogTrigger asChild>
                     <div className="relative group cursor-pointer">
                       <img 
-                        src="/images/site-map.jpg" 
+                        src="/images/bicycleclub-site-map.jpg" 
                         alt="Bicycle Club Apartments Site Map"
                         className="w-full h-auto rounded-2xl transition-transform duration-300 group-hover:scale-105"
                       />
@@ -176,7 +176,7 @@ export default function FloorPlans() {
                   <DialogContent className="max-w-6xl w-full h-[90vh] p-4">
                     <div className="w-full h-full flex items-center justify-center">
                       <img 
-                        src="/images/site-map.jpg" 
+                        src="/images/bicycleclub-site-map.jpg" 
                         alt="Bicycle Club Apartments Site Map - Full Size"
                         className="max-w-full max-h-full object-contain rounded-xl"
                       />

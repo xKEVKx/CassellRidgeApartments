@@ -23,7 +23,7 @@ export default function VirtualTours() {
       id: 2,
       title: "Virtual Tour – Montrose 2B 1.5BA",
       description: "Explore our spacious Montrose floor plan with 2 bedrooms and 1.5 bathrooms, perfect for roommates or small families.",
-      thumbnail: "/images/floorplans/montrose.jpg",
+      thumbnail: "/images/floorplans/bicycleclub-montrose.jpg",
       videoUrl: "https://youtu.be/o5WW4wkKRls",
       icon: <Home className="w-6 h-6" />,
       type: "Floor Plan Tour"
