@@ -124,8 +124,8 @@ export default function Location() {
                     <div>
                       <h3 className="text-xl font-semibold text-slate-900 mb-3">Contact</h3>
                       <div className="text-slate-600 space-y-1">
-                        <div>Phone: {SITE_CONFIG.contact.phone}</div>
-                        <div>Email: {SITE_CONFIG.contact.email}</div>
+                        <div>Phone: <a href={`tel:${SITE_CONFIG.contact.phone}`} className="text-emerald-600 hover:text-emerald-700 hover:underline">{SITE_CONFIG.contact.phone}</a></div>
+                        <div>Email: <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-emerald-600 hover:text-emerald-700 hover:underline">Email Us</a></div>
                       </div>
                     </div>
                   </div>
