@@ -60,7 +60,17 @@ export default function Admin() {
 
   const savePhotosMutation = useMutation({
     mutationFn: async (updates: Record<number, { category: string; filename?: string }>) => {
-      const updatePromises = Object.entries(updates).map(([id, data]) => 
+      // Filter out updates for images that don't exist anymore
+      const currentImageIds = new Set(images?.map(img => img.id) || []);
+      const validUpdates = Object.entries(updates).filter(([id]) => 
+        currentImageIds.has(parseInt(id))
+      );
+      
+      if (validUpdates.length === 0) {
+        return Promise.resolve([]); // No valid updates to process
+      }
+      
+      const updatePromises = validUpdates.map(([id, data]) => 
         apiRequest('PATCH', `/api/gallery/${id}`, { category: data.category })
       );
       return Promise.all(updatePromises);
@@ -164,12 +174,19 @@ export default function Admin() {
     mutationFn: async (imageId: number) => {
       return apiRequest('DELETE', `/api/gallery/${imageId}`);
     },
-    onSuccess: () => {
+    onSuccess: (_, deletedId) => {
       toast({
         title: "Success",
         description: "Photo deleted successfully",
       });
       queryClient.invalidateQueries({ queryKey: ['/api/gallery'] });
+      
+      // Clean up any pending updates for the deleted image
+      setPhotoUpdates(prev => {
+        const updated = { ...prev };
+        delete updated[deletedId];
+        return updated;
+      });
     },
     onError: () => {
       toast({
