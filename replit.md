@@ -118,6 +118,22 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 11, 2025 - Complete Gallery Photo Consolidation & Loading Fix
+- **Photo Storage Consolidation**: Consolidated all gallery photos to single `/public/images/gallery/` directory
+- **Database Path Updates**: Updated all 34 gallery image references to use consistent `/images/gallery/bicycleclub-XX.jpg` format
+- **Broken Reference Cleanup**: Removed 3 broken database entries for non-existent image files
+- **Duplicate Image Resolution**: Fixed duplicate image references by assigning unique files to each gallery entry
+- **File Extension Correction**: Fixed bicycleclub-35.png extension mismatch in database reference
+- **Gallery Loading Restored**: All 31 gallery images now load correctly on Gallery page
+- **Path Standardization**: Eliminated subdirectory references (interior/, community/, amenities/) in favor of flat structure
+- **Performance Optimization**: Reduced database queries by removing orphaned image records
+
+#### Technical Implementation
+- **Database Migration**: Updated `gallery_images` table to reference actual file paths in consolidated directory
+- **File Mapping**: Mapped database IDs to sequential bicycleclub-01.jpg through bicycleclub-35.png files
+- **Validation**: Verified all image URLs return HTTP 200 status codes
+- **Cleanup**: Removed broken references to bicycleclub-36.jpg, bicycleclub-37.jpg, bicycleclub-38.jpg
+
 ### July 10, 2025 - Admin Photo Gallery Management Improvements
 - **Error Prevention**: Added validation to filter out updates for non-existent images
 - **State Cleanup**: Automatically removes pending updates when images are deleted
