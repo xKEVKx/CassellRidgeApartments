@@ -240,13 +240,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
           console.error('Failed to send notification email:', notificationResult.error);
         }
         
-        // Send confirmation email to visitor (disabled due to ProofPoint relay restrictions)
-        // const confirmationResult = await sendConfirmationEmail(submission);
-        // if (confirmationResult.success) {
-        //   console.log('Confirmation email sent successfully');
-        // } else {
-        //   console.error('Failed to send confirmation email:', confirmationResult.error);
-        // }
+        // Send confirmation email to visitor
+        try {
+          const confirmationResult = await sendConfirmationEmail(submission);
+          if (confirmationResult.success) {
+            console.log('Confirmation email sent successfully:', confirmationResult.messageId);
+          } else {
+            console.error('Failed to send confirmation email:', confirmationResult.error);
+          }
+        } catch (confirmationError) {
+          console.error('Error sending confirmation email:', confirmationError);
+        }
       } catch (emailError) {
         console.error('Email sending error:', emailError);
         // Don't fail the API call if email fails

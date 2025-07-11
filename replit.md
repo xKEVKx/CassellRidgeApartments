@@ -118,6 +118,25 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 
 ## Changelog
 
+### July 11, 2025 - Phone Number Update & Enhanced Email Confirmation System
+- **Phone Number Update**: Updated site-wide phone number to (816) 323-8797 across all pages and call buttons
+- **Enhanced Email Confirmation**: Implemented automatic confirmation emails sent to users after contact form submission
+- **Professional Email Templates**: Updated confirmation emails with complete property contact information including:
+  - Phone: (816) 323-8797 with clickable link
+  - Email: bicycleclub-w@m.knck.io with "Email Us" link
+  - Address: 7909 North Granby Avenue, Kansas City, MO 64151
+  - Office Hours: Complete schedule with Mon-Fri, Wed extended hours, Sat limited hours, Sun closed
+- **Dual Email System**: Both notification emails to property management AND confirmation emails to users now working
+- **Gallery UX Enhancement**: Removed filename display from gallery photo popups for cleaner presentation
+- **Gallery Photo Organization**: Re-sorted all 35 photos in specified order: Interior (12), Community (15), Pool (5), Fitness Center (3)
+
+#### Technical Implementation
+- **Email Configuration**: Postmark SMTP integration with dual email delivery system
+- **Contact Information**: Updated constants file with new phone number propagated to all components
+- **Email Templates**: Professional HTML templates with responsive design and proper contact formatting
+- **Error Handling**: Enhanced error logging and confirmation tracking for email delivery
+- **Database Updates**: Verified gallery photo sort order with sequential numbering 1-35
+
 ### July 11, 2025 - eplQ Ranking Image Addition & Home Page Enhancement
 - **eplQ Ranking Display**: Added eplQ City Rank #1, State Rank #16 image to home page under welcome paragraph
 - **Image Integration**: Positioned ranking image with centered alignment between welcome text and main content

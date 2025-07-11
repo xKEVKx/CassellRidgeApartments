@@ -127,7 +127,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
             <li>A member of our leasing team will contact you within 24 hours</li>
             ${submission.type === 'visit' ? '<li>We will confirm your visit date and time</li>' : ''}
             <li>We'll answer any questions you may have about our community</li>
-            <li>Feel free to call us at (816) 741-3018 if you have immediate questions</li>
+            <li>Feel free to call us at (816) 323-8797 if you have immediate questions</li>
           </ul>
         </div>
         
@@ -136,13 +136,37 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
         </div>
         
         <div style="border-top: 1px solid #e5e7eb; padding-top: 20px; margin-top: 30px;">
-          <p style="color: #666; font-size: 14px; margin: 0;">
-            <strong>Bicycle Club Apartments</strong><br>
-            8800 N Oak Trafficway<br>
-            Kansas City, MO 64155<br>
-            Phone: (816) 741-3018<br>
-            Email: leasing@bicycleclubapts.com
-          </p>
+          <h3 style="color: #333; margin-top: 0; font-size: 18px;">Contact Information</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+            <div style="flex: 1; min-width: 200px;">
+              <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong style="color: #059669;">📞 Phone</strong><br>
+                <a href="tel:(816) 323-8797" style="color: #059669; text-decoration: none;">(816) 323-8797</a>
+              </p>
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+              <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">
+                <strong style="color: #059669;">✉️ Email</strong><br>
+                <a href="mailto:bicycleclub-w@m.knck.io" style="color: #059669; text-decoration: none;">Email Us</a>
+              </p>
+            </div>
+          </div>
+          <div style="margin-top: 15px;">
+            <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">
+              <strong style="color: #059669;">📍 Address</strong><br>
+              7909 North Granby Avenue<br>
+              Kansas City, MO 64151
+            </p>
+          </div>
+          <div style="margin-top: 15px;">
+            <p style="color: #666; font-size: 14px; margin: 0;">
+              <strong style="color: #059669;">🕒 Office Hours</strong><br>
+              Mon, Tues, Thurs, Fri: 9:00AM-6:00PM<br>
+              Wed: 9:00AM-7:00PM<br>
+              Sat: 10AM-4PM<br>
+              Sun: Closed
+            </p>
+          </div>
         </div>
       </div>
     </div>
