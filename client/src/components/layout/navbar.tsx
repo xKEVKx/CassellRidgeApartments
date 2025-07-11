@@ -17,6 +17,13 @@ export default function Navbar() {
     }
   };
 
+  const handleHomeClick = (e: React.MouseEvent) => {
+    if (location === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className="bg-white/80 backdrop-blur-xl shadow-2xl sticky top-0 z-50 border-b border-slate-200/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -111,6 +118,7 @@ export default function Navbar() {
                       ) : (
                         <Link
                           href={link.href}
+                          onClick={link.href === '/' ? handleHomeClick : undefined}
                           className={`group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                             location === link.href
                               ? 'text-emerald-700'
@@ -259,7 +267,13 @@ export default function Navbar() {
                         ) : (
                           <Link
                             href={link.href}
-                            onClick={() => setIsOpen(false)}
+                            onClick={(e) => {
+                              if (link.href === '/' && location === '/') {
+                                e.preventDefault();
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                              }
+                              setIsOpen(false);
+                            }}
                             className={`group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block ${
                               location === link.href
                                 ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
