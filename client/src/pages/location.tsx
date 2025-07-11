@@ -115,6 +115,8 @@ export default function Location() {
                       <h3 className="text-xl font-semibold text-slate-900 mb-3">Office Hours</h3>
                       <div className="text-slate-600 space-y-1">
                         <div>{SITE_CONFIG.contact.hours.weekdays}</div>
+                        <div>{SITE_CONFIG.contact.hours.wednesday}</div>
+                        <div>{SITE_CONFIG.contact.hours.weekend}</div>
                         <div>{SITE_CONFIG.contact.hours.sunday}</div>
                       </div>
                     </div>
