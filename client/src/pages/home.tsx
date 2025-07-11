@@ -229,6 +229,15 @@ export default function Home() {
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light mt-4">
               Discover the perfect blend of comfort, convenience, and natural beauty at Bicycle Club. Our community is nestled in a serene, park-like setting with mature trees and expansive green space, our apartment homes offer thoughtfully designed interiors and exceptional amenities. Enjoy the charm of wood-burning fireplaces and sunrooms along with spacious closets, separate dining rooms, private patios and so much more.
             </p>
+            
+            {/* eplQ Ranking Image */}
+            <div className="flex justify-center mt-8">
+              <img 
+                src="/images/eplq-ranking.png" 
+                alt="eplQ City Rank #1, State Rank #16" 
+                className="h-20 w-auto"
+              />
+            </div>
           </div>
           
           {/* Bike Club Image */}
