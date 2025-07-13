@@ -145,12 +145,16 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - **Content Consolidation**: Location page now contains property location info, site map, and community features
 - **Page Focus**: Floor Plans page now focused exclusively on apartment layouts and specifications
 - **Enhanced Navigation**: Better content organization with property location details centralized
+- **Layout Optimization**: Repositioned Property Layout section to appear immediately after Schedule Visit button
+- **Content Flow**: Improved user journey from location → scheduling → property layout → nearby amenities
 
 #### Technical Implementation
 - **Component Transfer**: Moved entire Property Layout section including site map image and community features
 - **Import Updates**: Added Dialog components and Expand icon to Location page
-- **Content Flow**: Positioned Property Layout section after location information for logical flow
+- **Content Flow**: Positioned Property Layout section after Schedule Visit button for logical progression
 - **Map Integration**: Site map dialog functionality preserved in new location
+- **Duplicate Removal**: Eliminated duplicate Property Layout section to prevent confusion
+- **Section Ordering**: Optimized page structure for better user experience flow
 
 ### July 11, 2025 - eplQ Ranking Image Addition & Home Page Enhancement
 - **eplQ Ranking Display**: Added eplQ City Rank #1, State Rank #16 image to home page under welcome paragraph

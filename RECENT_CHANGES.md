@@ -60,6 +60,19 @@ Updated phone number throughout the site, enhanced email confirmation system, im
   - Made email address clickable with mailto: link displaying "Email Us"
   - Added consistent emerald color styling with hover effects
 
+### 7. Location Page Layout Restructuring
+- **Property Layout Section repositioning**
+- **Content flow optimization**
+- **Files modified:**
+  - `client/src/pages/location.tsx` - Moved Property Layout section to optimal position
+  - `client/src/pages/floor-plans.tsx` - Removed interactive map
+- **Changes made:**
+  - Moved Property Layout section from Floor Plans to Location page
+  - Positioned Property Layout immediately after Schedule Visit button
+  - Removed interactive map from Floor Plans page for cleaner focus
+  - Improved user journey flow: location → scheduling → property layout → nearby amenities
+  - Eliminated duplicate sections for streamlined navigation
+
 ### 6. Location Page Contact Information Updates
 - **Fixed office hours display** - Added missing Wednesday and Saturday hours
 - **Enhanced contact links** - Made phone and email clickable with proper styling
