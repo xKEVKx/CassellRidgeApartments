@@ -139,6 +139,19 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - **Database Updates**: Verified gallery photo sort order with sequential numbering 1-35
 - **Package Management**: Removed @sendgrid/mail dependency, using only nodemailer with Postmark SMTP
 
+### July 13, 2025 - Location Page Restructuring & Content Organization
+- **Property Layout Section**: Moved complete "The Property Layout" section from Floor Plans to Location page
+- **Interactive Map Removal**: Removed interactive map from Floor Plans page to reduce clutter
+- **Content Consolidation**: Location page now contains property location info, site map, and community features
+- **Page Focus**: Floor Plans page now focused exclusively on apartment layouts and specifications
+- **Enhanced Navigation**: Better content organization with property location details centralized
+
+#### Technical Implementation
+- **Component Transfer**: Moved entire Property Layout section including site map image and community features
+- **Import Updates**: Added Dialog components and Expand icon to Location page
+- **Content Flow**: Positioned Property Layout section after location information for logical flow
+- **Map Integration**: Site map dialog functionality preserved in new location
+
 ### July 11, 2025 - eplQ Ranking Image Addition & Home Page Enhancement
 - **eplQ Ranking Display**: Added eplQ City Rank #1, State Rank #16 image to home page under welcome paragraph
 - **Image Integration**: Positioned ranking image with centered alignment between welcome text and main content
