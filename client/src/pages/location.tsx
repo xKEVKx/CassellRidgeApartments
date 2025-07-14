@@ -60,11 +60,11 @@ export default function Location() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
       {/* Hero Section */}
-      <section className="relative py-32 bg-slate-900 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-900"></div>
-        <div className="absolute inset-0 opacity-10">
+      <section className="relative py-32 bg-slate-700 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-700 via-slate-600 to-emerald-700"></div>
+        <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.25) 1px, transparent 0)`,
             backgroundSize: '20px 20px'
           }}></div>
         </div>
