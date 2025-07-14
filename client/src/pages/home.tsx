@@ -135,7 +135,7 @@ export default function Home() {
             className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${HERO_IMAGE})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-800/70 to-slate-900/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/50 via-slate-800/40 to-slate-900/60" />
         </div>
         
         {/* Floating Elements */}
