@@ -1,21 +1,21 @@
 export const SITE_CONFIG = {
-  name: "Bicycle Club Apartments",
-  tagline: "Enjoy the Bicycle Club Lifestyle",
-  description: "With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness center, Bicycle Club is an ideal place to live in Kansas City.",
+  name: "Cassell Ridge Apartments",
+  tagline: "Modern Living in Knoxville",
+  description: "Experience comfortable apartment living in North Knoxville with easy access to downtown, universities, and shopping. Cassell Ridge offers modern amenities and professional management in a convenient location.",
   
   contact: {
-    phone: "(816) 323-8797",
+    phone: "(865) 357-2712",
     fax: "",
-    email: "bicycleclub-w@m.knck.io",
+    email: "info@cassellridgeapts.com",
     address: {
-      street: "7909 North Granby Avenue",
-      city: "Kansas City",
-      state: "MO",
-      zip: "64151"
+      street: "1230 Cassell Valley Way",
+      city: "Knoxville",
+      state: "TN",
+      zip: "37912"
     },
     hours: {
-      weekdays: "Mon, Tues, Thurs, Fri: 9:00AM-6:00PM",
-      wednesday: "Wed: 9:00AM-7:00PM",
+      weekdays: "Mon-Fri: 9:00AM-6:00PM",
+      wednesday: "Wed: 9:00AM-6:00PM",
       weekend: "Sat: 10AM-4PM",
       sunday: "Sun: Closed"
     }
@@ -27,10 +27,10 @@ export const SITE_CONFIG = {
     twitter: ""
   },
 
-  mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12360.81693601346!2d-94.63406309629322!3d39.238235234285405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87c058a2bdc4a009%3A0x4d1b7397483d07a1!2s7909%20N%20Granby%20Ave%2C%20Kansas%20City%2C%20MO%2064151!5e0!3m2!1sen!2sus!4v1588286735462!5m2!1sen!2sus"
+  mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3229.7856487!2d-83.9666706!3d36.0106934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885c3f4a8b0f0f0f%3A0x8b0f0f0f0f0f0f0f!2s1230%20Cassell%20Valley%20Way%2C%20Knoxville%2C%20TN%2037912!5e0!3m2!1sen!2sus!4v1588286735462!5m2!1sen!2sus"
 };
 
-export const HERO_IMAGE = "/images/gallery/bicycleclub-06.jpg";
+export const HERO_IMAGE = "/images/gallery/cassellridge-01.svg";
 
 export const NAVIGATION_LINKS = [
   { href: "/", label: "Home", isIcon: true },
@@ -50,11 +50,11 @@ export const NAVIGATION_LINKS = [
 
 export const EXTERNAL_LINKS = [
   { 
-    href: "https://55376.onlineleasing.realpage.com/", 
-    label: "Online Leasing" 
+    href: "https://my.matterport.com/show/?m=EQrEazqXEcw", 
+    label: "2-Bedroom Virtual Tour" 
   },
   { 
-    href: "https://property.onesite.realpage.com/welcomehome?siteid=3988481", 
-    label: "Residents" 
+    href: "https://my.matterport.com/models/ZJ5VJ6eqLZk", 
+    label: "3-Bedroom Virtual Tour" 
   }
 ];

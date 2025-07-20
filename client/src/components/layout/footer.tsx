@@ -12,7 +12,7 @@ export default function Footer() {
               {SITE_CONFIG.name}
             </h3>
             <p className="text-gray-300">
-              {SITE_CONFIG.tagline} in the heart of Kansas City, Missouri.
+              {SITE_CONFIG.tagline} in North Knoxville, Tennessee.
             </p>
           </div>
           
@@ -36,13 +36,13 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Resident Services</h4>
             <ul className="space-y-2">
               <li>
-                <a href="https://property.onesite.realpage.com/welcomehome?siteid=3988481" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
-                  Rent Payment
+                <a href="https://my.matterport.com/show/?m=EQrEazqXEcw" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+                  2-Bedroom Virtual Tour
                 </a>
               </li>
               <li>
-                <a href="https://property.onesite.realpage.com/welcomehome?siteid=3988481" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
-                  Maintenance Request
+                <a href="https://my.matterport.com/models/ZJ5VJ6eqLZk" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+                  3-Bedroom Virtual Tour
                 </a>
               </li>
               <li>

@@ -107,12 +107,12 @@ export default function Home() {
       return;
     }
     
-    const visitCount = parseInt(localStorage.getItem('bicycle-club-visit-count') || '0');
+    const visitCount = parseInt(localStorage.getItem('cassell-ridge-visit-count') || '0');
     const newVisitCount = visitCount + 1;
-    localStorage.setItem('bicycle-club-visit-count', newVisitCount.toString());
+    localStorage.setItem('cassell-ridge-visit-count', newVisitCount.toString());
     
     // Show ad during the first N visits (displayFrequency), then minimize after
-    const shouldShowExpanded = newVisitCount <= activeAd.displayFrequency;
+    const shouldShowExpanded = newVisitCount <= (activeAd.displayFrequency || 3);
     
     // Always show the ad component, but determine if it should start expanded or minimized
     setShowAdSlider(true);
@@ -149,19 +149,19 @@ export default function Home() {
             {/* Main Heading */}
             <div className="space-y-6">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tracking-tight">
-                ENJOY THE
+                MODERN LIVING AT
                 <span className="block bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
-                  BICYCLE CLUB
+                  CASSELL RIDGE
                 </span>
                 <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white/90">
-                  LIFESTYLE
+                  APARTMENTS
                 </span>
               </h1>
               
               <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
-                With ample space to walk in nature, easy access to city activities, gorgeous pool and fully equipped fitness room, 
-                <span className="text-emerald-400 font-medium"> Bicycle Club</span> is an ideal place to live in 
-                <span className="text-emerald-400 font-medium"> Kansas City</span>.
+                Experience comfortable apartment living in North Knoxville with easy access to downtown, universities, and shopping. 
+                <span className="text-emerald-400 font-medium"> Cassell Ridge</span> offers modern amenities and professional management in 
+                <span className="text-emerald-400 font-medium"> Knoxville, Tennessee</span>.
               </p>
             </div>
             
@@ -195,10 +195,10 @@ export default function Home() {
             {/* Feature Pills */}
             <div className="flex flex-wrap justify-center gap-4 pt-8">
               {[
-                { icon: "🏠", text: "1-2 Bedrooms", href: "/floor-plans" },
-                { icon: "🏊", text: "Resort-like Pool", href: "/#amenities" },
-                { icon: "🏋️", text: "24hr Fitness", href: "/#amenities" },
-                { icon: "🐕", text: "Dog Park", href: "/#amenities" }
+                { icon: "🏠", text: "2-3 Bedrooms", href: "/floor-plans" },
+                { icon: "🏊", text: "Swimming Pool", href: "/#amenities" },
+                { icon: "🛝", text: "Playground", href: "/#amenities" },
+                { icon: "🚗", text: "Parking", href: "/#amenities" }
               ].map((feature, index) => (
                 <Link 
                   key={index}
@@ -223,11 +223,11 @@ export default function Home() {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-10 leading-tight">
               Welcome to 
               <span className="block bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                Bicycle Club Apartments
+                Cassell Ridge Apartments
               </span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light mt-4">
-              Discover the perfect blend of comfort, convenience, and natural beauty at Bicycle Club. Our community is nestled in a serene, park-like setting with mature trees and expansive green space, our apartment homes offer thoughtfully designed interiors and exceptional amenities. Enjoy the charm of wood-burning fireplaces and sunrooms along with spacious closets, separate dining rooms, private patios and so much more.
+              Discover the perfect blend of comfort, convenience, and modern living at Cassell Ridge. Built in 2005, our 4-story community features 140 units with thoughtfully designed interiors and exceptional amenities. Enjoy spacious apartments with granite countertops, walk-in closets, washer/dryer hookups, and access to our swimming pool and playground.
             </p>
             
             {/* eplQ Ranking Image */}
@@ -502,8 +502,8 @@ export default function Home() {
                     </div>
                     <div className="flex justify-between items-center mb-4">
                       <div className="text-sm text-gray-600">
-                        <span className="block">{parseFloat(plan.bedrooms) % 1 === 0 ? Math.floor(parseFloat(plan.bedrooms)) : plan.bedrooms} Bedroom{plan.bedrooms > 1 ? 's' : ''}</span>
-                        <span className="block">{parseFloat(plan.bathrooms) % 1 === 0 ? Math.floor(parseFloat(plan.bathrooms)) : plan.bathrooms} Bathroom{plan.bathrooms > 1 ? 's' : ''}</span>
+                        <span className="block">{parseFloat(plan.bedrooms.toString()) % 1 === 0 ? Math.floor(parseFloat(plan.bedrooms.toString())) : plan.bedrooms} Bedroom{plan.bedrooms > 1 ? 's' : ''}</span>
+                        <span className="block">{parseFloat(plan.bathrooms.toString()) % 1 === 0 ? Math.floor(parseFloat(plan.bathrooms.toString())) : plan.bathrooms} Bathroom{plan.bathrooms > 1 ? 's' : ''}</span>
                       </div>
                       <div className="text-sm text-gray-600 text-right">
                         <span className="block">{plan.sqft.toLocaleString()} sq ft</span>
@@ -564,12 +564,12 @@ export default function Home() {
               <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
                 Ready to Make
                 <span className="block bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                  Bicycle Club Home?
+                  Cassell Ridge Home?
                 </span>
               </h2>
               
               <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-                Contact us today to schedule your personal tour and see why Bicycle Club Apartments is the perfect place to call home.
+                Contact us today to schedule your personal tour and see why Cassell Ridge Apartments is the perfect place to call home.
               </p>
             </div>
             
