@@ -140,8 +140,8 @@ export default function Home() {
         
         {/* Floating Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 left-10 w-32 h-32 bg-warm-brown-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-warm-brown-400/10 rounded-full blur-3xl"></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -150,7 +150,7 @@ export default function Home() {
             <div className="space-y-6">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tracking-tight">
                 MODERN LIVING AT
-                <span className="block bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-warm-brown-400 via-warm-brown-500 to-warm-brown-600 bg-clip-text text-transparent">
                   CASSELL RIDGE
                 </span>
                 <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white/90">
@@ -160,8 +160,8 @@ export default function Home() {
               
               <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
                 Experience comfortable apartment living in North Knoxville with easy access to downtown, universities, and shopping. 
-                <span className="text-emerald-400 font-medium"> Cassell Ridge</span> offers modern amenities and professional management in 
-                <span className="text-emerald-400 font-medium"> Knoxville, Tennessee</span>.
+                <span className="text-warm-brown-400 font-medium"> Cassell Ridge</span> offers modern amenities and professional management in 
+                <span className="text-warm-brown-400 font-medium"> Knoxville, Tennessee</span>.
               </p>
             </div>
             
@@ -171,10 +171,10 @@ export default function Home() {
                 trigger={
                   <Button 
                     size="lg" 
-                    className="group relative bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl border-0 transition-all duration-300 hover:scale-105"
+                    className="group relative bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 hover:from-warm-brown-600 hover:to-warm-brown-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl border-0 transition-all duration-300 hover:scale-105"
                   >
                     <span className="relative z-10">Schedule Your Tour</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                   </Button>
                 }
               />
@@ -222,7 +222,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-10 leading-tight">
               Welcome to 
-              <span className="block bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-warm-brown-600 to-warm-brown-700 bg-clip-text text-transparent">
                 Cassell Ridge Apartments
               </span>
             </h2>
@@ -246,7 +246,7 @@ export default function Home() {
             <div className="space-y-12" id="amenities">
               <div className="space-y-6">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
+                  <div className="w-1 h-8 bg-gradient-to-b from-warm-brown-500 to-warm-brown-600 rounded-full"></div>
                   <h3 className="text-3xl sm:text-4xl font-bold text-slate-900">AMENITIES</h3>
                 </div>
                 <p className="text-xl text-slate-600 leading-relaxed font-light">The lifestyle at Bicycle Club is one that offers a retreat-like atmosphere yet easy access to city activities. Live like you are on vacation every day at Bicycle Club. Our affordable rents make it all possible.</p>
@@ -262,7 +262,7 @@ export default function Home() {
                   { icon: "🏫", title: "AAA Rated School District", desc: "Park Hill School District proximity" },
                   { icon: "🚗", title: "Lighted Carports", desc: "Covered parking with lighting" }
                 ].map((feature, index) => (
-                  <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200">
+                  <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-warm-brown-200">
                     <div className="flex items-start space-x-4">
                       <div className="text-2xl">{feature.icon}</div>
                       <div>
@@ -293,17 +293,17 @@ export default function Home() {
                 <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-2xl shadow-2xl border border-slate-100 cursor-pointer transition-all duration-300 hover:shadow-3xl hover:scale-105 group z-10">
                   <div className="text-center">
                     <div className="text-sm text-slate-500 mb-1">Starting at</div>
-                    <div className="text-4xl font-bold text-slate-900 mb-1 group-hover:text-emerald-600 transition-colors">
+                    <div className="text-4xl font-bold text-slate-900 mb-1 group-hover:text-warm-brown-600 transition-colors">
                       ${lowestPrice.toLocaleString()}
                     </div>
                     <div className="text-sm text-slate-500">per month</div>
-                    <div className="mt-4 w-12 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
+                    <div className="mt-4 w-12 h-1 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
                   </div>
                 </div>
               </Link>
               
               {/* Background Decoration */}
-              <div className="absolute -top-8 -left-8 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl -z-10 opacity-60"></div>
+              <div className="absolute -top-8 -left-8 w-32 h-32 bg-gradient-to-br from-warm-brown-100 to-warm-brown-100 rounded-3xl -z-10 opacity-60"></div>
             </div>
           </div>
         </div>
@@ -334,7 +334,7 @@ export default function Home() {
             <div className="relative order-1 lg:order-2">
               <div className="space-y-6">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
+                  <div className="w-1 h-8 bg-gradient-to-b from-warm-brown-500 to-warm-brown-500 rounded-full"></div>
                   <h2 className="text-4xl font-bold text-gray-900">ACCOMMODATIONS</h2>
                 </div>
                 <p className="text-xl text-gray-600 leading-relaxed font-light">
@@ -350,7 +350,7 @@ export default function Home() {
                   { icon: "🏐", title: "Sand volleyball court", desc: "Professional sand court for recreation" },
                   { icon: "🐕", title: "Pet friendly dog park", desc: "Off-leash area for your furry friends" }
                 ].map((feature, index) => (
-                  <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200">
+                  <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-warm-brown-200">
                     <div className="flex items-start space-x-4">
                       <div className="text-2xl">{feature.icon}</div>
                       <div>
@@ -368,7 +368,7 @@ export default function Home() {
           <div className="text-center">
             <Button 
               asChild 
-              className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-3 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 hover:scale-105"
+              className="bg-gradient-to-r from-warm-brown-600 to-warm-brown-600 hover:from-warm-brown-700 hover:to-warm-brown-700 text-white px-8 py-3 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 hover:scale-105"
             >
               <Link href="/gallery">
                 <Camera className="mr-2 h-5 w-5" />
@@ -394,7 +394,7 @@ export default function Home() {
             
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
               Nature 
-              <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">
                 {" "}Meets City
               </span>
             </h2>
@@ -437,7 +437,7 @@ export default function Home() {
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="text-xl font-semibold text-white">{amenity.title}</h4>
-                      <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-sm font-medium rounded-full">
+                      <span className="px-3 py-1 bg-warm-brown-500/20 text-warm-brown-400 text-sm font-medium rounded-full">
                         {amenity.highlight}
                       </span>
                     </div>
@@ -459,7 +459,7 @@ export default function Home() {
             
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
               Find Your 
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent"> Perfect Space</span>
+              <span className="bg-gradient-to-r from-warm-brown-600 to-warm-brown-600 bg-clip-text text-transparent"> Perfect Space</span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
               Choose from our spacious 1, 2, and 3 bedroom apartment homes designed for the modern lifestyle you deserve.
@@ -507,7 +507,7 @@ export default function Home() {
                       </div>
                       <div className="text-sm text-gray-600 text-right">
                         <span className="block">{plan.sqft.toLocaleString()} sq ft</span>
-                        <Badge variant="secondary" className="text-green-700">
+                        <Badge variant="secondary" className="text-warm-brown-700">
                           From ${plan.startingPrice.toLocaleString()}
                         </Badge>
                       </div>
@@ -515,7 +515,7 @@ export default function Home() {
                     <ScheduleVisitModal
                       floorPlan={plan.name}
                       trigger={
-                        <Button className="w-full bg-green-700 hover:bg-green-800">
+                        <Button className="w-full bg-warm-brown-700 hover:bg-warm-brown-800">
                           Schedule Visit
                         </Button>
                       }
@@ -527,7 +527,7 @@ export default function Home() {
           </div>
           
           <div className="text-center mt-12">
-            <Button size="lg" asChild className="bg-green-700 hover:bg-green-800">
+            <Button size="lg" asChild className="bg-warm-brown-700 hover:bg-warm-brown-800">
               <Link href="/floor-plans">View All Floor Plans</Link>
             </Button>
           </div>
@@ -551,8 +551,8 @@ export default function Home() {
         
         {/* Floating Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-teal-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-20 left-10 w-32 h-32 bg-warm-brown-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-warm-brown-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -563,7 +563,7 @@ export default function Home() {
               
               <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
                 Ready to Make
-                <span className="block bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 bg-clip-text text-transparent">
                   Cassell Ridge Home?
                 </span>
               </h2>
@@ -581,10 +581,10 @@ export default function Home() {
                   trigger={
                     <Button 
                       size="lg" 
-                      className="group relative bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-12 py-5 text-xl font-semibold rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105"
+                      className="group relative bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 hover:from-warm-brown-600 hover:to-warm-brown-700 text-white px-12 py-5 text-xl font-semibold rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105"
                     >
                       <span className="relative z-10">Schedule Your Tour</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                     </Button>
                   }
                 />
@@ -610,7 +610,7 @@ export default function Home() {
                   { number: "AAA", label: "Rated School District" }
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
-                    <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent mb-2">
+                    <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent mb-2">
                       {stat.number}
                     </div>
                     <div className="text-slate-400 font-medium">{stat.label}</div>

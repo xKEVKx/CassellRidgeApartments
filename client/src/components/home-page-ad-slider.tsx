@@ -65,7 +65,7 @@ export default function HomePageAdSlider({ isVisible, onClose, initialMinimized 
           {/* Collapsed State - Tab Handle */}
           {!isExpanded && (
             <div 
-              className="h-32 w-16 bg-gradient-to-r from-emerald-500 to-teal-600 flex items-center justify-center cursor-pointer hover:from-emerald-600 hover:to-teal-700 transition-colors duration-200"
+              className="h-32 w-16 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 flex items-center justify-center cursor-pointer hover:from-warm-brown-600 hover:to-warm-brown-700 transition-colors duration-200"
               onClick={() => setIsExpanded(true)}
             >
               {/* Desktop: Show text, Mobile: Show arrow only */}

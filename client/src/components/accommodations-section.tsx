@@ -17,7 +17,7 @@ export function AccommodationsFeatures() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {accommodationsData.features.map((feature, index) => (
-        <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200">
+        <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-warm-brown-200">
           <div className="flex items-start space-x-4">
             <div className="text-2xl">{feature.icon}</div>
             <div>
@@ -36,7 +36,7 @@ export function AccommodationsHeader() {
   return (
     <>
       <div className="flex items-center space-x-3 mb-4">
-        <div className="w-1 h-8 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
+        <div className="w-1 h-8 bg-gradient-to-b from-warm-brown-500 to-warm-brown-500 rounded-full"></div>
         <h3 className="text-3xl sm:text-4xl font-bold text-slate-900">{accommodationsData.title}</h3>
       </div>
       <p className="text-xl text-slate-600 leading-relaxed font-light">

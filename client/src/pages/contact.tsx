@@ -25,11 +25,11 @@ export default function Contact() {
             
             <div className="space-y-6">
               <div className="flex items-start">
-                <Phone className="text-green-700 mr-4 mt-1 h-5 w-5" />
+                <Phone className="text-warm-brown-700 mr-4 mt-1 h-5 w-5" />
                 <div>
                   <h3 className="font-semibold text-gray-900">Phone</h3>
                   <p className="text-gray-600">
-                    <a href={`tel:${SITE_CONFIG.contact.phone}`} className="text-green-700 hover:underline">
+                    <a href={`tel:${SITE_CONFIG.contact.phone}`} className="text-warm-brown-700 hover:underline">
                       {SITE_CONFIG.contact.phone}
                     </a>
                   </p>
@@ -37,11 +37,11 @@ export default function Contact() {
               </div>
               
               <div className="flex items-start">
-                <Mail className="text-green-700 mr-4 mt-1 h-5 w-5" />
+                <Mail className="text-warm-brown-700 mr-4 mt-1 h-5 w-5" />
                 <div>
                   <h3 className="font-semibold text-gray-900">Email</h3>
                   <p className="text-gray-600">
-                    <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-green-700 hover:underline">
+                    <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-warm-brown-700 hover:underline">
                       Email Us
                     </a>
                   </p>
@@ -49,7 +49,7 @@ export default function Contact() {
               </div>
               
               <div className="flex items-start">
-                <MapPin className="text-green-700 mr-4 mt-1 h-5 w-5" />
+                <MapPin className="text-warm-brown-700 mr-4 mt-1 h-5 w-5" />
                 <div>
                   <h3 className="font-semibold text-gray-900">Address</h3>
                   <p className="text-gray-600">
@@ -60,7 +60,7 @@ export default function Contact() {
               </div>
               
               <div className="flex items-start">
-                <Clock className="text-green-700 mr-4 mt-1 h-5 w-5" />
+                <Clock className="text-warm-brown-700 mr-4 mt-1 h-5 w-5" />
                 <div>
                   <h3 className="font-semibold text-gray-900">Office Hours</h3>
                   <p className="text-gray-600">

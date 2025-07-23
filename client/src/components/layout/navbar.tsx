@@ -37,7 +37,7 @@ export default function Navbar() {
                     alt="Cassell Ridge Apartments Logo" 
                     className="h-12 w-auto transition-all duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute -inset-2 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
+                  <div className="absolute -inset-2 bg-gradient-to-br from-warm-brown-500/10 to-warm-brown-500/10 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
                 </div>
               </div>
             </Link>
@@ -57,14 +57,14 @@ export default function Navbar() {
                           <button 
                             className={`group px-4 py-2 text-sm font-semibold transition-all duration-300 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent outline-none border-none ${
                               link.subItems.some(subItem => location === subItem.href)
-                                ? 'text-emerald-700'
-                                : 'text-slate-700 hover:text-emerald-600'
+                                ? 'text-warm-brown-700'
+                                : 'text-slate-700 hover:text-warm-brown-600'
                             }`}
                           >
                             <span className="relative flex items-center">
                               {link.label}
                               <ChevronDown className="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" />
-                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 ${
                                 link.subItems.some(subItem => location === subItem.href) ? 'w-full' : 'w-0 group-hover:w-full'
                               }`}></div>
                             </span>
@@ -77,8 +77,8 @@ export default function Navbar() {
                                 href={subItem.href}
                                 className={`w-full px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
                                   location === subItem.href
-                                    ? 'text-emerald-700 font-semibold bg-emerald-50'
-                                    : 'text-slate-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 hover:text-emerald-600 hover:shadow-sm'
+                                    ? 'text-warm-brown-700 font-semibold bg-warm-brown-50'
+                                    : 'text-slate-700 hover:bg-gradient-to-r hover:from-warm-brown-50 hover:to-warm-brown-50 hover:text-warm-brown-600 hover:shadow-sm'
                                 }`}
                               >
                                 {subItem.label}
@@ -93,22 +93,22 @@ export default function Navbar() {
                           href={link.href}
                           className={`group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                             location === link.href
-                              ? 'text-emerald-700'
-                              : 'text-slate-700 hover:text-emerald-600'
+                              ? 'text-warm-brown-700'
+                              : 'text-slate-700 hover:text-warm-brown-600'
                           }`}
                         >
                           <span className="relative flex items-center">
                             {link.isIcon ? (
                               <>
                                 <Home className="w-5 h-5" />
-                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 ${
                                   location === link.href ? 'w-5' : 'w-0 group-hover:w-5'
                                 }`}></div>
                               </>
                             ) : (
                               <>
                                 {link.label}
-                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 ${
                                   location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
                                 }`}></div>
                               </>
@@ -121,22 +121,22 @@ export default function Navbar() {
                           onClick={link.href === '/' ? handleHomeClick : undefined}
                           className={`group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                             location === link.href
-                              ? 'text-emerald-700'
-                              : 'text-slate-700 hover:text-emerald-600'
+                              ? 'text-warm-brown-700'
+                              : 'text-slate-700 hover:text-warm-brown-600'
                           }`}
                         >
                           <span className="relative flex items-center">
                             {link.isIcon ? (
                               <>
                                 <Home className="w-5 h-5" />
-                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 ${
                                   location === link.href ? 'w-5' : 'w-0 group-hover:w-5'
                                 }`}></div>
                               </>
                             ) : (
                               <>
                                 {link.label}
-                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 ${
                                   location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
                                 }`}></div>
                               </>
@@ -157,12 +157,12 @@ export default function Navbar() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group px-4 py-2 rounded-2xl text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-all duration-300"
+                      className="group px-4 py-2 rounded-2xl text-sm font-semibold text-slate-700 hover:text-warm-brown-600 transition-all duration-300"
                     >
                       <span className="relative flex items-center">
                         {link.label}
                         <ExternalLink className="w-3 h-3 ml-1" />
-                        <div className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 w-0 group-hover:w-full"></div>
+                        <div className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 w-0 group-hover:w-full"></div>
                       </span>
                     </a>
                     {/* Separator after each external link except the last one */}
@@ -175,7 +175,7 @@ export default function Navbar() {
                 {/* Call Button - same structure as other items */}
                 <div className="relative">
                   <Button 
-                    className="group bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-3 xl:px-4 py-2 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
+                    className="group bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-3 xl:px-4 py-2 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
                     asChild
                   >
                     <a href={`tel:${SITE_CONFIG.contact.phone}`}>
@@ -195,7 +195,7 @@ export default function Navbar() {
                 <Button 
                   variant="ghost" 
                   size="icon"
-                  className="group bg-slate-100 hover:bg-slate-200 p-3 rounded-2xl text-slate-700 hover:text-emerald-600 transition-all duration-300"
+                  className="group bg-slate-100 hover:bg-slate-200 p-3 rounded-2xl text-slate-700 hover:text-warm-brown-600 transition-all duration-300"
                 >
                   <Menu className="h-6 w-6 transition-transform group-hover:scale-110" />
                 </Button>
@@ -226,13 +226,13 @@ export default function Navbar() {
                               onClick={() => setIsOpen(false)}
                               className={`group px-6 py-3 rounded-2xl text-base font-medium transition-all duration-300 block ${
                                 location === subItem.href
-                                  ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
-                                  : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                                  ? 'bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 text-white shadow-xl'
+                                  : 'text-slate-700 hover:bg-slate-100 hover:text-warm-brown-600 hover:shadow-lg'
                               }`}
                             >
                               <span className="relative">
                                 {subItem.label}
-                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                                <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 ${
                                   location === subItem.href ? 'w-full' : 'w-0 group-hover:w-full'
                                 }`}></div>
                               </span>
@@ -246,8 +246,8 @@ export default function Navbar() {
                             onClick={() => setIsOpen(false)}
                             className={`group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block ${
                               location === link.href
-                                ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
-                                : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                                ? 'bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 text-white shadow-xl'
+                                : 'text-slate-700 hover:bg-slate-100 hover:text-warm-brown-600 hover:shadow-lg'
                             }`}
                           >
                             <span className="relative flex items-center">
@@ -259,7 +259,7 @@ export default function Navbar() {
                               ) : (
                                 link.label
                               )}
-                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 ${
                                 location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
                               }`}></div>
                             </span>
@@ -276,8 +276,8 @@ export default function Navbar() {
                             }}
                             className={`group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block ${
                               location === link.href
-                                ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-xl'
-                                : 'text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg'
+                                ? 'bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 text-white shadow-xl'
+                                : 'text-slate-700 hover:bg-slate-100 hover:text-warm-brown-600 hover:shadow-lg'
                             }`}
                           >
                             <span className="relative flex items-center">
@@ -289,7 +289,7 @@ export default function Navbar() {
                               ) : (
                                 link.label
                               )}
-                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300 ${
+                              <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 ${
                                 location === link.href ? 'w-full' : 'w-0 group-hover:w-full'
                               }`}></div>
                             </span>
@@ -307,7 +307,7 @@ export default function Navbar() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setIsOpen(false)}
-                      className="group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block text-slate-700 hover:bg-slate-100 hover:text-emerald-600 hover:shadow-lg"
+                      className="group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block text-slate-700 hover:bg-slate-100 hover:text-warm-brown-600 hover:shadow-lg"
                     >
                       <span className="relative flex items-center">
                         {link.label}
@@ -319,7 +319,7 @@ export default function Navbar() {
                   {/* Call Button */}
                   <div className="mt-12 pt-8 border-t border-slate-200">
                     <Button 
-                      className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-4 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
+                      className="w-full bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-6 py-4 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
                       asChild
                     >
                       <a href={`tel:${SITE_CONFIG.contact.phone}`}>

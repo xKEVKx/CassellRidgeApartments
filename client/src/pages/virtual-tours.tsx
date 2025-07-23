@@ -34,7 +34,7 @@ export default function VirtualTours() {
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
       {/* Hero Section */}
       <section className="relative py-32 bg-slate-900 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-warm-brown-900"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
@@ -44,14 +44,14 @@ export default function VirtualTours() {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8">
-            <div className="inline-flex items-center px-4 py-2 bg-emerald-500/20 rounded-full text-emerald-400 text-sm font-semibold backdrop-blur-sm">
+            <div className="inline-flex items-center px-4 py-2 bg-warm-brown-500/20 rounded-full text-warm-brown-400 text-sm font-semibold backdrop-blur-sm">
               <Play className="w-4 h-4 mr-2" />
               Virtual Experience
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Virtual 
-              <span className="block bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">
                 Tours
               </span>
             </h1>
@@ -97,9 +97,9 @@ export default function VirtualTours() {
                   
                   {/* Type Badge */}
                   <div className="absolute top-4 left-4">
-                    <div className="flex items-center space-x-2 px-3 py-1 bg-emerald-500/20 backdrop-blur-md rounded-full border border-emerald-400/30">
-                      <div className="text-emerald-400">{tour.icon}</div>
-                      <span className="text-emerald-400 text-sm font-medium">{tour.type}</span>
+                    <div className="flex items-center space-x-2 px-3 py-1 bg-warm-brown-500/20 backdrop-blur-md rounded-full border border-warm-brown-400/30">
+                      <div className="text-warm-brown-400">{tour.icon}</div>
+                      <span className="text-warm-brown-400 text-sm font-medium">{tour.type}</span>
                     </div>
                   </div>
                 </div>
@@ -110,7 +110,7 @@ export default function VirtualTours() {
                     <p className="text-slate-600 leading-relaxed flex-1">{tour.description}</p>
                     
                     <Button 
-                      className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105 mt-auto"
+                      className="w-full bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105 mt-auto"
                       asChild
                     >
                       <a href={tour.videoUrl} target="_blank" rel="noopener noreferrer">
@@ -142,7 +142,7 @@ export default function VirtualTours() {
                 trigger={
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-xl transition-all duration-300 hover:scale-105"
+                    className="bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-xl transition-all duration-300 hover:scale-105"
                   >
                     Schedule In-Person Tour
                   </Button>

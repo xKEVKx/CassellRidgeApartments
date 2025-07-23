@@ -75,8 +75,8 @@ export default function FloorPlans() {
                   <div className="space-y-6 flex-1">
                     <div className="grid grid-cols-3 gap-6">
                       <div className="text-center">
-                        <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                          <Bed className="w-6 h-6 text-emerald-600" />
+                        <div className="w-12 h-12 bg-warm-brown-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                          <Bed className="w-6 h-6 text-warm-brown-600" />
                         </div>
                         <div className="text-sm font-medium text-slate-500 mb-1">Bedrooms</div>
                         <div className="text-2xl font-bold text-slate-900">{parseFloat(plan.bedrooms) % 1 === 0 ? Math.floor(parseFloat(plan.bedrooms)) : plan.bedrooms}</div>
@@ -111,7 +111,7 @@ export default function FloorPlans() {
                     
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-slate-600 font-medium">Rent Starting at:</span>
-                      <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 text-lg font-bold">
+                      <Badge className="bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 text-white px-4 py-2 text-lg font-bold">
                         ${plan.startingPrice.toLocaleString()}
                       </Badge>
                     </div>
@@ -120,7 +120,7 @@ export default function FloorPlans() {
                       floorPlan={plan.name}
                       trigger={
                         <Button 
-                          className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+                          className="w-full bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
                           size="lg"
                         >
                           Schedule Visit

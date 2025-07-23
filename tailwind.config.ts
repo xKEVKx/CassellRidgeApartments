@@ -51,6 +51,18 @@ export default {
           "4": "var(--chart-4)",
           "5": "var(--chart-5)",
         },
+        'warm-brown': {
+          50: '#fdf8f6',
+          100: '#f2e8e5',
+          200: '#ebd0c9',
+          300: '#dab0a1',
+          400: '#c58d7a',
+          500: '#98453e',
+          600: '#8b3e37',
+          700: '#733228',
+          800: '#5e2b23',
+          900: '#4d2520',
+        },
         sidebar: {
           DEFAULT: "var(--sidebar-background)",
           foreground: "var(--sidebar-foreground)",

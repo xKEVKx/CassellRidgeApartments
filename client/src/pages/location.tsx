@@ -61,7 +61,7 @@ export default function Location() {
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
       {/* Hero Section */}
       <section className="relative py-32 bg-slate-700 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-700 via-slate-600 to-emerald-700"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-700 via-slate-600 to-warm-brown-700"></div>
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.25) 1px, transparent 0)`,
@@ -71,14 +71,14 @@ export default function Location() {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8">
-            <div className="inline-flex items-center px-4 py-2 bg-emerald-500/20 rounded-full text-emerald-400 text-sm font-semibold backdrop-blur-sm">
+            <div className="inline-flex items-center px-4 py-2 bg-warm-brown-500/20 rounded-full text-warm-brown-400 text-sm font-semibold backdrop-blur-sm">
               <MapPin className="w-4 h-4 mr-2" />
               Prime Location
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Perfect 
-              <span className="block bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">
                 Kansas City Location
               </span>
             </h1>
@@ -125,8 +125,8 @@ export default function Location() {
                     <div>
                       <h3 className="text-xl font-semibold text-slate-900 mb-3">Contact</h3>
                       <div className="text-slate-600 space-y-1">
-                        <div>Phone: <a href={`tel:${SITE_CONFIG.contact.phone}`} className="text-emerald-600 hover:text-emerald-700 hover:underline">{SITE_CONFIG.contact.phone}</a></div>
-                        <div>Email: <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-emerald-600 hover:text-emerald-700 hover:underline">Email Us</a></div>
+                        <div>Phone: <a href={`tel:${SITE_CONFIG.contact.phone}`} className="text-warm-brown-600 hover:text-warm-brown-700 hover:underline">{SITE_CONFIG.contact.phone}</a></div>
+                        <div>Email: <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-warm-brown-600 hover:text-warm-brown-700 hover:underline">Email Us</a></div>
                       </div>
                     </div>
                   </div>
@@ -136,7 +136,7 @@ export default function Location() {
                   trigger={
                     <Button 
                       size="lg" 
-                      className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-8 py-4 text-lg font-semibold rounded-2xl shadow-xl transition-all duration-300 hover:scale-105"
+                      className="w-full bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-8 py-4 text-lg font-semibold rounded-2xl shadow-xl transition-all duration-300 hover:scale-105"
                     >
                       Schedule Your Visit
                     </Button>
@@ -224,38 +224,38 @@ export default function Location() {
                 
                 <div className="space-y-4">
                   <div className="flex items-center space-x-4">
-                    <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <MapPin className="w-4 h-4 text-emerald-600" />
+                    <div className="w-8 h-8 bg-warm-brown-100 rounded-full flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-warm-brown-600" />
                     </div>
                     <span className="text-slate-700 font-medium">Resort-style pool with sun deck</span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <MapPin className="w-4 h-4 text-emerald-600" />
+                    <div className="w-8 h-8 bg-warm-brown-100 rounded-full flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-warm-brown-600" />
                     </div>
                     <span className="text-slate-700 font-medium">Sand volleyball court</span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <MapPin className="w-4 h-4 text-emerald-600" />
+                    <div className="w-8 h-8 bg-warm-brown-100 rounded-full flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-warm-brown-600" />
                     </div>
                     <span className="text-slate-700 font-medium">24-hour fitness center</span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <MapPin className="w-4 h-4 text-emerald-600" />
+                    <div className="w-8 h-8 bg-warm-brown-100 rounded-full flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-warm-brown-600" />
                     </div>
                     <span className="text-slate-700 font-medium">Off-leash dog park</span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <MapPin className="w-4 h-4 text-emerald-600" />
+                    <div className="w-8 h-8 bg-warm-brown-100 rounded-full flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-warm-brown-600" />
                     </div>
                     <span className="text-slate-700 font-medium">Lush landscaping throughout</span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <MapPin className="w-4 h-4 text-emerald-600" />
+                    <div className="w-8 h-8 bg-warm-brown-100 rounded-full flex items-center justify-center">
+                      <MapPin className="w-4 h-4 text-warm-brown-600" />
                     </div>
                     <span className="text-slate-700 font-medium">Central location near I-29 and I-435</span>
                   </div>
@@ -283,13 +283,13 @@ export default function Location() {
               <Card key={index} className="group bg-white hover:shadow-xl transition-all duration-300 border-0 rounded-2xl">
                 <CardContent className="p-8">
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+                    <div className="flex-shrink-0 w-12 h-12 bg-warm-brown-100 rounded-xl flex items-center justify-center text-warm-brown-600 group-hover:bg-warm-brown-500 group-hover:text-white transition-colors duration-300">
                       {attraction.icon}
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">{attraction.name}</h3>
                       <p className="text-slate-600 mb-2">{attraction.description}</p>
-                      <span className="text-sm font-medium text-emerald-600">{attraction.distance}</span>
+                      <span className="text-sm font-medium text-warm-brown-600">{attraction.distance}</span>
                     </div>
                   </div>
                 </CardContent>
@@ -316,8 +316,8 @@ export default function Location() {
               <div className="space-y-4">
                 {transportation.map((item, index) => (
                   <div key={index} className="flex items-center space-x-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <Car className="w-4 h-4 text-emerald-600" />
+                    <div className="flex-shrink-0 w-8 h-8 bg-warm-brown-100 rounded-full flex items-center justify-center">
+                      <Car className="w-4 h-4 text-warm-brown-600" />
                     </div>
                     <span className="text-slate-700 font-medium">{item}</span>
                   </div>
@@ -326,9 +326,9 @@ export default function Location() {
             </div>
             
             <div className="relative">
-              <div className="bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl p-8 text-center">
+              <div className="bg-gradient-to-br from-warm-brown-100 to-warm-brown-100 rounded-3xl p-8 text-center">
                 <div className="space-y-6">
-                  <MapPin className="w-16 h-16 text-emerald-600 mx-auto" />
+                  <MapPin className="w-16 h-16 text-warm-brown-600 mx-auto" />
                   <div>
                     <h3 className="text-2xl font-bold text-slate-900 mb-2">Prime Northland Location</h3>
                     <p className="text-slate-600">
