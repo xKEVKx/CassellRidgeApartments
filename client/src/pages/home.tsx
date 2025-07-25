@@ -159,9 +159,9 @@ export default function Home() {
               </h1>
               
               <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
-                Experience comfortable apartment living in North Knoxville with easy access to downtown, universities, and shopping. 
+                Experience comfortable apartment living just 14 minutes north of downtown Knoxville with easy access to universities and shopping. 
                 <span className="text-warm-brown-400 font-medium"> Cassell Ridge</span> offers modern amenities and professional management in 
-                <span className="text-warm-brown-400 font-medium"> Knoxville, Tennessee</span>.
+                <span className="text-warm-brown-400 font-medium"> North Knoxville, Tennessee</span>.
               </p>
             </div>
             
@@ -227,7 +227,7 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light mt-4">
-              Discover the perfect blend of comfort, convenience, and modern living at Cassell Ridge. Built in 2005, our 4-story community features 140 units with thoughtfully designed interiors and exceptional amenities. Enjoy spacious apartments with granite countertops, walk-in closets, washer/dryer hookups, and access to our swimming pool and playground.
+              Built in 2005, this 4-story community features 140 modern apartments ranging from 989 to 1,150 square feet. Located just 14 minutes north of downtown Knoxville, Cassell Ridge offers convenient access to universities, shopping centers, and major highways while providing a peaceful residential setting with professional management and quality amenities.
             </p>
             
             {/* eplQ Ranking Image */}
@@ -255,12 +255,12 @@ export default function Home() {
               {/* Feature Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
-                  { icon: "🏠", title: "1 & 2 Bedrooms", desc: "Spacious layouts with modern features" },
-                  { icon: "🌿", title: "Large Patios/Balconies", desc: "Private outdoor living space" },
-                  { icon: "🔥", title: "Wood Burning Fireplace", desc: "Cozy atmosphere in select units" },
-                  { icon: "🍽️", title: "Separate Dining Rooms", desc: "Perfect for entertaining" },
-                  { icon: "🏫", title: "AAA Rated School District", desc: "Park Hill School District proximity" },
-                  { icon: "🚗", title: "Lighted Carports", desc: "Covered parking with lighting" }
+                  { icon: "🏠", title: "2 & 3 Bedrooms", desc: "Spacious layouts from 989-1,150 sq ft" },
+                  { icon: "🏊", title: "Swimming Pool", desc: "Outdoor pool for relaxation and recreation" },
+                  { icon: "🔥", title: "Fireplace", desc: "Cozy fireplace in select units" },
+                  { icon: "🍽️", title: "Granite Countertops", desc: "Beautiful granite in kitchen and bath" },
+                  { icon: "👗", title: "Walk-in Closets", desc: "Spacious storage in all units" },
+                  { icon: "🚗", title: "Parking Available", desc: "Convenient on-site parking" }
                 ].map((feature, index) => (
                   <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-warm-brown-200">
                     <div className="flex items-start space-x-4">

@@ -50,11 +50,11 @@ export const NAVIGATION_LINKS = [
 
 export const EXTERNAL_LINKS = [
   { 
-    href: "https://my.matterport.com/show/?m=EQrEazqXEcw", 
+    href: "https://discover.matterport.com/space/EQrEazqXEcw", 
     label: "2-Bedroom Virtual Tour" 
   },
   { 
-    href: "https://my.matterport.com/models/ZJ5VJ6eqLZk", 
+    href: "https://discover.matterport.com/space/ZJ5VJ6eqLZk", 
     label: "3-Bedroom Virtual Tour" 
   }
 ];

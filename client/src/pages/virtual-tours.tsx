@@ -13,7 +13,7 @@ export default function VirtualTours() {
     {
       id: 1,
       title: "Virtual Property Tour",
-      description: "Take a comprehensive virtual walkthrough of our beautiful community and see what makes Bicycle Club Apartments special.",
+      description: "Take a comprehensive virtual walkthrough of our beautiful community and see what makes Cassell Ridge Apartments special.",
       thumbnail: "/images/gallery/exterior/building-exterior-2.jpg",
       videoUrl: "https://www.youtube.com/watch?v=2UTDoEzRb-o",
       icon: <MapPin className="w-6 h-6" />,
@@ -57,7 +57,7 @@ export default function VirtualTours() {
             </h1>
             
             <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-              Experience Bicycle Club Apartments from the comfort of your home. Take a virtual tour of our community, amenities, and apartment homes.
+              Experience Cassell Ridge Apartments from the comfort of your home. Take a virtual tour of our community, amenities, and apartment homes.
             </p>
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function VirtualTours() {
               Explore Our Community
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Get a comprehensive look at Bicycle Club Apartments through our virtual tours. See our amenities, floor plans, and beautiful community.
+              Get a comprehensive look at Cassell Ridge Apartments through our virtual tours. See our amenities, floor plans, and beautiful community.
             </p>
           </div>
           
@@ -134,7 +134,7 @@ export default function VirtualTours() {
               Ready to See More?
             </h2>
             <p className="text-xl text-slate-600 leading-relaxed">
-              While our virtual tours give you a great overview, there's nothing like experiencing Bicycle Club Apartments in person. Schedule your visit today!
+              While our virtual tours give you a great overview, there's nothing like experiencing Cassell Ridge Apartments in person. Schedule your visit today!
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

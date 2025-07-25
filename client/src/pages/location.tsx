@@ -14,25 +14,25 @@ export default function Location() {
   const nearbyAttractions = [
     {
       icon: <ShoppingBag className="h-6 w-6" />,
-      name: "Zona Rosa",
-      description: "Outdoor shopping center",
-      distance: "10 minutes"
+      name: "5103 Clinton Hwy Shopping Center",
+      description: "Convenient shopping center",
+      distance: "4 minutes"
     },
     {
       icon: <ShoppingBag className="h-6 w-6" />,
-      name: "Northland Shopping Center",
+      name: "Clinton Plaza",
       description: "Local shopping destination",
-      distance: "5 minutes"
+      distance: "4 minutes"
     },
     {
       icon: <School className="h-6 w-6" />,
-      name: "Park Hill School District",
-      description: "AAA Rated school district",
-      distance: "2 minutes"
+      name: "South College",
+      description: "Private college campus",
+      distance: "10 minutes"
     },
     {
       icon: <School className="h-6 w-6" />,
-      name: "University of Missouri-Kansas City",
+      name: "University of Tennessee-Knoxville",
       description: "Major university campus",
       distance: "20 minutes"
     },
@@ -40,11 +40,11 @@ export default function Location() {
       icon: <Utensils className="h-6 w-6" />,
       name: "Northland Dining",
       description: "Restaurants & cafes",
-      distance: "5-15 minutes"
+      distance: "5-14 minutes"
     },
     {
       icon: <Plane className="h-6 w-6" />,
-      name: "Kansas City International Airport",
+      name: "Knoxville International Airport",
       description: "Major airport",
       distance: "30 minutes"
     }
@@ -52,7 +52,7 @@ export default function Location() {
 
   const transportation = [
     "Easy access to I-29 and I-435",
-    "Close to downtown Kansas City",
+    "Close to downtown Knoxville",
     "Public transportation available",
     "Airport within 30 minutes"
   ];
@@ -79,13 +79,13 @@ export default function Location() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Perfect 
               <span className="block bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">
-                Kansas City Location
+                Knoxville Location
               </span>
             </h1>
             
             <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-              Bicycle Club Apartments is just minutes to Kansas City dining, retail shopping, and area colleges. 
-              Easy access to downtown Kansas City and major highways.
+              Bicycle Club Apartments is just minutes to Knoxville dining, retail shopping, and area colleges. 
+              Easy access to downtown Knoxville and major highways.
             </p>
           </div>
         </div>
@@ -218,7 +218,7 @@ export default function Location() {
                     Community Features
                   </h3>
                   <p className="text-xl text-slate-600 leading-relaxed">
-                    Our thoughtfully designed community offers resort-style amenities, beautifully landscaped grounds, and convenient access to all that Kansas City has to offer.
+                    Our thoughtfully designed community offers resort-style amenities, beautifully landscaped grounds, and convenient access to all that Knoxville has to offer.
                   </p>
                 </div>
                 
@@ -309,7 +309,7 @@ export default function Location() {
                   Easy Access & Transportation
                 </h2>
                 <p className="text-xl text-slate-600 leading-relaxed">
-                  Our strategic location provides convenient access to major highways, public transportation, and Kansas City's key destinations.
+                  Our strategic location provides convenient access to major highways, public transportation, and Knoxville's key destinations.
                 </p>
               </div>
               
@@ -332,7 +332,7 @@ export default function Location() {
                   <div>
                     <h3 className="text-2xl font-bold text-slate-900 mb-2">Prime Northland Location</h3>
                     <p className="text-slate-600">
-                      Perfectly positioned for easy commuting to downtown Kansas City, area universities, and major shopping destinations.
+                      Perfectly positioned for easy commuting to downtown Knoxville, area universities, and major shopping destinations.
                     </p>
                   </div>
                 </div>
