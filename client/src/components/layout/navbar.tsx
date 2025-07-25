@@ -36,7 +36,7 @@ export default function Navbar() {
                     src="/images/Cassell Ridge Logo_Transparent.png" 
                     alt="Cassell Ridge Apartments Logo" 
                     className="w-auto transition-all duration-300 group-hover:scale-105"
-                    style={{ height: '200px' }}
+                    style={{ height: '300px' }}
                   />
                   <div className="absolute -inset-2 bg-gradient-to-br from-warm-brown-500/10 to-warm-brown-500/10 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
                 </div>
@@ -194,8 +194,8 @@ export default function Navbar() {
                   <Menu className="h-6 w-6 transition-transform group-hover:scale-110" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-80 bg-white/95 backdrop-blur-xl">
-                <div className="flex flex-col space-y-6 mt-8">
+              <SheetContent side="right" className="w-80 bg-white/95 backdrop-blur-xl overflow-y-auto">
+                <div className="flex flex-col space-y-6 mt-8 pb-8">
                   {/* Logo in mobile */}
                   <div className="flex justify-center pb-4 border-b border-slate-200">
                     <img 

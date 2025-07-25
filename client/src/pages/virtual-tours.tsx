@@ -13,21 +13,21 @@ export default function VirtualTours() {
   const tours = [
     {
       id: 1,
-      title: "Virtual Property Tour",
-      description: "Take a comprehensive virtual walkthrough of our beautiful community and see what makes Cassell Ridge Apartments special.",
-      thumbnail: "/images/gallery/exterior/building-exterior-2.jpg",
-      videoUrl: "https://www.youtube.com/watch?v=2UTDoEzRb-o",
-      icon: <MapPin className="w-6 h-6" />,
-      type: "Community Tour"
+      title: "2-Bedroom Virtual Tour",
+      description: "Take an immersive 3D walkthrough of our 2-bedroom apartment layout. Experience the spacious living areas, modern kitchen, and comfortable bedrooms.",
+      thumbnail: "/images/cassell-2bedroom-floorplan.jpg",
+      videoUrl: "https://discover.matterport.com/space/EQrEazqXEcw",
+      icon: <Home className="w-6 h-6" />,
+      type: "Interactive 3D Tour"
     },
     {
       id: 2,
-      title: "Virtual Tour – Montrose 2B 1.5BA",
-      description: "Explore our spacious Montrose floor plan with 2 bedrooms and 1.5 bathrooms, perfect for roommates or small families.",
-      thumbnail: "/images/floorplans/bicycleclub-montrose.jpg",
-      videoUrl: "https://youtu.be/o5WW4wkKRls",
-      icon: <Home className="w-6 h-6" />,
-      type: "Floor Plan Tour"
+      title: "3-Bedroom Virtual Tour",
+      description: "Explore our spacious 3-bedroom apartment with this interactive virtual tour. See the generous living spaces and modern amenities up close.",
+      thumbnail: "/images/cassell-3bedroom-floorplan.jpg",
+      videoUrl: "https://discover.matterport.com/space/ZJ5VJ6eqLZk",
+      icon: <Building className="w-6 h-6" />,
+      type: "Interactive 3D Tour"
     }
   ];
 
@@ -88,10 +88,13 @@ export default function VirtualTours() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     
-                    {/* Play Button Overlay */}
+                    {/* 3D Tour Overlay */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform duration-300">
-                        <Play className="w-8 h-8 text-white ml-1" />
+                      <div className="bg-black/60 backdrop-blur-md rounded-2xl px-6 py-3 flex items-center space-x-2 border border-white/30 group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                          <span className="text-black font-bold text-sm">3D</span>
+                        </div>
+                        <span className="text-white font-semibold">Interactive Tour</span>
                       </div>
                     </div>
                   </a>
@@ -115,7 +118,7 @@ export default function VirtualTours() {
                       asChild
                     >
                       <a href={tour.videoUrl} target="_blank" rel="noopener noreferrer">
-                        Watch Tour
+                        Start 3D Tour
                         <ExternalLink className="ml-2 h-4 w-4" />
                       </a>
                     </Button>
@@ -125,38 +128,7 @@ export default function VirtualTours() {
             ))}
           </div>
           
-          {/* Matterport Virtual Tours Section */}
-          <div className="bg-white rounded-3xl p-8 shadow-lg">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Interactive Floor Plan Tours</h3>
-              <p className="text-slate-600">
-                Experience our apartment layouts in immersive 3D with these interactive Matterport tours.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {VIRTUAL_TOUR_LINKS.map((link, index) => (
-                <Button
-                  key={index}
-                  className="h-auto p-6 bg-gradient-to-r from-slate-50 to-slate-100 hover:from-warm-brown-50 hover:to-warm-brown-100 text-slate-700 hover:text-warm-brown-700 border border-slate-200 hover:border-warm-brown-200 rounded-2xl transition-all duration-300 hover:scale-105"
-                  asChild
-                >
-                  <a href={link.href} target="_blank" rel="noopener noreferrer">
-                    <div className="flex items-center space-x-4 w-full">
-                      <div className="w-12 h-12 bg-warm-brown-100 rounded-xl flex items-center justify-center">
-                        <Home className="w-6 h-6 text-warm-brown-600" />
-                      </div>
-                      <div className="flex-1 text-left">
-                        <div className="font-semibold">{link.label}</div>
-                        <div className="text-sm opacity-75">Interactive 3D Tour</div>
-                      </div>
-                      <ExternalLink className="w-5 h-5" />
-                    </div>
-                  </a>
-                </Button>
-              ))}
-            </div>
-          </div>
+
         </div>
       </section>
 
