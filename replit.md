@@ -1,8 +1,8 @@
-# Bicycle Club Apartments - Apartment Complex Website
+# Cassell Ridge Apartments - LIHTC Affordable Housing Website
 
 ## Overview
 
-This is a full-stack web application for "Bicycle Club Apartments," a luxury apartment complex in Kansas City, Missouri. The application serves as a comprehensive marketing and leasing platform, featuring apartment listings, amenities, photo galleries, and contact management capabilities.
+This is a full-stack web application for "Cassell Ridge Apartments," an affordable housing community in Tyler, Texas. The application serves as a comprehensive marketing and leasing platform for Low-Income Housing Tax Credit (LIHTC) apartments, featuring apartment listings, amenities, photo galleries, contact management, and eligibility information.
 
 ## System Architecture
 
@@ -31,11 +31,12 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 ## Key Components
 
 ### Data Models
-- **Users**: Basic user authentication system
-- **Floor Plans**: Apartment layouts with pricing and availability
+- **Users**: Admin authentication system
+- **Floor Plans**: 3 apartment layouts (2 Bedroom A, 2 Bedroom B, 3 Bedroom) with LIHTC pricing
 - **Amenities**: Property and apartment-level features categorized by type
-- **Gallery Images**: Photo management with category-based organization
+- **Gallery Images**: 14 authentic photos organized by categories (Interior, Exterior, Amenities)
 - **Contact Submissions**: Lead capture and contact form management
+- **Home Page Ads**: Advertisement management system for promotions
 
 ### API Endpoints
 - `GET /api/floor-plans` - Retrieve all floor plans
@@ -45,11 +46,12 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - `POST /api/contact` - Submit contact forms and schedule visits
 
 ### Frontend Pages
-- **Home**: Hero section with call-to-action and featured content
-- **Floor Plans**: Interactive apartment layout browser with scheduling
-- **Amenities**: Categorized amenity showcase with visual elements
-- **Gallery**: Photo gallery with category filtering and lightbox functionality
+- **Home**: Hero section with LIHTC information, collapsible FAQ sections, floor plans showcase
+- **Floor Plans**: Interactive apartment layout browser with scheduling (3 plans)
+- **Gallery**: Photo gallery with 14 authentic images and lightbox functionality
 - **Contact**: Multi-purpose contact forms with lead capture
+- **Virtual Tours**: Matterport 3D tour integration
+- **Location**: Property location and nearby amenities
 
 ### UI Component System
 - Form components with validation and error handling
@@ -115,6 +117,53 @@ This is a full-stack web application for "Bicycle Club Apartments," a luxury apa
 - PostgreSQL database access
 - Static file serving capability
 - Environment variable configuration
+
+## Changelog
+
+### July 25, 2025 - Complete Cassell Ridge Transformation & Production Readiness
+- **Complete Branding Transformation**: Successfully transformed from Bicycle Club Apartments to Cassell Ridge Apartments
+- **Authentic Visual Identity**: Implemented authentic Cassell Ridge logo and hero image from source materials
+- **LIHTC Program Integration**: Added comprehensive LIHTC (Low-Income Housing Tax Credit) information with:
+  - Collapsible Students, Income Limits, and FAQ sections starting collapsed
+  - Authentic income limits and eligibility requirements
+  - Complete LIHTC program explanations and guidelines
+- **Authentic Photo Gallery**: Downloaded and integrated 14 high-quality images from password-protected gallery:
+  - 7 interior apartment photos
+  - 2 exterior building/landscape photos  
+  - 5 amenity photos (pool, fitness center, community areas)
+- **Floor Plans Update**: Updated to reflect actual Cassell Ridge offerings:
+  - 3 floor plans: 2 Bedroom A, 2 Bedroom B, 3 Bedroom
+  - All plans feature 2 full bathrooms
+  - Authentic pricing: $950 for 2BR, $1100 for 3BR
+  - Centered layout with proper responsive design
+- **Content Optimization**: 
+  - Updated "Nature Meets City" to "Comfort Meets Community" with relevant messaging
+  - Corrected statistics: 8+ Quality Amenities, 3 Floor Plan Options, LIHTC Affordable Housing
+  - Enhanced mobile navigation with larger logo and scrollable menu
+- **Technical Implementation**:
+  - PostgreSQL database with authentic Cassell Ridge data
+  - Removed KNOCK integration references
+  - Admin system for photo and content management
+  - Responsive design optimized for all devices
+- **Production Ready**: All components tested and verified working correctly
+
+#### Authentication & Access
+- Successfully accessed password-protected gallery site (maroon-lime-b9nb.squarespace.com) with "demo" password
+- Downloaded authentic marketing materials and integrated into application
+- Maintained secure admin system for ongoing content management
+
+#### LIHTC Compliance Features
+- Complete income limit tables with 1-7 person household limits
+- Student eligibility exceptions and restrictions clearly outlined
+- FAQ section covering common LIHTC program questions
+- Collapsible sections for better user experience and content organization
+
+#### Visual & UX Enhancements
+- Modern card-based design for amenities and floor plans
+- Smooth animations and transitions throughout
+- Professional color scheme using warm brown gradients
+- Mobile-first responsive design with enhanced navigation
+- Authentic imagery showcasing actual property amenities and interiors
 
 ## Changelog
 
