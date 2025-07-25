@@ -36,7 +36,7 @@ export default function Navbar() {
                     src="/images/Cassell Ridge Logo_Transparent.png" 
                     alt="Cassell Ridge Apartments Logo" 
                     className="w-auto transition-all duration-300 group-hover:scale-105"
-                    style={{ height: '140px' }}
+                    style={{ height: '165px' }}
                   />
                   <div className="absolute -inset-2 bg-gradient-to-br from-warm-brown-500/10 to-warm-brown-500/10 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
                 </div>
