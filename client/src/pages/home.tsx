@@ -370,6 +370,131 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* LIHTC Affordable Living Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
+              Affordable Living through the 
+              <span className="bg-gradient-to-r from-warm-brown-600 to-warm-brown-600 bg-clip-text text-transparent"> LIHTC Program</span>
+            </h2>
+            <p className="text-xl text-slate-600 max-w-5xl mx-auto leading-relaxed font-light">
+              At Cassell Ridge, all of our apartment homes participate in the Low-Income Housing Tax Credit (LIHTC) program. This means we offer high-quality, affordable living for households that meet specific income and eligibility requirements. Explore the details below — and if you have any questions, our team is happy to help guide you!
+            </p>
+          </div>
+
+          {/* Three Collapsible Information Sections */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            {/* Students Section */}
+            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-white text-2xl">🎓</span>
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">STUDENTS</h3>
+              </div>
+              
+              <div className="space-y-4">
+                <p className="text-slate-600 leading-relaxed">
+                  Because of program requirements, households made up entirely of full-time students must meet one of the following exceptions to qualify:
+                </p>
+                
+                <ul className="space-y-3 text-slate-600">
+                  <li className="flex items-start">
+                    <span className="text-warm-brown-500 mr-3 mt-1">•</span>
+                    <span>At least one student is married and files a joint tax return.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-warm-brown-500 mr-3 mt-1">•</span>
+                    <span>At least one student is enrolled in a job training program receiving assistance under the Job Training Partnership Act or a similar federal, state, or local program.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-warm-brown-500 mr-3 mt-1">•</span>
+                    <span>At least one student was formerly in foster care.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-warm-brown-500 mr-3 mt-1">•</span>
+                    <span>At least one student receives Temporary Assistance for Needy Families (TANF) benefits.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-warm-brown-500 mr-3 mt-1">•</span>
+                    <span>The household consists of a single parent and their children, and neither the parent nor the children are claimed as dependents by another individual.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Income Limits Section */}
+            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-white text-2xl">💰</span>
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">INCOME LIMITS</h3>
+              </div>
+              
+              <div className="space-y-4">
+                <p className="text-slate-600 leading-relaxed">
+                  To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits listed below. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements. If you have questions about your eligibility, please reach out — we're here to help!
+                </p>
+                
+                <div className="space-y-3">
+                  {[
+                    { people: "1 Person", limit: "$41,700" },
+                    { people: "2 People", limit: "$47,700" },
+                    { people: "3 People", limit: "$53,640" },
+                    { people: "4 People", limit: "$59,640" },
+                    { people: "5 People", limit: "$64,380" },
+                    { people: "6 People", limit: "$69,180" },
+                    { people: "7 People", limit: "$73,980" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex justify-between items-center py-2 border-b border-slate-200 last:border-b-0">
+                      <span className="font-medium text-slate-700">{item.people}</span>
+                      <span className="font-semibold text-warm-brown-600">{item.limit}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ Section */}
+            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-white text-2xl">❓</span>
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">FREQUENTLY ASKED QUESTIONS</h3>
+              </div>
+              
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-semibold text-slate-900 mb-2">What is the Low-Income Housing Tax Credit (LIHTC) program?</h4>
+                  <p className="text-slate-600 text-sm leading-relaxed">The LIHTC program was created to make quality housing more affordable. It allows communities like Cassell Ridge to offer homes at reduced rental rates to households that meet specific income and eligibility guidelines.</p>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold text-slate-900 mb-2">How do I know if I qualify for a LIHTC home?</h4>
+                  <p className="text-slate-600 text-sm leading-relaxed">Eligibility is primarily based on your household's gross (pre-tax) annual income and full-time student status. Review the Students and Income Limits sections above for more information.</p>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold text-slate-900 mb-2">Are all homes at Cassell Ridge part of the LIHTC program?</h4>
+                  <p className="text-slate-600 text-sm leading-relaxed">Yes, every home at Cassell Ridge is income-restricted through the LIHTC program. All residents must meet the program's income and eligibility requirements to qualify.</p>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold text-slate-900 mb-2">What if my income is over the limit?</h4>
+                  <p className="text-slate-600 text-sm leading-relaxed">Because all homes at Cassell Ridge are income-restricted, households exceeding the income limits would not qualify. If you're unsure where you stand, reach out to our team.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Ultra Modern Amenities Showcase */}
       <section className="py-20 bg-slate-900 relative overflow-hidden">
         {/* Background Pattern */}
