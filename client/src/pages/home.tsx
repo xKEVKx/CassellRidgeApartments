@@ -393,7 +393,7 @@ export default function Home() {
           </div>
 
           {/* Three Collapsible Information Sections */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="space-y-8">
             
             {/* Students Section */}
             <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
