@@ -30,7 +30,7 @@ export const SITE_CONFIG = {
   mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3229.7856487!2d-83.9666706!3d36.0106934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885c3f4a8b0f0f0f%3A0x8b0f0f0f0f0f0f0f!2s1230%20Cassell%20Valley%20Way%2C%20Knoxville%2C%20TN%2037912!5e0!3m2!1sen!2sus!4v1588286735462!5m2!1sen!2sus"
 };
 
-export const HERO_IMAGE = "/images/gallery/cassellridge-01.svg";
+export const HERO_IMAGE = "/images/cassell-hero.jpg";
 
 export const NAVIGATION_LINKS = [
   { href: "/", label: "Home", isIcon: true },

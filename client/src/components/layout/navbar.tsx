@@ -206,9 +206,9 @@ export default function Navbar() {
                   {/* Logo in mobile */}
                   <div className="flex justify-center pb-4 border-b border-slate-200">
                     <img 
-                      src="/images/bicycle-club-header-logo.png" 
-                      alt="Bicycle Club Apartments Logo" 
-                      className="h-18 w-auto"
+                      src="/images/Cassell Ridge Logo_Transparent.png" 
+                      alt="Cassell Ridge Apartments Logo" 
+                      className="h-24 w-auto"
                     />
                   </div>
                   
