@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Play, ExternalLink, Home, Building, MapPin } from "lucide-react";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
+import { VIRTUAL_TOUR_LINKS } from "@/lib/constants";
 import { useEffect } from "react";
 
 export default function VirtualTours() {
@@ -122,6 +123,39 @@ export default function VirtualTours() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+          
+          {/* Matterport Virtual Tours Section */}
+          <div className="bg-white rounded-3xl p-8 shadow-lg">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Interactive Floor Plan Tours</h3>
+              <p className="text-slate-600">
+                Experience our apartment layouts in immersive 3D with these interactive Matterport tours.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {VIRTUAL_TOUR_LINKS.map((link, index) => (
+                <Button
+                  key={index}
+                  className="h-auto p-6 bg-gradient-to-r from-slate-50 to-slate-100 hover:from-warm-brown-50 hover:to-warm-brown-100 text-slate-700 hover:text-warm-brown-700 border border-slate-200 hover:border-warm-brown-200 rounded-2xl transition-all duration-300 hover:scale-105"
+                  asChild
+                >
+                  <a href={link.href} target="_blank" rel="noopener noreferrer">
+                    <div className="flex items-center space-x-4 w-full">
+                      <div className="w-12 h-12 bg-warm-brown-100 rounded-xl flex items-center justify-center">
+                        <Home className="w-6 h-6 text-warm-brown-600" />
+                      </div>
+                      <div className="flex-1 text-left">
+                        <div className="font-semibold">{link.label}</div>
+                        <div className="text-sm opacity-75">Interactive 3D Tour</div>
+                      </div>
+                      <ExternalLink className="w-5 h-5" />
+                    </div>
+                  </a>
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
       </section>

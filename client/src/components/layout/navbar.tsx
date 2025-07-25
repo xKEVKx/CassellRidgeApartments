@@ -4,7 +4,7 @@ import { Menu, X, Phone, ChevronDown, ExternalLink, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { SITE_CONFIG, NAVIGATION_LINKS, EXTERNAL_LINKS } from "@/lib/constants";
+import { SITE_CONFIG, NAVIGATION_LINKS } from "@/lib/constants";
 
 export default function Navbar() {
   const [location] = useLocation();
@@ -88,6 +88,19 @@ export default function Navbar() {
                           ))}
                         </DropdownMenuContent>
                       </DropdownMenu>
+                    ) : link.external ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 text-slate-700 hover:text-warm-brown-600"
+                        >
+                          <span className="relative flex items-center">
+                            {link.label}
+                            <ExternalLink className="w-4 h-4 ml-1" />
+                            <div className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 w-0 group-hover:w-full"></div>
+                          </span>
+                        </a>
                     ) : (
                       link.href.startsWith('#') || link.href.startsWith('/#') ? (
                         <a
@@ -151,27 +164,7 @@ export default function Navbar() {
                   </div>
                 ))}
                 
-                {/* External Links - same structure as navigation links */}
-                {EXTERNAL_LINKS.map((link, index) => (
-                  <div key={link.href} className="relative hidden xl:block">
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group px-4 py-2 rounded-2xl text-sm font-semibold text-slate-700 hover:text-warm-brown-600 transition-all duration-300"
-                    >
-                      <span className="relative flex items-center">
-                        {link.label}
-                        <ExternalLink className="w-3 h-3 ml-1" />
-                        <div className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 w-0 group-hover:w-full"></div>
-                      </span>
-                    </a>
-                    {/* Separator after each external link except the last one */}
-                    {index < EXTERNAL_LINKS.length - 1 && (
-                      <div className="absolute -right-3 top-1/2 transform -translate-y-1/2 w-px h-4 bg-slate-300"></div>
-                    )}
-                  </div>
-                ))}
+
                 
                 {/* Call Button - same structure as other items */}
                 <div className="relative">
@@ -240,6 +233,20 @@ export default function Navbar() {
                             </Link>
                           ))}
                         </div>
+                      ) : link.external ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setIsOpen(false)}
+                          className="group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block text-slate-700 hover:bg-slate-100 hover:text-warm-brown-600 hover:shadow-lg"
+                        >
+                          <span className="relative flex items-center">
+                            {link.label}
+                            <ExternalLink className="w-4 h-4 ml-2" />
+                            <div className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 w-0 group-hover:w-full"></div>
+                          </span>
+                        </a>
                       ) : (
                         link.href.startsWith('#') || link.href.startsWith('/#') ? (
                           <a
@@ -299,23 +306,7 @@ export default function Navbar() {
                       )}
                     </div>
                   ))}
-                  
-                  {/* External Links */}
-                  {EXTERNAL_LINKS.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setIsOpen(false)}
-                      className="group px-6 py-4 rounded-2xl text-base font-semibold transition-all duration-300 block text-slate-700 hover:bg-slate-100 hover:text-warm-brown-600 hover:shadow-lg"
-                    >
-                      <span className="relative flex items-center">
-                        {link.label}
-                        <ExternalLink className="w-4 h-4 ml-2" />
-                      </span>
-                    </a>
-                  ))}
+
                   
                   {/* Call Button */}
                   <div className="mt-12 pt-8 border-t border-slate-200">
