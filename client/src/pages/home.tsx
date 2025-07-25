@@ -11,7 +11,7 @@ import { AccommodationsHeader, AccommodationsFeatures } from "@/components/accom
 import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
 import type { FloorPlan, GalleryImage, HomePageAd } from "@shared/schema";
 import { useState, useEffect } from "react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function Home() {
   const { data: floorPlans, isLoading: floorPlansLoading } = useQuery<FloorPlan[]>({
@@ -53,6 +53,11 @@ export default function Home() {
   // Home Page Ad state
   const [showAdSlider, setShowAdSlider] = useState(false);
   const [adMinimized, setAdMinimized] = useState(false);
+
+  // Collapsible sections state
+  const [studentsExpanded, setStudentsExpanded] = useState(false);
+  const [incomeLimitsExpanded, setIncomeLimitsExpanded] = useState(false);
+  const [faqExpanded, setFaqExpanded] = useState(false);
 
   useEffect(() => {
     if (rotationImages.length <= 1) return; // Don't rotate if only 1 or no images
@@ -396,37 +401,49 @@ export default function Home() {
                 <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mb-4">
                   <span className="text-white text-2xl">🎓</span>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">STUDENTS</h3>
+                <button 
+                  onClick={() => setStudentsExpanded(!studentsExpanded)}
+                  className="flex items-center justify-between w-full text-left"
+                >
+                  <h3 className="text-2xl font-bold text-slate-900">STUDENTS</h3>
+                  {studentsExpanded ? (
+                    <ChevronUp className="h-6 w-6 text-warm-brown-600" />
+                  ) : (
+                    <ChevronDown className="h-6 w-6 text-warm-brown-600" />
+                  )}
+                </button>
               </div>
               
-              <div className="space-y-4">
-                <p className="text-slate-600 leading-relaxed">
-                  Because of program requirements, households made up entirely of full-time students must meet one of the following exceptions to qualify:
-                </p>
-                
-                <ul className="space-y-3 text-slate-600">
-                  <li className="flex items-start">
-                    <span className="text-warm-brown-500 mr-3 mt-1">•</span>
-                    <span>At least one student is married and files a joint tax return.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-warm-brown-500 mr-3 mt-1">•</span>
-                    <span>At least one student is enrolled in a job training program receiving assistance under the Job Training Partnership Act or a similar federal, state, or local program.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-warm-brown-500 mr-3 mt-1">•</span>
-                    <span>At least one student was formerly in foster care.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-warm-brown-500 mr-3 mt-1">•</span>
-                    <span>At least one student receives Temporary Assistance for Needy Families (TANF) benefits.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-warm-brown-500 mr-3 mt-1">•</span>
-                    <span>The household consists of a single parent and their children, and neither the parent nor the children are claimed as dependents by another individual.</span>
-                  </li>
-                </ul>
-              </div>
+              {studentsExpanded && (
+                <div className="space-y-4 animate-in slide-in-from-top-2 duration-300">
+                  <p className="text-slate-600 leading-relaxed">
+                    Because of program requirements, households made up entirely of full-time students must meet one of the following exceptions to qualify:
+                  </p>
+                  
+                  <ul className="space-y-3 text-slate-600">
+                    <li className="flex items-start">
+                      <span className="text-warm-brown-500 mr-3 mt-1">•</span>
+                      <span>At least one student is married and files a joint tax return.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-warm-brown-500 mr-3 mt-1">•</span>
+                      <span>At least one student is enrolled in a job training program receiving assistance under the Job Training Partnership Act or a similar federal, state, or local program.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-warm-brown-500 mr-3 mt-1">•</span>
+                      <span>At least one student was formerly in foster care.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-warm-brown-500 mr-3 mt-1">•</span>
+                      <span>At least one student receives Temporary Assistance for Needy Families (TANF) benefits.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-warm-brown-500 mr-3 mt-1">•</span>
+                      <span>The household consists of a single parent and their children, and neither the parent nor the children are claimed as dependents by another individual.</span>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
 
             {/* Income Limits Section */}
@@ -435,31 +452,43 @@ export default function Home() {
                 <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mb-4">
                   <span className="text-white text-2xl">💰</span>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">INCOME LIMITS</h3>
+                <button 
+                  onClick={() => setIncomeLimitsExpanded(!incomeLimitsExpanded)}
+                  className="flex items-center justify-between w-full text-left"
+                >
+                  <h3 className="text-2xl font-bold text-slate-900">INCOME LIMITS</h3>
+                  {incomeLimitsExpanded ? (
+                    <ChevronUp className="h-6 w-6 text-warm-brown-600" />
+                  ) : (
+                    <ChevronDown className="h-6 w-6 text-warm-brown-600" />
+                  )}
+                </button>
               </div>
               
-              <div className="space-y-4">
-                <p className="text-slate-600 leading-relaxed">
-                  To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits listed below. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements. If you have questions about your eligibility, please reach out — we're here to help!
-                </p>
-                
-                <div className="space-y-3">
-                  {[
-                    { people: "1 Person", limit: "$41,700" },
-                    { people: "2 People", limit: "$47,700" },
-                    { people: "3 People", limit: "$53,640" },
-                    { people: "4 People", limit: "$59,640" },
-                    { people: "5 People", limit: "$64,380" },
-                    { people: "6 People", limit: "$69,180" },
-                    { people: "7 People", limit: "$73,980" }
-                  ].map((item, index) => (
-                    <div key={index} className="flex justify-between items-center py-2 border-b border-slate-200 last:border-b-0">
-                      <span className="font-medium text-slate-700">{item.people}</span>
-                      <span className="font-semibold text-warm-brown-600">{item.limit}</span>
-                    </div>
-                  ))}
+              {incomeLimitsExpanded && (
+                <div className="space-y-4 animate-in slide-in-from-top-2 duration-300">
+                  <p className="text-slate-600 leading-relaxed">
+                    To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits listed below. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements. If you have questions about your eligibility, please reach out — we're here to help!
+                  </p>
+                  
+                  <div className="space-y-3">
+                    {[
+                      { people: "1 Person", limit: "$41,700" },
+                      { people: "2 People", limit: "$47,700" },
+                      { people: "3 People", limit: "$53,640" },
+                      { people: "4 People", limit: "$59,640" },
+                      { people: "5 People", limit: "$64,380" },
+                      { people: "6 People", limit: "$69,180" },
+                      { people: "7 People", limit: "$73,980" }
+                    ].map((item, index) => (
+                      <div key={index} className="flex justify-between items-center py-2 border-b border-slate-200 last:border-b-0">
+                        <span className="font-medium text-slate-700">{item.people}</span>
+                        <span className="font-semibold text-warm-brown-600">{item.limit}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* FAQ Section */}
@@ -468,50 +497,62 @@ export default function Home() {
                 <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mb-4">
                   <span className="text-white text-2xl">❓</span>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">FREQUENTLY ASKED QUESTIONS</h3>
+                <button 
+                  onClick={() => setFaqExpanded(!faqExpanded)}
+                  className="flex items-center justify-between w-full text-left"
+                >
+                  <h3 className="text-2xl font-bold text-slate-900">FREQUENTLY ASKED QUESTIONS</h3>
+                  {faqExpanded ? (
+                    <ChevronUp className="h-6 w-6 text-warm-brown-600" />
+                  ) : (
+                    <ChevronDown className="h-6 w-6 text-warm-brown-600" />
+                  )}
+                </button>
               </div>
               
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">What is the Low-Income Housing Tax Credit (LIHTC) program?</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">The LIHTC program was created to make quality housing more affordable. It allows communities like Cassell Ridge to offer homes at reduced rental rates to households that meet specific income and eligibility guidelines.</p>
+              {faqExpanded && (
+                <div className="space-y-6 animate-in slide-in-from-top-2 duration-300">
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">What is the Low-Income Housing Tax Credit (LIHTC) program?</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">The LIHTC program was created to make quality housing more affordable. It allows communities like Cassell Ridge to offer homes at reduced rental rates to households that meet specific income and eligibility guidelines.</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">How do I know if I qualify for a LIHTC home?</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">Eligibility is primarily based on your household's gross (pre-tax) annual income and full-time student status. Review the Students and Income Limits sections above for more information. Our team is also available to answer any questions you have along the way!</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">Are all homes at Cassell Ridge part of the LIHTC program?</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">Yes, every home at Cassell Ridge is income-restricted through the LIHTC program. All residents must meet the program's income and eligibility requirements to qualify.</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">What if my income is over the limit?</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">Because all homes at Cassell Ridge are income-restricted, households exceeding the income limits would not qualify. If you're unsure where you stand, reach out to our team — we're happy to walk through your options with you!</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">Do I have to be a first-time renter to qualify?</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">No, you do not have to be a first-time renter. Your eligibility is based on your income and student status, not your rental history.</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">What happens if my income changes after I move in?</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">If your household income increases after you move in, you are usually allowed to remain in your home. However, certain program rules may apply if your income increases significantly. Our team will guide you through any necessary next steps if needed.</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">Can full-time students live in a LIHTC home?</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">Yes, but with some restrictions. If all household members are full-time students, you must meet one of the specific exceptions listed in the Students section to qualify.</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-2">What documents will I need to provide?</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">You'll be asked to provide documentation verifying your household income, student status (if applicable), and other standard application information. Our leasing team will provide a full checklist to help make the process easy!</p>
+                  </div>
                 </div>
-                
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">How do I know if I qualify for a LIHTC home?</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">Eligibility is primarily based on your household's gross (pre-tax) annual income and full-time student status. Review the Students and Income Limits sections above for more information. Our team is also available to answer any questions you have along the way!</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">Are all homes at Cassell Ridge part of the LIHTC program?</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">Yes, every home at Cassell Ridge is income-restricted through the LIHTC program. All residents must meet the program's income and eligibility requirements to qualify.</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">What if my income is over the limit?</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">Because all homes at Cassell Ridge are income-restricted, households exceeding the income limits would not qualify. If you're unsure where you stand, reach out to our team — we're happy to walk through your options with you!</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">Do I have to be a first-time renter to qualify?</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">No, you do not have to be a first-time renter. Your eligibility is based on your income and student status, not your rental history.</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">What happens if my income changes after I move in?</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">If your household income increases after you move in, you are usually allowed to remain in your home. However, certain program rules may apply if your income increases significantly. Our team will guide you through any necessary next steps if needed.</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">Can full-time students live in a LIHTC home?</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">Yes, but with some restrictions. If all household members are full-time students, you must meet one of the specific exceptions listed in the Students section to qualify.</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">What documents will I need to provide?</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">You'll be asked to provide documentation verifying your household income, student status (if applicable), and other standard application information. Our leasing team will provide a full checklist to help make the process easy!</p>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
