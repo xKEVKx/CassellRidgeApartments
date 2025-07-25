@@ -14,7 +14,7 @@ export default function Contact() {
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
           <p className="text-xl text-gray-600">
-            Ready to make Bicycle Club Apartments your home?
+            Ready to make Cassell Ridge Apartments your home?
           </p>
         </div>
         
@@ -65,8 +65,7 @@ export default function Contact() {
                   <h3 className="font-semibold text-gray-900">Office Hours</h3>
                   <p className="text-gray-600">
                     {SITE_CONFIG.contact.hours.weekdays}<br />
-                    {SITE_CONFIG.contact.hours.wednesday}<br />
-                    {SITE_CONFIG.contact.hours.weekend}<br />
+                    {SITE_CONFIG.contact.hours.saturday}<br />
                     {SITE_CONFIG.contact.hours.sunday}
                   </p>
                 </div>
@@ -88,7 +87,7 @@ export default function Contact() {
             allowFullScreen
             loading="lazy" 
             referrerPolicy="no-referrer-when-downgrade"
-            title="The Grove at Deerwood Location"
+            title="Cassell Ridge Apartments Location"
           />
         </div>
       </div>

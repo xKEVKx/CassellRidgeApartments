@@ -14,10 +14,9 @@ export const SITE_CONFIG = {
       zip: "37912"
     },
     hours: {
-      weekdays: "Mon-Fri: 9:00AM-6:00PM",
-      wednesday: "Wed: 9:00AM-6:00PM",
-      weekend: "Sat: 10AM-4PM",
-      sunday: "Sun: Closed"
+      weekdays: "Monday-Friday: 8AM to 5PM",
+      saturday: "Saturday: 10AM to 2PM", 
+      sunday: "Sunday: Closed"
     }
   },
 
