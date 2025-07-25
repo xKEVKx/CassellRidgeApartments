@@ -642,13 +642,13 @@ export default function Home() {
               <span className="bg-gradient-to-r from-warm-brown-600 to-warm-brown-600 bg-clip-text text-transparent"> Perfect Space</span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
-              Choose from our spacious 1, 2, and 3 bedroom apartment homes designed for the modern lifestyle you deserve.
+              Choose from our spacious 2 and 3 bedroom apartment homes, each featuring 2 full bathrooms and designed for comfortable modern living.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {floorPlansLoading ? (
-              Array.from({ length: 4 }).map((_, i) => (
+              Array.from({ length: 3 }).map((_, i) => (
                 <Card key={i} className="overflow-hidden">
                   <Skeleton className="h-64 w-full" />
                   <CardContent className="p-6">
@@ -749,7 +749,7 @@ export default function Home() {
               </h2>
               
               <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-                Contact us today to schedule your personal tour and see why Cassell Ridge Apartments is the perfect place to call home.
+                Contact us today to schedule your personal tour and discover our spacious 2 and 3 bedroom apartments with modern amenities and affordable LIHTC pricing.
               </p>
             </div>
             
@@ -785,9 +785,9 @@ export default function Home() {
               {/* Quick Stats */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 {[
-                  { number: "15+", label: "Premium Amenities" },
-                  { number: "4", label: "Floor Plan Options" },
-                  { number: "AAA", label: "Rated School District" }
+                  { number: "8+", label: "Quality Amenities" },
+                  { number: "3", label: "Floor Plan Options" },
+                  { number: "LIHTC", label: "Affordable Housing" }
                 ].map((stat, index) => (
                   <div key={index} className="text-center">
                     <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent mb-2">
