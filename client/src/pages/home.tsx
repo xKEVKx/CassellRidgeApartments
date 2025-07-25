@@ -247,12 +247,14 @@ export default function Home() {
               {/* Feature Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
-                  { icon: "🏠", title: "2 & 3 Bedrooms", desc: "Spacious layouts from 989-1,150 sq ft" },
-                  { icon: "🏊", title: "Swimming Pool", desc: "Outdoor pool for relaxation and recreation" },
-                  { icon: "🔥", title: "Fireplace", desc: "Cozy fireplace in select units" },
-                  { icon: "🍽️", title: "Granite Countertops", desc: "Beautiful granite in kitchen and bath" },
-                  { icon: "👗", title: "Walk-in Closets", desc: "Spacious storage in all units" },
-                  { icon: "🚗", title: "Parking Available", desc: "Convenient on-site parking" }
+                  { icon: "🍽️", title: "Fully-Equipped Kitchen", desc: "Modern kitchen with all appliances" },
+                  { icon: "🌐", title: "High Speed Internet Access", desc: "Fast internet connectivity available" },
+                  { icon: "❄️", title: "Air Conditioning", desc: "Climate-controlled comfort year-round" },
+                  { icon: "🚭", title: "Smoke Free", desc: "Clean, smoke-free living environment" },
+                  { icon: "🧺", title: "Washer/Dryer Hookups", desc: "Convenient in-unit laundry connections" },
+                  { icon: "♿", title: "Wheelchair Accessible (Rooms)", desc: "ADA compliant accessible units available" },
+                  { icon: "🍽️", title: "Dishwasher", desc: "Built-in dishwasher for easy cleanup" },
+                  { icon: "🏡", title: "Private Balconies/Patios (Select Units)", desc: "Outdoor space in select apartments" }
                 ].map((feature, index) => (
                   <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-warm-brown-200">
                     <div className="flex items-start space-x-4">
