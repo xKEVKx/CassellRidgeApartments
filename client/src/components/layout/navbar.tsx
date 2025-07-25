@@ -33,9 +33,9 @@ export default function Navbar() {
               <div className="flex items-center space-x-4">
                 <div className="relative">
                   <img 
-                    src="/images/cassell-ridge-logo.svg" 
+                    src="/images/Cassell Ridge Logo_Transparent.png" 
                     alt="Cassell Ridge Apartments Logo" 
-                    className="h-12 w-auto transition-all duration-300 group-hover:scale-105"
+                    className="h-14 w-auto transition-all duration-300 group-hover:scale-105"
                   />
                   <div className="absolute -inset-2 bg-gradient-to-br from-warm-brown-500/10 to-warm-brown-500/10 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
                 </div>

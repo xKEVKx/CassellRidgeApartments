@@ -36,24 +36,24 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Resident Services</h4>
             <ul className="space-y-2">
               <li>
-                <a href="https://my.matterport.com/show/?m=EQrEazqXEcw" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+                <a href="https://discover.matterport.com/space/EQrEazqXEcw" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                   2-Bedroom Virtual Tour
                 </a>
               </li>
               <li>
-                <a href="https://my.matterport.com/models/ZJ5VJ6eqLZk" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+                <a href="https://discover.matterport.com/space/ZJ5VJ6eqLZk" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                   3-Bedroom Virtual Tour
                 </a>
               </li>
               <li>
-                <a href="https://property.onesite.realpage.com/welcomehome?siteid=3988481" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
-                  Resident Portal
-                </a>
+                <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
+                  Contact Us
+                </Link>
               </li>
               <li>
-                <a href="https://55376.onlineleasing.realpage.com/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
-                  Apply Online
-                </a>
+                <Link href="/floor-plans" className="text-gray-300 hover:text-white transition-colors">
+                  Floor Plans
+                </Link>
               </li>
             </ul>
           </div>
