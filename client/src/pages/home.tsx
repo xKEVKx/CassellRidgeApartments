@@ -573,42 +573,42 @@ export default function Home() {
           <div className="text-center mb-16">
             
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
-              Nature 
+              Comfort 
               <span className="bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">
-                {" "}Meets City
+                {" "}Meets Community
               </span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              Best of all, you're just steps from North Platte Brook Park, where you'll find paved walking and biking trails, athletic fields and courts, and picnic shelters for relaxing days outdoors. Whether you're throwing a blanket down for a picnic, playing a pickup game, or simply soaking in the natural surroundings, this is outdoor living at its best. Come experience the lifestyle you've been looking for—right where city convenience meets the peaceful rhythm of nature.
+              At Cassell Ridge, you'll discover a welcoming community where modern comfort blends seamlessly with thoughtful amenities. From the moment you step through your front door, you'll experience the quality and care that goes into every detail of your home. Whether you're relaxing by the pool, staying active in our fitness center, or simply enjoying the peaceful atmosphere, this is apartment living designed around your lifestyle.
             </p>
           </div>
           
-          {/* Park Feature Cards in 2 Column Grid */}
+          {/* Community Feature Cards in 2 Column Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
               { 
-                icon: "🚴", 
-                title: "Walking & Biking Trails", 
-                desc: "Paved trails perfect for morning walks, evening runs, or biking adventures through nature.",
-                highlight: "Paved"
+                icon: "🏠", 
+                title: "Quality Apartment Homes", 
+                desc: "Thoughtfully designed 1, 2, and 3 bedroom apartments with modern features and finishes.",
+                highlight: "Modern"
               },
               { 
-                icon: "⚽", 
-                title: "Athletic Fields & Courts", 
-                desc: "Multiple courts and fields for pickup games, sports activities, and active recreation.",
-                highlight: "Multi-Sport"
+                icon: "🏊", 
+                title: "Resort-Style Pool", 
+                desc: "Beautiful swimming pool with sun deck area perfect for relaxation and recreation.",
+                highlight: "Resort-Style"
               },
               { 
-                icon: "🏞️", 
-                title: "Picnic Shelters", 
-                desc: "Covered shelters perfect for outdoor dining, family gatherings, and relaxing days in nature.",
-                highlight: "Covered"
+                icon: "💪", 
+                title: "24-Hour Fitness Center", 
+                desc: "Fully equipped fitness facility available around the clock for your active lifestyle.",
+                highlight: "24/7 Access"
               },
               { 
-                icon: "🌳", 
-                title: "Natural Surroundings", 
-                desc: "Beautiful park setting where you can soak in nature's beauty and find peaceful moments.",
-                highlight: "Serene"
+                icon: "🤝", 
+                title: "Welcoming Community", 
+                desc: "Experience the warmth of a close-knit community where neighbors become friends.",
+                highlight: "Friendly"
               }
             ].map((amenity, index) => (
               <div key={index} className="group relative p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
