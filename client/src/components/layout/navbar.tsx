@@ -27,7 +27,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white/80 backdrop-blur-xl shadow-2xl sticky top-0 z-50 border-b border-slate-200/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-32">
+        <div className="flex justify-between items-center h-24">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 group" onClick={handleLogoClick}>
               <div className="flex items-center space-x-4">
@@ -36,7 +36,7 @@ export default function Navbar() {
                     src="/images/Cassell Ridge Logo_Transparent.png" 
                     alt="Cassell Ridge Apartments Logo" 
                     className="w-auto transition-all duration-300 group-hover:scale-105"
-                    style={{ height: '120px' }}
+                    style={{ height: '140px' }}
                   />
                   <div className="absolute -inset-2 bg-gradient-to-br from-warm-brown-500/10 to-warm-brown-500/10 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
                 </div>
