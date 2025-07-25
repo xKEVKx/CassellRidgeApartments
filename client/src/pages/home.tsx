@@ -159,9 +159,8 @@ export default function Home() {
               </h1>
               
               <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
-                Experience comfortable apartment living just 14 minutes north of downtown Knoxville with easy access to universities and shopping. 
-                <span className="text-warm-brown-400 font-medium"> Cassell Ridge</span> offers modern amenities and professional management in 
-                <span className="text-warm-brown-400 font-medium"> North Knoxville, Tennessee</span>.
+                Cassell Ridge Apartments in Knoxville, TN, is ready for you to visit. Come for a visit to view the available floorplans. Experience a great selection of amenities and features at 
+                <span className="text-warm-brown-400 font-medium"> Cassell Ridge Apartments</span>. The professional leasing staff is waiting to show you all that this community has to offer.
               </p>
             </div>
             
