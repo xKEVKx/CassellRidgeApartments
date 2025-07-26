@@ -13,7 +13,7 @@ export default function Location() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
       {/* Hero Section */}
-      <section className="relative py-32 bg-slate-700 overflow-hidden">
+      <section className="relative py-20 bg-slate-700 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-700 via-slate-600 to-warm-brown-700"></div>
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0" style={{
@@ -23,22 +23,22 @@ export default function Location() {
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div className="inline-flex items-center px-4 py-2 bg-warm-brown-500/20 rounded-full text-warm-brown-400 text-sm font-semibold backdrop-blur-sm">
               <MapPin className="w-4 h-4 mr-2" />
-              Prime Location
+              Prime Tyler Location
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              Perfect 
+              Cassell Ridge 
               <span className="block bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">
-                Knoxville Location
+                Apartments
               </span>
             </h1>
             
             <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-              Bicycle Club Apartments is just minutes to Knoxville dining, retail shopping, and area colleges. 
-              Easy access to downtown Knoxville and major highways.
+              Experience affordable living in Tyler, Texas with convenient access to shopping, dining, and local amenities. 
+              Discover comfort and community at Cassell Ridge Apartments.
             </p>
           </div>
         </div>
