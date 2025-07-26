@@ -84,9 +84,8 @@ export default function Footer() {
                 <Clock className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" />
                 <div>
                   <p>{SITE_CONFIG.contact.hours.weekdays}</p>
-                  <p>{SITE_CONFIG.contact.hours.wednesday}</p>
-                  <p>{SITE_CONFIG.contact.hours.weekend}</p>
-                  <p>{SITE_CONFIG.contact.hours.sunday}</p>
+                  <p>Saturday: {SITE_CONFIG.contact.hours.saturday}</p>
+                  <p>Sunday: {SITE_CONFIG.contact.hours.sunday}</p>
                 </div>
               </div>
             </div>
