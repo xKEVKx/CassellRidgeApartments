@@ -199,20 +199,36 @@ export default function Home() {
             {/* Feature Pills */}
             <div className="flex flex-wrap justify-center gap-4 pt-8">
               {[
-                { icon: "🏠", text: "2-3 Bedrooms", href: "/floor-plans" },
-                { icon: "🏊", text: "Swimming Pool", href: "/#amenities" },
-                { icon: "🛝", text: "Playground", href: "/#amenities" },
-                { icon: "🚗", text: "Parking", href: "/#amenities" }
-              ].map((feature, index) => (
-                <Link 
-                  key={index}
-                  href={feature.href}
-                  className="flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90 text-sm font-medium hover:bg-white/20 hover:border-white/40 transition-all duration-300 cursor-pointer"
-                >
-                  <span className="text-lg">{feature.icon}</span>
-                  <span>{feature.text}</span>
-                </Link>
-              ))}
+                { icon: "🏠", text: "2-3 Bedrooms", href: "/floor-plans", isAnchor: false },
+                { icon: "🏊", text: "Swimming Pool", href: "#amenities", isAnchor: true },
+                { icon: "🛝", text: "Playground", href: "#amenities", isAnchor: true },
+                { icon: "🚗", text: "Parking", href: "#amenities", isAnchor: true }
+              ].map((feature, index) => 
+                feature.isAnchor ? (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      const element = document.querySelector('#amenities');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90 text-sm font-medium hover:bg-white/20 hover:border-white/40 transition-all duration-300 cursor-pointer"
+                  >
+                    <span className="text-lg">{feature.icon}</span>
+                    <span>{feature.text}</span>
+                  </button>
+                ) : (
+                  <Link 
+                    key={index}
+                    href={feature.href}
+                    className="flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/90 text-sm font-medium hover:bg-white/20 hover:border-white/40 transition-all duration-300 cursor-pointer"
+                  >
+                    <span className="text-lg">{feature.icon}</span>
+                    <span>{feature.text}</span>
+                  </Link>
+                )
+              )}
             </div>
             
 
