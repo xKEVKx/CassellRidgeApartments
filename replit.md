@@ -214,6 +214,16 @@ This is a full-stack web application for "Cassell Ridge Apartments," an affordab
 - Maintained responsive design throughout all changes
 - Ensured all database references remain functional and accurate
 
+### July 29, 2025 - Resident Portal & Unit Availability Integration
+- **Hero Section Updates**: Changed "Online Leasing" button to "Resident Portal" with Fortress Technologies portal link
+- **Hero Pill Navigation Fix**: Fixed hero pill buttons to properly scroll to #amenities section with smooth scrolling behavior
+- **Unit Availability Embed**: Added Fortress Technologies unit availability iframe to Floor Plans page
+  - Real-time unit availability display
+  - Online application functionality
+  - Professional styling with rounded container and shadow
+  - Responsive design with 600px height
+- **Navigation Improvements**: Replaced problematic Link components with proper anchor scrolling for better user experience
+
 ## Changelog
 
 ### July 11, 2025 - Phone Number Update & Enhanced Email Confirmation System
