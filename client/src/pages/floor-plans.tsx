@@ -140,6 +140,30 @@ export default function FloorPlans() {
         </div>
       </section>
 
+      {/* Unit Availability Embed */}
+      <section className="py-12 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+              Unit Availability
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Check real-time availability and apply online for your preferred unit.
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+            <iframe
+              src="https://www.embed.fortresstech.io/unit-availability/0ab2f339-aced-4207-846c-f6e6e52fa40e/a3f73114-63a3-4412-a20f-49d24eb01185/?ft_header=C15F1E&ft_body=0c4366&bg_border=004963&version=2"
+              width="100%"
+              height="600"
+              style={{ border: 'none' }}
+              title="Unit Availability"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
 
     </div>
   );
