@@ -412,22 +412,22 @@ export default function Home() {
           <div className="space-y-8">
             
             {/* Students Section */}
-            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div 
+              className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 cursor-pointer"
+              onClick={() => setStudentsExpanded(!studentsExpanded)}
+            >
               <div className="mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mb-4">
                   <span className="text-white text-2xl">🎓</span>
                 </div>
-                <button 
-                  onClick={() => setStudentsExpanded(!studentsExpanded)}
-                  className="flex items-center justify-between w-full text-left"
-                >
+                <div className="flex items-center justify-between w-full">
                   <h3 className="text-2xl font-bold text-slate-900">STUDENTS</h3>
                   {studentsExpanded ? (
                     <ChevronUp className="h-6 w-6 text-warm-brown-600" />
                   ) : (
                     <ChevronDown className="h-6 w-6 text-warm-brown-600" />
                   )}
-                </button>
+                </div>
               </div>
               
               {studentsExpanded && (
@@ -463,22 +463,22 @@ export default function Home() {
             </div>
 
             {/* Income Limits Section */}
-            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div 
+              className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 cursor-pointer"
+              onClick={() => setIncomeLimitsExpanded(!incomeLimitsExpanded)}
+            >
               <div className="mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mb-4">
                   <span className="text-white text-2xl">💰</span>
                 </div>
-                <button 
-                  onClick={() => setIncomeLimitsExpanded(!incomeLimitsExpanded)}
-                  className="flex items-center justify-between w-full text-left"
-                >
+                <div className="flex items-center justify-between w-full">
                   <h3 className="text-2xl font-bold text-slate-900">INCOME LIMITS</h3>
                   {incomeLimitsExpanded ? (
                     <ChevronUp className="h-6 w-6 text-warm-brown-600" />
                   ) : (
                     <ChevronDown className="h-6 w-6 text-warm-brown-600" />
                   )}
-                </button>
+                </div>
               </div>
               
               {incomeLimitsExpanded && (
@@ -508,22 +508,22 @@ export default function Home() {
             </div>
 
             {/* FAQ Section */}
-            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div 
+              className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 cursor-pointer"
+              onClick={() => setFaqExpanded(!faqExpanded)}
+            >
               <div className="mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mb-4">
                   <span className="text-white text-2xl">❓</span>
                 </div>
-                <button 
-                  onClick={() => setFaqExpanded(!faqExpanded)}
-                  className="flex items-center justify-between w-full text-left"
-                >
+                <div className="flex items-center justify-between w-full">
                   <h3 className="text-2xl font-bold text-slate-900">FREQUENTLY ASKED QUESTIONS</h3>
                   {faqExpanded ? (
                     <ChevronUp className="h-6 w-6 text-warm-brown-600" />
                   ) : (
                     <ChevronDown className="h-6 w-6 text-warm-brown-600" />
                   )}
-                </button>
+                </div>
               </div>
               
               {faqExpanded && (
