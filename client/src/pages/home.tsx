@@ -724,7 +724,7 @@ export default function Home() {
           
           <div className="text-center mt-12">
             <Button size="lg" asChild className="bg-warm-brown-700 hover:bg-warm-brown-800">
-              <Link href="/floor-plans">View All Floor Plans</Link>
+              <Link href="/floor-plans">View All Floor Plans / Availability</Link>
             </Button>
           </div>
         </div>
