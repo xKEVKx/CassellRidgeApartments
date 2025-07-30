@@ -224,6 +224,15 @@ This is a full-stack web application for "Cassell Ridge Apartments," an affordab
   - Eliminated dark background section with community feature cards
   - Direct flow from LIHTC sections to floor plans for better user experience
   - Cleaner, more focused homepage layout emphasizing core property information
+- **Floor Plans Section Content Update**: Updated descriptive text under "Find Your Perfect Space"
+  - Changed "2 and 3 bedroom" to "2 and 3-bedroom" (proper hyphenation)
+  - Changed "2 full bathrooms" to "two full bathrooms" (spelled out numbers)
+  - Changed "comfortable modern living" to "comfortable affordable living" (emphasizing LIHTC affordable housing)
+- **Office Hours Standardization**: Updated office hours formatting across all pages
+  - Saturday: Added "Saturday:" label prefix for clarity
+  - Sunday: Added "Sunday:" label prefix for consistency
+  - Maintained consistent formatting: "Saturday: 10AM to 2PM" and "Sunday: Closed"
+  - Updated in constants file ensures consistency across Contact page, Footer, Location page, and all site references
 
 ### July 29, 2025 - Resident Portal & Unit Availability Integration
 - **Hero Section Updates**: Changed "Online Leasing" button to "Resident Portal" with Fortress Technologies portal link
