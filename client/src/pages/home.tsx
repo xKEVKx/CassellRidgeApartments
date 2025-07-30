@@ -181,7 +181,7 @@ export default function Home() {
             </div>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex justify-center">
               <ScheduleVisitModal
                 trigger={
                   <Button 
@@ -193,18 +193,6 @@ export default function Home() {
                   </Button>
                 }
               />
-              
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="group relative border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 px-10 py-4 text-lg font-semibold rounded-2xl backdrop-blur-md bg-white/5 transition-all duration-300 hover:scale-105"
-                asChild
-              >
-                <a href="https://www.portal.fortresstech.io/4e8caee8-c99e-406c-864c-c8a5ba3e4a03/0614f1e8-faff-4681-9b64-4e10e778d4ef" target="_blank" rel="noopener noreferrer">
-                  Resident Portal
-                  <ExternalLink className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </a>
-              </Button>
             </div>
             
             {/* Feature Pills */}
