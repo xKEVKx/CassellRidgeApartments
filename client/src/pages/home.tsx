@@ -355,7 +355,7 @@ export default function Home() {
                   <h2 className="text-4xl font-bold text-gray-900">ACCOMMODATIONS</h2>
                 </div>
                 <p className="text-xl text-gray-600 leading-relaxed font-light">
-                  Stay active and social with community features like a 24-hour fitness center, resort-style pool and grill, perfect for summer gatherings, sand volleyball court, and multiple outdoor patio conversation areas. Pet lovers will appreciate the on-site dog park, and students benefit from access to the AAA-rated Park Hill School District.
+                  Residents enjoy a variety of on-site features, including a community pool, a fenced dog park, and a children's playground, all set in a beautiful park-like setting - perfect for families and pet lovers alike.
                 </p>
               </div>
               
