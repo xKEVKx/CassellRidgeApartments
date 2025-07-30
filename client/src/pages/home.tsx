@@ -168,8 +168,15 @@ export default function Home() {
               </h1>
               
               <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
-                Cassell Ridge Apartments in Knoxville, TN, is ready for you to visit. Come for a visit to view the available floorplans. Experience a great selection of amenities and features at 
-                <span className="text-warm-brown-400 font-medium"> Cassell Ridge Apartments</span>. The professional leasing staff is waiting to show you all that this community has to offer.
+                Looking for your perfect place to call home? We invite you to visit our beautiful property nestled in the heart of Knoxville, Tennessee. From thoughtfully designed floorplans to scenic surroundings, our community offers comfort, convenience, and Southern charm.
+              </p>
+              
+              <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed font-light">
+                Our professional and friendly leasing staff are here to help you. Let us show you around, answer your questions, and help you understand eligibility and how to apply.
+              </p>
+              
+              <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed font-light">
+                Schedule a tour today — and see all the comfort, community, and care our Knoxville property has to offer.
               </p>
             </div>
             
