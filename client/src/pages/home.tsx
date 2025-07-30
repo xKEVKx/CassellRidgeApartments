@@ -264,7 +264,7 @@ export default function Home() {
                   <div className="w-1 h-8 bg-gradient-to-b from-warm-brown-500 to-warm-brown-600 rounded-full"></div>
                   <h3 className="text-3xl sm:text-4xl font-bold text-slate-900">AMENITIES</h3>
                 </div>
-                <p className="text-xl text-slate-600 leading-relaxed font-light">The lifestyle at Bicycle Club is one that offers a retreat-like atmosphere yet easy access to city activities. Live like you are on vacation every day at Bicycle Club. Our affordable rents make it all possible.</p>
+                <p className="text-xl text-slate-600 leading-relaxed font-light">The lifestyle at Cassell Ridge is designed to offer comfort, convenience, and a retreat-like atmosphere yet easy access to city activities. Our thoughtfully maintained property and affordable rents make it all possible.</p>
               </div>
               
               {/* Feature Grid */}
