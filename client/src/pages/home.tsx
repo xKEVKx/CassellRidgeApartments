@@ -137,8 +137,11 @@ export default function Home() {
         {/* Background Video/Image */}
         <div className="absolute inset-0">
           <div 
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${HERO_IMAGE})` }}
+            className="w-full h-full bg-cover bg-no-repeat"
+            style={{ 
+              backgroundImage: `url(${HERO_IMAGE})`,
+              backgroundPosition: 'center 35%'
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/50 via-slate-800/40 to-slate-900/60" />
         </div>
