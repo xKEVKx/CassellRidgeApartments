@@ -196,7 +196,7 @@ export default function Home() {
             </div>
             
             {/* Feature Pills */}
-            <div className="flex flex-wrap justify-center gap-4 pt-8">
+            <div className="flex flex-wrap justify-center gap-4 pt-8 pb-8">
               {[
                 { icon: "🏠", text: "2-3 Bedrooms", href: "/floor-plans", isAnchor: false },
                 { icon: "🏊", text: "Swimming Pool", href: "#amenities", isAnchor: true },
