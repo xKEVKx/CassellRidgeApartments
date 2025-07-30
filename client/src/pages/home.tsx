@@ -362,10 +362,10 @@ export default function Home() {
               {/* Feature Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
                 {[
-                  { icon: "🏊", title: "Resort-like pool", desc: "Beautiful pool area with sun deck" },
-                  { icon: "🏋️", title: "24-Hour fitness center", desc: "Fully equipped fitness facilities" },
-                  { icon: "🏐", title: "Sand volleyball court", desc: "Professional sand court for recreation" },
-                  { icon: "🐕", title: "Pet friendly dog park", desc: "Off-leash area for your furry friends" }
+                  { icon: "🏊", title: "Community Pool", desc: "Relax and unwind during the warmer months" },
+                  { icon: "🐕", title: "Dog Park", desc: "A safe, open space for your furry friends to play" },
+                  { icon: "🛝", title: "Children's Play Area", desc: "Family-friendly fun in a safe, park-like setting" },
+                  { icon: "🏢", title: "Clubhouse", desc: "Meeting space available" }
                 ].map((feature, index) => (
                   <div key={index} className="group p-6 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-warm-brown-200">
                     <div className="flex items-start space-x-4">
