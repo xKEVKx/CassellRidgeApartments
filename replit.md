@@ -223,6 +223,9 @@ This is a full-stack web application for "Cassell Ridge Apartments," an affordab
   - Professional styling with rounded container and shadow
   - Responsive design with 600px height
 - **Navigation Improvements**: Replaced problematic Link components with proper anchor scrolling for better user experience
+- **Hero Image Enhancement**: Adjusted hero background positioning and zoom (120% size, center 25%) to minimize parking lot visibility and emphasize apartment buildings
+- **UI Improvements**: Made LIHTC expandable sections fully clickable (entire box) instead of just text headers for better user experience
+- **Content Updates**: Updated floor plans button text to "View All Floor Plans / Availability" to better reflect page functionality
 
 ## Changelog
 
