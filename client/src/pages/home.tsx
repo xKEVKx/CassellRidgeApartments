@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
 import HomePageAdSlider from "@/components/home-page-ad-slider";
 import { AccommodationsHeader, AccommodationsFeatures } from "@/components/accommodations-section";
@@ -377,6 +378,41 @@ export default function Home() {
                     </div>
                   </div>
                 ))}
+              </div>
+              
+              {/* Pet Policy Collapsible Section */}
+              <div className="mt-8">
+                <Collapsible>
+                  <CollapsibleTrigger className="flex items-center justify-between w-full p-4 bg-white rounded-xl border border-slate-200 hover:border-warm-brown-300 transition-colors duration-200 group">
+                    <span className="text-lg font-semibold text-slate-900 group-hover:text-warm-brown-600">Pet Policy</span>
+                    <ChevronDown className="h-5 w-5 text-slate-500 group-hover:text-warm-brown-600 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="mt-2 p-6 bg-white rounded-xl border border-slate-200 space-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="font-semibold text-slate-900">Pet Policy Type:</span>
+                        <p className="text-slate-600">Bird, Cat, Dog, Fish, Others*</p>
+                        <p className="text-xs text-slate-500 italic">*Please call leasing office for details regarding other types of pets.</p>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-slate-900">Max Number of Pets:</span>
+                        <p className="text-slate-600">2</p>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-slate-900">One-Time Pet Fee:</span>
+                        <p className="text-slate-600">$250</p>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-slate-900">Max Weight of Pets:</span>
+                        <p className="text-slate-600">35 lbs</p>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-slate-900">Monthly Rent:</span>
+                        <p className="text-slate-600">$30</p>
+                      </div>
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
               </div>
             </div>
           </div>
