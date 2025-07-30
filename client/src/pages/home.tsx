@@ -246,7 +246,10 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light mt-4">
-              Built in 2005, this 4-story community features 140 modern apartments ranging from 989 to 1,150 square feet. Located just 14 minutes north of downtown Knoxville, Cassell Ridge offers convenient access to universities, shopping centers, and major highways while providing a peaceful residential setting with professional management and quality amenities.
+              Built in 2005, this 4-story community features 140 garden style apartments ranging from 989 to 1,150 square feet. Located just 14 minutes north of downtown Knoxville, Cassell Ridge offers convenient access to universities, shopping centers, and major highways while providing a peaceful, park-like setting with professional management and quality amenities.
+            </p>
+            <p className="text-lg sm:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light mt-6">
+              Whether you're looking for a cozy two-bedroom or spacious three-bedroom layout, we have a variety of options to suit your lifestyle. Take a stroll through our beautiful grounds, enjoy the peaceful setting, and imagine yourself coming home to a community that truly feels like home.
             </p>
             
 
