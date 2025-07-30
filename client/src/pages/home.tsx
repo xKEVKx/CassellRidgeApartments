@@ -625,79 +625,7 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Ultra Modern Amenities Showcase */}
-      <section className="py-20 bg-slate-900 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
-            backgroundSize: '20px 20px'
-          }}></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
-              Comfort 
-              <span className="bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">
-                {" "}Meets Community
-              </span>
-            </h2>
-            <p className="text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              At Cassell Ridge, you'll discover a welcoming community where modern comfort blends seamlessly with thoughtful amenities. From the moment you step through your front door, you'll experience the quality and care that goes into every detail of your home. Whether you're relaxing by the pool, staying active in our fitness center, or simply enjoying the peaceful atmosphere, this is apartment living designed around your lifestyle.
-            </p>
-          </div>
-          
-          {/* Community Feature Cards in 2 Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {[
-              { 
-                icon: "🏠", 
-                title: "Quality Apartment Homes", 
-                desc: "Thoughtfully designed 1, 2, and 3 bedroom apartments with modern features and finishes.",
-                highlight: "Modern"
-              },
-              { 
-                icon: "🏊", 
-                title: "Resort-Style Pool", 
-                desc: "Beautiful swimming pool with sun deck area perfect for relaxation and recreation.",
-                highlight: "Resort-Style"
-              },
-              { 
-                icon: "💪", 
-                title: "24-Hour Fitness Center", 
-                desc: "Fully equipped fitness facility available around the clock for your active lifestyle.",
-                highlight: "24/7 Access"
-              },
-              { 
-                icon: "🤝", 
-                title: "Welcoming Community", 
-                desc: "Experience the warmth of a close-knit community where neighbors become friends.",
-                highlight: "Friendly"
-              }
-            ].map((amenity, index) => (
-              <div key={index} className="group relative p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
-                <div className="flex items-start space-x-4">
-                  <div className="text-3xl">{amenity.icon}</div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-xl font-semibold text-white">{amenity.title}</h4>
-                      <span className="px-3 py-1 bg-warm-brown-500/20 text-warm-brown-400 text-sm font-medium rounded-full">
-                        {amenity.highlight}
-                      </span>
-                    </div>
-                    <p className="text-slate-300 leading-relaxed">{amenity.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          
-        </div>
-      </section>
+
       {/* Modern Floor Plans Showcase */}
       <section className="py-20 bg-gradient-to-b from-white via-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -709,7 +637,7 @@ export default function Home() {
               <span className="bg-gradient-to-r from-warm-brown-600 to-warm-brown-600 bg-clip-text text-transparent"> Perfect Space</span>
             </h2>
             <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light">
-              Choose from our spacious 2 and 3 bedroom apartment homes, each featuring 2 full bathrooms and designed for comfortable modern living.
+              Choose from our spacious 2 and 3-bedroom apartment homes, each featuring two full bathrooms, all designed for comfortable affordable living.
             </p>
           </div>
           

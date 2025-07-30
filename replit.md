@@ -214,6 +214,17 @@ This is a full-stack web application for "Cassell Ridge Apartments," an affordab
 - Maintained responsive design throughout all changes
 - Ensured all database references remain functional and accurate
 
+### July 30, 2025 - Layout Improvements & Content Streamlining
+- **Section Layout Consistency**: Updated all LIHTC sections to have icons and text aligned on the same line:
+  - Students section: 🎓 icon inline with "STUDENTS" text
+  - Income Limits section: 💰 icon inline with "INCOME LIMITS" text
+  - FAQ section: ❓ icon inline with "FREQUENTLY ASKED QUESTIONS" text
+  - Pet Policy section: 🐾 icon inline with "Pet Policy" text
+- **Content Streamlining**: Removed "Comfort Meets Community" section to improve homepage flow
+  - Eliminated dark background section with community feature cards
+  - Direct flow from LIHTC sections to floor plans for better user experience
+  - Cleaner, more focused homepage layout emphasizing core property information
+
 ### July 29, 2025 - Resident Portal & Unit Availability Integration
 - **Hero Section Updates**: Changed "Online Leasing" button to "Resident Portal" with Fortress Technologies portal link
 - **Hero Pill Navigation Fix**: Fixed hero pill buttons to properly scroll to #amenities section with smooth scrolling behavior
