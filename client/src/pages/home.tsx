@@ -387,7 +387,10 @@ export default function Home() {
                   onClick={() => setPetPolicyExpanded(!petPolicyExpanded)}
                 >
                   <div className="flex items-center justify-between w-full">
-                    <h4 className="text-lg font-semibold text-slate-900">Pet Policy</h4>
+                    <div className="flex items-center">
+                      <span className="text-lg mr-2">🐾</span>
+                      <h4 className="text-lg font-semibold text-slate-900">Pet Policy</h4>
+                    </div>
                     {petPolicyExpanded ? (
                       <ChevronUp className="h-5 w-5 text-warm-brown-600" />
                     ) : (
