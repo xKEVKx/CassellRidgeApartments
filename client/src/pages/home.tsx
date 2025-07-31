@@ -678,7 +678,7 @@ export default function Home() {
                     <div className="flex justify-between items-center mb-4">
                       <div className="text-sm text-gray-600">
                         <span className="block">{parseFloat(plan.bedrooms.toString()) % 1 === 0 ? Math.floor(parseFloat(plan.bedrooms.toString())) : plan.bedrooms} Bedroom{plan.bedrooms > 1 ? 's' : ''}</span>
-                        <span className="block">{parseFloat(plan.bathrooms.toString()) % 1 === 0 ? Math.floor(parseFloat(plan.bathrooms.toString())) : plan.bathrooms} Bathroom{plan.bathrooms > 1 ? 's' : ''}</span>
+                        <span className="block">{parseFloat(plan.bathrooms.toString()) % 1 === 0 ? Math.floor(parseFloat(plan.bathrooms.toString())) : plan.bathrooms} Bathroom{parseFloat(plan.bathrooms.toString()) > 1 ? 's' : ''}</span>
                       </div>
                       <div className="text-sm text-gray-600 text-right">
                         <span className="block">{plan.sqft.toLocaleString()} sq ft</span>
