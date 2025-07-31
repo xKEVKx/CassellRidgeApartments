@@ -45,17 +45,17 @@ export async function sendContactNotification(submission: ContactSubmission) {
       
       <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
         <p style="color: #666; font-size: 12px;">
-          This email was sent from the Bicycle Club Apartments website contact form<br>
-          Submitted on ${new Date(submission.createdAt).toLocaleDateString('en-US', { timeZone: 'America/Chicago' })} at ${new Date(submission.createdAt).toLocaleTimeString('en-US', { timeZone: 'America/Chicago' })} CST
+          This email was sent from the Cassell Ridge Apartments website contact form<br>
+          Submitted on ${new Date(submission.createdAt).toLocaleDateString('en-US', { timeZone: 'America/New_York' })} at ${new Date(submission.createdAt).toLocaleTimeString('en-US', { timeZone: 'America/New_York' })} EST
         </p>
       </div>
     </div>
   `;
 
   const mailOptions = {
-    from: `"Bicycle Club Apartments" <manager@bicycleclubapts.com>`,
-    to: process.env.NOTIFICATION_EMAIL || 'kkohorst@everestproperties.com', // Default to correct recipient
-    replyTo: `"Bicycle Club Apartments" <manager@bicycleclubapts.com>`,
+    from: `"Cassell Ridge Apartments" <info@cassellridgeapts.com>`,
+    to: process.env.NOTIFICATION_EMAIL || 'info@cassellridgeapts.com', // Default to correct recipient
+    replyTo: `"Cassell Ridge Apartments" <info@cassellridgeapts.com>`,
     subject,
     html: htmlContent,
     text: `
@@ -70,7 +70,7 @@ ${submission.floorPlan ? `Floor Plan Interest: ${submission.floorPlan}` : ''}
 
 ${submission.message ? `Message:\n${submission.message}` : ''}
 
-Submitted on ${new Date(submission.createdAt).toLocaleDateString('en-US', { timeZone: 'America/Chicago' })} at ${new Date(submission.createdAt).toLocaleTimeString('en-US', { timeZone: 'America/Chicago' })} CST
+Submitted on ${new Date(submission.createdAt).toLocaleDateString('en-US', { timeZone: 'America/New_York' })} at ${new Date(submission.createdAt).toLocaleTimeString('en-US', { timeZone: 'America/New_York' })} EST
     `,
   };
 
@@ -86,26 +86,26 @@ Submitted on ${new Date(submission.createdAt).toLocaleDateString('en-US', { time
 
 export async function sendConfirmationEmail(submission: ContactSubmission) {
   const subject = submission.type === 'visit' 
-    ? 'Visit Request Received - Bicycle Club Apartments'
-    : 'Thank You for Your Inquiry - Bicycle Club Apartments';
+    ? 'Visit Request Received - Cassell Ridge Apartments'
+    : 'Thank You for Your Inquiry - Cassell Ridge Apartments';
 
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <div style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
-        <h1 style="margin: 0; font-size: 24px;">Bicycle Club Apartments</h1>
-        <p style="margin: 10px 0 0 0; opacity: 0.9;">Luxury Living in Kansas City, MO</p>
+      <div style="background: linear-gradient(135deg, #8b4513 0%, #654321 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
+        <h1 style="margin: 0; font-size: 24px;">Cassell Ridge Apartments</h1>
+        <p style="margin: 10px 0 0 0; opacity: 0.9;">LIHTC Affordable Housing in Knoxville, TN</p>
       </div>
       
       <div style="background-color: #fff; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-        <h2 style="color: #059669; margin-top: 0;">
+        <h2 style="color: #8b4513; margin-top: 0;">
           ${submission.type === 'visit' ? 'Visit Request Received!' : 'Thank You for Your Inquiry!'}
         </h2>
         
         <p>Dear ${submission.name},</p>
         
         <p>${submission.type === 'visit' 
-          ? 'Thank you for your interest in scheduling a visit to Bicycle Club Apartments. We have received your request and will contact you soon to confirm your visit details.'
-          : 'Thank you for your interest in Bicycle Club Apartments. We have received your inquiry and will respond to you as soon as possible.'
+          ? 'Thank you for your interest in scheduling a visit to Cassell Ridge Apartments. We have received your request and will contact you soon to confirm your visit details.'
+          : 'Thank you for your interest in Cassell Ridge Apartments. We have received your inquiry and will respond to you as soon as possible.'
         }</p>
         
         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -127,12 +127,12 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
             <li>A member of our leasing team will contact you within 24 hours</li>
             ${submission.type === 'visit' ? '<li>We will confirm your visit date and time</li>' : ''}
             <li>We'll answer any questions you may have about our community</li>
-            <li>Feel free to call us at (816) 323-8797 if you have immediate questions</li>
+            <li>Feel free to call us at (865) 357-2712 if you have immediate questions</li>
           </ul>
         </div>
         
         <div style="text-align: center; margin: 30px 0;">
-          <p style="color: #059669; font-weight: bold; margin: 0;">We look forward to welcoming you home!</p>
+          <p style="color: #8b4513; font-weight: bold; margin: 0;">We look forward to welcoming you home!</p>
         </div>
         
         <div style="border-top: 1px solid #e5e7eb; padding-top: 20px; margin-top: 30px;">
@@ -140,31 +140,30 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
           <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
             <div style="flex: 1; min-width: 200px;">
               <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">
-                <strong style="color: #059669;">📞 Phone</strong><br>
-                <a href="tel:(816) 323-8797" style="color: #059669; text-decoration: none;">(816) 323-8797</a>
+                <strong style="color: #8b4513;">📞 Phone</strong><br>
+                <a href="tel:(865) 357-2712" style="color: #8b4513; text-decoration: none;">(865) 357-2712</a>
               </p>
             </div>
             <div style="flex: 1; min-width: 200px;">
               <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">
-                <strong style="color: #059669;">✉️ Email</strong><br>
-                <a href="mailto:bicycleclub-w@m.knck.io" style="color: #059669; text-decoration: none;">Email Us</a>
+                <strong style="color: #8b4513;">✉️ Email</strong><br>
+                <a href="mailto:info@cassellridgeapts.com" style="color: #8b4513; text-decoration: none;">Email Us</a>
               </p>
             </div>
           </div>
           <div style="margin-top: 15px;">
             <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">
-              <strong style="color: #059669;">📍 Address</strong><br>
-              7909 North Granby Avenue<br>
-              Kansas City, MO 64151
+              <strong style="color: #8b4513;">📍 Address</strong><br>
+              1230 Cassell Valley Way<br>
+              Knoxville, TN 37912
             </p>
           </div>
           <div style="margin-top: 15px;">
             <p style="color: #666; font-size: 14px; margin: 0;">
-              <strong style="color: #059669;">🕒 Office Hours</strong><br>
-              Mon, Tues, Thurs, Fri: 9:00AM-6:00PM<br>
-              Wed: 9:00AM-7:00PM<br>
-              Sat: 10AM-4PM<br>
-              Sun: Closed
+              <strong style="color: #8b4513;">🕒 Office Hours</strong><br>
+              Monday-Friday: 8AM to 5PM<br>
+              Saturday: 10AM to 2PM<br>
+              Sunday: Closed
             </p>
           </div>
         </div>
@@ -173,7 +172,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
   `;
 
   const mailOptions = {
-    from: `"Bicycle Club Apartments" <manager@bicycleclubapts.com>`,
+    from: `"Cassell Ridge Apartments" <info@cassellridgeapts.com>`,
     to: submission.email,
     subject,
     html: htmlContent,
