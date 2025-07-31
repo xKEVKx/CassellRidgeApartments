@@ -1,7 +1,7 @@
 # Cassell Ridge Apartments - LIHTC Affordable Housing Website
 
 ## Overview
-This is a full-stack web application for "Cassell Ridge Apartments," an affordable housing community in Tyler, Texas. The application serves as a comprehensive marketing and leasing platform for Low-Income Housing Tax Credit (LIHTC) apartments, featuring apartment listings, amenities, photo galleries, contact management, and eligibility information. The project aims to provide an authentic, production-ready platform reflecting Cassell Ridge's brand and offerings.
+This is a full-stack web application for "Cassell Ridge Apartments," an affordable housing community in Knoxville, Tennessee. The application serves as a comprehensive marketing and leasing platform for Low-Income Housing Tax Credit (LIHTC) apartments, featuring apartment listings, amenities, photo galleries, contact management, and eligibility information. The project aims to provide an authentic, production-ready platform reflecting Cassell Ridge's brand and offerings.
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
@@ -32,6 +32,16 @@ Preferred communication style: Simple, everyday language.
 - **Email System**: Automatic confirmation emails for contact submissions using Postmark SMTP.
 - **Dynamic Content**: Home page ad management system with configurable display frequency and date range scheduling.
 - **Accessibility**: Integrated Accessibe widget.
+
+## Recent Updates (January 2025)
+- **Email System**: Complete Postmark SMTP integration with dual email flow (notification + confirmation)
+- **Property Information**: Updated all references from Tyler, TX to Knoxville, TN with correct contact details
+- **Contact Information**: Phone (865) 357-2712, Email info@cassellridgeapts.com, Address 1230 Cassell Valley Way
+- **Email Templates**: Professional HTML templates with Cassell Ridge branding and brown color scheme
+- **TypeScript**: Resolved all compilation errors for production-ready code
+- **SEO**: Comprehensive optimization with local business schema for Knoxville market
+- **UI Improvements**: Hidden Unit Availability section pending correct embed link
+- **Testing**: Verified SMTP functionality with successful test emails
 
 ## External Dependencies
 - **Database**: Neon (PostgreSQL hosting), Drizzle ORM
