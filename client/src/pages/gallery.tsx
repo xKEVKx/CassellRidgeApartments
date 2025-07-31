@@ -78,7 +78,7 @@ export default function Gallery() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Photo Gallery</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-4xl mx-auto">
             Explore our beautiful apartments and community amenities through our photo gallery
           </p>
         </div>
