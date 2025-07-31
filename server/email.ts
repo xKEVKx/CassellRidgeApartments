@@ -54,9 +54,9 @@ export async function sendContactNotification(submission: ContactSubmission) {
   `;
 
   const mailOptions = {
-    from: `"Cassell Ridge Apartments" <info@cassellridgeapts.com>`,
-    to: process.env.NOTIFICATION_EMAIL || 'info@cassellridgeapts.com', // Default to correct recipient
-    replyTo: `"Cassell Ridge Apartments" <info@cassellridgeapts.com>`,
+    from: `"Cassell Ridge Apartments" <cassellridge@elmingtonpm.com>`,
+    to: process.env.NOTIFICATION_EMAIL || 'cassellridge@elmingtonpm.com', // Default to correct recipient
+    replyTo: `"Cassell Ridge Apartments" <cassellridge@elmingtonpm.com>`,
     subject,
     html: htmlContent,
     text: `
@@ -148,7 +148,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
             <div style="flex: 1; min-width: 200px;">
               <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">
                 <strong style="color: #8b4513;">✉️ Email</strong><br>
-                <a href="mailto:info@cassellridgeapts.com" style="color: #8b4513; text-decoration: none;">Email Us</a>
+                <a href="mailto:cassellridge@elmingtonpm.com" style="color: #8b4513; text-decoration: none;">Email Us</a>
               </p>
             </div>
           </div>
@@ -173,7 +173,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
   `;
 
   const mailOptions = {
-    from: `"Cassell Ridge Apartments" <info@cassellridgeapts.com>`,
+    from: `"Cassell Ridge Apartments" <cassellridge@elmingtonpm.com>`,
     to: submission.email,
     subject,
     html: htmlContent,
