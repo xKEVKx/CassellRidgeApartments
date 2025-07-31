@@ -95,7 +95,6 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <div style="background: linear-gradient(135deg, #8b4513 0%, #654321 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
         <h1 style="margin: 0; font-size: 24px;">Cassell Ridge Apartments</h1>
-        <p style="margin: 10px 0 0 0; opacity: 0.9;">LIHTC Affordable Housing in Knoxville, TN</p>
       </div>
       
       <div style="background-color: #fff; padding: 30px; border-radius: 0 0 8px 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
