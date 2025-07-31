@@ -214,6 +214,27 @@ This is a full-stack web application for "Cassell Ridge Apartments," an affordab
 - Maintained responsive design throughout all changes
 - Ensured all database references remain functional and accurate
 
+### July 31, 2025 - Critical Bug Fixes and Navigation Updates
+- **TypeScript Error Resolution**: Fixed critical type comparison error in home page floor plan display
+  - Resolved "Operator '>' cannot be applied to types 'string' and 'number'" error on line 681
+  - Fixed bathroom count comparison by properly parsing decimal values before comparison
+  - Application now starts successfully without compilation errors
+- **Gallery Page Text Formatting**: Improved gallery page header text layout
+  - Increased max-width from `max-w-2xl` to `max-w-4xl` for description paragraph
+  - Prevents sentence wrapping: "Explore our beautiful apartments and community amenities through our photo gallery" now displays on single line
+  - Enhanced readability across different screen sizes
+- **Navigation Menu Streamlining**: Removed 'Resident Portal' button from header navigation
+  - Cleaned up navigation menu for streamlined user experience
+  - Portal link removed from constants configuration
+  - Navigation now focuses on core property information and contact options
+  - Button ready to be added back when needed
+
+#### Technical Implementation
+- **Database Schema Compatibility**: Ensured proper handling of decimal bathroom field in TypeScript comparisons
+- **Hot Module Replacement**: All changes applied successfully with live reloading
+- **LSP Diagnostics**: All TypeScript errors cleared, application runs without compilation issues
+- **Component Updates**: Navigation changes propagated across navbar, footer, and all referenced components
+
 ### July 30, 2025 - Layout Improvements & Content Streamlining
 - **Section Layout Consistency**: Updated all LIHTC sections to have icons and text aligned on the same line:
   - Students section: 🎓 icon inline with "STUDENTS" text
