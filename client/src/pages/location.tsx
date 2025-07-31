@@ -26,7 +26,7 @@ export default function Location() {
           <div className="space-y-6">
             <div className="inline-flex items-center px-4 py-2 bg-warm-brown-500/20 rounded-full text-warm-brown-400 text-sm font-semibold backdrop-blur-sm">
               <MapPin className="w-4 h-4 mr-2" />
-              Prime Tyler Location
+              Prime Knoxville Location
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
@@ -37,7 +37,7 @@ export default function Location() {
             </h1>
             
             <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-              Experience affordable living in Tyler, Texas with convenient access to shopping, dining, and local amenities. 
+              Experience affordable living in Knoxville, Tennessee with convenient access to shopping, dining, and local amenities. 
               Discover comfort and community at Cassell Ridge Apartments.
             </p>
           </div>
