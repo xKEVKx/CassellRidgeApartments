@@ -157,7 +157,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-12">
             {/* Main Heading */}
-            <div className="space-y-6">
+            <div className="space-y-6 bg-black/20 backdrop-blur-sm rounded-3xl p-8 sm:p-12">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tracking-tight">
                 MODERN LIVING AT
                 <span className="block bg-gradient-to-r from-warm-brown-400 via-warm-brown-500 to-warm-brown-600 bg-clip-text text-transparent">
@@ -168,15 +168,15 @@ export default function Home() {
                 </span>
               </h1>
               
-              <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light">
                 Looking for your perfect place to call home? We invite you to visit our beautiful property nestled in the heart of Knoxville, Tennessee. From thoughtfully designed floorplans to scenic surroundings, our community offers comfort, convenience, and Southern charm.
               </p>
               
-              <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
                 Our professional and friendly leasing staff are here to help you. Let us show you around, answer your questions, and help you understand eligibility and how to apply.
               </p>
               
-              <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
                 Schedule a tour today — and see all the comfort, community, and care our Knoxville property has to offer.
               </p>
             </div>
