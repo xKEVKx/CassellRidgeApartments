@@ -1,17 +1,17 @@
 export const SITE_CONFIG = {
   name: "Cassell Ridge Apartments",
-  tagline: "Modern Living in Knoxville",
-  description: "Experience comfortable apartment living in North Knoxville with easy access to downtown, universities, and shopping. Cassell Ridge offers modern amenities and professional management in a convenient location.",
+  tagline: "LIHTC Affordable Housing in Tyler",
+  description: "Quality affordable housing at Cassell Ridge Apartments in Tyler, Texas. LIHTC approved community offering 2 & 3 bedroom apartments with modern amenities and income-based rent starting at $950.",
   
   contact: {
-    phone: "(865) 357-2712",
+    phone: "(903) 596-7829",
     fax: "",
     email: "info@cassellridgeapts.com",
     address: {
-      street: "1230 Cassell Valley Way",
-      city: "Knoxville",
-      state: "TN",
-      zip: "37912"
+      street: "1230 Cassell Ridge Drive",
+      city: "Tyler",
+      state: "TX",
+      zip: "75701"
     },
     hours: {
       weekdays: "Monday-Friday: 8AM to 5PM",
