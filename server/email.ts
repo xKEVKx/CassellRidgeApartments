@@ -54,7 +54,7 @@ export async function sendContactNotification(submission: ContactSubmission) {
   `;
 
   const mailOptions = {
-    from: `"Cassell Ridge Apartments" <cassellridge@elmingtonpm.com>`,
+    from: `"Cassell Ridge Apartments" <no-reply@cassellridgeapts.com>`,
     to: process.env.NOTIFICATION_EMAIL || 'cassellridge@elmingtonpm.com', // Default to correct recipient
     replyTo: `"Cassell Ridge Apartments" <cassellridge@elmingtonpm.com>`,
     subject,
