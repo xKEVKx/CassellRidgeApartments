@@ -1,17 +1,17 @@
 export const SITE_CONFIG = {
   name: "Cassell Ridge Apartments",
-  tagline: "LIHTC Affordable Housing in Tyler",
-  description: "Quality affordable housing at Cassell Ridge Apartments in Tyler, Texas. LIHTC approved community offering 2 & 3 bedroom apartments with modern amenities and income-based rent starting at $950.",
+  tagline: "LIHTC Affordable Housing in Knoxville",
+  description: "Quality affordable housing at Cassell Ridge Apartments in Knoxville, Tennessee. LIHTC approved community offering 2 & 3 bedroom apartments with modern amenities and income-based rent starting at $950.",
   
   contact: {
-    phone: "(903) 596-7829",
+    phone: "(865) 357-2712",
     fax: "",
     email: "info@cassellridgeapts.com",
     address: {
-      street: "1230 Cassell Ridge Drive",
-      city: "Tyler",
-      state: "TX",
-      zip: "75701"
+      street: "1230 Cassell Valley Way",
+      city: "Knoxville",
+      state: "TN",
+      zip: "37912"
     },
     hours: {
       weekdays: "Monday-Friday: 8AM to 5PM",
