@@ -173,7 +173,8 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
   `;
 
   const mailOptions = {
-    from: `"Cassell Ridge Apartments" <cassellridge@elmingtonpm.com>`,
+    from: `"Cassell Ridge Apartments" <no-reply@cassellridgeapts.com>`,
+    replyTo: `"Cassell Ridge Apartments" <cassellridge@elmingtonpm.com>`,
     to: submission.email,
     subject,
     html: htmlContent,
