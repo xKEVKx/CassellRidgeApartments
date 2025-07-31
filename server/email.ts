@@ -13,13 +13,14 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendContactNotification(submission: ContactSubmission) {
+  const metadata = submission.metadata as any || {};
   const subject = submission.type === 'visit' 
     ? `New Visit Scheduled - ${submission.name}`
     : `New Website Contact Inquiry - ${submission.name}`;
 
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2 style="color: #059669; border-bottom: 2px solid #059669; padding-bottom: 10px;">
+      <h2 style="color: #8b4513; border-bottom: 2px solid #8b4513; padding-bottom: 10px;">
         ${submission.type === 'visit' ? 'New Visit Scheduled' : 'New Website Contact Inquiry'}
       </h2>
       
@@ -30,9 +31,9 @@ export async function sendContactNotification(submission: ContactSubmission) {
         <p><strong>Phone:</strong> <a href="tel:${submission.phone}">${submission.phone}</a></p>
         
         ${submission.type === 'visit' ? `
-          <p><strong>Preferred Date:</strong> ${submission.preferredDate || 'Not specified'}</p>
-          <p><strong>Preferred Time:</strong> ${submission.preferredTime || 'Not specified'}</p>
-          ${submission.floorPlan ? `<p><strong>Floor Plan Interest:</strong> ${submission.floorPlan}</p>` : ''}
+          <p><strong>Preferred Date:</strong> ${metadata.preferredDate || 'Not specified'}</p>
+          <p><strong>Preferred Time:</strong> ${metadata.preferredTime || 'Not specified'}</p>
+          ${metadata.floorPlan ? `<p><strong>Floor Plan Interest:</strong> ${metadata.floorPlan}</p>` : ''}
         ` : ''}
       </div>
       
@@ -46,7 +47,7 @@ export async function sendContactNotification(submission: ContactSubmission) {
       <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
         <p style="color: #666; font-size: 12px;">
           This email was sent from the Cassell Ridge Apartments website contact form<br>
-          Submitted on ${new Date(submission.createdAt).toLocaleDateString('en-US', { timeZone: 'America/New_York' })} at ${new Date(submission.createdAt).toLocaleTimeString('en-US', { timeZone: 'America/New_York' })} EST
+          Submitted on ${submission.createdAt ? new Date(submission.createdAt).toLocaleDateString('en-US', { timeZone: 'America/New_York' }) : 'Unknown date'} at ${submission.createdAt ? new Date(submission.createdAt).toLocaleTimeString('en-US', { timeZone: 'America/New_York' }) : 'Unknown time'} EST
         </p>
       </div>
     </div>
@@ -64,13 +65,13 @@ ${submission.type === 'visit' ? 'New Visit Scheduled' : 'New Website Contact Inq
 Name: ${submission.name}
 Email: ${submission.email}
 Phone: ${submission.phone}
-${submission.type === 'visit' ? `Preferred Date: ${submission.preferredDate || 'Not specified'}` : ''}
-${submission.type === 'visit' ? `Preferred Time: ${submission.preferredTime || 'Not specified'}` : ''}
-${submission.floorPlan ? `Floor Plan Interest: ${submission.floorPlan}` : ''}
+${submission.type === 'visit' ? `Preferred Date: ${metadata.preferredDate || 'Not specified'}` : ''}
+${submission.type === 'visit' ? `Preferred Time: ${metadata.preferredTime || 'Not specified'}` : ''}
+${metadata.floorPlan ? `Floor Plan Interest: ${metadata.floorPlan}` : ''}
 
 ${submission.message ? `Message:\n${submission.message}` : ''}
 
-Submitted on ${new Date(submission.createdAt).toLocaleDateString('en-US', { timeZone: 'America/New_York' })} at ${new Date(submission.createdAt).toLocaleTimeString('en-US', { timeZone: 'America/New_York' })} EST
+Submitted on ${submission.createdAt ? new Date(submission.createdAt).toLocaleDateString('en-US', { timeZone: 'America/New_York' }) : 'Unknown date'} at ${submission.createdAt ? new Date(submission.createdAt).toLocaleTimeString('en-US', { timeZone: 'America/New_York' }) : 'Unknown time'} EST
     `,
   };
 
@@ -80,11 +81,12 @@ Submitted on ${new Date(submission.createdAt).toLocaleDateString('en-US', { time
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Email sending failed:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 }
 
 export async function sendConfirmationEmail(submission: ContactSubmission) {
+  const metadata = submission.metadata as any || {};
   const subject = submission.type === 'visit' 
     ? 'Visit Request Received - Cassell Ridge Apartments'
     : 'Thank You for Your Inquiry - Cassell Ridge Apartments';
@@ -115,9 +117,9 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
           <p><strong>Phone:</strong> ${submission.phone}</p>
           
           ${submission.type === 'visit' ? `
-            <p><strong>Preferred Date:</strong> ${submission.preferredDate || 'Not specified'}</p>
-            <p><strong>Preferred Time:</strong> ${submission.preferredTime || 'Not specified'}</p>
-            ${submission.floorPlan ? `<p><strong>Floor Plan Interest:</strong> ${submission.floorPlan}</p>` : ''}
+            <p><strong>Preferred Date:</strong> ${metadata.preferredDate || 'Not specified'}</p>
+            <p><strong>Preferred Time:</strong> ${metadata.preferredTime || 'Not specified'}</p>
+            ${metadata.floorPlan ? `<p><strong>Floor Plan Interest:</strong> ${metadata.floorPlan}</p>` : ''}
           ` : ''}
         </div>
         
@@ -184,7 +186,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Confirmation email sending failed:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 }
 
@@ -196,6 +198,6 @@ export async function testEmailConnection() {
     return { success: true };
   } catch (error) {
     console.error('Postmark SMTP connection failed:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 }
