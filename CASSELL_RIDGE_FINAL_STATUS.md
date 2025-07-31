@@ -9,7 +9,7 @@
 - **Location**: Knoxville, Tennessee 37912
 - **Address**: 1230 Cassell Valley Way
 - **Phone**: (865) 357-2712
-- **Email**: info@cassellridgeapts.com
+- **Email**: cassellridge@elmingtonpm.com
 - **Type**: LIHTC Affordable Housing Community
 
 ## Technical Implementation Status
@@ -48,7 +48,7 @@
 ### 📧 Email System Details
 - **SMTP Provider**: Postmark
 - **Authentication**: POSTMARK_SERVER_TOKEN (configured)
-- **From Address**: info@cassellridgeapts.com
+- **From Address**: cassellridge@elmingtonpm.com
 - **Management Email**: Configurable via NOTIFICATION_EMAIL env var
 - **Templates**: 
   - Management notification (detailed inquiry info)

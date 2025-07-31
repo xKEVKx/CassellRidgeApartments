@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
   contact: {
     phone: "(865) 357-2712",
     fax: "",
-    email: "info@cassellridgeapts.com",
+    email: "cassellridge@elmingtonpm.com",
     address: {
       street: "1230 Cassell Valley Way",
       city: "Knoxville",

@@ -36,7 +36,7 @@ Preferred communication style: Simple, everyday language.
 ## Recent Updates (January 2025)
 - **Email System**: Complete Postmark SMTP integration with dual email flow (notification + confirmation)
 - **Property Information**: Updated all references from Tyler, TX to Knoxville, TN with correct contact details
-- **Contact Information**: Phone (865) 357-2712, Email info@cassellridgeapts.com, Address 1230 Cassell Valley Way
+- **Contact Information**: Phone (865) 357-2712, Email cassellridge@elmingtonpm.com, Address 1230 Cassell Valley Way
 - **Email Templates**: Professional HTML templates with Cassell Ridge branding and brown color scheme
 - **TypeScript**: Resolved all compilation errors for production-ready code
 - **SEO**: Comprehensive optimization with local business schema for Knoxville market
