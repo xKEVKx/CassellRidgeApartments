@@ -43,6 +43,9 @@ Preferred communication style: Simple, everyday language.
 - **SEO**: Comprehensive optimization with local business schema for Knoxville market
 - **UI Improvements**: Hidden Unit Availability section pending correct embed link, Location page updated for Knoxville
 - **Testing**: Complete SMTP verification with successful email delivery confirmed
+- **UI Refinements**: Cleaned up pricing displays across site - removed "From" prefix from home page floor plan cards, removed "Starting at" overlay from amenities section, simplified "Rent:" label on floor plans page
+- **Navigation**: Removed "Apply Now" button from Virtual Tours page for streamlined user experience
+- **Content Ordering**: Updated floor plans API to display "2 Bedroom A" before "2 Bedroom B" with proper alphabetical sorting
 
 ## External Dependencies
 - **Database**: Neon (PostgreSQL hosting), Drizzle ORM
