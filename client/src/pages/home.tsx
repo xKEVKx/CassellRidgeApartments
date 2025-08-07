@@ -683,7 +683,7 @@ export default function Home() {
                       <div className="text-sm text-gray-600 text-right">
                         <span className="block">{plan.sqft.toLocaleString()} sq ft</span>
                         <Badge variant="secondary" className="text-warm-brown-700">
-                          From ${plan.startingPrice.toLocaleString()}
+                          ${plan.startingPrice.toLocaleString()}
                         </Badge>
                       </div>
                     </div>
