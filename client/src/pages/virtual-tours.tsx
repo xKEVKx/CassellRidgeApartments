@@ -143,7 +143,7 @@ export default function VirtualTours() {
               While our virtual tours give you a great overview, there's nothing like experiencing Cassell Ridge Apartments in person. Schedule your visit today!
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <ScheduleVisitModal
                 trigger={
                   <Button 
@@ -154,18 +154,6 @@ export default function VirtualTours() {
                   </Button>
                 }
               />
-              
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-2 border-slate-300 text-slate-700 hover:bg-slate-100 px-10 py-4 text-lg font-semibold rounded-2xl transition-all duration-300 hover:scale-105"
-                asChild
-              >
-                <a href="https://www.on-site.com/apply/property/204538" target="_blank" rel="noopener noreferrer">
-                  Apply Now
-                  <ExternalLink className="ml-2 h-5 w-5" />
-                </a>
-              </Button>
             </div>
           </div>
         </div>
