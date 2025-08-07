@@ -46,6 +46,7 @@ Preferred communication style: Simple, everyday language.
 - **UI Refinements**: Cleaned up pricing displays across site - removed "From" prefix from home page floor plan cards, removed "Starting at" overlay from amenities section, simplified "Rent:" label on floor plans page
 - **Navigation**: Removed "Apply Now" button from Virtual Tours page for streamlined user experience
 - **Content Ordering**: Updated floor plans API to display "2 Bedroom A" before "2 Bedroom B" with proper alphabetical sorting
+- **Admin UX**: Added autofocus to admin login password field for improved user experience
 
 ## External Dependencies
 - **Database**: Neon (PostgreSQL hosting), Drizzle ORM
