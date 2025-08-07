@@ -700,6 +700,7 @@ export default function Admin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
+                autoFocus
               />
             </div>
             <Button onClick={handleLogin} className="w-full">
