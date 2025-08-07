@@ -22,7 +22,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/floor-plans", async (req, res) => {
     try {
       const floorPlans = await storage.getFloorPlans();
-      res.json(floorPlans);
+      // Sort floor plans: first by bedrooms (ascending), then by name (alphabetically)
+      // This ensures "2 Bedroom A" comes before "2 Bedroom B"
+      const sortedFloorPlans = floorPlans.sort((a, b) => {
+        if (a.bedrooms !== b.bedrooms) {
+          return a.bedrooms - b.bedrooms;
+        }
+        return a.name.localeCompare(b.name);
+      });
+      res.json(sortedFloorPlans);
     } catch (error) {
       console.error("Error fetching floor plans:", error);
       res.status(500).json({ error: "Failed to fetch floor plans" });
