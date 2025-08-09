@@ -49,6 +49,9 @@ Preferred communication style: Simple, everyday language.
 - **Admin UX**: Added autofocus to admin login password field for improved user experience
 - **Accessibility**: Confirmed Accessibe accessibility widget integration - script loads automatically on all pages for ADA compliance
 
+## Future Feature Considerations
+- **Maintenance Request Chatbot**: Potential addition for resident support - would include real-time chat interface, request categorization, resident authentication, ticket tracking system, admin dashboard for property management, and integration with existing notification system
+
 ## External Dependencies
 - **Database**: Neon (PostgreSQL hosting), Drizzle ORM
 - **UI Frameworks**: Radix UI, Tailwind CSS
