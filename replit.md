@@ -47,6 +47,7 @@ Preferred communication style: Simple, everyday language.
 - **Navigation**: Removed "Apply Now" button from Virtual Tours page for streamlined user experience
 - **Content Ordering**: Updated floor plans API to display "2 Bedroom A" before "2 Bedroom B" with proper alphabetical sorting
 - **Admin UX**: Added autofocus to admin login password field for improved user experience
+- **Accessibility**: Confirmed Accessibe accessibility widget integration - script loads automatically on all pages for ADA compliance
 
 ## External Dependencies
 - **Database**: Neon (PostgreSQL hosting), Drizzle ORM
