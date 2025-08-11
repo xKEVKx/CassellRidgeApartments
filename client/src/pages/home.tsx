@@ -183,7 +183,7 @@ export default function Home() {
             
             {/* CTA Buttons */}
             <div className="flex justify-center">
-              <Link href="/contact">
+              <Link href="/contact#contact-form">
                 <Button 
                   size="lg" 
                   className="group relative bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 hover:from-warm-brown-600 hover:to-warm-brown-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl border-0 transition-all duration-300 hover:scale-105"
@@ -673,7 +673,7 @@ export default function Home() {
                         </Badge>
                       </div>
                     </div>
-                    <Link href="/contact">
+                    <Link href="/contact#contact-form">
                       <Button className="w-full bg-warm-brown-700 hover:bg-warm-brown-800">
                         Schedule Visit
                       </Button>
@@ -735,7 +735,7 @@ export default function Home() {
             <div className="space-y-12">
               {/* Primary Actions */}
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Link href="/contact">
+                <Link href="/contact#contact-form">
                   <Button 
                     size="lg" 
                     className="group relative bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 hover:from-warm-brown-600 hover:to-warm-brown-700 text-white px-12 py-5 text-xl font-semibold rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105"

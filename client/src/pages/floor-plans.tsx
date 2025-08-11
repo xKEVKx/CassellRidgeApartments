@@ -127,7 +127,7 @@ export default function FloorPlans() {
                       </Badge>
                     </div>
                     
-                    <Link href="/contact">
+                    <Link href="/contact#contact-form">
                       <Button 
                         className="w-full bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
                         size="lg"
