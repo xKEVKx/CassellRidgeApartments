@@ -36,6 +36,11 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Resident Services</h4>
             <ul className="space-y-2">
               <li>
+                <a href="https://www.portal.fortresstech.io/4e8caee8-c99e-406c-864c-c8a5ba3e4a03/7cdf4786-7989-491a-87f5-c05f03ae9b86" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+                  Residents
+                </a>
+              </li>
+              <li>
                 <a href="https://discover.matterport.com/space/EQrEazqXEcw" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
                   2-Bedroom Virtual Tour
                 </a>

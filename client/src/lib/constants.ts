@@ -44,6 +44,7 @@ export const NAVIGATION_LINKS = [
       { href: "/virtual-tours", label: "Virtual Tours" }
     ]
   },
+  { href: "https://www.portal.fortresstech.io/4e8caee8-c99e-406c-864c-c8a5ba3e4a03/7cdf4786-7989-491a-87f5-c05f03ae9b86", label: "Residents", external: true },
   { href: "/contact", label: "Contact" }
 ];
 
