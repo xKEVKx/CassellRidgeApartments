@@ -25,13 +25,15 @@ Preferred communication style: Simple, everyday language.
 ### Key Features & Technical Implementations
 - **Data Models**: Users (admin), Floor Plans (2br/2ba, 3br/2ba), Amenities, Gallery Images, Contact Submissions, Home Page Ads.
 - **API Endpoints**: CRUD operations for floor plans, amenities, gallery, contact submissions, and home page ads.
-- **Frontend Pages**: Home (LIHTC info, floor plans), Floor Plans (interactive browser, unit availability via iframe), Gallery (photo gallery with lightbox), Contact (forms, lead capture), Virtual Tours (Matterport 3D), Location (map integration, essential info).
-- **UI Component System**: Form components with validation, modal dialogs, responsive image galleries, navigation components, toast notifications.
+- **Frontend Pages**: Home (LIHTC info, floor plans), Floor Plans (interactive browser, unit availability iframe), Gallery (photo gallery with lightbox), Contact (embedded Fortress form), Virtual Tours (Matterport 3D), Location (map integration, essential info).
+- **UI Component System**: Responsive image galleries, navigation components, toast notifications, smooth anchor scrolling functionality.
 - **Authentication**: Admin authentication system with secure session management.
 - **Content Management**: Admin panel for managing photos, rents, promotional banners, and home page ads with image compression.
-- **Email System**: Automatic confirmation emails for contact submissions using Postmark SMTP.
+- **Email System**: Automatic confirmation emails via Postmark SMTP (legacy system, now managed through Fortress Technologies).
 - **Dynamic Content**: Home page ad management system with configurable display frequency and date range scheduling.
-- **Accessibility**: Integrated Accessibe widget.
+- **Property Management Integration**: Complete Fortress Technologies integration with embedded contact forms, resident portal links, and real-time unit availability displays.
+- **Navigation Enhancement**: Hash anchor scrolling and optimized user journey from all call-to-action buttons to contact form.
+- **Accessibility**: Integrated Accessibe widget for ADA compliance.
 
 ## Recent Updates (January 2025)
 - **Email System**: Complete Postmark SMTP integration with dual email flow (notification + confirmation)
@@ -49,9 +51,12 @@ Preferred communication style: Simple, everyday language.
 - **Admin UX**: Added autofocus to admin login password field for improved user experience
 - **Accessibility**: Confirmed Accessibe accessibility widget integration - script loads automatically on all pages for ADA compliance
 - **Fortress Technologies Integration**: Complete integration with property management system including resident portal links in navigation and footer, embedded contact form on contact page, and unit availability iframe on floor plans page
-- **Navigation Enhancement**: Added "Residents" menu item linking to Fortress portal between Property and Contact sections
-- **Contact Form Replacement**: Replaced custom contact form with embedded Fortress Technologies contact page for streamlined lead management
+- **Navigation Enhancement**: Added "Residents" menu item linking to Fortress portal between Property and Contact sections in main navigation and footer
+- **Contact Form Replacement**: Replaced all custom contact forms with embedded Fortress Technologies contact page for centralized lead management
 - **Unit Availability Display**: Added real-time unit availability iframe to floor plans page with smooth-scroll "View Current Availability" button
+- **Button Navigation Optimization**: Updated all "Schedule Your Tour" and "Schedule Visit" buttons to redirect to contact form section with smooth scrolling functionality
+- **Modal Removal**: Eliminated all modal popup forms in favor of direct navigation to embedded Fortress contact form
+- **Hash Anchor Scrolling**: Implemented automatic scrolling to contact form section when accessing /contact#contact-form URLs
 
 ## Future Feature Considerations
 - **Maintenance Request Chatbot**: Potential addition for resident support - would include real-time chat interface, request categorization, resident authentication, ticket tracking system, admin dashboard for property management, and integration with existing notification system
