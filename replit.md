@@ -48,6 +48,10 @@ Preferred communication style: Simple, everyday language.
 - **Content Ordering**: Updated floor plans API to display "2 Bedroom A" before "2 Bedroom B" with proper alphabetical sorting
 - **Admin UX**: Added autofocus to admin login password field for improved user experience
 - **Accessibility**: Confirmed Accessibe accessibility widget integration - script loads automatically on all pages for ADA compliance
+- **Fortress Technologies Integration**: Complete integration with property management system including resident portal links in navigation and footer, embedded contact form on contact page, and unit availability iframe on floor plans page
+- **Navigation Enhancement**: Added "Residents" menu item linking to Fortress portal between Property and Contact sections
+- **Contact Form Replacement**: Replaced custom contact form with embedded Fortress Technologies contact page for streamlined lead management
+- **Unit Availability Display**: Added real-time unit availability iframe to floor plans page with smooth-scroll "View Current Availability" button
 
 ## Future Feature Considerations
 - **Maintenance Request Chatbot**: Potential addition for resident support - would include real-time chat interface, request categorization, resident authentication, ticket tracking system, admin dashboard for property management, and integration with existing notification system
@@ -58,7 +62,7 @@ Preferred communication style: Simple, everyday language.
 - **Icons/Fonts**: Font Awesome, Google Fonts (Inter, Playfair Display)
 - **Email Service**: Postmark (SMTP)
 - **Virtual Tours**: Matterport
-- **Unit Availability/Leasing**: Fortress Technologies (iframe integration for unit availability, external links for resident portal)
+- **Property Management System**: Fortress Technologies (complete integration including resident portal navigation links, embedded contact forms, and real-time unit availability displays)
 - **Development Environment**: Replit
 - **Code Quality**: ESLint, Prettier, TypeScript
 - **Accessibility**: Accessibe
