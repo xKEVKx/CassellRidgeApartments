@@ -1,5 +1,4 @@
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import ContactForm from "@/components/contact-form";
 import { SITE_CONFIG } from "@/lib/constants";
 import { useEffect } from "react";
 
@@ -74,7 +73,18 @@ export default function Contact() {
           </div>
           
           {/* Contact Form */}
-          <ContactForm title="Schedule a Visit" />
+          <div className="bg-white rounded-lg p-8 shadow-lg">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Schedule a Visit</h2>
+            <iframe 
+              src="https://www.portal.fortresstech.io/4e8caee8-c99e-406c-864c-c8a5ba3e4a03/7cdf4786-7989-491a-87f5-c05f03ae9b86/contact-us"
+              width="100%" 
+              height="600" 
+              style={{ border: 0 }}
+              loading="lazy" 
+              title="Contact Form"
+              className="rounded-lg"
+            />
+          </div>
         </div>
         
         {/* Map */}
