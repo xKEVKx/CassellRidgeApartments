@@ -29,9 +29,19 @@ export default function FloorPlans() {
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
               Our Floor Plans
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-6">
               Comfortable floor plans with spacious kitchens, generous closets, and private patios or balconies.
             </p>
+            <Button 
+              onClick={() => {
+                document.getElementById('unit-availability')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}
+              className="bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-8 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+            >
+              View Current Availability
+            </Button>
           </div>
           
           <div className="max-w-4xl mx-auto space-y-8">
@@ -140,9 +150,8 @@ export default function FloorPlans() {
         </div>
       </section>
 
-      {/* Unit Availability Embed - HIDDEN FOR NOW - DIFFERENT PROPERTY */}
-      {/*
-      <section className="py-12 bg-slate-50">
+      {/* Unit Availability Embed */}
+      <section id="unit-availability" className="py-12 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
@@ -155,7 +164,7 @@ export default function FloorPlans() {
           
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
             <iframe
-              src="https://www.embed.fortresstech.io/unit-availability/0ab2f339-aced-4207-846c-f6e6e52fa40e/a3f73114-63a3-4412-a20f-49d24eb01185/?ft_header=C15F1E&ft_body=0c4366&bg_border=004963&version=2"
+              src="https://www.embed.fortresstech.io/unit-availability/4e8caee8-c99e-406c-864c-c8a5ba3e4a03/7cdf4786-7989-491a-87f5-c05f03ae9b86"
               width="100%"
               height="600"
               style={{ border: 'none' }}
@@ -165,7 +174,6 @@ export default function FloorPlans() {
           </div>
         </div>
       </section>
-      */}
 
     </div>
   );
