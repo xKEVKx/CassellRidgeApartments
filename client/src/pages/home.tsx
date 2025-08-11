@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import ScheduleVisitModal from "@/components/schedule-visit-modal";
+
 import HomePageAdSlider from "@/components/home-page-ad-slider";
 import { AccommodationsHeader, AccommodationsFeatures } from "@/components/accommodations-section";
 import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
@@ -183,17 +183,15 @@ export default function Home() {
             
             {/* CTA Buttons */}
             <div className="flex justify-center">
-              <ScheduleVisitModal
-                trigger={
-                  <Button 
-                    size="lg" 
-                    className="group relative bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 hover:from-warm-brown-600 hover:to-warm-brown-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl border-0 transition-all duration-300 hover:scale-105"
-                  >
-                    <span className="relative z-10">Schedule Your Tour</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                  </Button>
-                }
-              />
+              <Link href="/contact">
+                <Button 
+                  size="lg" 
+                  className="group relative bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 hover:from-warm-brown-600 hover:to-warm-brown-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl border-0 transition-all duration-300 hover:scale-105"
+                >
+                  <span className="relative z-10">Schedule Your Tour</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                </Button>
+              </Link>
             </div>
             
             {/* Feature Pills */}
