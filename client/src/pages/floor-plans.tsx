@@ -3,7 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Bed, Bath, Square, Home, MapPin, Expand, Tag } from "lucide-react";
-import ScheduleVisitModal from "@/components/schedule-visit-modal";
+import { Link } from "wouter";
+
 import { SITE_CONFIG } from "@/lib/constants";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -126,17 +127,14 @@ export default function FloorPlans() {
                       </Badge>
                     </div>
                     
-                    <ScheduleVisitModal
-                      floorPlan={plan.name}
-                      trigger={
-                        <Button 
-                          className="w-full bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
-                          size="lg"
-                        >
-                          Schedule Visit
-                        </Button>
-                      }
-                    />
+                    <Link href="/contact">
+                      <Button 
+                        className="w-full bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+                        size="lg"
+                      >
+                        Schedule Visit
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
