@@ -30,19 +30,9 @@ export default function FloorPlans() {
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
               Our Floor Plans
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-6">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Comfortable floor plans with spacious kitchens, generous closets, and private patios or balconies.
             </p>
-            <Button 
-              onClick={() => {
-                document.getElementById('unit-availability')?.scrollIntoView({ 
-                  behavior: 'smooth' 
-                });
-              }}
-              className="bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-8 py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 hover:scale-105"
-            >
-              View Current Availability
-            </Button>
           </div>
           
           <div className="max-w-4xl mx-auto space-y-8">
