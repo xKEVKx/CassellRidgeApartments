@@ -89,7 +89,7 @@ export default function Contact() {
             <iframe 
               src="https://www.portal.fortresstech.io/4e8caee8-c99e-406c-864c-c8a5ba3e4a03/7cdf4786-7989-491a-87f5-c05f03ae9b86/contact-us"
               width="100%" 
-              height="800" 
+              height="1000" 
               style={{ border: 0 }}
               loading="lazy" 
               title="Contact Form"
