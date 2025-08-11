@@ -3,9 +3,20 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { useEffect } from "react";
 
 export default function Contact() {
-  // Scroll to top when component mounts
+  // Handle scrolling when component mounts
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const hash = window.location.hash;
+    if (hash === '#contact-form') {
+      // Small delay to ensure content is loaded
+      setTimeout(() => {
+        const element = document.getElementById('contact-form');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, []);
   return (
     <div className="min-h-screen py-20 bg-gray-50">
