@@ -673,14 +673,11 @@ export default function Home() {
                         </Badge>
                       </div>
                     </div>
-                    <ScheduleVisitModal
-                      floorPlan={plan.name}
-                      trigger={
-                        <Button className="w-full bg-warm-brown-700 hover:bg-warm-brown-800">
-                          Schedule Visit
-                        </Button>
-                      }
-                    />
+                    <Link href="/contact">
+                      <Button className="w-full bg-warm-brown-700 hover:bg-warm-brown-800">
+                        Schedule Visit
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               ))
@@ -738,17 +735,15 @@ export default function Home() {
             <div className="space-y-12">
               {/* Primary Actions */}
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <ScheduleVisitModal
-                  trigger={
-                    <Button 
-                      size="lg" 
-                      className="group relative bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 hover:from-warm-brown-600 hover:to-warm-brown-700 text-white px-12 py-5 text-xl font-semibold rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105"
-                    >
-                      <span className="relative z-10">Schedule Your Tour</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                    </Button>
-                  }
-                />
+                <Link href="/contact">
+                  <Button 
+                    size="lg" 
+                    className="group relative bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 hover:from-warm-brown-600 hover:to-warm-brown-700 text-white px-12 py-5 text-xl font-semibold rounded-2xl shadow-2xl transition-all duration-300 hover:scale-105"
+                  >
+                    <span className="relative z-10">Schedule Your Tour</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                  </Button>
+                </Link>
                 
                 <Button 
                   size="lg" 
