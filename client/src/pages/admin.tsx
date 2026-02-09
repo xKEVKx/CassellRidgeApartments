@@ -355,6 +355,7 @@ export default function Admin() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ password }),
+        credentials: 'include',
       });
       
       if (response.ok) {
@@ -387,6 +388,7 @@ export default function Admin() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
       });
       
       setIsAuthenticated(false);

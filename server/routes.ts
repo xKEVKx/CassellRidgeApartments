@@ -6,6 +6,12 @@ import { insertContactSubmissionSchema, insertGalleryImageSchema, insertHomePage
 import { z } from "zod";
 import { sendContactNotification, sendConfirmationEmail, testEmailConnection } from "./email";
 
+declare module "express-session" {
+  interface SessionData {
+    isAdmin: boolean;
+  }
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Session configuration
   app.use(session({
@@ -15,6 +21,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     cookie: {
       secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
+      sameSite: 'lax',
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }
   }));
@@ -80,7 +87,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ error: "Floor plan not found" });
       }
       
-      res.json(updated);
+      res.json({ success: true, id: updated.id });
     } catch (error) {
       console.error("Error updating floor plan:", error);
       res.status(500).json({ error: "Failed to update floor plan" });
@@ -145,7 +152,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ error: "Gallery image not found" });
       }
       
-      res.json(updated);
+      res.json({ success: true, id: updated.id });
     } catch (error) {
       console.error("Error updating gallery image:", error);
       res.status(500).json({ error: "Failed to update gallery image" });
@@ -203,7 +210,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (password === adminPassword) {
         req.session.isAdmin = true;
         console.log('SUCCESS: Admin login successful');
-        res.json({ success: true });
+        req.session.save((err) => {
+          if (err) {
+            console.error('Session save error:', err);
+            return res.status(500).json({ error: "Login failed" });
+          }
+          res.json({ success: true });
+        });
       } else {
         console.log('FAILED: Admin login failed - password mismatch');
         console.log(`- Expected length: ${adminPassword.length}`);
@@ -327,7 +340,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!ad) {
         return res.status(404).json({ error: "Home page ad not found" });
       }
-      res.json(ad);
+      res.json({ success: true, id: ad.id });
     } catch (error) {
       console.error("Error updating home page ad:", error);
       res.status(500).json({ error: "Failed to update home page ad" });
