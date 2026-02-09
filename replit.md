@@ -57,6 +57,8 @@ Preferred communication style: Simple, everyday language.
 - **Button Navigation Optimization**: Updated all "Schedule Your Tour" and "Schedule Visit" buttons to redirect to contact form section with smooth scrolling functionality
 - **Modal Removal**: Eliminated all modal popup forms in favor of direct navigation to embedded Fortress contact form
 - **Hash Anchor Scrolling**: Implemented automatic scrolling to contact form section when accessing /contact#contact-form URLs
+- **Production Session/Cookie Fix**: Added trust proxy, sameSite cookie config, explicit session save on login, credentials: 'include' on client fetch calls, and minimal PATCH/PUT responses to prevent proxy timeouts
+- **TypeScript Session Types**: Added express-session module augmentation for isAdmin property
 
 ## Future Feature Considerations
 - **Maintenance Request Chatbot**: Potential addition for resident support - would include real-time chat interface, request categorization, resident authentication, ticket tracking system, admin dashboard for property management, and integration with existing notification system
