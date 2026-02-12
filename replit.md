@@ -81,8 +81,6 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 - Floor plans are sorted by bedrooms (ascending) then by name (alphabetically) to ensure "2 Bedroom A" appears before "2 Bedroom B"
 
 ## Recent Updates (February 2026)
-- **Contact Form Height**: Increased iframe height to 1200px for full form visibility without scrolling
-- **Floor Plans Simplification**: Removed unit availability section and "View Current Availability" button from Floor Plans page
 - **Production Session/Cookie Fix**: Comprehensive fix for admin authentication behind reverse proxy:
   - Added `app.set('trust proxy', 1)` in server/index.ts before all middleware
   - Added `sameSite: 'lax'` to session cookie configuration
@@ -92,6 +90,10 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 - **TypeScript Session Types**: Added express-session module augmentation declaring `SessionData.isAdmin` boolean property
 - **CSP Headers**: Added Content Security Policy middleware allowing Google Fonts, Font Awesome, Accessibe, Fortress Technologies, Matterport, Google Maps, Google Analytics, and Replit domains
 - **Google Analytics**: Added GA4 tracking code (G-EWTRSPP73F) to index.html for visitor analytics
+
+## Previous Updates (August 2025)
+- **Contact Form Height**: Increased iframe height to 1200px for full form visibility without scrolling
+- **Floor Plans Simplification**: Removed unit availability section and "View Current Availability" button from Floor Plans page
 
 ## Previous Updates (January 2025)
 - **Email System**: Complete Postmark SMTP integration with dual email flow (notification + confirmation)
