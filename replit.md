@@ -36,6 +36,8 @@ Preferred communication style: Simple, everyday language.
 - **Property Management Integration**: Complete Fortress Technologies integration with embedded contact forms and resident portal links.
 - **Navigation Enhancement**: Hash anchor scrolling and optimized user journey from all call-to-action buttons to contact form via /contact#contact-form URLs.
 - **Accessibility**: Integrated Accessibe widget for ADA compliance.
+- **Analytics**: Google Analytics 4 (GA4) with measurement ID G-EWTRSPP73F for visitor tracking and site analytics.
+- **Security Headers**: Content Security Policy (CSP) headers configured to allow only approved external domains.
 
 ## Contact Information
 - **Phone**: (865) 357-2712
@@ -51,6 +53,21 @@ The admin authentication system requires specific configuration to work correctl
 3. **Explicit Session Save**: Login handler uses `req.session.save()` callback to guarantee the session is fully written to the store before responding, preventing race conditions with follow-up requests.
 4. **Client Credentials**: All login/logout `fetch()` calls include `credentials: 'include'` to ensure cookies are properly sent and stored across requests.
 5. **Minimal Update Responses**: PATCH/PUT endpoints return `{ success: true, id }` instead of full objects (which may contain large base64 image data), preventing proxy timeouts. The client already refetches data via TanStack Query cache invalidation after mutations.
+
+### Content Security Policy (CSP)
+CSP headers are set via middleware in `server/index.ts` before all other middleware. The policy allows only approved external domains:
+- **Scripts**: Google Tag Manager, Google Analytics, Accessibe (accessibility), Replit dev banner
+- **Styles**: Google Fonts, CloudFlare CDN (Font Awesome), Accessibe
+- **Fonts**: Google Fonts (gstatic), CloudFlare CDN, Accessibe
+- **Images**: Google Analytics, Google Tag Manager, Accessibe, Matterport (wildcard)
+- **Frames**: Fortress Technologies portal, Matterport virtual tours, Google Maps embeds
+- **Connections**: Google Analytics, Google Tag Manager, Accessibe
+- **Restrictions**: `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`
+
+### Google Analytics
+- GA4 tracking with measurement ID `G-EWTRSPP73F`
+- Script loaded via Google Tag Manager in `client/index.html`
+- Allowed through CSP headers for scripts, images, and connections
 
 ### Navigation & Contact Form Pattern
 - All "Schedule Your Tour" and "Schedule Visit" CTA buttons across the site navigate to `/contact#contact-form`
@@ -73,6 +90,8 @@ The admin authentication system requires specific configuration to work correctl
   - Login and logout fetch calls include `credentials: 'include'`
   - All PATCH/PUT routes return minimal `{ success: true, id }` responses instead of full objects to prevent proxy timeouts
 - **TypeScript Session Types**: Added express-session module augmentation declaring `SessionData.isAdmin` boolean property
+- **CSP Headers**: Added Content Security Policy middleware allowing Google Fonts, Font Awesome, Accessibe, Fortress Technologies, Matterport, Google Maps, Google Analytics, and Replit domains
+- **Google Analytics**: Added GA4 tracking code (G-EWTRSPP73F) to index.html for visitor analytics
 
 ## Previous Updates (January 2025)
 - **Email System**: Complete Postmark SMTP integration with dual email flow (notification + confirmation)
@@ -103,6 +122,7 @@ The admin authentication system requires specific configuration to work correctl
 - **Email Service**: Postmark (SMTP)
 - **Virtual Tours**: Matterport
 - **Property Management System**: Fortress Technologies (complete integration including resident portal navigation links, embedded contact forms)
+- **Analytics**: Google Analytics 4 (GA4), Google Tag Manager
 - **Development Environment**: Replit
 - **Code Quality**: ESLint, Prettier, TypeScript
 - **Accessibility**: Accessibe
