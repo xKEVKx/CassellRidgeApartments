@@ -212,9 +212,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
           res.json({ success: true });
         });
       } else {
-        console.log('FAILED: Admin login failed - password mismatch');
-        console.log(`- Expected length: ${adminPassword.length}`);
-        console.log(`- Received length: ${password ? password.length : 0}`);
         res.status(401).json({ error: "Invalid password" });
       }
     } catch (error) {
