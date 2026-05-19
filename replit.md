@@ -80,6 +80,22 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 - Unit availability section and "View Current Availability" button have been removed
 - Floor plans are sorted by bedrooms (ascending) then by name (alphabetically) to ensure "2 Bedroom A" appears before "2 Bedroom B"
 
+## Recent Updates (May 2026)
+
+### Security
+- **Admin Login Hardening**: Removed `console.log` statements in `server/routes.ts` that were leaking `adminPassword.length` and `password.length` to server logs on failed login attempts.
+
+### SEO Overhaul
+- **Indexing Fix**: Added `X-Robots-Tag: index, follow` response header in `server/index.ts` middleware to override any `noindex` header injected by Replit's infrastructure. Also added `<meta name="robots" content="index, follow">` to `index.html` as a belt-and-suspenders backup.
+- **Per-Page Titles & Descriptions**: Installed `react-helmet-async`. Wrapped the app root in `<HelmetProvider>` in `App.tsx`. Added a `<Helmet>` block to every public page component (`home.tsx`, `floor-plans.tsx`, `gallery.tsx`, `contact.tsx`, `location.tsx`, `virtual-tours.tsx`) with a unique `<title>` in the format `Page Name | Cassell Ridge Apartments - Knoxville, TN` and a unique 150–160 character `<meta name="description">`.
+- **Structured Data (JSON-LD)**: Moved the `ApartmentComplex` schema from a static `<script>` in `index.html` into the home page's `<Helmet>` block, and added the previously missing `logo` field.
+- **Open Graph Tags**: Updated `index.html` with `og:image:alt` (was missing) and aligned `og:title` with the new per-page title format. Each page's `<Helmet>` block also sets page-specific `og:title`, `og:description`, and `og:url`.
+- **Viewport Fix**: Removed `maximum-scale=1` from the viewport meta tag in `index.html` — this restriction penalizes mobile SEO scores and hurts accessibility.
+- **Sitemap Dates**: Updated all `<lastmod>` dates in `client/public/sitemap.xml` from July 2025 to May 2026.
+
+### Custom Domain SSL
+- Investigated reported SSL failure on the custom domain. Confirmed no code-level issues (`trust proxy` and secure cookies were already correctly configured). Issue was resolved by re-adding the `www.` subdomain in the Replit publishing settings, which triggered a fresh certificate provisioning.
+
 ## Recent Updates (February 2026)
 - **Production Session/Cookie Fix**: Comprehensive fix for admin authentication behind reverse proxy:
   - Added `app.set('trust proxy', 1)` in server/index.ts before all middleware
