@@ -1,6 +1,7 @@
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 export default function Contact() {
   // Handle scrolling when component mounts
@@ -20,6 +21,13 @@ export default function Contact() {
   }, []);
   return (
     <div className="min-h-screen py-20 bg-gray-50">
+      <Helmet>
+        <title>Contact Us | Cassell Ridge Apartments - Knoxville, TN</title>
+        <meta name="description" content="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 357-2712 or fill out our online form today." />
+        <meta property="og:title" content="Contact Us | Cassell Ridge Apartments - Knoxville, TN" />
+        <meta property="og:description" content="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 357-2712 or fill out our online form today." />
+        <meta property="og:url" content="https://www.cassellridge.com/contact" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>

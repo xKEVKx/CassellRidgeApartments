@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Check, Phone, ExternalLink, Tag, Camera } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -127,6 +128,44 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN</title>
+        <meta name="description" content="Discover affordable LIHTC apartments at Cassell Ridge in Knoxville, TN. Spacious 2 & 3 bedroom homes with modern amenities and income-based rents starting at $950." />
+        <meta property="og:title" content="Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN" />
+        <meta property="og:description" content="Discover affordable LIHTC apartments at Cassell Ridge in Knoxville, TN. Spacious 2 & 3 bedroom homes with modern amenities and income-based rents starting at $950." />
+        <meta property="og:url" content="https://www.cassellridge.com/" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ApartmentComplex",
+          "name": "Cassell Ridge Apartments",
+          "description": "Quality LIHTC affordable housing community in Knoxville, Tennessee offering 2 & 3 bedroom apartments with modern amenities.",
+          "url": "https://www.cassellridge.com",
+          "telephone": "(865) 357-2712",
+          "email": "cassellridge@elmingtonpm.com",
+          "logo": "https://www.cassellridge.com/images/cassell-ridge-logo.png",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1230 Cassell Valley Way",
+            "addressLocality": "Knoxville",
+            "addressRegion": "TN",
+            "postalCode": "37912",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "36.0107",
+            "longitude": "-83.9667"
+          },
+          "openingHours": ["Mo-Fr 08:00-17:00", "Sa 10:00-14:00"],
+          "priceRange": "$950-$1100",
+          "amenityFeature": [
+            { "@type": "LocationFeatureSpecification", "name": "Fitness Center" },
+            { "@type": "LocationFeatureSpecification", "name": "Swimming Pool" },
+            { "@type": "LocationFeatureSpecification", "name": "Pet Friendly" },
+            { "@type": "LocationFeatureSpecification", "name": "On-site Laundry" }
+          ]
+        })}</script>
+      </Helmet>
       {/* Home Page Ad Slider */}
       <HomePageAdSlider 
         isVisible={showAdSlider}

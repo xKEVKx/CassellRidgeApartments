@@ -3,6 +3,7 @@ import { MapPin } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 export default function Location() {
   // Scroll to top when component mounts
@@ -12,6 +13,13 @@ export default function Location() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
+      <Helmet>
+        <title>Location & Directions | Cassell Ridge Apartments - Knoxville, TN</title>
+        <meta name="description" content="Find Cassell Ridge Apartments at 1230 Cassell Valley Way, Knoxville, TN. Conveniently located with easy access to local amenities, schools, and transit." />
+        <meta property="og:title" content="Location & Directions | Cassell Ridge Apartments - Knoxville, TN" />
+        <meta property="og:description" content="Find Cassell Ridge Apartments at 1230 Cassell Valley Way, Knoxville, TN. Conveniently located with easy access to local amenities, schools, and transit." />
+        <meta property="og:url" content="https://www.cassellridge.com/location" />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative py-20 bg-slate-700 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-700 via-slate-600 to-warm-brown-700"></div>

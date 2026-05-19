@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Bed, Bath, Square, Home, MapPin, Expand, Tag } from "lucide-react";
 import { Link } from "wouter";
+import { Helmet } from "react-helmet-async";
 
 import { SITE_CONFIG } from "@/lib/constants";
 import { useEffect } from "react";
@@ -23,6 +24,13 @@ export default function FloorPlans() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white pt-24">
+      <Helmet>
+        <title>Floor Plans | Cassell Ridge Apartments - Knoxville, TN</title>
+        <meta name="description" content="Explore 2 and 3 bedroom LIHTC apartment floor plans at Cassell Ridge in Knoxville, TN. View layouts, square footage, and schedule your visit today." />
+        <meta property="og:title" content="Floor Plans | Cassell Ridge Apartments - Knoxville, TN" />
+        <meta property="og:description" content="Explore 2 and 3 bedroom LIHTC apartment floor plans at Cassell Ridge in Knoxville, TN. View layouts, square footage, and schedule your visit today." />
+        <meta property="og:url" content="https://www.cassellridge.com/floor-plans" />
+      </Helmet>
       {/* Floor Plans Grid */}
       <section className="pt-2 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

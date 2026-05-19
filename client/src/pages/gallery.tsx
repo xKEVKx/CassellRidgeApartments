@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { GalleryImage } from "@shared/schema";
+import { Helmet } from "react-helmet-async";
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -74,6 +75,13 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Helmet>
+        <title>Photo Gallery | Cassell Ridge Apartments - Knoxville, TN</title>
+        <meta name="description" content="Browse photos of Cassell Ridge Apartments in Knoxville, TN. View interior and exterior images of our affordable 2 & 3 bedroom LIHTC apartment homes." />
+        <meta property="og:title" content="Photo Gallery | Cassell Ridge Apartments - Knoxville, TN" />
+        <meta property="og:description" content="Browse photos of Cassell Ridge Apartments in Knoxville, TN. View interior and exterior images of our affordable 2 & 3 bedroom LIHTC apartment homes." />
+        <meta property="og:url" content="https://www.cassellridge.com/gallery" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="text-center mb-12">
