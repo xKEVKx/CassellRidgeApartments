@@ -295,10 +295,10 @@ export default function Admin() {
         endDate: ''
       });
     },
-    onError: () => {
+    onError: (error) => {
       toast({
         title: "Error",
-        description: "Failed to create home page ad",
+        description: error instanceof Error ? error.message : "Failed to create home page ad",
         variant: "destructive",
       });
     },
@@ -583,6 +583,15 @@ export default function Admin() {
       });
       return;
     }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast({
+        title: "File Too Large",
+        description: "Please use an image under 5 MB.",
+        variant: "destructive",
+      });
+      return;
+    }
     
     setAdImageFile(file);
     
@@ -609,7 +618,7 @@ export default function Admin() {
     
     // If new image uploaded, compress it
     if (adImageFile) {
-      imageUrl = await new Promise<string>((resolve) => {
+      imageUrl = await new Promise<string>((resolve, reject) => {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         const img = new Image();
@@ -636,6 +645,8 @@ export default function Admin() {
           const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.65);
           resolve(compressedDataUrl);
         };
+
+        img.onerror = () => reject(new Error("Failed to load image for compression"));
         
         img.src = adImagePreview;
       });
