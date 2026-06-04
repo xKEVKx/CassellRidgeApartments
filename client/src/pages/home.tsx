@@ -565,13 +565,14 @@ export default function Home() {
                   
                   <div className="space-y-3">
                     {[
-                      { people: "1 Person", limit: "$41,700" },
-                      { people: "2 People", limit: "$47,700" },
-                      { people: "3 People", limit: "$53,640" },
-                      { people: "4 People", limit: "$59,640" },
-                      { people: "5 People", limit: "$64,380" },
-                      { people: "6 People", limit: "$69,180" },
-                      { people: "7 People", limit: "$73,980" }
+                      { people: "1 Person", limit: "$43,560" },
+                      { people: "2 People", limit: "$49,800" },
+                      { people: "3 People", limit: "$56,040" },
+                      { people: "4 People", limit: "$62,220" },
+                      { people: "5 People", limit: "$67,200" },
+                      { people: "6 People", limit: "$72,180" },
+                      { people: "7 People", limit: "$77,160" },
+                      { people: "8 People", limit: "$82,140" }
                     ].map((item, index) => (
                       <div key={index} className="flex justify-between items-center py-2 border-b border-slate-200 last:border-b-0">
                         <span className="font-medium text-slate-700">{item.people}</span>
