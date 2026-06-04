@@ -1,10 +1,13 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import session from "express-session";
+import multer from "multer";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema, insertGalleryImageSchema, insertHomePageAdSchema } from "@shared/schema";
 import { z } from "zod";
 import { sendContactNotification, sendConfirmationEmail, testEmailConnection } from "./email";
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 declare module "express-session" {
   interface SessionData {
@@ -309,9 +312,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/home-page-ads", async (req, res) => {
+  app.post("/api/home-page-ads", upload.single('image'), async (req, res) => {
     try {
-      const adData = insertHomePageAdSchema.parse(req.body);
+      if (!req.file) {
+        return res.status(400).json({ error: "Image file is required" });
+      }
+      const imageUrl = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+      const adData = insertHomePageAdSchema.parse({
+        imageUrl,
+        displayFrequency: parseInt(req.body.displayFrequency) || 5,
+        isActive: req.body.isActive === 'true',
+        startDate: req.body.startDate || undefined,
+        endDate: req.body.endDate || undefined,
+      });
       const ad = await storage.createHomePageAd(adData);
       res.json(ad);
     } catch (error) {
@@ -323,10 +336,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/home-page-ads/:id", async (req, res) => {
+  app.patch("/api/home-page-ads/:id", upload.single('image'), async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const updates = req.body;
+      const updates: Record<string, unknown> = {};
+      if (req.file) {
+        updates.imageUrl = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+      }
+      if (req.body.displayFrequency !== undefined) {
+        updates.displayFrequency = parseInt(req.body.displayFrequency);
+      }
+      if (req.body.isActive !== undefined) {
+        updates.isActive = req.body.isActive === 'true' || req.body.isActive === true;
+      }
+      if (req.body.startDate !== undefined) {
+        updates.startDate = req.body.startDate || null;
+      }
+      if (req.body.endDate !== undefined) {
+        updates.endDate = req.body.endDate || null;
+      }
       const ad = await storage.updateHomePageAd(id, updates);
       if (!ad) {
         return res.status(404).json({ error: "Home page ad not found" });

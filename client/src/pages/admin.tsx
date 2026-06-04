@@ -276,8 +276,17 @@ export default function Admin() {
   });
 
   const createHomePageAdMutation = useMutation({
-    mutationFn: async (adData: { imageUrl: string; displayFrequency: number; isActive: boolean; startDate?: string; endDate?: string }) => {
-      return apiRequest('POST', '/api/home-page-ads', adData);
+    mutationFn: async (formData: FormData) => {
+      const res = await fetch('/api/home-page-ads', {
+        method: 'POST',
+        body: formData,
+        credentials: 'include',
+      });
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`${res.status}: ${text}`);
+      }
+      return res.json();
     },
     onSuccess: () => {
       toast({
@@ -305,8 +314,17 @@ export default function Admin() {
   });
 
   const updateHomePageAdMutation = useMutation({
-    mutationFn: async ({ id, updates }: { id: number; updates: Partial<HomePageAd> }) => {
-      return apiRequest('PATCH', `/api/home-page-ads/${id}`, updates);
+    mutationFn: async ({ id, formData }: { id: number; formData: FormData }) => {
+      const res = await fetch(`/api/home-page-ads/${id}`, {
+        method: 'PATCH',
+        body: formData,
+        credentials: 'include',
+      });
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`${res.status}: ${text}`);
+      }
+      return res.json();
     },
     onSuccess: () => {
       toast({
@@ -318,10 +336,10 @@ export default function Admin() {
         handleCancelAdForm();
       }
     },
-    onError: () => {
+    onError: (error) => {
       toast({
         title: "Error",
-        description: "Failed to update home page ad",
+        description: error instanceof Error ? error.message : "Failed to update home page ad",
         variant: "destructive",
       });
     },
@@ -613,60 +631,47 @@ export default function Admin() {
       return;
     }
     
-    // Use existing image if editing and no new image uploaded
-    let imageUrl = adImagePreview;
-    
-    // If new image uploaded, compress it
+    const formData = new FormData();
+
+    // If a new image was selected, compress to a binary blob and append
     if (adImageFile) {
-      imageUrl = await new Promise<string>((resolve, reject) => {
+      const blob = await new Promise<Blob>((resolve, reject) => {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         const img = new Image();
-        
+
         img.onload = () => {
           const maxSize = 800;
           let { width, height } = img;
-          
           if (width > height) {
-            if (width > maxSize) {
-              height = (height * maxSize) / width;
-              width = maxSize;
-            }
+            if (width > maxSize) { height = Math.round((height * maxSize) / width); width = maxSize; }
           } else {
-            if (height > maxSize) {
-              width = (width * maxSize) / height;
-              height = maxSize;
-            }
+            if (height > maxSize) { width = Math.round((width * maxSize) / height); height = maxSize; }
           }
-          
           canvas.width = width;
           canvas.height = height;
           ctx?.drawImage(img, 0, 0, width, height);
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.65);
-          resolve(compressedDataUrl);
+          canvas.toBlob((b) => {
+            if (b) resolve(b);
+            else reject(new Error("Image compression failed"));
+          }, 'image/jpeg', 0.65);
         };
 
         img.onerror = () => reject(new Error("Failed to load image for compression"));
-        
         img.src = adImagePreview;
       });
+      formData.append('image', blob, 'ad-image.jpg');
     }
-    
-    const adData = {
-      imageUrl,
-      displayFrequency: adFormData.displayFrequency,
-      isActive: adFormData.isActive,
-      startDate: adFormData.startDate || undefined,
-      endDate: adFormData.endDate || undefined,
-    };
-    
+
+    formData.append('displayFrequency', String(adFormData.displayFrequency));
+    formData.append('isActive', String(adFormData.isActive));
+    if (adFormData.startDate) formData.append('startDate', adFormData.startDate);
+    if (adFormData.endDate) formData.append('endDate', adFormData.endDate);
+
     if (editingAd) {
-      updateHomePageAdMutation.mutate({
-        id: editingAd.id,
-        updates: adData
-      });
+      updateHomePageAdMutation.mutate({ id: editingAd.id, formData });
     } else {
-      createHomePageAdMutation.mutate(adData);
+      createHomePageAdMutation.mutate(formData);
     }
   };
 
