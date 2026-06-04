@@ -615,7 +615,7 @@ export default function Admin() {
         const img = new Image();
         
         img.onload = () => {
-          const maxSize = 1200;
+          const maxSize = 800;
           let { width, height } = img;
           
           if (width > height) {
@@ -633,7 +633,7 @@ export default function Admin() {
           canvas.width = width;
           canvas.height = height;
           ctx?.drawImage(img, 0, 0, width, height);
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.65);
           resolve(compressedDataUrl);
         };
         
