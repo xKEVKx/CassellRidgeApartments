@@ -94,7 +94,10 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
   createdAt: true,
 });
 
-export const insertHomePageAdSchema = createInsertSchema(homePageAds).omit({
+export const insertHomePageAdSchema = createInsertSchema(homePageAds, {
+  startDate: z.coerce.date().optional().nullable(),
+  endDate: z.coerce.date().optional().nullable(),
+}).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
