@@ -133,16 +133,16 @@ export default function Home() {
         <meta name="description" content="Discover affordable LIHTC apartments at Cassell Ridge in Knoxville, TN. Spacious 2 & 3 bedroom homes with modern amenities and income-based rents starting at $950." />
         <meta property="og:title" content="Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN" />
         <meta property="og:description" content="Discover affordable LIHTC apartments at Cassell Ridge in Knoxville, TN. Spacious 2 & 3 bedroom homes with modern amenities and income-based rents starting at $950." />
-        <meta property="og:url" content="https://www.cassellridge.com/" />
+        <meta property="og:url" content="https://www.cassellridgeapts.com/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ApartmentComplex",
           "name": "Cassell Ridge Apartments",
           "description": "Quality LIHTC affordable housing community in Knoxville, Tennessee offering 2 & 3 bedroom apartments with modern amenities.",
-          "url": "https://www.cassellridge.com",
+          "url": "https://www.cassellridgeapts.com",
           "telephone": "(865) 357-2712",
           "email": "cassellridge@elmingtonpm.com",
-          "logo": "https://www.cassellridge.com/images/cassell-ridge-logo.png",
+          "logo": "https://www.cassellridgeapts.com/images/cassell-ridge-logo.png",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "1230 Cassell Valley Way",

@@ -26,7 +26,7 @@ export default function Contact() {
         <meta name="description" content="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 357-2712 or fill out our online form today." />
         <meta property="og:title" content="Contact Us | Cassell Ridge Apartments - Knoxville, TN" />
         <meta property="og:description" content="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 357-2712 or fill out our online form today." />
-        <meta property="og:url" content="https://www.cassellridge.com/contact" />
+        <meta property="og:url" content="https://www.cassellridgeapts.com/contact" />
       </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">

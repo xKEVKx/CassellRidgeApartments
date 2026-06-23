@@ -18,7 +18,7 @@ export default function Location() {
         <meta name="description" content="Find Cassell Ridge Apartments at 1230 Cassell Valley Way, Knoxville, TN. Conveniently located with easy access to local amenities, schools, and transit." />
         <meta property="og:title" content="Location & Directions | Cassell Ridge Apartments - Knoxville, TN" />
         <meta property="og:description" content="Find Cassell Ridge Apartments at 1230 Cassell Valley Way, Knoxville, TN. Conveniently located with easy access to local amenities, schools, and transit." />
-        <meta property="og:url" content="https://www.cassellridge.com/location" />
+        <meta property="og:url" content="https://www.cassellridgeapts.com/location" />
       </Helmet>
       {/* Hero Section */}
       <section className="relative py-20 bg-slate-700 overflow-hidden">

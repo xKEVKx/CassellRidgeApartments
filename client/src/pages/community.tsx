@@ -46,7 +46,7 @@ export default function Community() {
         <meta name="description" content="Discover what's near Cassell Ridge Apartments in North Knoxville, TN. Explore nearby neighborhoods, shopping, dining, schools, parks, and healthcare." />
         <meta property="og:title" content="Community | Cassell Ridge Apartments - Knoxville, TN" />
         <meta property="og:description" content="Discover what's near Cassell Ridge Apartments in North Knoxville, TN. Explore nearby neighborhoods, shopping, dining, schools, parks, and healthcare." />
-        <meta property="og:url" content="https://www.cassellridge.com/community" />
+        <meta property="og:url" content="https://www.cassellridgeapts.com/community" />
       </Helmet>
       {/* Hero */}
       <section className="relative py-20 bg-slate-700 overflow-hidden">

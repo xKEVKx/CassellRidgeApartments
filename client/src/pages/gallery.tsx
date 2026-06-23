@@ -80,7 +80,7 @@ export default function Gallery() {
         <meta name="description" content="Browse photos of Cassell Ridge Apartments in Knoxville, TN. View interior and exterior images of our affordable 2 & 3 bedroom LIHTC apartment homes." />
         <meta property="og:title" content="Photo Gallery | Cassell Ridge Apartments - Knoxville, TN" />
         <meta property="og:description" content="Browse photos of Cassell Ridge Apartments in Knoxville, TN. View interior and exterior images of our affordable 2 & 3 bedroom LIHTC apartment homes." />
-        <meta property="og:url" content="https://www.cassellridge.com/gallery" />
+        <meta property="og:url" content="https://www.cassellridgeapts.com/gallery" />
       </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}

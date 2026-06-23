@@ -29,7 +29,7 @@ export default function FloorPlans() {
         <meta name="description" content="Explore 2 and 3 bedroom LIHTC apartment floor plans at Cassell Ridge in Knoxville, TN. View layouts, square footage, and schedule your visit today." />
         <meta property="og:title" content="Floor Plans | Cassell Ridge Apartments - Knoxville, TN" />
         <meta property="og:description" content="Explore 2 and 3 bedroom LIHTC apartment floor plans at Cassell Ridge in Knoxville, TN. View layouts, square footage, and schedule your visit today." />
-        <meta property="og:url" content="https://www.cassellridge.com/floor-plans" />
+        <meta property="og:url" content="https://www.cassellridgeapts.com/floor-plans" />
       </Helmet>
       {/* Floor Plans Grid */}
       <section className="pt-2 pb-6">

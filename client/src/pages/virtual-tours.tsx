@@ -39,7 +39,7 @@ export default function VirtualTours() {
         <meta name="description" content="Take a 3D virtual tour of Cassell Ridge Apartments in Knoxville, TN. Explore our spacious 2 and 3 bedroom LIHTC affordable apartment floor plans online." />
         <meta property="og:title" content="Virtual Tours | Cassell Ridge Apartments - Knoxville, TN" />
         <meta property="og:description" content="Take a 3D virtual tour of Cassell Ridge Apartments in Knoxville, TN. Explore our spacious 2 and 3 bedroom LIHTC affordable apartment floor plans online." />
-        <meta property="og:url" content="https://www.cassellridge.com/virtual-tours" />
+        <meta property="og:url" content="https://www.cassellridgeapts.com/virtual-tours" />
       </Helmet>
       {/* Hero Section */}
       <section className="relative py-32 bg-slate-900 overflow-hidden">
