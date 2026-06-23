@@ -98,6 +98,14 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 - Hero title ("Living Near Cassell Ridge") placed on a single line to prevent the `bg-clip-text` gradient from clipping the "g" descender; `pb-2` added to the heading for further clearance.
 - Both hero paragraphs styled consistently (`text-xl sm:text-2xl font-light`).
 
+### Domain URL Correction (SEO)
+All hardcoded URLs across the site were using the wrong domain (`cassellridge.com` instead of `cassellridgeapts.com`). Fixed in every file:
+- **`client/public/sitemap.xml`** — all 7 page `<loc>` URLs
+- **`client/public/robots.txt`** — sitemap URL
+- **`client/index.html`** — canonical link, `og:url`, `og:image`, `twitter:image`
+- **`client/src/pages/home.tsx`** — `og:url`, JSON-LD `url` and `logo` fields
+- **`client/src/pages/floor-plans.tsx`**, **`gallery.tsx`**, **`contact.tsx`**, **`location.tsx`**, **`virtual-tours.tsx`**, **`community.tsx`** — `og:url` on each page
+
 ### Home Page Ad Image Upload — Production Fix
 The admin "Create Ad" feature was failing in production with a 403 error. The root cause was Replit's autoscale WAF (web application firewall) blocking POST requests that contained large base64-encoded image strings in a JSON body. The request was dropped before reaching Express, so no server log entry appeared.
 
