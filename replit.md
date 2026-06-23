@@ -82,6 +82,22 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 
 ## Recent Updates (June 2026)
 
+### Footer — Dynamic Copyright Year
+- Updated `client/src/components/layout/footer.tsx` to use `{new Date().getFullYear()}` instead of the hardcoded `2025`, so the copyright year updates automatically each year.
+
+### New Community Page
+- Created `client/src/pages/community.tsx` — a full content page about living near Cassell Ridge, covering neighborhoods, shopping, dining, schools, parks, and healthcare, plus a "Why Rent at Cassell Ridge?" CTA section.
+- Added `/community` route to `client/src/App.tsx`.
+- Added "Community" as the first item in the Property dropdown in `client/src/lib/constants.ts`, appearing before Gallery, Location, and Virtual Tours.
+- Page includes proper `<Helmet>` SEO tags (title, description, Open Graph).
+
+### Community Page Design
+- All sections use a single consistent card component (`Card`) with a warm-brown icon badge, bold title, and description text — replacing an earlier mix of card grids, bullet lists, and decorative filler boxes.
+- All section headers use a shared `SectionHeader` component (h2 + subtitle, no pill badges).
+- Sections alternate white/slate-50 backgrounds for visual rhythm.
+- Hero title ("Living Near Cassell Ridge") placed on a single line to prevent the `bg-clip-text` gradient from clipping the "g" descender; `pb-2` added to the heading for further clearance.
+- Both hero paragraphs styled consistently (`text-xl sm:text-2xl font-light`).
+
 ### Home Page Ad Image Upload — Production Fix
 The admin "Create Ad" feature was failing in production with a 403 error. The root cause was Replit's autoscale WAF (web application firewall) blocking POST requests that contained large base64-encoded image strings in a JSON body. The request was dropped before reaching Express, so no server log entry appeared.
 
