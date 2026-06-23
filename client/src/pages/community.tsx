@@ -59,11 +59,8 @@ export default function Community() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-6">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              Living Near
-              <span className="block bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">
-                Cassell Ridge
-              </span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight pb-2">
+              Living Near <span className="bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">Cassell Ridge</span>
             </h1>
             <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">Located at 1230 Cassell Valley Way - convenient access to shopping, dining, schools, healthcare, and outdoor recreation, all while staying connected to everything East Tennessee has to offer.</p>
             <p className="text-lg text-slate-300 max-w-4xl mx-auto leading-relaxed">
