@@ -1,21 +1,15 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
-import { MapPin, ShoppingBag, Utensils, GraduationCap, Trees, Heart, Star, CheckCircle } from "lucide-react";
+import { MapPin, ShoppingBag, Utensils, GraduationCap, Trees, Heart, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-function SectionHeader({ icon: Icon, badge, title, subtitle }: {
-  icon: React.ElementType;
-  badge: string;
+function SectionHeader({ title, subtitle }: {
   title: string;
   subtitle: string;
 }) {
   return (
     <div className="text-center mb-10">
-      <div className="inline-flex items-center px-4 py-2 bg-warm-brown-100 rounded-full text-warm-brown-700 text-sm font-semibold mb-4">
-        <Icon className="w-4 h-4 mr-2" />
-        {badge}
-      </div>
       <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">{title}</h2>
       <p className="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">{subtitle}</p>
     </div>
@@ -66,10 +60,6 @@ export default function Community() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-6">
-            <div className="inline-flex items-center px-4 py-2 bg-warm-brown-500/20 rounded-full text-warm-brown-400 text-sm font-semibold backdrop-blur-sm">
-              <MapPin className="w-4 h-4 mr-2" />
-              North Knoxville, Tennessee
-            </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Living Near
               <span className="block bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">
@@ -96,8 +86,6 @@ export default function Community() {
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            icon={MapPin}
-            badge="Nearby Neighborhoods"
             title="Neighborhoods Near Cassell Ridge"
             subtitle="Residents enjoy convenient access to several of Knoxville's most established neighborhoods."
           />
@@ -118,8 +106,6 @@ export default function Community() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            icon={ShoppingBag}
-            badge="Shopping"
             title="Shopping Near Cassell Ridge"
             subtitle="Everyday conveniences are close by. Multiple shopping centers are located within a few miles of the community."
           />
@@ -140,8 +126,6 @@ export default function Community() {
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            icon={Utensils}
-            badge="Dining"
             title="Restaurants Near Cassell Ridge"
             subtitle="A wide variety of local dining options are just minutes from home — from casual breakfast spots to craft cocktail bars."
           />
@@ -162,8 +146,6 @@ export default function Community() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            icon={GraduationCap}
-            badge="Education"
             title="Schools & Higher Education"
             subtitle="Families appreciate access to Knox County Schools, while students and professionals benefit from proximity to nearby colleges and universities."
           />
@@ -184,8 +166,6 @@ export default function Community() {
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            icon={Trees}
-            badge="Parks & Recreation"
             title="Parks and Recreation"
             subtitle="Outdoor enthusiasts have access to numerous recreational opportunities throughout Knoxville."
           />
@@ -207,8 +187,6 @@ export default function Community() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            icon={Heart}
-            badge="Healthcare"
             title="Healthcare Access"
             subtitle="Residents enjoy convenient access to major healthcare providers, making Cassell Ridge an attractive choice for healthcare workers and families."
           />
@@ -228,10 +206,6 @@ export default function Community() {
       <section className="py-16 bg-gradient-to-r from-slate-700 via-slate-600 to-warm-brown-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <div className="inline-flex items-center px-4 py-2 bg-warm-brown-500/20 rounded-full text-warm-brown-400 text-sm font-semibold mb-4">
-              <Star className="w-4 h-4 mr-2" />
-              Why Cassell Ridge?
-            </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">Why Rent at Cassell Ridge?</h2>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
               Affordability, convenience, and accessibility — all in one community.
