@@ -39,6 +39,7 @@ export const NAVIGATION_LINKS = [
     href: "/property", 
     label: "Property",
     subItems: [
+      { href: "/community", label: "Community" },
       { href: "/gallery", label: "Gallery" },
       { href: "/location", label: "Location" },
       { href: "/virtual-tours", label: "Virtual Tours" }

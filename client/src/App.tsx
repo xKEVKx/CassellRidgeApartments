@@ -11,6 +11,7 @@ import FloorPlans from "@/pages/floor-plans";
 import Gallery from "@/pages/gallery";
 import Contact from "@/pages/contact";
 import Location from "@/pages/location";
+import Community from "@/pages/community";
 import VirtualTours from "@/pages/virtual-tours";
 import Admin from "@/pages/admin";
 import NotFound from "@/pages/not-found";
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/floor-plans" component={FloorPlans} />
       <Route path="/gallery" component={Gallery} />
+      <Route path="/community" component={Community} />
       <Route path="/location" component={Location} />
       <Route path="/virtual-tours" component={VirtualTours} />
       <Route path="/contact" component={Contact} />
