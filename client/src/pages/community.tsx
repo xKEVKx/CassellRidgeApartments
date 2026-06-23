@@ -63,7 +63,7 @@ export default function Community() {
               Living Near <span className="bg-gradient-to-r from-warm-brown-400 to-warm-brown-400 bg-clip-text text-transparent">Cassell Ridge</span>
             </h1>
             <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">Located at 1230 Cassell Valley Way - convenient access to shopping, dining, schools, healthcare, and outdoor recreation, all while staying connected to everything East Tennessee has to offer.</p>
-            <p className="text-lg text-slate-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
               Cassell Ridge offers affordable and spacious two- and three-bedroom apartment homes in a central North Knoxville location. Whether you're commuting to downtown Knoxville, attending college, or looking for an affordable apartment near Fountain City, you'll find everything you need just minutes from home.
             </p>
           </div>
