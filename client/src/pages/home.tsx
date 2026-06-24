@@ -142,7 +142,7 @@ export default function Home() {
           "url": "https://www.cassellridgeapts.com",
           "telephone": "(865) 357-2712",
           "email": "cassellridge@elmingtonpm.com",
-          "logo": "https://www.cassellridgeapts.com/images/cassell-ridge-logo.png",
+          "logo": "https://www.cassellridgeapts.com/images/Cassell%20Ridge%20Logo.png",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "1230 Cassell Valley Way",
