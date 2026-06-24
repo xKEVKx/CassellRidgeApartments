@@ -2,10 +2,27 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import session from "express-session";
 import multer from "multer";
+import rateLimit from "express-rate-limit";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema, insertGalleryImageSchema, insertHomePageAdSchema } from "@shared/schema";
 import { z } from "zod";
 import { sendContactNotification, sendConfirmationEmail, testEmailConnection } from "./email";
+
+const loginRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many login attempts. Please try again later." },
+});
+
+const contactRateLimit = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many submissions. Please try again later." },
+});
 
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
 const upload = multer({
@@ -210,7 +227,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Admin Login API
-  app.post("/api/admin/login", async (req, res) => {
+  app.post("/api/admin/login", loginRateLimit, async (req, res) => {
     try {
       const { password } = req.body;
       const adminPassword = process.env.ADMIN_PASSWORD;
@@ -257,7 +274,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Contact Submissions API
-  app.post("/api/contact", async (req, res) => {
+  app.post("/api/contact", contactRateLimit, async (req, res) => {
     try {
       const validatedData = insertContactSubmissionSchema.parse(req.body);
       const submission = await storage.createContactSubmission(validatedData);
