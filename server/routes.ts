@@ -322,8 +322,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         imageUrl,
         displayFrequency: parseInt(req.body.displayFrequency) || 5,
         isActive: req.body.isActive === 'true',
-        startDate: req.body.startDate || undefined,
-        endDate: req.body.endDate || undefined,
       });
       const ad = await storage.createHomePageAd(adData);
       res.json(ad);
@@ -349,12 +347,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (req.body.isActive !== undefined) {
         updates.isActive = req.body.isActive === 'true' || req.body.isActive === true;
       }
-      if (req.body.startDate !== undefined) {
-        updates.startDate = req.body.startDate || null;
-      }
-      if (req.body.endDate !== undefined) {
-        updates.endDate = req.body.endDate || null;
-      }
+
       const ad = await storage.updateHomePageAd(id, updates);
       if (!ad) {
         return res.status(404).json({ error: "Home page ad not found" });

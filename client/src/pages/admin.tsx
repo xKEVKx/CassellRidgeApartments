@@ -31,8 +31,6 @@ export default function Admin() {
   const [adFormData, setAdFormData] = useState({
     displayFrequency: 5,
     isActive: true,
-    startDate: '',
-    endDate: ''
   });
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -302,8 +300,6 @@ export default function Admin() {
       setAdFormData({
         displayFrequency: 5,
         isActive: true,
-        startDate: '',
-        endDate: ''
       });
     },
     onError: (error) => {
@@ -679,9 +675,6 @@ export default function Admin() {
 
     formData.append('displayFrequency', String(adFormData.displayFrequency));
     formData.append('isActive', String(adFormData.isActive));
-    if (adFormData.startDate) formData.append('startDate', adFormData.startDate);
-    if (adFormData.endDate) formData.append('endDate', adFormData.endDate);
-
     if (editingAd) {
       updateHomePageAdMutation.mutate({ id: editingAd.id, formData });
     } else {
@@ -694,8 +687,6 @@ export default function Admin() {
     setAdFormData({
       displayFrequency: ad.displayFrequency,
       isActive: ad.isActive,
-      startDate: ad.startDate ? new Date(ad.startDate).toISOString().split('T')[0] : '',
-      endDate: ad.endDate ? new Date(ad.endDate).toISOString().split('T')[0] : '',
     });
     setAdImagePreview(ad.imageUrl);
     setShowAdForm(true);
@@ -709,8 +700,6 @@ export default function Admin() {
     setAdFormData({
       displayFrequency: 5,
       isActive: true,
-      startDate: '',
-      endDate: ''
     });
   };
 
@@ -1116,34 +1105,6 @@ export default function Admin() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="start-date">Start Date (optional)</Label>
-                      <Input
-                        id="start-date"
-                        type="date"
-                        value={adFormData.startDate}
-                        onChange={(e) => setAdFormData(prev => ({
-                          ...prev,
-                          startDate: e.target.value
-                        }))}
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="end-date">End Date (optional)</Label>
-                      <Input
-                        id="end-date"
-                        type="date"
-                        value={adFormData.endDate}
-                        onChange={(e) => setAdFormData(prev => ({
-                          ...prev,
-                          endDate: e.target.value
-                        }))}
-                      />
-                    </div>
-                  </div>
-
                   <div className="flex justify-end space-x-2">
                     <Button
                       variant="outline"
@@ -1249,8 +1210,6 @@ export default function Admin() {
                             </div>
                             <div className="text-sm text-gray-600">
                               <p>Display Frequency: Every {ad.displayFrequency} visits</p>
-                              {ad.startDate && <p>Start Date: {new Date(ad.startDate).toLocaleDateString()}</p>}
-                              {ad.endDate && <p>End Date: {new Date(ad.endDate).toLocaleDateString()}</p>}
                               <p className="text-xs text-gray-400 mt-1">
                                 Created: {new Date(ad.createdAt).toLocaleString()}
                               </p>

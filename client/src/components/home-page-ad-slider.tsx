@@ -31,13 +31,6 @@ export default function HomePageAdSlider({ isVisible, onClose, initialMinimized 
     return null;
   }
 
-  // Check if ad should be displayed based on date range
-  const now = new Date();
-  const startDate = activeAd.startDate ? new Date(activeAd.startDate) : null;
-  const endDate = activeAd.endDate ? new Date(activeAd.endDate) : null;
-
-  if (startDate && now < startDate) return null;
-  if (endDate && now > endDate) return null;
   if (!activeAd.isActive) return null;
 
   return (
