@@ -2,6 +2,12 @@ import { pgTable, text, serial, integer, boolean, timestamp, jsonb, decimal } fr
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// Maximum allowed size for a stored image URL (base64 data URI).
+// A 5 MB binary file base64-encodes to ≈ 6.77 MB; adding the data-URI prefix
+// and a small buffer gives 7 MB as the ceiling. Any imageUrl larger than this
+// is rejected by Zod validation before it reaches the database.
+export const MAX_IMAGE_URL_LENGTH = 7 * 1024 * 1024; // 7 MB in chars
+
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
@@ -87,6 +93,8 @@ export const insertAmenitySchema = createInsertSchema(amenities).omit({
 export const insertGalleryImageSchema = createInsertSchema(galleryImages).omit({
   id: true,
   createdAt: true,
+}).extend({
+  imageUrl: z.string().max(MAX_IMAGE_URL_LENGTH, "Image is too large. Maximum size is 5 MB."),
 });
 
 export const insertContactSubmissionSchema = createInsertSchema(contactSubmissions).omit({
@@ -97,6 +105,7 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
 export const insertHomePageAdSchema = createInsertSchema(homePageAds, {
   startDate: z.coerce.date().optional().nullable(),
   endDate: z.coerce.date().optional().nullable(),
+  imageUrl: z.string().max(MAX_IMAGE_URL_LENGTH, "Image is too large. Maximum size is 5 MB."),
 }).omit({
   id: true,
   createdAt: true,

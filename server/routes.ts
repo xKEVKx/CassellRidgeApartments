@@ -4,7 +4,7 @@ import session from "express-session";
 import multer from "multer";
 import rateLimit from "express-rate-limit";
 import { storage } from "./storage";
-import { insertContactSubmissionSchema, insertGalleryImageSchema, insertHomePageAdSchema } from "@shared/schema";
+import { insertContactSubmissionSchema, insertGalleryImageSchema, insertHomePageAdSchema, MAX_IMAGE_URL_LENGTH } from "@shared/schema";
 import { z } from "zod";
 import { sendContactNotification, sendConfirmationEmail, testEmailConnection } from "./email";
 
@@ -209,9 +209,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/gallery", requireAdmin, async (req, res) => {
     try {
-      // Base64 overhead is ~4/3; a 5 MB image becomes ~6.7 MB base64.
-      const MAX_IMAGE_URL_BYTES = Math.ceil(MAX_UPLOAD_BYTES * 4 / 3) + 1024;
-      if (req.body?.imageUrl && Buffer.byteLength(req.body.imageUrl, 'utf8') > MAX_IMAGE_URL_BYTES) {
+      if (req.body?.imageUrl && Buffer.byteLength(req.body.imageUrl, 'utf8') > MAX_IMAGE_URL_LENGTH) {
         return res.status(413).json({ error: "Image is too large. Maximum size is 5 MB." });
       }
       const galleryData = insertGalleryImageSchema.parse(req.body);
