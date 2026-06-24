@@ -19,6 +19,14 @@ declare module "express-session" {
   }
 }
 
+import type { Request, Response, NextFunction } from "express";
+function requireAdmin(req: Request, res: Response, next: NextFunction) {
+  if (!req.session?.isAdmin) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  next();
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Session configuration
   app.use(session({
@@ -65,7 +73,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/floor-plans/:id", async (req, res) => {
+  app.patch("/api/floor-plans/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const { startingPrice, promotionAvailable } = req.body;
@@ -129,7 +137,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/gallery/reorder", async (req, res) => {
+  app.patch("/api/gallery/reorder", requireAdmin, async (req, res) => {
     try {
       const { imageOrders } = req.body;
       
@@ -145,7 +153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/gallery/:id", async (req, res) => {
+  app.patch("/api/gallery/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const { category, title } = req.body;
@@ -166,7 +174,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/gallery/:id", async (req, res) => {
+  app.delete("/api/gallery/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const success = await storage.deleteGalleryImage(id);
@@ -182,7 +190,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/gallery", async (req, res) => {
+  app.post("/api/gallery", requireAdmin, async (req, res) => {
     try {
       // Base64 overhead is ~4/3; a 5 MB image becomes ~6.7 MB base64.
       const MAX_IMAGE_URL_BYTES = Math.ceil(MAX_UPLOAD_BYTES * 4 / 3) + 1024;
@@ -290,7 +298,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/contact", async (req, res) => {
+  app.get("/api/contact", requireAdmin, async (req, res) => {
     try {
       const submissions = await storage.getContactSubmissions();
       res.json(submissions);
@@ -301,7 +309,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Home Page Ads API
-  app.get("/api/home-page-ads", async (req, res) => {
+  app.get("/api/home-page-ads", requireAdmin, async (req, res) => {
     try {
       const ads = await storage.getHomePageAds();
       res.json(ads);
@@ -321,7 +329,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/home-page-ads", upload.single('image'), async (req, res) => {
+  app.post("/api/home-page-ads", requireAdmin, upload.single('image'), async (req, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ error: "Image file is required" });
@@ -351,7 +359,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/home-page-ads/:id", upload.single('image'), async (req, res) => {
+  app.patch("/api/home-page-ads/:id", requireAdmin, upload.single('image'), async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const updates: Record<string, unknown> = {};
@@ -383,7 +391,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/home-page-ads/:id", async (req, res) => {
+  app.delete("/api/home-page-ads/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const success = await storage.deleteHomePageAd(id);
@@ -398,7 +406,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Initialize database with sample data
-  app.post("/api/init-data", async (req, res) => {
+  app.post("/api/init-data", requireAdmin, async (req, res) => {
     try {
       // Initialize floor plans
       const floorPlansData = [
@@ -518,7 +526,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Test email connection endpoint
-  app.get("/api/test-email", async (req, res) => {
+  app.get("/api/test-email", requireAdmin, async (req, res) => {
     try {
       const result = await testEmailConnection();
       res.json(result);
