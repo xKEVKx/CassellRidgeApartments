@@ -318,13 +318,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Image file is required" });
       }
       const imageUrl = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+      const isActive = req.body.isActive === 'true';
       const adData = insertHomePageAdSchema.parse({
         imageUrl,
         displayFrequency: parseInt(req.body.displayFrequency) || 5,
-        isActive: req.body.isActive === 'true',
+        isActive,
       });
+      let deactivatedCount = 0;
+      if (isActive) {
+        deactivatedCount = await storage.deactivateOtherAds();
+      }
       const ad = await storage.createHomePageAd(adData);
-      res.json(ad);
+      res.json({ ...ad, deactivatedCount });
     } catch (error) {
       if (error instanceof z.ZodError) {
         return res.status(400).json({ error: "Invalid ad data", details: error.errors });
@@ -344,15 +349,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (req.body.displayFrequency !== undefined) {
         updates.displayFrequency = parseInt(req.body.displayFrequency);
       }
+      let deactivatedCount = 0;
       if (req.body.isActive !== undefined) {
         updates.isActive = req.body.isActive === 'true' || req.body.isActive === true;
+        if (updates.isActive) {
+          deactivatedCount = await storage.deactivateOtherAds(id);
+        }
       }
 
       const ad = await storage.updateHomePageAd(id, updates);
       if (!ad) {
         return res.status(404).json({ error: "Home page ad not found" });
       }
-      res.json({ success: true, id: ad.id });
+      res.json({ success: true, id: ad.id, deactivatedCount });
     } catch (error) {
       console.error("Error updating home page ad:", error);
       res.status(500).json({ error: "Failed to update home page ad" });

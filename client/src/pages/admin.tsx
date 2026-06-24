@@ -288,7 +288,13 @@ export default function Admin() {
       }
       return res.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (data?.deactivatedCount > 0) {
+        toast({
+          title: "Previous ad deactivated",
+          description: "The previously active ad was automatically deactivated.",
+        });
+      }
       toast({
         title: "Success",
         description: "Home page ad created successfully",
@@ -324,7 +330,13 @@ export default function Admin() {
       }
       return res.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      if (data?.deactivatedCount > 0) {
+        toast({
+          title: "Previous ad deactivated",
+          description: "The previously active ad was automatically deactivated.",
+        });
+      }
       toast({
         title: "Success",
         description: "Home page ad updated successfully",

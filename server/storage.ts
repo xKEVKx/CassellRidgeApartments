@@ -19,7 +19,7 @@ import {
   type InsertHomePageAd
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and, ne } from "drizzle-orm";
 
 export interface IStorage {
   // Users
@@ -216,6 +216,18 @@ export class DatabaseStorage implements IStorage {
     if (ad.endDate && new Date(ad.endDate) < currentDate) return undefined;
     
     return ad;
+  }
+
+  async deactivateOtherAds(excludeId?: number): Promise<number> {
+    const conditions = excludeId
+      ? and(eq(homePageAds.isActive, true), ne(homePageAds.id, excludeId))
+      : eq(homePageAds.isActive, true);
+    const deactivated = await db
+      .update(homePageAds)
+      .set({ isActive: false, updatedAt: new Date() })
+      .where(conditions)
+      .returning();
+    return deactivated.length;
   }
 
   async createHomePageAd(insertAd: InsertHomePageAd): Promise<HomePageAd> {
