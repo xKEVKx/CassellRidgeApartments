@@ -71,7 +71,7 @@ export default function Admin() {
       }
       
       const updatePromises = validUpdates.map(([id, data]) => 
-        apiRequest('PATCH', `/api/gallery/${id}`, { category: data.category })
+        apiRequest('PATCH', `/api/gallery/${id}`, { category: data.category, title: data.filename })
       );
       return Promise.all(updatePromises);
     },
@@ -857,9 +857,9 @@ export default function Admin() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {images?.map((image) => {
-                  const filename = image.imageUrl?.split('/').pop()?.split('.')[0] || '';
+                  const filename = image.title || '';
                   const currentCategory = photoUpdates[image.id]?.category || image.category;
-                  const currentFilename = photoUpdates[image.id]?.filename || filename;
+                  const currentFilename = photoUpdates[image.id]?.filename ?? filename;
                   const hasChanges = photoUpdates[image.id];
 
                   return (

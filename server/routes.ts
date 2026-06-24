@@ -144,13 +144,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.patch("/api/gallery/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const { category, filename } = req.body;
+      const { category, title } = req.body;
       
       if (!category) {
         return res.status(400).json({ error: "Category is required" });
       }
 
-      const updated = await storage.updateGalleryImage(id, { category, filename });
+      const updated = await storage.updateGalleryImage(id, { category, ...(title !== undefined && { title }) });
       if (!updated) {
         return res.status(404).json({ error: "Gallery image not found" });
       }
