@@ -428,7 +428,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         {
           name: "Maple",
           bedrooms: 1,
-          bathrooms: 1,
+          bathrooms: "1",
           sqft: 600,
           startingPrice: 1055,
           imageUrl: "/images/maple-floorplan.jpg",
@@ -437,7 +437,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         {
           name: "Cypress",
           bedrooms: 1,
-          bathrooms: 1,
+          bathrooms: "1",
           sqft: 700,
           startingPrice: 1149,
           imageUrl: "/images/cypress-floorplan.jpg",
@@ -446,7 +446,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         {
           name: "Dogwood",
           bedrooms: 2,
-          bathrooms: 2,
+          bathrooms: "2",
           sqft: 1000,
           startingPrice: 1399,
           imageUrl: "/images/dogwood-floorplan.jpg",
@@ -455,7 +455,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         {
           name: "Summit",
           bedrooms: 3,
-          bathrooms: 2,
+          bathrooms: "2",
           sqft: 1200,
           startingPrice: 2295,
           imageUrl: "/images/summit-floorplan.jpg",

@@ -697,8 +697,8 @@ export default function Admin() {
   const handleEditAd = (ad: HomePageAd) => {
     setEditingAd(ad);
     setAdFormData({
-      displayFrequency: ad.displayFrequency,
-      isActive: ad.isActive,
+      displayFrequency: ad.displayFrequency ?? 5,
+      isActive: ad.isActive ?? true,
     });
     setAdImagePreview(ad.imageUrl);
     setShowAdForm(true);
@@ -970,16 +970,16 @@ export default function Admin() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {floorPlans?.map((plan) => {
                   const currentRent = rentUpdates[plan.id] || plan.startingPrice;
-                  const currentPromotion = promotionUpdates[plan.id] !== undefined ? promotionUpdates[plan.id] : plan.promotionAvailable;
+                  const currentPromotion = promotionUpdates[plan.id] !== undefined ? promotionUpdates[plan.id] : (plan.promotionAvailable ?? false);
                   const hasRentChanges = rentUpdates[plan.id] !== undefined;
                   const hasPromotionChanges = promotionUpdates[plan.id] !== undefined;
                   const hasChanges = hasRentChanges || hasPromotionChanges;
                   
                   // Format the last updated date in Pacific time
-                  const formatPacificTime = (dateString: string | null) => {
-                    if (!dateString) return 'Not set';
+                  const formatPacificTime = (dateValue: Date | string | null) => {
+                    if (!dateValue) return 'Not set';
                     
-                    const date = new Date(dateString);
+                    const date = dateValue instanceof Date ? dateValue : new Date(dateValue);
                     return date.toLocaleString('en-US', {
                       timeZone: 'America/Los_Angeles',
                       year: 'numeric',
@@ -1184,10 +1184,9 @@ export default function Admin() {
                                   variant="outline"
                                   size="sm"
                                   onClick={() => {
-                                    updateHomePageAdMutation.mutate({
-                                      id: ad.id,
-                                      updates: { isActive: !ad.isActive }
-                                    });
+                                    const fd = new FormData();
+                                    fd.append('isActive', String(!ad.isActive));
+                                    updateHomePageAdMutation.mutate({ id: ad.id, formData: fd });
                                   }}
                                   disabled={updateHomePageAdMutation.isPending}
                                   className="mr-2"
@@ -1223,7 +1222,7 @@ export default function Admin() {
                             <div className="text-sm text-gray-600">
                               <p>Display Frequency: Every {ad.displayFrequency} visits</p>
                               <p className="text-xs text-gray-400 mt-1">
-                                Created: {new Date(ad.createdAt).toLocaleString()}
+                                Created: {ad.createdAt ? (ad.createdAt instanceof Date ? ad.createdAt : new Date(ad.createdAt)).toLocaleString() : 'Unknown'}
                               </p>
                             </div>
                           </div>
