@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,7 +11,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
 import { GalleryImage, FloorPlan, HomePageAd } from '@shared/schema';
-import { ArrowUp, ArrowDown, GripVertical, Trash2, Upload, Plus } from 'lucide-react';
+import { GripVertical, Trash2, Upload, Plus } from 'lucide-react';
 
 export default function Admin() {
   const [password, setPassword] = useState('');
@@ -21,6 +21,8 @@ export default function Admin() {
   const [promotionUpdates, setPromotionUpdates] = useState<Record<number, boolean>>({});
   const [reorderMode, setReorderMode] = useState(false);
   const [reorderedImages, setReorderedImages] = useState<GalleryImage[]>([]);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  const dragIndexRef = useRef<number | null>(null);
   const [uploadFiles, setUploadFiles] = useState<File[]>([]);
   const [adImageFile, setAdImageFile] = useState<File | null>(null);
   const [adImagePreview, setAdImagePreview] = useState<string>('');
@@ -531,20 +533,32 @@ export default function Admin() {
     setReorderedImages([]);
   };
 
-  const handleMoveUp = (index: number) => {
-    if (index > 0) {
-      const newImages = [...reorderedImages];
-      [newImages[index], newImages[index - 1]] = [newImages[index - 1], newImages[index]];
-      setReorderedImages(newImages);
-    }
+  const handleDragStart = (index: number) => {
+    dragIndexRef.current = index;
   };
 
-  const handleMoveDown = (index: number) => {
-    if (index < reorderedImages.length - 1) {
-      const newImages = [...reorderedImages];
-      [newImages[index], newImages[index + 1]] = [newImages[index + 1], newImages[index]];
-      setReorderedImages(newImages);
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    setDragOverIndex(index);
+  };
+
+  const handleDrop = (index: number) => {
+    const from = dragIndexRef.current;
+    if (from === null || from === index) {
+      setDragOverIndex(null);
+      return;
     }
+    const newImages = [...reorderedImages];
+    const [moved] = newImages.splice(from, 1);
+    newImages.splice(index, 0, moved);
+    setReorderedImages(newImages);
+    dragIndexRef.current = null;
+    setDragOverIndex(null);
+  };
+
+  const handleDragEnd = () => {
+    dragIndexRef.current = null;
+    setDragOverIndex(null);
   };
 
   const handleSaveOrder = () => {
@@ -813,41 +827,35 @@ export default function Admin() {
             ) : reorderMode ? (
               <div className="space-y-4">
                 <div className="text-sm text-gray-600 mb-4">
-                  Use the arrows to reorder photos. The first photo will appear first in the gallery.
+                  Drag and drop photos to reorder them. The first photo will appear first in the gallery.
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {reorderedImages.map((image, index) => (
-                    <Card key={image.id} className="overflow-hidden">
-                      <div className="aspect-video bg-gray-100">
-                        <img 
-                          src={image.imageUrl} 
+                    <Card
+                      key={image.id}
+                      draggable
+                      onDragStart={() => handleDragStart(index)}
+                      onDragOver={(e) => handleDragOver(e, index)}
+                      onDrop={() => handleDrop(index)}
+                      onDragEnd={handleDragEnd}
+                      className={`overflow-hidden cursor-grab active:cursor-grabbing transition-all ${
+                        dragOverIndex === index ? 'ring-2 ring-emerald-500 scale-105' : ''
+                      }`}
+                    >
+                      <div className="aspect-video bg-gray-100 relative">
+                        <img
+                          src={image.imageUrl}
                           alt={image.title}
                           className="w-full h-full object-cover"
                         />
+                        <div className="absolute top-2 left-2 bg-black/50 text-white text-xs font-bold rounded px-2 py-1">
+                          #{index + 1}
+                        </div>
                       </div>
-                      <CardContent className="p-4">
-                        <div className="flex items-center justify-between">
-                          <div className="text-sm text-gray-600">
-                            #{index + 1} - {image.category}
-                          </div>
-                          <div className="flex gap-1">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => handleMoveUp(index)}
-                              disabled={index === 0}
-                            >
-                              <ArrowUp className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => handleMoveDown(index)}
-                              disabled={index === reorderedImages.length - 1}
-                            >
-                              <ArrowDown className="h-4 w-4" />
-                            </Button>
-                          </div>
+                      <CardContent className="p-3">
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <GripVertical className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                          <span className="truncate">{image.title || image.category}</span>
                         </div>
                       </CardContent>
                     </Card>
