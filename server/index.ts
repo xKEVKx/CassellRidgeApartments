@@ -31,8 +31,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: false, limit: '10mb' }));
+app.use(express.json({ limit: '6mb' }));
+app.use(express.urlencoded({ extended: false, limit: '6mb' }));
 
 app.use((req, res, next) => {
   const start = Date.now();

@@ -7,7 +7,11 @@ import { insertContactSubmissionSchema, insertGalleryImageSchema, insertHomePage
 import { z } from "zod";
 import { sendContactNotification, sendConfirmationEmail, testEmailConnection } from "./email";
 
-const upload = multer({ storage: multer.memoryStorage() });
+const MAX_UPLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: MAX_UPLOAD_BYTES },
+});
 
 declare module "express-session" {
   interface SessionData {
@@ -180,6 +184,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/gallery", async (req, res) => {
     try {
+      // Base64 overhead is ~4/3; a 5 MB image becomes ~6.7 MB base64.
+      const MAX_IMAGE_URL_BYTES = Math.ceil(MAX_UPLOAD_BYTES * 4 / 3) + 1024;
+      if (req.body?.imageUrl && Buffer.byteLength(req.body.imageUrl, 'utf8') > MAX_IMAGE_URL_BYTES) {
+        return res.status(413).json({ error: "Image is too large. Maximum size is 5 MB." });
+      }
       const galleryData = insertGalleryImageSchema.parse(req.body);
       const image = await storage.createGalleryImage(galleryData);
       res.json(image);
@@ -330,7 +339,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       const ad = await storage.createHomePageAd(adData);
       res.json({ ...ad, deactivatedCount });
-    } catch (error) {
+    } catch (error: any) {
+      if (error?.code === 'LIMIT_FILE_SIZE') {
+        return res.status(413).json({ error: "Image is too large. Maximum size is 5 MB." });
+      }
       if (error instanceof z.ZodError) {
         return res.status(400).json({ error: "Invalid ad data", details: error.errors });
       }
@@ -362,7 +374,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ error: "Home page ad not found" });
       }
       res.json({ success: true, id: ad.id, deactivatedCount });
-    } catch (error) {
+    } catch (error: any) {
+      if (error?.code === 'LIMIT_FILE_SIZE') {
+        return res.status(413).json({ error: "Image is too large. Maximum size is 5 MB." });
+      }
       console.error("Error updating home page ad:", error);
       res.status(500).json({ error: "Failed to update home page ad" });
     }
