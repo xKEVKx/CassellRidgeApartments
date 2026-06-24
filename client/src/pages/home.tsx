@@ -194,7 +194,7 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-12">
+          <div className="space-y-6">
             {/* Main Heading */}
             <div className="space-y-6 bg-black/20 backdrop-blur-sm rounded-3xl p-8 sm:p-12">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tracking-tight">
@@ -234,7 +234,7 @@ export default function Home() {
             </div>
             
             {/* Feature Pills */}
-            <div className="flex flex-wrap justify-center gap-4 pt-8 pb-8">
+            <div className="flex flex-wrap justify-center gap-4 pb-8">
               {[
                 { icon: "🏠", text: "2-3 Bedrooms", href: "/floor-plans", isAnchor: false },
                 { icon: "🏊", text: "Swimming Pool", href: "#amenities", isAnchor: true },
