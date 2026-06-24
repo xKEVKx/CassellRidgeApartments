@@ -98,6 +98,17 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 - Hero title ("Living Near Cassell Ridge") placed on a single line to prevent the `bg-clip-text` gradient from clipping the "g" descender; `pb-2` added to the heading for further clearance.
 - Both hero paragraphs styled consistently (`text-xl sm:text-2xl font-light`).
 
+### Gallery Admin — Filename Display & Editing Fix
+Photos uploaded via the admin panel were showing garbled filenames like "Z" or "2Q==" because the code tried to extract a filename by splitting the base64 `imageUrl` on `/`, which returned a random chunk of base64 data instead.
+
+- **`client/src/pages/admin.tsx`**: Changed filename derivation from `image.imageUrl.split('/').pop()...` to `image.title || ''`. The `title` field is set correctly from the original file name at upload time. Also changed the save mutation to send `title: data.filename` in the PATCH request body (was only sending `category`, so filename edits were silently dropped).
+- **`server/routes.ts`**: Updated `PATCH /api/gallery/:id` to read `title` from `req.body` instead of `filename`, and pass it to `storage.updateGalleryImage()` so edits actually persist to the database.
+
+### Gallery Admin — Drag-and-Drop Reordering
+Replaced the up/down arrow buttons in "Reorder Photos" mode with HTML5 native drag-and-drop.
+
+- **`client/src/pages/admin.tsx`**: Added `useRef` import, `dragOverIndex` state, and `dragIndexRef` ref. Replaced `handleMoveUp`/`handleMoveDown` with `handleDragStart`, `handleDragOver`, `handleDrop`, and `handleDragEnd`. Removed `ArrowUp`/`ArrowDown` lucide imports. Each card is now `draggable` with a green highlight ring and scale effect on the drop target, a `#N` position badge overlaid on the photo, and a `GripVertical` icon in the card footer.
+
 ### Domain URL Correction (SEO)
 All hardcoded URLs across the site were using the wrong domain (`cassellridge.com` instead of `cassellridgeapts.com`). Fixed in every file:
 - **`client/public/sitemap.xml`** — all 7 page `<loc>` URLs
