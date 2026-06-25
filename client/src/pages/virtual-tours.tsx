@@ -16,7 +16,7 @@ export default function VirtualTours() {
       id: 1,
       title: "2-Bedroom Virtual Tour",
       description: "Take an immersive 3D walkthrough of our 2-bedroom apartment layout. Experience the spacious living areas, modern kitchen, and comfortable bedrooms.",
-      thumbnail: "/images/cassell-2bedroom-floorplan.jpg",
+      thumbnail: "/images/floorplans/cassell-2-bedroom-a.jpg",
       videoUrl: "https://discover.matterport.com/space/EQrEazqXEcw",
       icon: <Home className="w-6 h-6" />,
       type: "Interactive 3D Tour"
@@ -25,7 +25,7 @@ export default function VirtualTours() {
       id: 2,
       title: "3-Bedroom Virtual Tour",
       description: "Explore our spacious 3-bedroom apartment with this interactive virtual tour. See the generous living spaces and modern amenities up close.",
-      thumbnail: "/images/cassell-3bedroom-floorplan.jpg",
+      thumbnail: "/images/floorplans/cassell-3-bedroom.jpg",
       videoUrl: "https://discover.matterport.com/space/ZJ5VJ6eqLZk",
       icon: <Building className="w-6 h-6" />,
       type: "Interactive 3D Tour"
