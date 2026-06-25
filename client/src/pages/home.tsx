@@ -624,8 +624,11 @@ export default function Home() {
                               id="eligibility-income"
                               type="text"
                               inputMode="numeric"
+                              maxLength={12}
                               value={eligibilityIncome}
-                              onChange={(e) => setEligibilityIncome(e.target.value)}
+                              onChange={(e) =>
+                                setEligibilityIncome(e.target.value.replace(/[^0-9,]/g, ""))
+                              }
                               placeholder="45,000"
                               className="w-full rounded-lg border border-slate-200 py-3 pl-8 pr-4 text-slate-900 focus:border-warm-brown-400 focus:outline-none focus:ring-1 focus:ring-warm-brown-400"
                             />
@@ -781,6 +784,50 @@ export default function Home() {
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
+
+                      const name = contactForm.name.trim();
+                      const email = contactForm.email.trim();
+                      const phone = contactForm.phone.trim();
+                      const message = contactForm.message.trim();
+
+                      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                      const phoneDigits = (phone.match(/\d/g) || []).length;
+                      const phoneValid = /^[0-9+().\-\s]+$/.test(phone) && phoneDigits >= 10;
+                      const hasInvalidChars = /[<>]/.test(name) || /[<>]/.test(message);
+
+                      if (!name || !email || !phone) {
+                        toast({
+                          title: "Missing information",
+                          description: "Please enter your name, email, and phone number.",
+                          variant: "destructive",
+                        });
+                        return;
+                      }
+                      if (!emailValid) {
+                        toast({
+                          title: "Invalid email",
+                          description: "Please enter a valid email address.",
+                          variant: "destructive",
+                        });
+                        return;
+                      }
+                      if (!phoneValid) {
+                        toast({
+                          title: "Invalid phone number",
+                          description: "Please enter a valid phone number with at least 10 digits.",
+                          variant: "destructive",
+                        });
+                        return;
+                      }
+                      if (hasInvalidChars) {
+                        toast({
+                          title: "Invalid characters",
+                          description: "Please remove the < and > characters from your entry.",
+                          variant: "destructive",
+                        });
+                        return;
+                      }
+
                       const limit = INCOME_LIMITS_BY_HOUSEHOLD[eligibilityHousehold];
                       const cleanedIncome = eligibilityIncome.replace(/[$,\s]/g, "");
                       const parsedIncome = Number(cleanedIncome);
@@ -789,10 +836,10 @@ export default function Home() {
                       const qualifies = hasIncome && parsedIncome <= limit;
 
                       eligibilityContactMutation.mutate({
-                        name: contactForm.name.trim(),
-                        email: contactForm.email.trim(),
-                        phone: contactForm.phone.trim(),
-                        message: contactForm.message.trim() || undefined,
+                        name,
+                        email,
+                        phone,
+                        message: message || undefined,
                         type: "eligibility",
                         metadata: {
                           householdSize: eligibilityHousehold,
@@ -809,6 +856,7 @@ export default function Home() {
                       <Input
                         id="contact-name"
                         required
+                        maxLength={100}
                         value={contactForm.name}
                         onChange={(e) => setContactForm((f) => ({ ...f, name: e.target.value }))}
                         placeholder="Jane Doe"
@@ -820,6 +868,7 @@ export default function Home() {
                         id="contact-email"
                         type="email"
                         required
+                        maxLength={254}
                         value={contactForm.email}
                         onChange={(e) => setContactForm((f) => ({ ...f, email: e.target.value }))}
                         placeholder="jane@example.com"
@@ -831,8 +880,15 @@ export default function Home() {
                         id="contact-phone"
                         type="tel"
                         required
+                        maxLength={25}
+                        inputMode="tel"
                         value={contactForm.phone}
-                        onChange={(e) => setContactForm((f) => ({ ...f, phone: e.target.value }))}
+                        onChange={(e) =>
+                          setContactForm((f) => ({
+                            ...f,
+                            phone: e.target.value.replace(/[^0-9+().\-\s]/g, ""),
+                          }))
+                        }
                         placeholder="(865) 555-1234"
                       />
                     </div>
@@ -843,6 +899,7 @@ export default function Home() {
                       <Textarea
                         id="contact-message"
                         rows={3}
+                        maxLength={2000}
                         value={contactForm.message}
                         onChange={(e) => setContactForm((f) => ({ ...f, message: e.target.value }))}
                         placeholder="Anything you'd like us to know?"

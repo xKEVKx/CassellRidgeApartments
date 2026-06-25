@@ -12,10 +12,30 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  message: z.string().optional(),
+  name: z
+    .string()
+    .trim()
+    .min(2, "Name must be at least 2 characters")
+    .max(100, "Name is too long")
+    .refine((val) => !/[<>]/.test(val), "Name contains invalid characters"),
+  email: z
+    .string()
+    .trim()
+    .email("Please enter a valid email address")
+    .max(254, "Email is too long"),
+  phone: z
+    .string()
+    .trim()
+    .max(25, "Phone number is too long")
+    .refine(
+      (val) => /^[0-9+().\-\s]+$/.test(val) && (val.match(/\d/g)?.length ?? 0) >= 10,
+      "Please enter a valid phone number with at least 10 digits",
+    ),
+  message: z
+    .string()
+    .max(2000, "Message is too long")
+    .refine((val) => !/[<>]/.test(val), "Message contains invalid characters")
+    .optional(),
   type: z.string().default("general")
 });
 

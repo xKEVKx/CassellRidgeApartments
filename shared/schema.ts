@@ -97,7 +97,37 @@ export const insertGalleryImageSchema = createInsertSchema(galleryImages).omit({
   imageUrl: z.string().max(MAX_IMAGE_URL_LENGTH, "Image is too large. Maximum size is 5 MB."),
 });
 
-export const insertContactSubmissionSchema = createInsertSchema(contactSubmissions).omit({
+const noAngleBrackets = (val: string) => !/[<>]/.test(val);
+
+export const insertContactSubmissionSchema = createInsertSchema(contactSubmissions, {
+  name: z
+    .string()
+    .trim()
+    .min(1, "Name is required.")
+    .max(100, "Name is too long.")
+    .refine(noAngleBrackets, "Name contains invalid characters."),
+  email: z
+    .string()
+    .trim()
+    .min(1, "Email is required.")
+    .max(254, "Email is too long.")
+    .email("Please enter a valid email address."),
+  phone: z
+    .string()
+    .trim()
+    .min(1, "Phone number is required.")
+    .max(25, "Phone number is too long.")
+    .refine(
+      (val) => /^[0-9+().\-\s]+$/.test(val) && (val.match(/\d/g)?.length ?? 0) >= 10,
+      "Please enter a valid phone number with at least 10 digits.",
+    ),
+  message: z
+    .string()
+    .max(2000, "Message is too long.")
+    .refine(noAngleBrackets, "Message contains invalid characters.")
+    .optional()
+    .nullable(),
+}).omit({
   id: true,
   createdAt: true,
 });
