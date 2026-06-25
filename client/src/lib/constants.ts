@@ -35,6 +35,7 @@ export const NAVIGATION_LINKS = [
   { href: "/", label: "Home", isIcon: true },
   { href: "/floor-plans", label: "Floor Plans" },
   { href: "/#amenities", label: "Amenities" },
+  { href: "/#eligibility", label: "Eligibility" },
   { 
     href: "/property", 
     label: "Property",
