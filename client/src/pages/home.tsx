@@ -728,9 +728,9 @@ export default function Home() {
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className={`flex justify-between items-center px-5 py-3.5 border-b border-slate-100 last:border-b-0 ${index === 0 ? 'bg-warm-brown-50' : 'bg-white'}`}
+                      className={`flex justify-between items-center px-5 py-3.5 border-b border-slate-100 last:border-b-0 transition-colors ${index + 1 === eligibilityHousehold ? 'bg-warm-brown-100 ring-1 ring-inset ring-warm-brown-300' : 'bg-white'}`}
                     >
-                      <span className="font-medium text-slate-700">{item.people}</span>
+                      <span className={`font-medium ${index + 1 === eligibilityHousehold ? 'text-warm-brown-900 font-bold' : 'text-slate-700'}`}>{item.people}</span>
                       <span className="font-bold text-warm-brown-600">{item.limit}</span>
                     </div>
                   ))}
