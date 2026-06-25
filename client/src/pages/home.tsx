@@ -1171,7 +1171,8 @@ export default function Home() {
             {/* CTA Section */}
             <div className="space-y-12">
               {/* Primary Actions */}
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <div className="flex flex-col gap-6 items-center">
+                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <Link href="/contact#contact-form">
                   <Button 
                     size="lg" 
@@ -1192,7 +1193,8 @@ export default function Home() {
                   <span className="relative z-10">Check Your Eligibility</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 </Button>
-                
+                </div>
+
                 <Button 
                   size="lg" 
                   variant="outline" 
