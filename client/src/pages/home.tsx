@@ -557,12 +557,12 @@ export default function Home() {
           <div className="space-y-8">
             
             {/* Income Limits Section */}
-            <div className="bg-slate-50 rounded-2xl p-8">
+            <div id="eligibility" className="bg-slate-50 rounded-2xl p-8 scroll-mt-24">
               <div className="flex items-center w-full mb-6">
                 <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mr-4">
                   <span className="text-white text-2xl">💰</span>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900">INCOME LIMITS</h3>
+                <h3 className="text-2xl font-bold text-slate-900">INCOME LIMITS &amp; ELIGIBILITY</h3>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
