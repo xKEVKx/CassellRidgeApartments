@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { Check, Phone, ExternalLink, Tag, Camera } from "lucide-react";
+import { Check, Phone, ExternalLink, Tag, Camera, Star } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -197,6 +197,14 @@ export default function Home() {
           <div className="space-y-4">
             {/* Main Heading */}
             <div className="space-y-4 bg-black/20 backdrop-blur-sm rounded-3xl p-6 sm:p-9">
+              <div className="flex justify-center">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 text-white px-5 py-2.5 rounded-full shadow-lg">
+                  <Star className="w-4 h-4 fill-current" />
+                  <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">
+                    Affordable LIHTC Community · Income Limits Apply
+                  </span>
+                </div>
+              </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-none tracking-tight">
                 MODERN LIVING AT
                 <span className="block bg-gradient-to-r from-warm-brown-400 via-warm-brown-500 to-warm-brown-600 bg-clip-text text-transparent">
