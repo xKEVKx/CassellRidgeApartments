@@ -173,7 +173,7 @@ export default function Home() {
         initialMinimized={adMinimized}
       />
       {/* Ultra Modern Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         {/* Background Video/Image */}
         <div className="absolute inset-0">
           <div 
@@ -194,28 +194,28 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Main Heading */}
-            <div className="space-y-6 bg-black/20 backdrop-blur-sm rounded-3xl p-8 sm:p-12">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-none tracking-tight">
+            <div className="space-y-4 bg-black/20 backdrop-blur-sm rounded-3xl p-6 sm:p-9">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-none tracking-tight">
                 MODERN LIVING AT
                 <span className="block bg-gradient-to-r from-warm-brown-400 via-warm-brown-500 to-warm-brown-600 bg-clip-text text-transparent">
                   CASSELL RIDGE
                 </span>
-                <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white/90">
+                <span className="block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light text-white/90">
                   APARTMENTS
                 </span>
               </h1>
               
-              <p className="text-xl sm:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light">
                 Looking for your perfect place to call home? We invite you to visit our beautiful property nestled in the heart of Knoxville, Tennessee. From thoughtfully designed floorplans to scenic surroundings, our community offers comfort, convenience, and Southern charm.
               </p>
               
-              <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-base sm:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
                 Our professional and friendly leasing staff are here to help you. Let us show you around, answer your questions, and help you understand eligibility and how to apply.
               </p>
               
-              <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-base sm:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
                 Schedule a tour today — and see all the comfort, community, and care our Knoxville property has to offer.
               </p>
             </div>
@@ -234,7 +234,7 @@ export default function Home() {
             </div>
             
             {/* Feature Pills */}
-            <div className="flex flex-wrap justify-center gap-4 pb-8">
+            <div className="flex flex-wrap justify-center gap-4">
               {[
                 { icon: "🏠", text: "2-3 Bedrooms", href: "/floor-plans", isAnchor: false },
                 { icon: "🏊", text: "Swimming Pool", href: "#amenities", isAnchor: true },
