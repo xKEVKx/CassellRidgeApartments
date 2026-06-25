@@ -127,6 +127,10 @@ Current limits:
 ### SEO — Domain URL Correction
 - Replaced the wrong domain (`cassellridge.com`) with `cassellridgeapts.com` everywhere: `sitemap.xml`, `robots.txt`, `index.html` (canonical / OG / Twitter), and per-page `og:url` / JSON-LD across all pages.
 
+### SEO — FAQ Structured Data (FAQPage)
+- The home page's 8 eligibility/LIHTC FAQs now also emit `FAQPage` JSON-LD in the page `<head>` (`client/src/pages/home.tsx` Helmet block, alongside the existing `ApartmentComplex` schema). This makes the questions eligible for Google's FAQ rich results for searches like "Do I qualify for LIHTC housing in Knoxville".
+- **Single source of truth**: the FAQ content lives in one `FAQS` array at the top of `home.tsx`. The visible "Frequently Asked Questions" section renders from it (via `.map`) and the JSON-LD is generated from the same array, so the structured data can never drift from what users see (Google requires schema to match visible content).
+
 ## Earlier Updates (condensed)
 Durable outcomes from these are reflected in **Key Technical Decisions**, **Key Features**, and **External Dependencies** above.
 

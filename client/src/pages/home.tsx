@@ -44,6 +44,52 @@ const INCOME_LIMITS_BY_HOUSEHOLD: Record<number, number> = Object.fromEntries(
   INCOME_LIMITS.map((row) => [row.size, row.limit])
 );
 
+// Single source of truth for the home page FAQ. Drives both the visible
+// "Frequently Asked Questions" section and the FAQPage structured data (JSON-LD)
+// in the page <head>, so the two never drift apart.
+const FAQS: { question: string; answer: string }[] = [
+  {
+    question: "What is the Low-Income Housing Tax Credit (LIHTC) program?",
+    answer:
+      "The LIHTC program was created to make quality housing more affordable. It allows communities like Cassell Ridge to offer homes at reduced rental rates to households that meet specific income and eligibility guidelines.",
+  },
+  {
+    question: "How do I know if I qualify for a LIHTC home?",
+    answer:
+      "Eligibility is primarily based on your household's gross (pre-tax) annual income and full-time student status. Review the Students and Income Limits sections above for more information. Our team is also available to answer any questions you have along the way!",
+  },
+  {
+    question: "Are all homes at Cassell Ridge part of the LIHTC program?",
+    answer:
+      "Yes, every home at Cassell Ridge is income-restricted through the LIHTC program. All residents must meet the program's income and eligibility requirements to qualify.",
+  },
+  {
+    question: "What if my income is over the limit?",
+    answer:
+      "Because all homes at Cassell Ridge are income-restricted, households exceeding the income limits would not qualify. If you're unsure where you stand, reach out to our team — we're happy to walk through your options with you!",
+  },
+  {
+    question: "Do I have to be a first-time renter to qualify?",
+    answer:
+      "No, you do not have to be a first-time renter. Your eligibility is based on your income and student status, not your rental history.",
+  },
+  {
+    question: "What happens if my income changes after I move in?",
+    answer:
+      "If your household income increases after you move in, you are usually allowed to remain in your home. However, certain program rules may apply if your income increases significantly. Our team will guide you through any necessary next steps if needed.",
+  },
+  {
+    question: "Can full-time students live in a LIHTC home?",
+    answer:
+      "Yes, but with some restrictions. If all household members are full-time students, you must meet one of the specific exceptions listed in the Students section to qualify.",
+  },
+  {
+    question: "What documents will I need to provide?",
+    answer:
+      "You'll be asked to provide documentation verifying your household income, student status (if applicable), and other standard application information. Our leasing team will provide a full checklist to help make the process easy!",
+  },
+];
+
 export default function Home() {
   const { data: floorPlans, isLoading: floorPlansLoading } = useQuery<FloorPlan[]>({
     queryKey: ["/api/floor-plans"],
@@ -231,6 +277,18 @@ export default function Home() {
             { "@type": "LocationFeatureSpecification", "name": "Pet Friendly" },
             { "@type": "LocationFeatureSpecification", "name": "On-site Laundry" }
           ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": FAQS.map((faq) => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer
+            }
+          }))
         })}</script>
       </Helmet>
       {/* Home Page Ad Slider */}
@@ -999,45 +1057,12 @@ export default function Home() {
               
               {faqExpanded && (
                 <div className="space-y-6 animate-in slide-in-from-top-2 duration-300">
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">What is the Low-Income Housing Tax Credit (LIHTC) program?</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">The LIHTC program was created to make quality housing more affordable. It allows communities like Cassell Ridge to offer homes at reduced rental rates to households that meet specific income and eligibility guidelines.</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">How do I know if I qualify for a LIHTC home?</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">Eligibility is primarily based on your household's gross (pre-tax) annual income and full-time student status. Review the Students and Income Limits sections above for more information. Our team is also available to answer any questions you have along the way!</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">Are all homes at Cassell Ridge part of the LIHTC program?</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">Yes, every home at Cassell Ridge is income-restricted through the LIHTC program. All residents must meet the program's income and eligibility requirements to qualify.</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">What if my income is over the limit?</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">Because all homes at Cassell Ridge are income-restricted, households exceeding the income limits would not qualify. If you're unsure where you stand, reach out to our team — we're happy to walk through your options with you!</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">Do I have to be a first-time renter to qualify?</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">No, you do not have to be a first-time renter. Your eligibility is based on your income and student status, not your rental history.</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">What happens if my income changes after I move in?</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">If your household income increases after you move in, you are usually allowed to remain in your home. However, certain program rules may apply if your income increases significantly. Our team will guide you through any necessary next steps if needed.</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">Can full-time students live in a LIHTC home?</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">Yes, but with some restrictions. If all household members are full-time students, you must meet one of the specific exceptions listed in the Students section to qualify.</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-slate-900 mb-2">What documents will I need to provide?</h4>
-                    <p className="text-slate-600 text-sm leading-relaxed">You'll be asked to provide documentation verifying your household income, student status (if applicable), and other standard application information. Our leasing team will provide a full checklist to help make the process easy!</p>
-                  </div>
+                  {FAQS.map((faq) => (
+                    <div key={faq.question}>
+                      <h4 className="font-semibold text-slate-900 mb-2">{faq.question}</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed">{faq.answer}</p>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
