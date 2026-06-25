@@ -543,13 +543,13 @@ export default function Home() {
                           <legend className="block font-bold text-slate-900 mb-3">
                             How many people in your household?
                           </legend>
-                          <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+                          <div className="flex flex-wrap gap-2">
                             {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
                               <button
                                 key={n}
                                 type="button"
                                 onClick={() => setEligibilityHousehold(n)}
-                                className={`aspect-square rounded-lg border font-bold text-lg transition-all ${
+                                className={`w-9 h-9 rounded-lg border font-bold text-sm transition-all ${
                                   eligibilityHousehold === n
                                     ? "bg-warm-brown-500 border-warm-brown-500 text-white shadow-sm"
                                     : "bg-white border-slate-200 text-slate-700 hover:border-warm-brown-300"
@@ -607,7 +607,7 @@ export default function Home() {
                             </p>
                           )}
                           <p className="mb-2">
-                            <span className="text-3xl font-extrabold text-slate-900">{formattedLimit}</span>{" "}
+                            <span className="text-xl font-extrabold text-slate-900">{formattedLimit}</span>{" "}
                             <span className="text-slate-500">max for {eligibilityHousehold}</span>
                           </p>
                           {hasIncome ? (
