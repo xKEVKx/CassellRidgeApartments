@@ -302,13 +302,13 @@ export default function Home() {
               </Link>
               <Button
                 size="lg"
-                variant="outline"
                 onClick={() => {
                   document.querySelector('#eligibility')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="group border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 px-10 py-4 text-lg font-semibold rounded-2xl backdrop-blur-md bg-white/5 transition-all duration-300 hover:scale-105"
+                className="group relative bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 hover:from-warm-brown-600 hover:to-warm-brown-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-2xl border-0 transition-all duration-300 hover:scale-105"
               >
-                Check Your Eligibility
+                <span className="relative z-10">Check Your Eligibility</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
               </Button>
             </div>
             
