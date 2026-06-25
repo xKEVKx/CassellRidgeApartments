@@ -27,16 +27,22 @@ import type { FloorPlan, GalleryImage, HomePageAd } from "@shared/schema";
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from "lucide-react";
 
-const INCOME_LIMITS_BY_HOUSEHOLD: Record<number, number> = {
-  1: 43560,
-  2: 49800,
-  3: 56040,
-  4: 62220,
-  5: 67200,
-  6: 72180,
-  7: 77160,
-  8: 82140,
-};
+// Single source of truth for income limits. Edit the `limit` values here to
+// update both the right-hand table and the eligibility calculator below.
+const INCOME_LIMITS: { size: number; people: string; limit: number }[] = [
+  { size: 1, people: "1 Person", limit: 43560 },
+  { size: 2, people: "2 People", limit: 49800 },
+  { size: 3, people: "3 People", limit: 56040 },
+  { size: 4, people: "4 People", limit: 62220 },
+  { size: 5, people: "5 People", limit: 67200 },
+  { size: 6, people: "6 People", limit: 72180 },
+  { size: 7, people: "7 People", limit: 77160 },
+  { size: 8, people: "8 People", limit: 82140 },
+];
+
+const INCOME_LIMITS_BY_HOUSEHOLD: Record<number, number> = Object.fromEntries(
+  INCOME_LIMITS.map((row) => [row.size, row.limit])
+);
 
 export default function Home() {
   const { data: floorPlans, isLoading: floorPlansLoading } = useQuery<FloorPlan[]>({
@@ -716,22 +722,13 @@ export default function Home() {
                     <span className="text-white font-semibold text-sm sm:text-base"># in Household</span>
                     <span className="text-white font-semibold text-sm sm:text-base">Maximum Annual Income</span>
                   </div>
-                  {[
-                    { people: "1 Person", limit: "$43,560" },
-                    { people: "2 People", limit: "$49,800" },
-                    { people: "3 People", limit: "$56,040" },
-                    { people: "4 People", limit: "$62,220" },
-                    { people: "5 People", limit: "$67,200" },
-                    { people: "6 People", limit: "$72,180" },
-                    { people: "7 People", limit: "$77,160" },
-                    { people: "8 People", limit: "$82,140" }
-                  ].map((item, index) => (
+                  {INCOME_LIMITS.map((item) => (
                     <div
-                      key={index}
-                      className={`flex justify-between items-center px-5 py-3.5 border-b border-slate-100 last:border-b-0 transition-colors ${index + 1 === eligibilityHousehold ? 'bg-warm-brown-100 ring-1 ring-inset ring-warm-brown-300' : 'bg-white'}`}
+                      key={item.size}
+                      className={`flex justify-between items-center px-5 py-3.5 border-b border-slate-100 last:border-b-0 transition-colors ${item.size === eligibilityHousehold ? 'bg-warm-brown-100 ring-1 ring-inset ring-warm-brown-300' : 'bg-white'}`}
                     >
-                      <span className={`font-medium ${index + 1 === eligibilityHousehold ? 'text-warm-brown-900 font-bold' : 'text-slate-700'}`}>{item.people}</span>
-                      <span className="font-bold text-warm-brown-600">{item.limit}</span>
+                      <span className={`font-medium ${item.size === eligibilityHousehold ? 'text-warm-brown-900 font-bold' : 'text-slate-700'}`}>{item.people}</span>
+                      <span className="font-bold text-warm-brown-600">${item.limit.toLocaleString()}</span>
                     </div>
                   ))}
                 </div>
