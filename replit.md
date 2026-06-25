@@ -130,6 +130,7 @@ Current limits:
 ### SEO — FAQ Structured Data (FAQPage)
 - The home page's 8 eligibility/LIHTC FAQs now also emit `FAQPage` JSON-LD in the page `<head>` (`client/src/pages/home.tsx` Helmet block, alongside the existing `ApartmentComplex` schema). This makes the questions eligible for Google's FAQ rich results for searches like "Do I qualify for LIHTC housing in Knoxville".
 - **Single source of truth**: the FAQ content lives in one `FAQS` array at the top of `home.tsx`. The visible "Frequently Asked Questions" section renders from it (via `.map`) and the JSON-LD is generated from the same array, so the structured data can never drift from what users see (Google requires schema to match visible content).
+- **Sitemap**: `client/public/sitemap.xml` includes a `/#eligibility` entry pointing at the home page's income limits & eligibility section, and the home page `<loc>` `lastmod` is bumped whenever that content changes. (Search engines often fold `#fragment` URLs into the parent page, so the home page `lastmod` is the primary signal for the new content.)
 
 ## Earlier Updates (condensed)
 Durable outcomes from these are reflected in **Key Technical Decisions**, **Key Features**, and **External Dependencies** above.
