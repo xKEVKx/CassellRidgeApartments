@@ -585,9 +585,9 @@ export default function Home() {
                 To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits shown. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements.
               </p>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left column: how to qualify */}
-                <div className="space-y-5">
+                <div className="h-full">
                   {/* Interactive eligibility checker */}
                   {(() => {
                     const limit = INCOME_LIMITS_BY_HOUSEHOLD[eligibilityHousehold];
@@ -602,7 +602,7 @@ export default function Home() {
                       : "";
 
                     return (
-                      <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-5">
+                      <div className="h-full bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col space-y-5">
                         <fieldset>
                           <legend className="block font-bold text-slate-900 mb-3">
                             How many people in your household?
@@ -700,7 +700,7 @@ export default function Home() {
                         <Button
                           type="button"
                           onClick={() => setContactDialogOpen(true)}
-                          className="w-full bg-warm-brown-500 hover:bg-warm-brown-600 text-white"
+                          className="w-full mt-auto bg-warm-brown-500 hover:bg-warm-brown-600 text-white"
                         >
                           <Mail className="w-4 h-4 mr-2" />
                           Contact Us
@@ -708,12 +708,6 @@ export default function Home() {
                       </div>
                     );
                   })()}
-
-                  <div className="bg-warm-brown-50 border border-warm-brown-100 rounded-xl p-5">
-                    <p className="text-slate-700 leading-relaxed">
-                      <span className="font-semibold text-slate-900">Questions about your eligibility?</span> If you have questions about your eligibility, please reach out — we're here to help!
-                    </p>
-                  </div>
                 </div>
 
                 {/* Right column: income limits table */}
@@ -732,6 +726,12 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              <div className="bg-warm-brown-50 border border-warm-brown-100 rounded-xl p-5 mt-8">
+                <p className="text-slate-700 leading-relaxed">
+                  <span className="font-semibold text-slate-900">Questions about your eligibility?</span> If you have questions about your eligibility, please reach out — we're here to help!
+                </p>
               </div>
 
               {/* Eligibility contact dialog */}
