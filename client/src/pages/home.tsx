@@ -1,11 +1,24 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { Check, Phone, ExternalLink, Tag, Camera, Star } from "lucide-react";
+import { Check, Phone, ExternalLink, Tag, Camera, Star, Mail } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 import HomePageAdSlider from "@/components/home-page-ad-slider";
 import { AccommodationsHeader, AccommodationsFeatures } from "@/components/accommodations-section";
@@ -13,6 +26,17 @@ import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
 import type { FloorPlan, GalleryImage, HomePageAd } from "@shared/schema";
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from "lucide-react";
+
+const INCOME_LIMITS_BY_HOUSEHOLD: Record<number, number> = {
+  1: 43560,
+  2: 49800,
+  3: 56040,
+  4: 62220,
+  5: 67200,
+  6: 72180,
+  7: 77160,
+  8: 82140,
+};
 
 export default function Home() {
   const { data: floorPlans, isLoading: floorPlansLoading } = useQuery<FloorPlan[]>({
@@ -63,6 +87,40 @@ export default function Home() {
   // Eligibility checker state
   const [eligibilityHousehold, setEligibilityHousehold] = useState(1);
   const [eligibilityIncome, setEligibilityIncome] = useState("");
+
+  // Eligibility contact dialog state
+  const { toast } = useToast();
+  const [contactDialogOpen, setContactDialogOpen] = useState(false);
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const eligibilityContactMutation = useMutation({
+    mutationFn: async (payload: any) => {
+      const res = await apiRequest("POST", "/api/contact", payload);
+      return res.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Message sent!",
+        description:
+          "Thank you for reaching out. We've emailed you a confirmation and our leasing team will follow up soon.",
+      });
+      setContactDialogOpen(false);
+      setContactForm({ name: "", email: "", phone: "", message: "" });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Something went wrong",
+        description:
+          error?.message || "We couldn't send your message. Please try again or call (865) 357-2712.",
+        variant: "destructive",
+      });
+    },
+  });
 
   useEffect(() => {
     if (rotationImages.length <= 1) return; // Don't rotate if only 1 or no images
@@ -516,17 +574,7 @@ export default function Home() {
 
                   {/* Interactive eligibility checker */}
                   {(() => {
-                    const incomeLimitsByHousehold: Record<number, number> = {
-                      1: 43560,
-                      2: 49800,
-                      3: 56040,
-                      4: 62220,
-                      5: 67200,
-                      6: 72180,
-                      7: 77160,
-                      8: 82140,
-                    };
-                    const limit = incomeLimitsByHousehold[eligibilityHousehold];
+                    const limit = INCOME_LIMITS_BY_HOUSEHOLD[eligibilityHousehold];
                     const cleanedIncome = eligibilityIncome.replace(/[$,\s]/g, "");
                     const parsedIncome = Number(cleanedIncome);
                     const hasIncome =
@@ -629,6 +677,15 @@ export default function Home() {
                             </p>
                           )}
                         </div>
+
+                        <Button
+                          type="button"
+                          onClick={() => setContactDialogOpen(true)}
+                          className="w-full bg-warm-brown-500 hover:bg-warm-brown-600 text-white"
+                        >
+                          <Mail className="w-4 h-4 mr-2" />
+                          Contact Us
+                        </Button>
                       </div>
                     );
                   })()}
@@ -666,6 +723,144 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+
+              {/* Eligibility contact dialog */}
+              <Dialog open={contactDialogOpen} onOpenChange={setContactDialogOpen}>
+                <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle>Contact Our Leasing Team</DialogTitle>
+                    <DialogDescription>
+                      We'll include your eligibility details below. Add your contact information and we'll be in touch.
+                    </DialogDescription>
+                  </DialogHeader>
+
+                  {(() => {
+                    const limit = INCOME_LIMITS_BY_HOUSEHOLD[eligibilityHousehold];
+                    const cleanedIncome = eligibilityIncome.replace(/[$,\s]/g, "");
+                    const parsedIncome = Number(cleanedIncome);
+                    const hasIncome =
+                      cleanedIncome !== "" && !isNaN(parsedIncome) && parsedIncome >= 0;
+                    const qualifies = hasIncome && parsedIncome <= limit;
+
+                    return (
+                      <div className="rounded-lg bg-slate-50 border border-slate-200 p-4 text-sm space-y-1.5">
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Household size</span>
+                          <span className="font-semibold text-slate-900">{eligibilityHousehold}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Annual income</span>
+                          <span className="font-semibold text-slate-900">
+                            {hasIncome
+                              ? `$${parsedIncome.toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+                              : "Not provided"}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">Eligibility estimate</span>
+                          <span
+                            className={`font-semibold ${
+                              !hasIncome
+                                ? "text-slate-600"
+                                : qualifies
+                                  ? "text-green-700"
+                                  : "text-warm-brown-700"
+                            }`}
+                          >
+                            {!hasIncome
+                              ? "Not calculated"
+                              : qualifies
+                                ? "May qualify"
+                                : "Above limit"}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const limit = INCOME_LIMITS_BY_HOUSEHOLD[eligibilityHousehold];
+                      const cleanedIncome = eligibilityIncome.replace(/[$,\s]/g, "");
+                      const parsedIncome = Number(cleanedIncome);
+                      const hasIncome =
+                        cleanedIncome !== "" && !isNaN(parsedIncome) && parsedIncome >= 0;
+                      const qualifies = hasIncome && parsedIncome <= limit;
+
+                      eligibilityContactMutation.mutate({
+                        name: contactForm.name.trim(),
+                        email: contactForm.email.trim(),
+                        phone: contactForm.phone.trim(),
+                        message: contactForm.message.trim() || undefined,
+                        type: "eligibility",
+                        metadata: {
+                          householdSize: eligibilityHousehold,
+                          income: hasIncome ? parsedIncome : null,
+                          incomeLimit: limit,
+                          qualifies: hasIncome ? qualifies : null,
+                        },
+                      });
+                    }}
+                    className="space-y-4 pt-2"
+                  >
+                    <div className="space-y-1.5">
+                      <Label htmlFor="contact-name">Full name</Label>
+                      <Input
+                        id="contact-name"
+                        required
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm((f) => ({ ...f, name: e.target.value }))}
+                        placeholder="Jane Doe"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="contact-email">Email</Label>
+                      <Input
+                        id="contact-email"
+                        type="email"
+                        required
+                        value={contactForm.email}
+                        onChange={(e) => setContactForm((f) => ({ ...f, email: e.target.value }))}
+                        placeholder="jane@example.com"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="contact-phone">Phone</Label>
+                      <Input
+                        id="contact-phone"
+                        type="tel"
+                        required
+                        value={contactForm.phone}
+                        onChange={(e) => setContactForm((f) => ({ ...f, phone: e.target.value }))}
+                        placeholder="(865) 555-1234"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="contact-message">
+                        Message <span className="font-normal text-slate-400">(optional)</span>
+                      </Label>
+                      <Textarea
+                        id="contact-message"
+                        rows={3}
+                        value={contactForm.message}
+                        onChange={(e) => setContactForm((f) => ({ ...f, message: e.target.value }))}
+                        placeholder="Anything you'd like us to know?"
+                      />
+                    </div>
+
+                    <DialogFooter>
+                      <Button
+                        type="submit"
+                        disabled={eligibilityContactMutation.isPending}
+                        className="w-full bg-warm-brown-500 hover:bg-warm-brown-600 text-white"
+                      >
+                        {eligibilityContactMutation.isPending ? "Sending..." : "Send Message"}
+                      </Button>
+                    </DialogFooter>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </div>
 
             {/* Students Section */}

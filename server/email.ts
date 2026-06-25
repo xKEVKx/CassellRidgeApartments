@@ -12,35 +12,89 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Escape user-controlled values before interpolating into HTML email bodies
+// to prevent HTML/markup injection in outgoing emails.
+function escapeHtml(value: unknown): string {
+  if (value === null || value === undefined) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function formatEligibility(metadata: any) {
+  const incomeNum = Number(metadata.income);
+  const hasIncome =
+    metadata.income !== null &&
+    metadata.income !== undefined &&
+    metadata.income !== '' &&
+    Number.isFinite(incomeNum);
+  const income = hasIncome
+    ? `$${incomeNum.toLocaleString('en-US', { maximumFractionDigits: 0 })}`
+    : 'Not provided';
+  const limitNum = Number(metadata.incomeLimit);
+  const limit = metadata.incomeLimit != null && Number.isFinite(limitNum)
+    ? `$${limitNum.toLocaleString('en-US', { maximumFractionDigits: 0 })}`
+    : 'Not specified';
+  const householdNum = Number(metadata.householdSize);
+  const householdSize = Number.isFinite(householdNum) ? String(householdNum) : 'Not specified';
+  const estimate = !hasIncome
+    ? 'Not calculated (no income provided)'
+    : metadata.qualifies
+      ? 'Within income limit — may qualify'
+      : 'Above income limit';
+  return { income, limit, estimate, householdSize };
+}
+
 export async function sendContactNotification(submission: ContactSubmission) {
   const metadata = submission.metadata as any || {};
   const subject = submission.type === 'visit' 
     ? `New Visit Scheduled - ${submission.name}`
-    : `New Website Contact Inquiry - ${submission.name}`;
+    : submission.type === 'eligibility'
+      ? `New Eligibility Inquiry - ${submission.name}`
+      : `New Website Contact Inquiry - ${submission.name}`;
+  const headerTitle = submission.type === 'visit'
+    ? 'New Visit Scheduled'
+    : submission.type === 'eligibility'
+      ? 'New Eligibility Inquiry'
+      : 'New Website Contact Inquiry';
+  const elig = formatEligibility(metadata);
 
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #8b4513; border-bottom: 2px solid #8b4513; padding-bottom: 10px;">
-        ${submission.type === 'visit' ? 'New Visit Scheduled' : 'New Website Contact Inquiry'}
+        ${headerTitle}
       </h2>
       
       <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
         <h3 style="color: #333; margin-top: 0;">Contact Information</h3>
-        <p><strong>Name:</strong> ${submission.name}</p>
-        <p><strong>Email:</strong> <a href="mailto:${submission.email}">${submission.email}</a></p>
-        <p><strong>Phone:</strong> <a href="tel:${submission.phone}">${submission.phone}</a></p>
+        <p><strong>Name:</strong> ${escapeHtml(submission.name)}</p>
+        <p><strong>Email:</strong> <a href="mailto:${encodeURIComponent(submission.email)}">${escapeHtml(submission.email)}</a></p>
+        <p><strong>Phone:</strong> <a href="tel:${encodeURIComponent(submission.phone)}">${escapeHtml(submission.phone)}</a></p>
         
         ${submission.type === 'visit' ? `
-          <p><strong>Preferred Date:</strong> ${metadata.preferredDate || 'Not specified'}</p>
-          <p><strong>Preferred Time:</strong> ${metadata.preferredTime || 'Not specified'}</p>
-          ${metadata.floorPlan ? `<p><strong>Floor Plan Interest:</strong> ${metadata.floorPlan}</p>` : ''}
+          <p><strong>Preferred Date:</strong> ${escapeHtml(metadata.preferredDate || 'Not specified')}</p>
+          <p><strong>Preferred Time:</strong> ${escapeHtml(metadata.preferredTime || 'Not specified')}</p>
+          ${metadata.floorPlan ? `<p><strong>Floor Plan Interest:</strong> ${escapeHtml(metadata.floorPlan)}</p>` : ''}
         ` : ''}
       </div>
+
+      ${submission.type === 'eligibility' ? `
+        <div style="background-color: #f8f5f2; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #333; margin-top: 0;">Eligibility Pre-Check</h3>
+          <p><strong>Household Size:</strong> ${elig.householdSize}</p>
+          <p><strong>Annual Income:</strong> ${elig.income}</p>
+          <p><strong>Income Limit (max):</strong> ${elig.limit}</p>
+          <p><strong>Estimate:</strong> ${elig.estimate}</p>
+        </div>
+      ` : ''}
       
       ${submission.message ? `
         <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="color: #333; margin-top: 0;">Message</h3>
-          <p style="white-space: pre-wrap;">${submission.message}</p>
+          <p style="white-space: pre-wrap;">${escapeHtml(submission.message)}</p>
         </div>
       ` : ''}
       
@@ -60,7 +114,7 @@ export async function sendContactNotification(submission: ContactSubmission) {
     subject,
     html: htmlContent,
     text: `
-${submission.type === 'visit' ? 'New Visit Scheduled' : 'New Website Contact Inquiry'}
+${headerTitle}
 
 Name: ${submission.name}
 Email: ${submission.email}
@@ -68,6 +122,10 @@ Phone: ${submission.phone}
 ${submission.type === 'visit' ? `Preferred Date: ${metadata.preferredDate || 'Not specified'}` : ''}
 ${submission.type === 'visit' ? `Preferred Time: ${metadata.preferredTime || 'Not specified'}` : ''}
 ${metadata.floorPlan ? `Floor Plan Interest: ${metadata.floorPlan}` : ''}
+${submission.type === 'eligibility' ? `Household Size: ${elig.householdSize}
+Annual Income: ${elig.income}
+Income Limit (max): ${elig.limit}
+Estimate: ${elig.estimate}` : ''}
 
 ${submission.message ? `Message:\n${submission.message}` : ''}
 
@@ -90,6 +148,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
   const subject = submission.type === 'visit' 
     ? 'Visit Request Received - Cassell Ridge Apartments'
     : 'Thank You for Your Inquiry - Cassell Ridge Apartments';
+  const elig = formatEligibility(metadata);
 
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -102,7 +161,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
           ${submission.type === 'visit' ? 'Visit Request Received!' : 'Thank You for Your Inquiry!'}
         </h2>
         
-        <p>Dear ${submission.name},</p>
+        <p>Dear ${escapeHtml(submission.name)},</p>
         
         <p>${submission.type === 'visit' 
           ? 'Thank you for your interest in scheduling a visit to Cassell Ridge Apartments. We have received your request and will contact you soon to confirm your visit details.'
@@ -111,14 +170,20 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
         
         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="color: #333; margin-top: 0;">Your Submission Details</h3>
-          <p><strong>Name:</strong> ${submission.name}</p>
-          <p><strong>Email:</strong> ${submission.email}</p>
-          <p><strong>Phone:</strong> ${submission.phone}</p>
+          <p><strong>Name:</strong> ${escapeHtml(submission.name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(submission.email)}</p>
+          <p><strong>Phone:</strong> ${escapeHtml(submission.phone)}</p>
           
           ${submission.type === 'visit' ? `
-            <p><strong>Preferred Date:</strong> ${metadata.preferredDate || 'Not specified'}</p>
-            <p><strong>Preferred Time:</strong> ${metadata.preferredTime || 'Not specified'}</p>
-            ${metadata.floorPlan ? `<p><strong>Floor Plan Interest:</strong> ${metadata.floorPlan}</p>` : ''}
+            <p><strong>Preferred Date:</strong> ${escapeHtml(metadata.preferredDate || 'Not specified')}</p>
+            <p><strong>Preferred Time:</strong> ${escapeHtml(metadata.preferredTime || 'Not specified')}</p>
+            ${metadata.floorPlan ? `<p><strong>Floor Plan Interest:</strong> ${escapeHtml(metadata.floorPlan)}</p>` : ''}
+          ` : ''}
+          ${submission.type === 'eligibility' ? `
+            <p><strong>Household Size:</strong> ${elig.householdSize}</p>
+            <p><strong>Annual Income:</strong> ${elig.income}</p>
+            <p><strong>Income Limit (max):</strong> ${elig.limit}</p>
+            <p><strong>Eligibility Estimate:</strong> ${elig.estimate}</p>
           ` : ''}
         </div>
         
