@@ -19,25 +19,39 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {NAVIGATION_LINKS.map((link) => (
-                <li key={link.href}>
-                  {link.href.startsWith('#') || link.href.startsWith('/#') ? (
-                    <a
-                      href={link.href}
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link 
-                      href={link.href}
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
+              {NAVIGATION_LINKS.flatMap((link) =>
+                link.subItems ? link.subItems : [link]
+              ).map((link) => {
+                const linkClass =
+                  "text-gray-300 hover:text-white transition-colors";
+                const isExternal =
+                  ("external" in link && link.external) ||
+                  link.href.startsWith("http");
+                const isHash =
+                  link.href.startsWith("#") || link.href.startsWith("/#");
+                return (
+                  <li key={link.href}>
+                    {isExternal ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={linkClass}
+                      >
+                        {link.label}
+                      </a>
+                    ) : isHash ? (
+                      <a href={link.href} className={linkClass}>
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link href={link.href} className={linkClass}>
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
           
