@@ -144,6 +144,39 @@ Updated income limit figures on the home page (`client/src/pages/home.tsx`) and 
 | 7 People | $77,160 |
 | 8 People | $82,140 |
 
+### Interactive Eligibility Checker
+Added an interactive income-eligibility tool to the "INCOME LIMITS & ELIGIBILITY" section on the home page (`client/src/pages/home.tsx`).
+
+- **Section rename & anchor**: The section title is now "INCOME LIMITS & ELIGIBILITY" and the section `<div>` has `id="eligibility"` (with `scroll-mt-24`) so it can be linked/scrolled to directly.
+- **Checker UI**: A card with household-size buttons (1–8) and an optional annual-income input. As the visitor selects a household size and types an income, a live status box shows the applicable income limit and whether they appear to be within it. The income input strips non-numeric characters.
+- **"Contact Us" dialog**: A button opens a dialog that pre-fills the visitor's eligibility details (household size, income, estimate) so the leasing team receives context with the inquiry.
+- **Email rendering** (`server/email.ts`): Notification and confirmation emails render the eligibility metadata, with HTML escaping (`escapeHtml`) and NaN guards for safety.
+- **Validation** (`shared/schema.ts`, `client/src/components/contact-form.tsx`): Tightened `insertContactSubmissionSchema` — name/email/phone required with format checks, no angle brackets, and length caps. Client-side validation in the contact form was aligned to match.
+
+### Navigation — Eligibility Link
+- Added an "Eligibility" item to `NAVIGATION_LINKS` in `client/src/lib/constants.ts` (href `/#eligibility`), placed between Amenities and Property.
+
+### Home Page CTA — "Check Your Eligibility" Pills
+- Added "Check Your Eligibility" pill buttons next to "Schedule Your Tour" in both the hero and the bottom CTA sections. Both use an `onClick` `scrollIntoView` to `#eligibility` (not a `Link`, because the home page's hash-scroll `useEffect` only runs on mount). Styled with the warm-brown gradient to match "Schedule Your Tour".
+- In the bottom CTA section, the two brown pills are centered together on one row, with the outline "Call" button on its own line centered below them.
+
+### Footer Quick Links — Correct Destinations
+Fixed the footer "Quick Links" so every link resolves correctly (`client/src/components/layout/footer.tsx`). The list maps over `NAVIGATION_LINKS` and now:
+- **Flattens the "Property" group** into its real child pages (Community, Gallery, Location, Virtual Tours), since `/property` is not a real route and previously hit the NotFound page.
+- **Renders external links** (Residents portal) as `<a target="_blank" rel="noopener noreferrer">` instead of a wouter `<Link>` (which would try client-side routing).
+- **Renders hash links** (`/#amenities`, `/#eligibility`) as plain `<a>` tags for native anchor scrolling, matching the navbar's behavior.
+- **Keeps internal routes** on the wouter `<Link>` component.
+
+### Eligibility Section Layout
+- The qualifying intro paragraph now spans the full width of the section (moved above the two-column grid) instead of sitting in the left column.
+- As a result, the right-hand income limits table's top aligns with the eligibility checker card.
+
+### Income Table — Dynamic Row Highlight
+- The income limits table now highlights the row matching the household size selected in the checker (warm-brown background, inset ring, bold label), instead of always highlighting the first row.
+
+### Income Limits — Single Source of Truth
+- Refactored `home.tsx` so income limits live in one `INCOME_LIMITS` array at the top of the file. The right-hand table renders from it, and the calculator's `INCOME_LIMITS_BY_HOUSEHOLD` lookup is derived from it via `Object.fromEntries`. Editing a value in `INCOME_LIMITS` now updates both the table and the calculator together. The table formats the numeric `limit` for display (e.g. `43560` → `$43,560`).
+
 ---
 
 ## Recent Updates (May 2026)
