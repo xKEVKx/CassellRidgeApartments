@@ -57,7 +57,6 @@ export default function Home() {
 
   // Collapsible sections state
   const [studentsExpanded, setStudentsExpanded] = useState(false);
-  const [incomeLimitsExpanded, setIncomeLimitsExpanded] = useState(false);
   const [faqExpanded, setFaqExpanded] = useState(false);
   const [petPolicyExpanded, setPetPolicyExpanded] = useState(false);
 
@@ -496,49 +495,37 @@ export default function Home() {
           <div className="space-y-8">
             
             {/* Income Limits Section */}
-            <div 
-              className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 cursor-pointer"
-              onClick={() => setIncomeLimitsExpanded(!incomeLimitsExpanded)}
-            >
-              <div className="flex items-center justify-between w-full mb-6">
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mr-4">
-                    <span className="text-white text-2xl">💰</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900">INCOME LIMITS</h3>
+            <div className="bg-slate-50 rounded-2xl p-8">
+              <div className="flex items-center w-full mb-6">
+                <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mr-4">
+                  <span className="text-white text-2xl">💰</span>
                 </div>
-                {incomeLimitsExpanded ? (
-                  <ChevronUp className="h-6 w-6 text-warm-brown-600" />
-                ) : (
-                  <ChevronDown className="h-6 w-6 text-warm-brown-600" />
-                )}
+                <h3 className="text-2xl font-bold text-slate-900">INCOME LIMITS</h3>
               </div>
-              
-              {incomeLimitsExpanded && (
-                <div className="space-y-4 animate-in slide-in-from-top-2 duration-300">
-                  <p className="text-slate-600 leading-relaxed">
-                    To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits listed below. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements. If you have questions about your eligibility, please reach out — we're here to help!
-                  </p>
-                  
-                  <div className="space-y-3">
-                    {[
-                      { people: "1 Person", limit: "$43,560" },
-                      { people: "2 People", limit: "$49,800" },
-                      { people: "3 People", limit: "$56,040" },
-                      { people: "4 People", limit: "$62,220" },
-                      { people: "5 People", limit: "$67,200" },
-                      { people: "6 People", limit: "$72,180" },
-                      { people: "7 People", limit: "$77,160" },
-                      { people: "8 People", limit: "$82,140" }
-                    ].map((item, index) => (
-                      <div key={index} className="flex justify-between items-center py-2 border-b border-slate-200 last:border-b-0">
-                        <span className="font-medium text-slate-700">{item.people}</span>
-                        <span className="font-semibold text-warm-brown-600">{item.limit}</span>
-                      </div>
-                    ))}
-                  </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <p className="text-slate-600 leading-relaxed">
+                  To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits listed below. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements. If you have questions about your eligibility, please reach out — we're here to help!
+                </p>
+
+                <div className="space-y-3">
+                  {[
+                    { people: "1 Person", limit: "$43,560" },
+                    { people: "2 People", limit: "$49,800" },
+                    { people: "3 People", limit: "$56,040" },
+                    { people: "4 People", limit: "$62,220" },
+                    { people: "5 People", limit: "$67,200" },
+                    { people: "6 People", limit: "$72,180" },
+                    { people: "7 People", limit: "$77,160" },
+                    { people: "8 People", limit: "$82,140" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex justify-between items-center py-2 border-b border-slate-200 last:border-b-0">
+                      <span className="font-medium text-slate-700">{item.people}</span>
+                      <span className="font-semibold text-warm-brown-600">{item.limit}</span>
+                    </div>
+                  ))}
                 </div>
-              )}
+              </div>
             </div>
 
             {/* Students Section */}
