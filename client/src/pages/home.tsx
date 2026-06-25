@@ -504,11 +504,25 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                <p className="text-slate-600 leading-relaxed">
-                  To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits listed below. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements. If you have questions about your eligibility, please reach out — we're here to help!
-                </p>
+                {/* Left column: how to qualify */}
+                <div className="space-y-5">
+                  <p className="text-slate-600 leading-relaxed">
+                    To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits shown. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements.
+                  </p>
 
-                <div className="space-y-3">
+                  <div className="bg-warm-brown-50 border border-warm-brown-100 rounded-xl p-5">
+                    <p className="text-slate-700 leading-relaxed">
+                      <span className="font-semibold text-slate-900">Questions about your eligibility?</span> If you have questions about your eligibility, please reach out — we're here to help!
+                    </p>
+                  </div>
+                </div>
+
+                {/* Right column: income limits table */}
+                <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-white">
+                  <div className="flex justify-between items-center bg-slate-900 px-5 py-4">
+                    <span className="text-white font-semibold text-sm sm:text-base"># in Household</span>
+                    <span className="text-white font-semibold text-sm sm:text-base">Maximum Annual Income</span>
+                  </div>
                   {[
                     { people: "1 Person", limit: "$43,560" },
                     { people: "2 People", limit: "$49,800" },
@@ -519,9 +533,12 @@ export default function Home() {
                     { people: "7 People", limit: "$77,160" },
                     { people: "8 People", limit: "$82,140" }
                   ].map((item, index) => (
-                    <div key={index} className="flex justify-between items-center py-2 border-b border-slate-200 last:border-b-0">
+                    <div
+                      key={index}
+                      className={`flex justify-between items-center px-5 py-3.5 border-b border-slate-100 last:border-b-0 ${index === 0 ? 'bg-warm-brown-50' : 'bg-white'}`}
+                    >
                       <span className="font-medium text-slate-700">{item.people}</span>
-                      <span className="font-semibold text-warm-brown-600">{item.limit}</span>
+                      <span className="font-bold text-warm-brown-600">{item.limit}</span>
                     </div>
                   ))}
                 </div>
