@@ -60,6 +60,10 @@ export default function Home() {
   const [faqExpanded, setFaqExpanded] = useState(false);
   const [petPolicyExpanded, setPetPolicyExpanded] = useState(false);
 
+  // Eligibility checker state
+  const [eligibilityHousehold, setEligibilityHousehold] = useState(1);
+  const [eligibilityIncome, setEligibilityIncome] = useState("");
+
   useEffect(() => {
     if (rotationImages.length <= 1) return; // Don't rotate if only 1 or no images
     
@@ -509,6 +513,125 @@ export default function Home() {
                   <p className="text-slate-600 leading-relaxed">
                     To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits shown. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements.
                   </p>
+
+                  {/* Interactive eligibility checker */}
+                  {(() => {
+                    const incomeLimitsByHousehold: Record<number, number> = {
+                      1: 43560,
+                      2: 49800,
+                      3: 56040,
+                      4: 62220,
+                      5: 67200,
+                      6: 72180,
+                      7: 77160,
+                      8: 82140,
+                    };
+                    const limit = incomeLimitsByHousehold[eligibilityHousehold];
+                    const cleanedIncome = eligibilityIncome.replace(/[$,\s]/g, "");
+                    const parsedIncome = Number(cleanedIncome);
+                    const hasIncome =
+                      cleanedIncome !== "" && !isNaN(parsedIncome) && parsedIncome >= 0;
+                    const qualifies = hasIncome && parsedIncome <= limit;
+                    const formattedLimit = `$${limit.toLocaleString()}`;
+                    const formattedIncome = hasIncome
+                      ? `$${parsedIncome.toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+                      : "";
+
+                    return (
+                      <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-5">
+                        <fieldset>
+                          <legend className="block font-bold text-slate-900 mb-3">
+                            How many people in your household?
+                          </legend>
+                          <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+                            {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+                              <button
+                                key={n}
+                                type="button"
+                                onClick={() => setEligibilityHousehold(n)}
+                                className={`aspect-square rounded-lg border font-bold text-lg transition-all ${
+                                  eligibilityHousehold === n
+                                    ? "bg-warm-brown-500 border-warm-brown-500 text-white shadow-sm"
+                                    : "bg-white border-slate-200 text-slate-700 hover:border-warm-brown-300"
+                                }`}
+                                aria-label={`Household size of ${n}`}
+                                aria-pressed={eligibilityHousehold === n}
+                              >
+                                {n}
+                              </button>
+                            ))}
+                          </div>
+                        </fieldset>
+
+                        <div>
+                          <label htmlFor="eligibility-income" className="block font-bold text-slate-900 mb-3">
+                            Your total annual household income{" "}
+                            <span className="font-normal text-slate-400">(optional)</span>
+                          </label>
+                          <div className="relative">
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">
+                              $
+                            </span>
+                            <input
+                              id="eligibility-income"
+                              type="text"
+                              inputMode="numeric"
+                              value={eligibilityIncome}
+                              onChange={(e) => setEligibilityIncome(e.target.value)}
+                              placeholder="45,000"
+                              className="w-full rounded-lg border border-slate-200 py-3 pl-8 pr-4 text-slate-900 focus:border-warm-brown-400 focus:outline-none focus:ring-1 focus:ring-warm-brown-400"
+                            />
+                          </div>
+                        </div>
+
+                        <div
+                          role="status"
+                          aria-live="polite"
+                          className={`rounded-xl p-5 border ${
+                            !hasIncome
+                              ? "bg-slate-50 border-slate-200"
+                              : qualifies
+                                ? "bg-green-50 border-green-200"
+                                : "bg-warm-brown-50 border-warm-brown-200"
+                          }`}
+                        >
+                          {hasIncome && (
+                            <p
+                              className={`font-bold mb-2 ${
+                                qualifies ? "text-green-700" : "text-warm-brown-700"
+                              }`}
+                            >
+                              {qualifies
+                                ? "✓ You appear to be within the income limit."
+                                : "Your income is above this limit."}
+                            </p>
+                          )}
+                          <p className="mb-2">
+                            <span className="text-3xl font-extrabold text-slate-900">{formattedLimit}</span>{" "}
+                            <span className="text-slate-500">max for {eligibilityHousehold}</span>
+                          </p>
+                          {hasIncome ? (
+                            <>
+                              <p className="text-slate-700 leading-relaxed">
+                                {qualifies
+                                  ? `Your income of ${formattedIncome} is at or below the limit, so you may be eligible to apply.`
+                                  : `Your income of ${formattedIncome} is above the limit for a household of ${eligibilityHousehold}. You may still qualify with a different household size, or limits may update annually.`}
+                              </p>
+                              <p className="text-sm text-slate-500 mt-3 leading-relaxed">
+                                {qualifies
+                                  ? "This is an estimate based on the 60% income limit. Final eligibility, including any minimum income and other program requirements, is confirmed by our leasing office."
+                                  : "Please contact our leasing office at (865) 357-2712 to confirm your specific situation."}
+                              </p>
+                            </>
+                          ) : (
+                            <p className="text-slate-600 leading-relaxed">
+                              Enter your total annual household income above to see whether you may be within the limit for a household of {eligibilityHousehold}.
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })()}
 
                   <div className="bg-warm-brown-50 border border-warm-brown-100 rounded-xl p-5">
                     <p className="text-slate-700 leading-relaxed">
