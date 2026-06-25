@@ -290,7 +290,7 @@ export default function Home() {
             </div>
             
             {/* CTA Buttons */}
-            <div className="flex justify-center">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Link href="/contact#contact-form">
                 <Button 
                   size="lg" 
@@ -300,6 +300,16 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 </Button>
               </Link>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => {
+                  document.querySelector('#eligibility')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="group border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 px-10 py-4 text-lg font-semibold rounded-2xl backdrop-blur-md bg-white/5 transition-all duration-300 hover:scale-105"
+              >
+                Check Your Eligibility
+              </Button>
             </div>
             
             {/* Feature Pills */}
@@ -1171,6 +1181,17 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-r from-warm-brown-400 to-warm-brown-500 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                   </Button>
                 </Link>
+
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => {
+                    document.querySelector('#eligibility')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="group border-2 border-white/30 text-white hover:bg-white hover:text-slate-900 px-12 py-5 text-xl font-semibold rounded-2xl backdrop-blur-md bg-white/5 transition-all duration-300 hover:scale-105"
+                >
+                  Check Your Eligibility
+                </Button>
                 
                 <Button 
                   size="lg" 
