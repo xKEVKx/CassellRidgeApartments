@@ -27,7 +27,7 @@ Preferred communication style: Simple, everyday language.
 ### Key Features & Technical Implementations
 - **Data Models**: Users (admin), Floor Plans (2br/2ba, 3br/2ba), Amenities, Gallery Images, Contact Submissions, Home Page Ads.
 - **API Endpoints**: CRUD operations for floor plans, amenities, gallery, contact submissions, and home page ads. PATCH/PUT endpoints return minimal responses (`{ success: true, id }`) to prevent proxy timeouts with large payloads.
-- **Frontend Pages**: Home (LIHTC info, floor plans), Floor Plans (interactive browser), Gallery (photo gallery with lightbox), Contact (embedded Fortress form), Virtual Tours (Matterport 3D), Location (map integration, essential info).
+- **Frontend Pages**: Home (LIHTC info, floor plans, eligibility checker), Floor Plans (interactive browser), Gallery (photo gallery with lightbox), Community (living near Cassell Ridge), Contact (embedded Fortress form), Virtual Tours (Matterport 3D), Location (map integration, essential info).
 - **UI Component System**: Responsive image galleries, navigation components, toast notifications, smooth anchor scrolling functionality.
 - **Authentication**: Admin authentication system with secure session management, explicit session persistence on login, credentials included on all auth-related fetch calls.
 - **Content Management**: Admin panel for managing photos, rents, promotional banners, and home page ads with image compression.
@@ -74,64 +74,22 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 - The Contact page uses a `useEffect` hook with a 100ms delay to auto-scroll to the contact form section when the URL contains `#contact-form`
 - Modal popup forms have been completely eliminated in favor of direct navigation to the embedded Fortress Technologies contact form
 - Contact form iframe is set to 1200px height for full visibility without internal scrolling
+- **Hash links** (`/#amenities`, `/#eligibility`) are rendered as plain `<a>` tags in the navbar and footer (not wouter `<Link>`) so native anchor scrolling works. On the home page itself, in-page CTA buttons use `onClick` `scrollIntoView` because the home page's hash-scroll `useEffect` only runs on mount.
 
 ### Floor Plans Page
 - Simplified layout focused on apartment options and "Schedule Visit" buttons
 - Unit availability section and "View Current Availability" button have been removed
 - Floor plans are sorted by bedrooms (ascending) then by name (alphabetically) to ensure "2 Bedroom A" appears before "2 Bedroom B"
 
+### Income Limits & Eligibility (single source of truth)
+- Income limits live in one `INCOME_LIMITS` array at the top of `client/src/pages/home.tsx`. The right-hand income table renders from it, and the calculator's `INCOME_LIMITS_BY_HOUSEHOLD` lookup is derived from it via `Object.fromEntries`. **Edit a value once and both the table and the calculator update together.** The table formats the numeric `limit` for display (e.g. `43560` → `$43,560`), so only plain numbers need editing.
+
 ## Recent Updates (June 2026)
 
-### Footer — Dynamic Copyright Year
-- Updated `client/src/components/layout/footer.tsx` to use `{new Date().getFullYear()}` instead of the hardcoded `2025`, so the copyright year updates automatically each year.
+### Income Limits & Eligibility (home page)
+The "INCOME LIMITS & ELIGIBILITY" section on the home page (`client/src/pages/home.tsx`) pairs an interactive eligibility tool with a matching income limits table. (Data-source mechanics are documented under Key Technical Decisions.)
 
-### New Community Page
-- Created `client/src/pages/community.tsx` — a full content page about living near Cassell Ridge, covering neighborhoods, shopping, dining, schools, parks, and healthcare, plus a "Why Rent at Cassell Ridge?" CTA section.
-- Added `/community` route to `client/src/App.tsx`.
-- Added "Community" as the first item in the Property dropdown in `client/src/lib/constants.ts`, appearing before Gallery, Location, and Virtual Tours.
-- Page includes proper `<Helmet>` SEO tags (title, description, Open Graph).
-
-### Community Page Design
-- All sections use a single consistent card component (`Card`) with a warm-brown icon badge, bold title, and description text — replacing an earlier mix of card grids, bullet lists, and decorative filler boxes.
-- All section headers use a shared `SectionHeader` component (h2 + subtitle, no pill badges).
-- Sections alternate white/slate-50 backgrounds for visual rhythm.
-- Hero title ("Living Near Cassell Ridge") placed on a single line to prevent the `bg-clip-text` gradient from clipping the "g" descender; `pb-2` added to the heading for further clearance.
-- Both hero paragraphs styled consistently (`text-xl sm:text-2xl font-light`).
-
-### Gallery Admin — Filename Display & Editing Fix
-Photos uploaded via the admin panel were showing garbled filenames like "Z" or "2Q==" because the code tried to extract a filename by splitting the base64 `imageUrl` on `/`, which returned a random chunk of base64 data instead.
-
-- **`client/src/pages/admin.tsx`**: Changed filename derivation from `image.imageUrl.split('/').pop()...` to `image.title || ''`. The `title` field is set correctly from the original file name at upload time. Also changed the save mutation to send `title: data.filename` in the PATCH request body (was only sending `category`, so filename edits were silently dropped).
-- **`server/routes.ts`**: Updated `PATCH /api/gallery/:id` to read `title` from `req.body` instead of `filename`, and pass it to `storage.updateGalleryImage()` so edits actually persist to the database.
-
-### Gallery Admin — Drag-and-Drop Reordering
-Replaced the up/down arrow buttons in "Reorder Photos" mode with HTML5 native drag-and-drop.
-
-- **`client/src/pages/admin.tsx`**: Added `useRef` import, `dragOverIndex` state, and `dragIndexRef` ref. Replaced `handleMoveUp`/`handleMoveDown` with `handleDragStart`, `handleDragOver`, `handleDrop`, and `handleDragEnd`. Removed `ArrowUp`/`ArrowDown` lucide imports. Each card is now `draggable` with a green highlight ring and scale effect on the drop target, a `#N` position badge overlaid on the photo, and a `GripVertical` icon in the card footer.
-
-### Domain URL Correction (SEO)
-All hardcoded URLs across the site were using the wrong domain (`cassellridge.com` instead of `cassellridgeapts.com`). Fixed in every file:
-- **`client/public/sitemap.xml`** — all 7 page `<loc>` URLs
-- **`client/public/robots.txt`** — sitemap URL
-- **`client/index.html`** — canonical link, `og:url`, `og:image`, `twitter:image`
-- **`client/src/pages/home.tsx`** — `og:url`, JSON-LD `url` and `logo` fields
-- **`client/src/pages/floor-plans.tsx`**, **`gallery.tsx`**, **`contact.tsx`**, **`location.tsx`**, **`virtual-tours.tsx`**, **`community.tsx`** — `og:url` on each page
-
-### Home Page Ad Image Upload — Production Fix
-The admin "Create Ad" feature was failing in production with a 403 error. The root cause was Replit's autoscale WAF (web application firewall) blocking POST requests that contained large base64-encoded image strings in a JSON body. The request was dropped before reaching Express, so no server log entry appeared.
-
-**Fix**: Switched the image upload from base64-in-JSON to a standard binary multipart file upload (FormData). The base64 conversion now happens server-side from the file buffer using `multer` with `memoryStorage`.
-
-- **Server** (`server/routes.ts`): Installed `multer`. POST and PATCH `/api/home-page-ads` routes now use `upload.single('image')` middleware. If `req.file` is present, `imageUrl` is assembled as `data:<mimetype>;base64,<buffer>` on the server. Form fields (displayFrequency, isActive, startDate, endDate) are parsed from `req.body` instead of a JSON payload.
-- **Client** (`client/src/pages/admin.tsx`): `createHomePageAdMutation` and `updateHomePageAdMutation` now use `fetch` with a `FormData` body instead of `apiRequest` with JSON. `Content-Type` is not set manually — the browser sets the correct multipart boundary automatically. Image compression uses `canvas.toBlob()` to produce a binary Blob (not `canvas.toDataURL()`) which is appended to the FormData. Error messages in `onError` now show the actual HTTP status and response text instead of a generic string.
-
-### Home Page Ad — Additional Hardening
-- **Date validation fix** (`shared/schema.ts`): `startDate` and `endDate` fields in `insertHomePageAdSchema` now use `z.coerce.date()` instead of the default `z.date()` generated by drizzle-zod. This allows the schema to accept ISO date strings sent over JSON/FormData, which `z.date()` rejects.
-- **File size guard** (`client/src/pages/admin.tsx`): Ad image uploads are now rejected client-side with a clear toast if the file exceeds 5 MB.
-- **Image compression error handling**: Added `img.onerror` handler to the canvas compression promise so it properly rejects instead of hanging silently if the image fails to load.
-
-### Income Limits Update
-Updated income limit figures on the home page (`client/src/pages/home.tsx`) and added the 8-person household row:
+Current limits:
 
 | Household Size | Limit |
 |---|---|
@@ -144,90 +102,38 @@ Updated income limit figures on the home page (`client/src/pages/home.tsx`) and 
 | 7 People | $77,160 |
 | 8 People | $82,140 |
 
-### Interactive Eligibility Checker
-Added an interactive income-eligibility tool to the "INCOME LIMITS & ELIGIBILITY" section on the home page (`client/src/pages/home.tsx`).
+- **Checker UI**: Household-size buttons (1–8) plus an optional annual-income input (strips non-numeric characters). A live status box shows the applicable limit and whether the visitor appears to be within it. The income table row matching the selected household size is highlighted (warm-brown background, inset ring, bold label).
+- **"Contact Us" dialog**: Pre-fills the visitor's eligibility details (household size, income, estimate) so the leasing team gets context. Emails (`server/email.ts`) render this metadata with HTML escaping (`escapeHtml`) and NaN guards.
+- **Validation** (`shared/schema.ts`, `client/src/components/contact-form.tsx`): `insertContactSubmissionSchema` requires name/email/phone with format checks, disallows angle brackets, and caps lengths; the client contact form validation matches.
+- **Anchor & navigation**: The section `<div>` has `id="eligibility"` (`scroll-mt-24`). An "Eligibility" nav item (`/#eligibility`) sits between Amenities and Property in `NAVIGATION_LINKS`. "Check Your Eligibility" pill buttons in the hero and bottom CTA scroll to it; the bottom CTA centers the two brown pills on one row with the outline "Call" button on its own line below.
+- **Layout**: The intro paragraph and the "Questions about your eligibility?" box both span the full section width (above and below the two-column grid). The two grid columns stretch to equal height so the calculator card matches the income table height; the card is `flex flex-col` with the "Contact Us" button anchored to the bottom via `mt-auto`.
 
-- **Section rename & anchor**: The section title is now "INCOME LIMITS & ELIGIBILITY" and the section `<div>` has `id="eligibility"` (with `scroll-mt-24`) so it can be linked/scrolled to directly.
-- **Checker UI**: A card with household-size buttons (1–8) and an optional annual-income input. As the visitor selects a household size and types an income, a live status box shows the applicable income limit and whether they appear to be within it. The income input strips non-numeric characters.
-- **"Contact Us" dialog**: A button opens a dialog that pre-fills the visitor's eligibility details (household size, income, estimate) so the leasing team receives context with the inquiry.
-- **Email rendering** (`server/email.ts`): Notification and confirmation emails render the eligibility metadata, with HTML escaping (`escapeHtml`) and NaN guards for safety.
-- **Validation** (`shared/schema.ts`, `client/src/components/contact-form.tsx`): Tightened `insertContactSubmissionSchema` — name/email/phone required with format checks, no angle brackets, and length caps. Client-side validation in the contact form was aligned to match.
+### Community Page
+- New `client/src/pages/community.tsx` (route `/community`, registered in `App.tsx`) covering neighborhoods, shopping, dining, schools, parks, and healthcare, with a "Why Rent at Cassell Ridge?" CTA and full `<Helmet>` SEO tags. Added "Community" as the first item in the Property dropdown (`client/src/lib/constants.ts`).
+- Design: one consistent `Card` component per section (warm-brown icon badge, title, description), a shared `SectionHeader`, alternating white/slate-50 backgrounds. Hero title kept on one line with `pb-2` so the `bg-clip-text` gradient doesn't clip the "g" descender.
 
-### Navigation — Eligibility Link
-- Added an "Eligibility" item to `NAVIGATION_LINKS` in `client/src/lib/constants.ts` (href `/#eligibility`), placed between Amenities and Property.
+### Footer
+- **Dynamic copyright year**: uses `{new Date().getFullYear()}` instead of a hardcoded year (`client/src/components/layout/footer.tsx`).
+- **Quick Links resolve correctly**: the list maps `NAVIGATION_LINKS`, flattening the "Property" group into its real child pages (Community, Gallery, Location, Virtual Tours — `/property` is not a route and previously hit NotFound), rendering external links (Residents portal) as `<a target="_blank" rel="noopener noreferrer">`, rendering hash links as plain `<a>`, and keeping internal routes on wouter `<Link>`.
 
-### Home Page CTA — "Check Your Eligibility" Pills
-- Added "Check Your Eligibility" pill buttons next to "Schedule Your Tour" in both the hero and the bottom CTA sections. Both use an `onClick` `scrollIntoView` to `#eligibility` (not a `Link`, because the home page's hash-scroll `useEffect` only runs on mount). Styled with the warm-brown gradient to match "Schedule Your Tour".
-- In the bottom CTA section, the two brown pills are centered together on one row, with the outline "Call" button on its own line centered below them.
+### Gallery Admin
+- **Filename display/edit fix**: filenames now derive from the `title` field (set from the original file name at upload) instead of splitting the base64 `imageUrl`, which produced garbled names. `PATCH /api/gallery/:id` reads `title` from the body so edits persist.
+- **Drag-and-drop reordering**: "Reorder Photos" mode uses native HTML5 drag-and-drop (position badge + drop-target highlight) instead of up/down arrows.
 
-### Footer Quick Links — Correct Destinations
-Fixed the footer "Quick Links" so every link resolves correctly (`client/src/components/layout/footer.tsx`). The list maps over `NAVIGATION_LINKS` and now:
-- **Flattens the "Property" group** into its real child pages (Community, Gallery, Location, Virtual Tours), since `/property` is not a real route and previously hit the NotFound page.
-- **Renders external links** (Residents portal) as `<a target="_blank" rel="noopener noreferrer">` instead of a wouter `<Link>` (which would try client-side routing).
-- **Renders hash links** (`/#amenities`, `/#eligibility`) as plain `<a>` tags for native anchor scrolling, matching the navbar's behavior.
-- **Keeps internal routes** on the wouter `<Link>` component.
+### Home Page Ads — Production Upload Fix
+- Admin "Create Ad" failed in production with a 403 because Replit's autoscale WAF blocked large base64 image strings in JSON bodies. Fixed by switching to binary multipart upload (`FormData` + `multer` `memoryStorage`); the server assembles the base64 `data:` URL from the file buffer. Client compresses via `canvas.toBlob()`.
+- Hardening: `startDate`/`endDate` use `z.coerce.date()` to accept ISO strings; client rejects images over 5 MB; image compression has an `onerror` guard.
 
-### Eligibility Section Layout
-- The qualifying intro paragraph now spans the full width of the section (moved above the two-column grid) instead of sitting in the left column.
-- As a result, the right-hand income limits table's top aligns with the eligibility checker card.
+### SEO — Domain URL Correction
+- Replaced the wrong domain (`cassellridge.com`) with `cassellridgeapts.com` everywhere: `sitemap.xml`, `robots.txt`, `index.html` (canonical / OG / Twitter), and per-page `og:url` / JSON-LD across all pages.
 
-### Income Table — Dynamic Row Highlight
-- The income limits table now highlights the row matching the household size selected in the checker (warm-brown background, inset ring, bold label), instead of always highlighting the first row.
+## Earlier Updates (condensed)
+Durable outcomes from these are reflected in **Key Technical Decisions**, **Key Features**, and **External Dependencies** above.
 
-### Income Limits — Single Source of Truth
-- Refactored `home.tsx` so income limits live in one `INCOME_LIMITS` array at the top of the file. The right-hand table renders from it, and the calculator's `INCOME_LIMITS_BY_HOUSEHOLD` lookup is derived from it via `Object.fromEntries`. Editing a value in `INCOME_LIMITS` now updates both the table and the calculator together. The table formats the numeric `limit` for display (e.g. `43560` → `$43,560`).
-
----
-
-## Recent Updates (May 2026)
-
-### Security
-- **Admin Login Hardening**: Removed `console.log` statements in `server/routes.ts` that were leaking `adminPassword.length` and `password.length` to server logs on failed login attempts.
-
-### SEO Overhaul
-- **Indexing Fix**: Added `X-Robots-Tag: index, follow` response header in `server/index.ts` middleware to override any `noindex` header injected by Replit's infrastructure. Also added `<meta name="robots" content="index, follow">` to `index.html` as a belt-and-suspenders backup.
-- **Per-Page Titles & Descriptions**: Installed `react-helmet-async`. Wrapped the app root in `<HelmetProvider>` in `App.tsx`. Added a `<Helmet>` block to every public page component (`home.tsx`, `floor-plans.tsx`, `gallery.tsx`, `contact.tsx`, `location.tsx`, `virtual-tours.tsx`) with a unique `<title>` in the format `Page Name | Cassell Ridge Apartments - Knoxville, TN` and a unique 150–160 character `<meta name="description">`.
-- **Structured Data (JSON-LD)**: Moved the `ApartmentComplex` schema from a static `<script>` in `index.html` into the home page's `<Helmet>` block, and added the previously missing `logo` field.
-- **Open Graph Tags**: Updated `index.html` with `og:image:alt` (was missing) and aligned `og:title` with the new per-page title format. Each page's `<Helmet>` block also sets page-specific `og:title`, `og:description`, and `og:url`.
-- **Viewport Fix**: Removed `maximum-scale=1` from the viewport meta tag in `index.html` — this restriction penalizes mobile SEO scores and hurts accessibility.
-- **Sitemap Dates**: Updated all `<lastmod>` dates in `client/public/sitemap.xml` from July 2025 to May 2026.
-
-### Custom Domain SSL
-- Investigated reported SSL failure on the custom domain. Confirmed no code-level issues (`trust proxy` and secure cookies were already correctly configured). Issue was resolved by re-adding the `www.` subdomain in the Replit publishing settings, which triggered a fresh certificate provisioning.
-
-## Recent Updates (February 2026)
-- **Production Session/Cookie Fix**: Comprehensive fix for admin authentication behind reverse proxy:
-  - Added `app.set('trust proxy', 1)` in server/index.ts before all middleware
-  - Added `sameSite: 'lax'` to session cookie configuration
-  - Login handler now uses `req.session.save()` callback for guaranteed session persistence
-  - Login and logout fetch calls include `credentials: 'include'`
-  - All PATCH/PUT routes return minimal `{ success: true, id }` responses instead of full objects to prevent proxy timeouts
-- **TypeScript Session Types**: Added express-session module augmentation declaring `SessionData.isAdmin` boolean property
-- **CSP Headers**: Added Content Security Policy middleware allowing Google Fonts, Font Awesome, Accessibe, Fortress Technologies, Matterport, Google Maps, Google Analytics, and Replit domains
-- **Google Analytics**: Added GA4 tracking code (G-EWTRSPP73F) to index.html for visitor analytics
-
-## Previous Updates (August 2025)
-- **Contact Form Height**: Increased iframe height to 1200px for full form visibility without scrolling
-- **Floor Plans Simplification**: Removed unit availability section and "View Current Availability" button from Floor Plans page
-
-## Previous Updates (January 2025)
-- **Email System**: Complete Postmark SMTP integration with dual email flow (notification + confirmation)
-- **SMTP Configuration**: Verified sender addresses using no-reply@cassellridgeapts.com with reply-to routing
-- **Property Information**: Updated all references from Tyler, TX to Knoxville, TN with correct contact details
-- **Email Templates**: Professional HTML templates with Cassell Ridge branding and brown color scheme
-- **TypeScript**: Resolved all compilation errors for production-ready code
-- **SEO**: Comprehensive optimization with local business schema for Knoxville market
-- **UI Refinements**: Cleaned up pricing displays across site - removed "From" prefix from home page floor plan cards, removed "Starting at" overlay from amenities section, simplified "Rent:" label on floor plans page
-- **Navigation**: Removed "Apply Now" button from Virtual Tours page for streamlined user experience
-- **Content Ordering**: Updated floor plans API to display "2 Bedroom A" before "2 Bedroom B" with proper alphabetical sorting
-- **Admin UX**: Added autofocus to admin login password field for improved user experience
-- **Accessibility**: Confirmed Accessibe accessibility widget integration - script loads automatically on all pages for ADA compliance
-- **Fortress Technologies Integration**: Complete integration with property management system including resident portal links in navigation and footer, embedded contact form on contact page
-- **Navigation Enhancement**: Added "Residents" menu item linking to Fortress portal between Property and Contact sections in main navigation and footer
-- **Contact Form Replacement**: Replaced all custom contact forms with embedded Fortress Technologies contact page for centralized lead management
-- **Button Navigation Optimization**: Updated all CTA buttons to redirect to /contact#contact-form with smooth scrolling
-- **Modal Removal**: Eliminated all modal popup forms in favor of direct navigation to embedded Fortress contact form
-- **Hash Anchor Scrolling**: Implemented automatic scrolling to contact form section when accessing /contact#contact-form URLs
+- **May 2026** — Admin login hardening (removed password-length `console.log` leaks); SEO overhaul (`react-helmet-async`, per-page titles/descriptions, JSON-LD `ApartmentComplex` schema, OG tags, `X-Robots-Tag: index, follow`, viewport fix); custom-domain SSL resolved by re-adding the `www.` subdomain.
+- **February 2026** — Production session/cookie fix for admin auth behind the reverse proxy, express-session `isAdmin` type augmentation, CSP middleware, and GA4 (all detailed under Key Technical Decisions).
+- **August 2025** — Contact form iframe height set to 1200px; Floor Plans page simplified (removed availability section).
+- **January 2025** — Postmark SMTP dual-email flow; migrated all content from Tyler, TX to Knoxville, TN; Fortress Technologies integration (resident portal links, embedded contact form); replaced custom forms/modals with the embedded Fortress form and `/contact#contact-form` navigation; floor plan ordering ("2 Bedroom A" before "B").
 
 ## Future Feature Considerations
 - **Maintenance Request Chatbot**: Potential addition for resident support - would include real-time chat interface, request categorization, resident authentication, ticket tracking system, admin dashboard for property management, and integration with existing notification system
@@ -248,11 +154,13 @@ Fixed the footer "Quick Links" so every link resolves correctly (`client/src/com
 - `server/index.ts` - Express app setup, trust proxy, middleware, static files, Vite integration
 - `server/routes.ts` - All API routes, session configuration, admin authentication, express-session type augmentation
 - `server/storage.ts` - Database storage interface and implementations
-- `server/email.ts` - Postmark SMTP email integration
+- `server/email.ts` - Postmark SMTP email integration, eligibility metadata rendering
 - `client/src/pages/admin.tsx` - Admin panel with photo management, rent updates, promotional banners, home page ads
+- `client/src/pages/home.tsx` - Home page with LIHTC info, floor plan cards, ad slider, and the income limits & eligibility checker (`INCOME_LIMITS` source of truth)
 - `client/src/pages/contact.tsx` - Contact page with embedded Fortress form and hash anchor scrolling
+- `client/src/pages/community.tsx` - Community / "living near Cassell Ridge" content page
 - `client/src/pages/floor-plans.tsx` - Floor plans browser with schedule visit CTAs
-- `client/src/pages/home.tsx` - Home page with LIHTC info, floor plan cards, and ad slider
+- `client/src/lib/constants.ts` - Site config and `NAVIGATION_LINKS` (includes the Eligibility item and Property dropdown)
 - `client/src/components/layout/navbar.tsx` - Main navigation with Residents portal link
-- `client/src/components/layout/footer.tsx` - Footer with contact info and portal links
+- `client/src/components/layout/footer.tsx` - Footer with contact info, portal links, and Quick Links
 - `shared/schema.ts` - Drizzle ORM schema definitions and Zod validation schemas
