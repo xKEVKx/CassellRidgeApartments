@@ -21,12 +21,21 @@ export default function Footer() {
             <ul className="space-y-2">
               {NAVIGATION_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link 
-                    href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.href.startsWith('#') || link.href.startsWith('/#') ? (
+                    <a
+                      href={link.href}
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link 
+                      href={link.href}
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
