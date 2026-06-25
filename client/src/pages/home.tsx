@@ -575,13 +575,13 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-slate-900">INCOME LIMITS &amp; ELIGIBILITY</h3>
               </div>
 
+              <p className="text-slate-600 leading-relaxed mb-8">
+                To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits shown. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements.
+              </p>
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 {/* Left column: how to qualify */}
                 <div className="space-y-5">
-                  <p className="text-slate-600 leading-relaxed">
-                    To qualify for a LIHTC home at Cassell Ridge, your household's gross (pre-tax) annual income must be within the limits shown. The income limits provided reflect the highest set-aside offered at our community and may not represent every home available. Some homes may have lower income limits based on their designated program requirements.
-                  </p>
-
                   {/* Interactive eligibility checker */}
                   {(() => {
                     const limit = INCOME_LIMITS_BY_HOUSEHOLD[eligibilityHousehold];
