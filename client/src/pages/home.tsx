@@ -323,7 +323,7 @@ export default function Home() {
             {/* Main Heading */}
             <div className="space-y-4 bg-black/20 backdrop-blur-sm rounded-3xl p-6 sm:p-9">
               <div className="flex justify-center">
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 text-white px-5 py-2.5 rounded-full shadow-lg">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#54D2F6] to-[#22B0D6] text-white px-5 py-2.5 rounded-full shadow-lg">
                   <Star className="w-4 h-4 fill-current" />
                   <span className="text-xs sm:text-sm font-bold tracking-wider uppercase">
                     Affordable LIHTC Community · Income Limits Apply
