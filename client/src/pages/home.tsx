@@ -111,18 +111,15 @@ export default function Home() {
     : 925; // fallback price
 
   // Get all gallery images for rotation (interior, exterior, pool, community)
-  const rotationImages = galleryImages?.map(img => img.imageUrl) || [
-    "/images/gallery/interior-1.jpg",
-    "/images/gallery/interior-3.jpg",
-    "/images/gallery/pool-area.jpg",
-    "/images/gallery/pool-deck.jpg",
-    "/images/gallery/pool-seating.jpg",
-    "/images/gallery/community-area.jpg",
-    "/images/gallery/outdoor-area.jpg",
-    "/images/gallery/landscape.jpg",
-    "/images/amenities/building-exterior.jpg",
-    "/images/amenities/fitness-center.jpg"
-  ];
+  const rotationImages = galleryImages ?? [];
+
+  // Amenity-category images used in the Accommodations section
+  const amenityImages = galleryImages?.filter(img =>
+    img.category === 'pool' ||
+    img.category === 'amenities' ||
+    img.category === 'community' ||
+    img.category === 'exterior'
+  ) ?? [];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -478,11 +475,13 @@ export default function Home() {
             {/* Image Side */}
             <div className="relative">
               <div className="relative group w-full h-96 overflow-hidden rounded-3xl shadow-2xl">
-                <img 
-                  src={rotationImages[currentImageIndex]} 
-                  alt="Luxury apartment interior" 
-                  className={`w-full h-full object-cover transition-all duration-1000 ease-in-out group-hover:scale-105 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
-                />
+                {rotationImages.length > 0 && (
+                  <img 
+                    src={rotationImages[currentImageIndex % rotationImages.length]?.imageUrl} 
+                    alt={rotationImages[currentImageIndex % rotationImages.length]?.title || "Cassell Ridge apartment community"} 
+                    className={`w-full h-full object-cover transition-all duration-1000 ease-in-out group-hover:scale-105 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
               </div>
               
@@ -500,21 +499,13 @@ export default function Home() {
           {/* Featured Amenities Section with Photo Slider */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="relative w-full h-96 overflow-hidden rounded-lg shadow-lg order-2 lg:order-1">
-              <img 
-                src={galleryImages?.filter(img => 
-                  img.category === 'pool' || 
-                  img.category === 'amenities' || 
-                  img.category === 'community' ||
-                  img.category === 'exterior'
-                )[currentImageIndex % (galleryImages?.filter(img => 
-                  img.category === 'pool' || 
-                  img.category === 'amenities' || 
-                  img.category === 'community' ||
-                  img.category === 'exterior'
-                ).length || 1)]?.imageUrl || "/images/gallery/consolidated/bicycle-club-pool-area.jpg"} 
-                alt="Amenity feature" 
-                className={`w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
-              />
+              {amenityImages.length > 0 && (
+                <img 
+                  src={amenityImages[currentImageIndex % amenityImages.length]?.imageUrl} 
+                  alt={amenityImages[currentImageIndex % amenityImages.length]?.title || "Cassell Ridge community amenity"} 
+                  className={`w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
             </div>
             <div className="relative order-1 lg:order-2">
