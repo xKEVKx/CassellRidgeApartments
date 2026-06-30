@@ -35,9 +35,9 @@ export default function FloorPlans() {
       <section className="pt-2 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
+            <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">
               Our Floor Plans
-            </h2>
+            </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Comfortable floor plans with spacious kitchens, generous closets, and private patios or balconies.
             </p>
