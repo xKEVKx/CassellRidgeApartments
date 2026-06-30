@@ -1,0 +1,1 @@
+- [Session store driver](session-store-pg.md) — connect-pg-simple needs a dedicated `pg` pool; the Neon serverless pool throws "reading map" on its DDL/DELETE queries.

@@ -54,6 +54,13 @@ The admin authentication system requires specific configuration to work correctl
 4. **Client Credentials**: All login/logout `fetch()` calls include `credentials: 'include'` to ensure cookies are properly sent and stored across requests.
 5. **Minimal Update Responses**: PATCH/PUT endpoints return `{ success: true, id }` instead of full objects (which may contain large base64 image data), preventing proxy timeouts. The client already refetches data via TanStack Query cache invalidation after mutations.
 
+### Persistent Session Store (PostgreSQL)
+Admin logins are persisted in PostgreSQL via `connect-pg-simple`, so sessions survive workflow restarts and publishes. Previously the app used express-session's default in-memory `MemoryStore`, which wiped all sessions on every restart/publish — logging admins out and causing "unauthorized" / "delete failed" errors on admin actions.
+- **Dedicated `pg` pool**: The session store uses its own `pg.Pool` (`server/routes.ts`, `max: 3`, `ssl: { rejectUnauthorized: false }`), separate from the app's `@neondatabase/serverless` pool.
+- **Why not reuse the app pool**: The `@neondatabase/serverless` driver uses an HTTP fetch transport (`poolQueryViaFetch`) that throws `Cannot read properties of null (reading 'map')` on the DDL and DELETE-without-RETURNING queries `connect-pg-simple` runs. The dedicated node-postgres pool avoids this.
+- **Table**: `connect-pg-simple` is configured with `tableName: 'session'` and `createTableIfMissing: true`, so the `session` table is auto-created on first boot.
+- **Packages**: `pg` + `@types/pg` (installed via the package manager); `connect-pg-simple` was already present.
+
 ### Content Security Policy (CSP)
 CSP headers are set via middleware in `server/index.ts` before all other middleware. The policy allows only approved external domains:
 - **Scripts**: Google Tag Manager, Google Analytics, Accessibe (accessibility), Replit dev banner

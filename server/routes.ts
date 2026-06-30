@@ -1,6 +1,8 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import session from "express-session";
+import connectPgSimple from "connect-pg-simple";
+import pg from "pg";
 import multer from "multer";
 import rateLimit from "express-rate-limit";
 import { storage } from "./storage";
@@ -46,7 +48,22 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Session configuration
+  // Use a dedicated node-postgres pool for the session store so admin logins
+  // persist across publishes/restarts. We intentionally do NOT reuse the app's
+  // @neondatabase/serverless pool: its HTTP fetch transport throws on the
+  // DDL/DELETE-without-RETURNING queries connect-pg-simple runs.
+  const sessionPool = new pg.Pool({
+    connectionString: process.env.DATABASE_URL,
+    max: 3,
+    ssl: { rejectUnauthorized: false },
+  });
+  const PgSession = connectPgSimple(session);
   app.use(session({
+    store: new PgSession({
+      pool: sessionPool,
+      tableName: 'session',
+      createTableIfMissing: true,
+    }),
     secret: process.env.SESSION_SECRET || 'bicycle-club-secret-key',
     resave: false,
     saveUninitialized: false,
