@@ -1,0 +1,28 @@
+# Cassell Ridge Apartments
+
+> Affordable LIHTC apartment community in Knoxville, Tennessee. Cassell Ridge offers 2-bedroom and 3-bedroom income-restricted apartments managed by Elmington Property Management.
+
+## Summary
+
+Cassell Ridge Apartments is a Low-Income Housing Tax Credit (LIHTC) community located at 1230 Cassell Valley Way, Knoxville, TN. All units are income-restricted and applicants must meet income eligibility requirements based on household size. The property features spacious floor plans, modern amenities, and convenient access to schools, shopping, dining, and healthcare in the Knoxville area.
+
+## Audience
+
+- Income-qualified prospective residents searching for affordable housing in Knoxville, TN
+- Current residents seeking information about the resident portal or community amenities
+- Housing counselors and social service agencies assisting clients with affordable housing placement
+
+## Important Pages
+
+- https://www.cassellridgeapts.com/ — Home page: LIHTC overview, income limits, eligibility checker, floor plan highlights, and community news
+- https://www.cassellridgeapts.com/floor-plans — Available floor plans: 2-bedroom/2-bath and 3-bedroom/2-bath unit options with current rents
+- https://www.cassellridgeapts.com/community — Community guide: nearby neighborhoods, schools, shopping, dining, parks, and healthcare
+- https://www.cassellridgeapts.com/gallery — Photo gallery of apartments, common areas, and grounds
+- https://www.cassellridgeapts.com/contact — Contact and leasing inquiry form (Fortress Technologies)
+- https://www.cassellridgeapts.com/location — Property location, address, map, and directions
+- https://www.cassellridgeapts.com/virtual-tours — Matterport 3D virtual tours of available floor plans
+
+## Do Not Use
+
+- /admin — Password-protected administrative interface; not a public page
+- /api/* — Internal REST API endpoints; not intended for direct citation
