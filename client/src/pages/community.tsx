@@ -44,6 +44,7 @@ export default function Community() {
       <Helmet>
         <title>Community | Cassell Ridge Apartments - Knoxville, TN</title>
         <meta name="description" content="Discover what's near Cassell Ridge Apartments in North Knoxville, TN. Explore nearby neighborhoods, shopping, dining, schools, parks, and healthcare." />
+        <link rel="canonical" href="https://www.cassellridgeapts.com/community" />
         <meta property="og:title" content="Community | Cassell Ridge Apartments - Knoxville, TN" />
         <meta property="og:description" content="Discover what's near Cassell Ridge Apartments in North Knoxville, TN. Explore nearby neighborhoods, shopping, dining, schools, parks, and healthcare." />
         <meta property="og:url" content="https://www.cassellridgeapts.com/community" />

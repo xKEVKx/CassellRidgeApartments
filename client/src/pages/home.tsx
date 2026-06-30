@@ -241,6 +241,7 @@ export default function Home() {
       <Helmet>
         <title>Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN</title>
         <meta name="description" content="Discover affordable LIHTC apartments at Cassell Ridge in Knoxville, TN. Spacious 2 & 3 bedroom homes with modern amenities and income-based rents starting at $950." />
+        <link rel="canonical" href="https://www.cassellridgeapts.com/" />
         <meta property="og:title" content="Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN" />
         <meta property="og:description" content="Discover affordable LIHTC apartments at Cassell Ridge in Knoxville, TN. Spacious 2 & 3 bedroom homes with modern amenities and income-based rents starting at $950." />
         <meta property="og:url" content="https://www.cassellridgeapts.com/" />

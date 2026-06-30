@@ -78,6 +78,7 @@ export default function Gallery() {
       <Helmet>
         <title>Photo Gallery | Cassell Ridge Apartments - Knoxville, TN</title>
         <meta name="description" content="Browse photos of Cassell Ridge Apartments in Knoxville, TN. View interior and exterior images of our affordable 2 & 3 bedroom LIHTC apartment homes." />
+        <link rel="canonical" href="https://www.cassellridgeapts.com/gallery" />
         <meta property="og:title" content="Photo Gallery | Cassell Ridge Apartments - Knoxville, TN" />
         <meta property="og:description" content="Browse photos of Cassell Ridge Apartments in Knoxville, TN. View interior and exterior images of our affordable 2 & 3 bedroom LIHTC apartment homes." />
         <meta property="og:url" content="https://www.cassellridgeapts.com/gallery" />

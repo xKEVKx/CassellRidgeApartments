@@ -37,6 +37,7 @@ export default function VirtualTours() {
       <Helmet>
         <title>Virtual Tours | Cassell Ridge Apartments - Knoxville, TN</title>
         <meta name="description" content="Take a 3D virtual tour of Cassell Ridge Apartments in Knoxville, TN. Explore our spacious 2 and 3 bedroom LIHTC affordable apartment floor plans online." />
+        <link rel="canonical" href="https://www.cassellridgeapts.com/virtual-tours" />
         <meta property="og:title" content="Virtual Tours | Cassell Ridge Apartments - Knoxville, TN" />
         <meta property="og:description" content="Take a 3D virtual tour of Cassell Ridge Apartments in Knoxville, TN. Explore our spacious 2 and 3 bedroom LIHTC affordable apartment floor plans online." />
         <meta property="og:url" content="https://www.cassellridgeapts.com/virtual-tours" />

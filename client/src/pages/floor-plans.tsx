@@ -27,6 +27,7 @@ export default function FloorPlans() {
       <Helmet>
         <title>Floor Plans | Cassell Ridge Apartments - Knoxville, TN</title>
         <meta name="description" content="Explore 2 and 3 bedroom LIHTC apartment floor plans at Cassell Ridge in Knoxville, TN. View layouts, square footage, and schedule your visit today." />
+        <link rel="canonical" href="https://www.cassellridgeapts.com/floor-plans" />
         <meta property="og:title" content="Floor Plans | Cassell Ridge Apartments - Knoxville, TN" />
         <meta property="og:description" content="Explore 2 and 3 bedroom LIHTC apartment floor plans at Cassell Ridge in Knoxville, TN. View layouts, square footage, and schedule your visit today." />
         <meta property="og:url" content="https://www.cassellridgeapts.com/floor-plans" />
