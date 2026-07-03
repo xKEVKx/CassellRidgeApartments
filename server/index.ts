@@ -394,12 +394,24 @@ function applyPrerender(html: string, data: RoutePrerender): string {
     // Applies to ALL visitors — React replaces the bodyHtml on hydration.
     // Non-JS crawlers (social bots, AI crawlers) read the complete HTML directly.
     app.use("*", (req: Request, res: Response, next: NextFunction) => {
-      const reqPath = req.path;
+      // NOTE: when middleware is mounted on "*", Express puts the matched path in
+      // req.baseUrl and leaves req.path as "/", so we must read the real request
+      // path from req.originalUrl (stripping any query string). Using req.path here
+      // made every request (including /assets/*.js and *.css) resolve to "/" and
+      // receive the prerendered home HTML, so the JS/CSS never loaded and React
+      // never mounted in production.
+      const rawPath = req.originalUrl.split('?')[0];
 
-      // Pass through requests with file extensions (static assets already handled above)
-      if (reqPath.includes('.')) {
+      // Pass through real static-asset requests (e.g. /assets/index-*.js, favicon.ico)
+      // to serveStatic below. Use a true file-extension check rather than a naive
+      // "contains a dot" test so SPA routes that happen to include a dot are not
+      // mistakenly treated as files.
+      if (path.extname(rawPath) !== '') {
         return next();
       }
+
+      // Normalize trailing slash so /contact/ resolves like /contact (root stays "/")
+      const reqPath = rawPath.length > 1 ? rawPath.replace(/\/+$/, '') : rawPath;
 
       // Unknown route: 404 + noindex
       if (!VALID_SPA_ROUTES.has(reqPath)) {

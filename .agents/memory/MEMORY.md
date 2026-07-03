@@ -1,1 +1,2 @@
-- [Session store driver](session-store-pg.md) — connect-pg-simple needs a dedicated `pg` pool; the Neon serverless pool throws "reading map" on its DDL/DELETE queries.
+- [Production prerender catch-all path](prerender-catchall-req-path.md) — under app.use("*") req.path is always "/"; read req.originalUrl or assets get served the prerendered HTML.
+- [PG session store](session-store-pg.md) — admin sessions use a dedicated node-postgres pool (not the Neon serverless pool) via connect-pg-simple.

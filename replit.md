@@ -61,6 +61,13 @@ Admin logins are persisted in PostgreSQL via `connect-pg-simple`, so sessions su
 - **Table**: `connect-pg-simple` is configured with `tableName: 'session'` and `createTableIfMissing: true`, so the `session` table is auto-created on first boot.
 - **Packages**: `pg` + `@types/pg` (installed via the package manager); `connect-pg-simple` was already present.
 
+### Production Prerender Catch-All & Static Assets
+In production (`server/index.ts`), a catch-all `app.use("*", ...)` serves prerendered HTML for valid SPA routes and a 404 (with `X-Robots-Tag: noindex`) for unknown ones; real static files fall through to `serveStatic`.
+- **Read `req.originalUrl`, not `req.path`**: middleware mounted on `"*"` leaves `req.path` as `/` for every request (the matched path lands in `req.baseUrl`). Using `req.path` made *all* requests — including `/assets/*.js` and `/assets/*.css` — resolve to `/`, match the home route, and receive the prerendered home HTML, so JS/CSS never loaded and React never mounted (the published site showed only the unstyled prerender fallback). The path is now derived from `req.originalUrl.split('?')[0]`.
+- **Asset detection**: uses `path.extname(rawPath) !== ''` (a true file-extension test, not a naive `includes('.')`) so real files (`/assets/*.js`, `/favicon.ico`, `/robots.txt`) pass through to `serveStatic` while dotted SPA routes are not misclassified.
+- **Trailing slashes** are normalized before matching (`/contact/` → `/contact`; root stays `/`).
+- **Dev vs prod**: this bug only appears in the production build (`npm run build` + `NODE_ENV=production`); the dev workflow uses Vite middleware and does not reproduce it.
+
 ### Content Security Policy (CSP)
 CSP headers are set via middleware in `server/index.ts` before all other middleware. The policy allows only approved external domains:
 - **Scripts**: Google Tag Manager, Google Analytics, Accessibe (accessibility), Replit dev banner
