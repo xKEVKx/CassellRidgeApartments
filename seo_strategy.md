@@ -21,9 +21,9 @@
 - Cassell Ridge Apartments
 
 ## Technical SEO notes
-- The public site is a Vite + React SPA with Wouter and `react-helmet-async`.
-- Public marketing routes are client-rendered rather than SSR or prerendered.
-- Shared-shell issues have outsized SEO impact because all public routes start from `client/index.html`.
+- The frontend is still a Vite + React app with Wouter and `react-helmet-async`, but production is now hybrid instead of pure SPA.
+- In production, `server/index.ts` prerenders route-specific HTML for `/`, `/floor-plans`, `/gallery`, `/community`, `/location`, `/virtual-tours`, and `/contact` before React hydrates.
+- Shared-shell issues still have outsized SEO impact because all public routes start from `client/index.html` and the production prerender layer decides what non-JS crawlers, AI crawlers, and social bots can see in the first response.
 
 ## Dismissed categories
 - (None yet)
