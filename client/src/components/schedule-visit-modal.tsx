@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import ContactForm from "./contact-form";
+import NestioLeadCapture from "./nestio-lead-capture";
 
 interface ScheduleVisitModalProps {
   trigger?: React.ReactNode;
@@ -22,7 +23,7 @@ export default function ScheduleVisitModal({ trigger, floorPlan }: ScheduleVisit
       <DialogTrigger asChild>
         {trigger || defaultTrigger}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
             Schedule a Visit
@@ -36,6 +37,10 @@ export default function ScheduleVisitModal({ trigger, floorPlan }: ScheduleVisit
           title=""
           className="border-0 shadow-none"
         />
+        <div className="pt-4 border-t">
+          <h3 className="font-semibold text-gray-900 mb-2">Or book a tour instantly</h3>
+          <NestioLeadCapture type="lead_capture_appointment" />
+        </div>
       </DialogContent>
     </Dialog>
   );

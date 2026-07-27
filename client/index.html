@@ -36,6 +36,27 @@
       gtag('js', new Date());
       gtag('config', 'G-EWTRSPP73F');
     </script>
+
+    <!-- Funnel Leasing AI Chatbot (site-wide) -->
+    <script src="https://integrations.funnelleasing.com/gen-ai-chatbot/v1/funnel-gen-ai-chat.js"></script>
+    <script>
+      window.addEventListener('load', function () {
+        window.FunnelGenAIChat.initialize({
+          apiKey: 'c00f0c92dc684b96a8b510c8b37867c1',
+          communityId: 10551,
+          waitForMarketingInfo: false,
+          leadSourceId: '1234',
+          campaignInfo: 'a-string-of-text',
+          enableGAEvents: true
+        });
+      });
+    </script>
+
+    <!-- Funnel Leasing DNI (dynamic number insertion, site-wide) -->
+    <script src="https://integrations.funnelleasing.com/dni/v1/dni.js"></script>
+    <script>
+      FunnelDNI("c00f0c92dc684b96a8b510c8b37867c1", 10551);
+    </script>
   </head>
   <body>
     <div id="root"></div>
