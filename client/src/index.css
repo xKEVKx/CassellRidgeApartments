@@ -101,3 +101,10 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 }
+/* Funnel Leasing (Nestio) lead-capture widget: ensure the injected iframe
+   is full-width and tall enough that the submit button isn't cut off */
+.nestio-widget-container iframe {
+  width: 100% !important;
+  min-height: 1250px !important;
+  border: 0;
+}

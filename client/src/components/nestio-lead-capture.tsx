@@ -73,5 +73,10 @@ export default function NestioLeadCapture({ type, className }: NestioLeadCapture
     };
   }, [type]);
 
-  return <div ref={containerRef} className={className} />;
+  return (
+    <div
+      ref={containerRef}
+      className={`nestio-widget-container ${className ?? ""}`}
+    />
+  );
 }
