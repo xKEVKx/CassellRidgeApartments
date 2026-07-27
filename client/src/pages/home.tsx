@@ -165,7 +165,7 @@ export default function Home() {
       toast({
         title: "Something went wrong",
         description:
-          error?.message || "We couldn't send your message. Please try again or call (865) 357-2712.",
+          error?.message || "We couldn't send your message. Please try again or call (865) 344-2490.",
         variant: "destructive",
       });
     },
@@ -251,7 +251,7 @@ export default function Home() {
           "name": "Cassell Ridge Apartments",
           "description": "Quality LIHTC affordable housing community in Knoxville, Tennessee offering 2 & 3 bedroom apartments with modern amenities.",
           "url": "https://www.cassellridgeapts.com",
-          "telephone": "(865) 357-2712",
+          "telephone": "(865) 344-2490",
           "email": "cassellridge@elmingtonpm.com",
           "logo": "https://www.cassellridgeapts.com/images/Cassell%20Ridge%20Logo.png",
           "address": {
@@ -737,7 +737,7 @@ export default function Home() {
                               <p className="text-sm text-slate-500 mt-3 leading-relaxed">
                                 {qualifies
                                   ? "This is an estimate based on the 60% income limit. Final eligibility, including any minimum income and other program requirements, is confirmed by our leasing office."
-                                  : "Please contact our leasing office at (865) 357-2712 to confirm your specific situation."}
+                                  : "Please contact our leasing office at (865) 344-2490 to confirm your specific situation."}
                               </p>
                             </>
                           ) : (

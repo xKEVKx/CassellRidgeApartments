@@ -24,10 +24,10 @@ export default function Contact() {
     <div className="min-h-screen py-20 bg-gray-50">
       <Helmet>
         <title>Contact Us | Cassell Ridge Apartments - Knoxville, TN</title>
-        <meta name="description" content="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 357-2712 or fill out our online form today." />
+        <meta name="description" content="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 344-2490 or fill out our online form today." />
         <link rel="canonical" href="https://www.cassellridgeapts.com/contact" />
         <meta property="og:title" content="Contact Us | Cassell Ridge Apartments - Knoxville, TN" />
-        <meta property="og:description" content="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 357-2712 or fill out our online form today." />
+        <meta property="og:description" content="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 344-2490 or fill out our online form today." />
         <meta property="og:url" content="https://www.cassellridgeapts.com/contact" />
       </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

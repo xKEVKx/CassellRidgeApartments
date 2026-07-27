@@ -40,7 +40,7 @@ Preferred communication style: Simple, everyday language.
 - **Security Headers**: Content Security Policy (CSP) headers configured to allow only approved external domains.
 
 ## Contact Information
-- **Phone**: (865) 357-2712
+- **Phone**: (865) 344-2490
 - **Email**: cassellridge@elmingtonpm.com
 - **Address**: 1230 Cassell Valley Way, Knoxville, TN
 

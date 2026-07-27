@@ -193,7 +193,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
             <li>A member of our leasing team will contact you within 24 hours</li>
             ${submission.type === 'visit' ? '<li>We will confirm your visit date and time</li>' : ''}
             <li>We'll answer any questions you may have about our community</li>
-            <li>Feel free to call us at (865) 357-2712 if you have immediate questions</li>
+            <li>Feel free to call us at (865) 344-2490 if you have immediate questions</li>
           </ul>
         </div>
         
@@ -207,7 +207,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
             <div style="flex: 1; min-width: 200px;">
               <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">
                 <strong style="color: #8b4513;">📞 Phone</strong><br>
-                <a href="tel:(865) 357-2712" style="color: #8b4513; text-decoration: none;">(865) 357-2712</a>
+                <a href="tel:(865) 344-2490" style="color: #8b4513; text-decoration: none;">(865) 344-2490</a>
               </p>
             </div>
             <div style="flex: 1; min-width: 200px;">

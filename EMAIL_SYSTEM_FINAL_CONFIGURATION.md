@@ -46,7 +46,7 @@
 5. **Professional Branding**: Cassell Ridge branding with brown color scheme
 
 ## Contact Information in Templates
-- **Phone**: (865) 357-2712
+- **Phone**: (865) 344-2490
 - **Email**: cassellridge@elmingtonpm.com
 - **Address**: 1230 Cassell Valley Way, Knoxville, TN 37912
 - **Office Hours**: Mon-Fri 8AM-5PM, Sat 10AM-2PM, Sun Closed

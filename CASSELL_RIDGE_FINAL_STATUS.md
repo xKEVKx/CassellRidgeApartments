@@ -8,7 +8,7 @@
 - **Property Name**: Cassell Ridge Apartments
 - **Location**: Knoxville, Tennessee 37912
 - **Address**: 1230 Cassell Valley Way
-- **Phone**: (865) 357-2712
+- **Phone**: (865) 344-2490
 - **Email**: cassellridge@elmingtonpm.com
 - **Type**: LIHTC Affordable Housing Community
 

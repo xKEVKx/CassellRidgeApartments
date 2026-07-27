@@ -96,7 +96,7 @@ const STATIC_NAV_HTML = `
 </nav>
 <footer aria-label="Site Footer">
   <p>Cassell Ridge Apartments &mdash; 1230 Cassell Valley Way, Knoxville, TN 37912</p>
-  <p>Phone: <a href="tel:+18653572712">(865) 357-2712</a> &mdash; Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a></p>
+  <p>Phone: <a href="tel:+18653442490">(865) 344-2490</a> &mdash; Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a></p>
   <nav aria-label="Footer Navigation">
     <a href="/">Home</a> |
     <a href="/floor-plans">Floor Plans</a> |
@@ -115,7 +115,7 @@ const APARTMENT_COMPLEX_JSONLD = JSON.stringify({
   "name": "Cassell Ridge Apartments",
   "description": "LIHTC affordable housing community in Knoxville, Tennessee offering spacious 2 and 3 bedroom income-based apartments with modern amenities.",
   "url": "https://www.cassellridgeapts.com",
-  "telephone": "+18653572712",
+  "telephone": "+18653442490",
   "email": "cassellridge@elmingtonpm.com",
   "image": "https://www.cassellridgeapts.com/images/cassell-hero.jpg",
   "address": {
@@ -268,7 +268,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
   <section aria-label="Contact">
     <h2>Schedule a Tour</h2>
     <p>Cassell Ridge Apartments &mdash; 1230 Cassell Valley Way, Knoxville, TN</p>
-    <p>Phone: <a href="tel:+18653572712">(865) 357-2712</a> &mdash; Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a></p>
+    <p>Phone: <a href="tel:+18653442490">(865) 344-2490</a> &mdash; Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a></p>
     <p><a href="/contact#contact-form">Schedule a Tour</a> &mdash; <a href="/gallery">View Photo Gallery</a> &mdash; <a href="/virtual-tours">Take a Virtual Tour</a></p>
   </section>
 </main>`,
@@ -338,7 +338,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
       <p><a href="/contact#contact-form">Schedule a Visit</a></p>
     </article>
 
-    <p>Contact us at <a href="tel:+18653572712">(865) 357-2712</a> or <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a> to learn more about current availability.</p>
+    <p>Contact us at <a href="tel:+18653442490">(865) 344-2490</a> or <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a> to learn more about current availability.</p>
     <p><a href="/virtual-tours">Take a 3D Virtual Tour</a> &mdash; <a href="/gallery">View Photo Gallery</a> &mdash; <a href="/contact#contact-form">Contact Us</a></p>
   </section>
 </main>`,
@@ -415,7 +415,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
       <figcaption>Community view</figcaption>
     </figure>
 
-    <p>Located at 1230 Cassell Valley Way, Knoxville, TN. Contact us at <a href="tel:+18653572712">(865) 357-2712</a> to <a href="/contact#contact-form">schedule a tour</a>.</p>
+    <p>Located at 1230 Cassell Valley Way, Knoxville, TN. Contact us at <a href="tel:+18653442490">(865) 344-2490</a> to <a href="/contact#contact-form">schedule a tour</a>.</p>
     <p><a href="/floor-plans">View Floor Plans</a> &mdash; <a href="/virtual-tours">Take a Virtual Tour</a> &mdash; <a href="/contact#contact-form">Contact Us</a></p>
   </section>
 </main>`,
@@ -481,7 +481,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
       <strong>Cassell Ridge Apartments</strong><br />
       1230 Cassell Valley Way<br />
       Knoxville, TN 37912<br />
-      Phone: <a href="tel:+18653572712">(865) 357-2712</a><br />
+      Phone: <a href="tel:+18653442490">(865) 344-2490</a><br />
       Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a>
     </address>
     <section aria-label="Office Hours">
@@ -524,17 +524,17 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
       <img src="/images/floorplans/cassell-3-bedroom.jpg" alt="Preview of 3 Bedroom apartment floor plan at Cassell Ridge" width="800" height="600" />
       <p>Explore our spacious 3-bedroom apartment with this interactive virtual tour. See the generous living spaces and modern amenities up close. View the tour at <a href="https://discover.matterport.com/space/ZJ5VJ6eqLZk">Matterport: 3-Bedroom Tour</a>.</p>
     </article>
-    <p>Ready to schedule an in-person visit? <a href="/contact#contact-form">Contact us</a> or call <a href="tel:+18653572712">(865) 357-2712</a>.</p>
+    <p>Ready to schedule an in-person visit? <a href="/contact#contact-form">Contact us</a> or call <a href="tel:+18653442490">(865) 344-2490</a>.</p>
     <p><a href="/floor-plans">View All Floor Plans</a> &mdash; <a href="/gallery">Photo Gallery</a> &mdash; <a href="/contact#contact-form">Schedule a Tour</a></p>
   </section>
 </main>`,
   },
   '/contact': {
     title: 'Contact Us | Cassell Ridge Apartments - Knoxville, TN',
-    description: 'Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 357-2712 or fill out our online form today.',
+    description: 'Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 344-2490 or fill out our online form today.',
     canonical: 'https://www.cassellridgeapts.com/contact',
     ogTitle: 'Contact Us | Cassell Ridge Apartments - Knoxville, TN',
-    ogDescription: 'Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 357-2712 or fill out our online form today.',
+    ogDescription: 'Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 344-2490 or fill out our online form today.',
     ogImage: 'https://www.cassellridgeapts.com/images/cassell-hero.jpg',
     ogImageAlt: 'Cassell Ridge Apartments leasing office — Knoxville, TN',
     jsonLd: [APARTMENT_COMPLEX_JSONLD],
@@ -546,7 +546,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
     <address>
       <strong>Cassell Ridge Apartments</strong><br />
       1230 Cassell Valley Way, Knoxville, TN 37912<br />
-      Phone: <a href="tel:+18653572712">(865) 357-2712</a><br />
+      Phone: <a href="tel:+18653442490">(865) 344-2490</a><br />
       Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a>
     </address>
     <section aria-label="Office Hours">

@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   description: "Quality affordable housing at Cassell Ridge Apartments in Knoxville, Tennessee. LIHTC approved community offering 2 & 3 bedroom apartments with modern amenities and income-based rent starting at $950.",
   
   contact: {
-    phone: "(865) 357-2712",
+    phone: "(865) 344-2490",
     fax: "",
     email: "cassellridge@elmingtonpm.com",
     address: {
