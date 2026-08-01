@@ -1,2 +1,3 @@
 - [Production prerender catch-all path](prerender-catchall-req-path.md) — under app.use("*") req.path is always "/"; read req.originalUrl or assets get served the prerendered HTML.
 - [PG session store](session-store-pg.md) — admin sessions use a dedicated node-postgres pool (not the Neon serverless pool) via connect-pg-simple.
+- [Funnel widgets & CSP](funnel-widgets-csp.md) — chat/forms need nestiolistings.com and sierra.chat in CSP; 400 config error = disabled on Funnel's side.
