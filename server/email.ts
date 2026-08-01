@@ -228,7 +228,7 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
             <p style="color: #666; font-size: 14px; margin: 0;">
               <strong style="color: #8b4513;">🕒 Office Hours</strong><br>
               Monday-Friday: 8AM to 5PM<br>
-              Saturday: 10AM to 2PM<br>
+              Saturday: 8AM to 4PM<br>
               Sunday: Closed
             </p>
           </div>

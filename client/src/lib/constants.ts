@@ -15,7 +15,7 @@ export const SITE_CONFIG = {
     },
     hours: {
       weekdays: "Monday-Friday: 8AM to 5PM",
-      saturday: "Saturday: 10AM to 2PM", 
+      saturday: "Saturday: 8AM to 4PM", 
       sunday: "Sunday: Closed"
     }
   },

@@ -133,7 +133,7 @@ const APARTMENT_COMPLEX_JSONLD = JSON.stringify({
   },
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "10:00", "closes": "14:00" }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "08:00", "closes": "16:00" }
   ],
   "amenityFeature": [
     { "@type": "LocationFeatureSpecification", "name": "Swimming Pool", "value": true },
@@ -488,7 +488,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
       <h2>Office Hours</h2>
       <ul>
         <li>Monday &ndash; Friday: 8:00 AM &ndash; 5:00 PM</li>
-        <li>Saturday: 10:00 AM &ndash; 2:00 PM</li>
+        <li>Saturday: 8:00 AM &ndash; 4:00 PM</li>
         <li>Sunday: Closed</li>
       </ul>
     </section>
@@ -553,7 +553,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
       <h2>Office Hours</h2>
       <ul>
         <li>Monday &ndash; Friday: 8:00 AM &ndash; 5:00 PM</li>
-        <li>Saturday: 10:00 AM &ndash; 2:00 PM</li>
+        <li>Saturday: 8:00 AM &ndash; 4:00 PM</li>
         <li>Sunday: Closed</li>
       </ul>
     </section>
