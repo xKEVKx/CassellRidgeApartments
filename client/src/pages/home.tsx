@@ -25,6 +25,7 @@ import { AccommodationsHeader, AccommodationsFeatures } from "@/components/accom
 import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
 import { APARTMENT_COMPLEX_LOCATION_SCHEMA } from "@shared/site-location";
 import type { FloorPlan, GalleryImage, HomePageAd } from "@shared/schema";
+import { getRentPriceRange } from "@shared/rent-config";
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from "lucide-react";
 
@@ -95,6 +96,7 @@ export default function Home() {
   const { data: floorPlans, isLoading: floorPlansLoading } = useQuery<FloorPlan[]>({
     queryKey: ["/api/floor-plans"],
   });
+  const rentPriceRange = getRentPriceRange(floorPlans ?? []);
 
   // Fetch gallery images for photo rotation
   const { data: galleryImages } = useQuery<GalleryImage[]>({
@@ -105,11 +107,6 @@ export default function Home() {
   const { data: activeAd } = useQuery<HomePageAd | null>({
     queryKey: ["/api/home-page-ads/active"],
   });
-
-  // Calculate lowest price from floor plans
-  const lowestPrice = floorPlans && floorPlans.length > 0 
-    ? Math.min(...floorPlans.map(plan => plan.startingPrice))
-    : 925; // fallback price
 
   // Get all gallery images for rotation (interior, exterior, pool, community)
   const rotationImages = galleryImages ?? [];
@@ -241,10 +238,10 @@ export default function Home() {
     <div className="min-h-screen">
       <Helmet>
         <title>Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN</title>
-        <meta name="description" content="Discover affordable LIHTC apartments at Cassell Ridge in Knoxville, TN. Spacious 2 & 3 bedroom homes with modern amenities and income-based rents starting at $950." />
+        <meta name="description" content={SITE_CONFIG.description} />
         <link rel="canonical" href="https://www.cassellridgeapts.com/" />
         <meta property="og:title" content="Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN" />
-        <meta property="og:description" content="Discover affordable LIHTC apartments at Cassell Ridge in Knoxville, TN. Spacious 2 & 3 bedroom homes with modern amenities and income-based rents starting at $950." />
+        <meta property="og:description" content={SITE_CONFIG.description} />
         <meta property="og:url" content="https://www.cassellridgeapts.com/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -256,7 +253,7 @@ export default function Home() {
           "email": "cassellridge@elmingtonpm.com",
           "logo": "https://www.cassellridgeapts.com/images/Cassell%20Ridge%20Logo.png",
           ...APARTMENT_COMPLEX_LOCATION_SCHEMA,
-          "priceRange": "$950-$1100",
+          ...(rentPriceRange ? { "priceRange": rentPriceRange } : {}),
           "amenityFeature": [
             { "@type": "LocationFeatureSpecification", "name": "Fitness Center" },
             { "@type": "LocationFeatureSpecification", "name": "Swimming Pool" },

@@ -1,9 +1,10 @@
 import { OFFICE_HOURS, PROPERTY_LOCATION } from "@shared/site-location";
+import { SITE_DESCRIPTION } from "@shared/rent-config";
 
 export const SITE_CONFIG = {
   name: "Cassell Ridge Apartments",
   tagline: "LIHTC Affordable Housing in Knoxville",
-  description: "Quality affordable housing at Cassell Ridge Apartments in Knoxville, Tennessee. LIHTC approved community offering 2 & 3 bedroom apartments with modern amenities and income-based rent starting at $950.",
+  description: SITE_DESCRIPTION,
   
   contact: {
     phone: "(865) 344-2490",

@@ -3,11 +3,16 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import path from "path";
 import fs from "fs";
+import { storage } from "./storage";
 import {
   APARTMENT_COMPLEX_LOCATION_SCHEMA,
   OFFICE_HOURS,
   PROPERTY_LOCATION,
 } from "@shared/site-location";
+import {
+  SITE_DESCRIPTION,
+  formatMonthlyRent,
+} from "@shared/rent-config";
 
 const app = express();
 app.set('trust proxy', 1);
@@ -199,10 +204,10 @@ interface RoutePrerender {
 const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
   '/': {
     title: 'Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN',
-    description: 'Discover affordable LIHTC apartments at Cassell Ridge in Knoxville, TN. Spacious 2 & 3 bedroom homes with modern amenities and income-based rents starting at $950.',
+    description: SITE_DESCRIPTION,
     canonical: 'https://www.cassellridgeapts.com/',
     ogTitle: 'Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN',
-    ogDescription: 'Discover affordable LIHTC apartments at Cassell Ridge in Knoxville, TN. Spacious 2 & 3 bedroom homes with modern amenities and income-based rents starting at $950.',
+    ogDescription: SITE_DESCRIPTION,
     ogImage: 'https://www.cassellridgeapts.com/images/cassell-hero.jpg',
     ogImageAlt: 'Cassell Ridge Apartments exterior view in Knoxville, TN',
     jsonLd: [APARTMENT_COMPLEX_JSONLD, FAQPAGE_JSONLD],
@@ -212,15 +217,15 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
     <h1>Cassell Ridge Apartments &mdash; Affordable LIHTC Housing in Knoxville, TN</h1>
     <img src="/images/cassell-hero.jpg" alt="Cassell Ridge Apartments exterior view in Knoxville, Tennessee" width="1200" height="600" />
     <p>Quality affordable housing approved under the Low-Income Housing Tax Credit (LIHTC) program. Spacious 2 and 3 bedroom apartment homes with modern amenities in Knoxville, Tennessee.</p>
-    <p>Income-based rents starting at $950 per month. Income limits apply.</p>
+    <p>{{RENT_SUMMARY}}</p>
     <p><a href="/floor-plans">View Floor Plans</a> &mdash; <a href="/contact#contact-form">Schedule a Tour</a></p>
   </section>
   <section aria-label="Floor Plans Overview">
     <h2>2 &amp; 3 Bedroom Apartment Homes</h2>
     <p>Choose from spacious floor plans featuring open kitchens, generous closet space, in-unit washer/dryer connections, and private patios or balconies.</p>
     <ul>
-      <li><a href="/floor-plans">2 Bedroom / 2 Bathroom</a> &mdash; starting at $950/month</li>
-      <li><a href="/floor-plans">3 Bedroom / 2 Bathroom</a> &mdash; contact us for pricing</li>
+      <li><a href="/floor-plans">2 Bedroom / 2 Bathroom</a> &mdash; {{TWO_BED_RENT}}</li>
+      <li><a href="/floor-plans">3 Bedroom / 2 Bathroom</a> &mdash; {{THREE_BED_RENT}}</li>
     </ul>
     <p><a href="/floor-plans">Browse All Floor Plans</a></p>
   </section>
@@ -283,7 +288,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
         <li>Bedrooms: 2</li>
         <li>Bathrooms: 2</li>
         <li>Square Footage: 989 sq ft</li>
-        <li>Starting at $1,245/month</li>
+        <li>{{TWO_BED_A_RENT}}</li>
         <li>Open-concept living and dining area</li>
         <li>Full kitchen with modern appliances</li>
         <li>In-unit washer/dryer connections</li>
@@ -300,7 +305,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
         <li>Bedrooms: 2</li>
         <li>Bathrooms: 2</li>
         <li>Square Footage: 989 sq ft</li>
-        <li>Starting at $1,245/month</li>
+        <li>{{TWO_BED_B_RENT}}</li>
         <li>Alternate layout with open kitchen</li>
         <li>Generous closet space</li>
         <li>In-unit washer/dryer connections</li>
@@ -316,7 +321,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
         <li>Bedrooms: 3</li>
         <li>Bathrooms: 2</li>
         <li>Square Footage: 1,150 sq ft</li>
-        <li>Starting at $1,435/month</li>
+        <li>{{THREE_BED_RENT}}</li>
         <li>Spacious living area ideal for families</li>
         <li>Full kitchen with modern appliances</li>
         <li>In-unit washer/dryer connections</li>
@@ -552,6 +557,54 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
   },
 };
 
+function withCurrentRents(
+  data: RoutePrerender,
+  floorPlans: Array<{
+    name: string;
+    bedrooms: number;
+    startingPrice: number;
+    available?: boolean | null;
+  }>,
+): RoutePrerender {
+  const availablePlans = floorPlans.filter((plan) => plan.available !== false);
+  const byName = (name: string) =>
+    availablePlans.find((plan) => plan.name.toLowerCase() === name.toLowerCase());
+  const twoBedroomPlans = availablePlans.filter((plan) => plan.bedrooms === 2);
+  const threeBedroomPlans = availablePlans.filter((plan) => plan.bedrooms === 3);
+  const currentPrices = availablePlans.map((plan) => plan.startingPrice);
+  const startingPrice = currentPrices.length > 0 ? Math.min(...currentPrices) : undefined;
+
+  const rentText = (amount?: number) =>
+    amount ? `Starting at ${formatMonthlyRent(amount)}` : "Contact us for current rent";
+  const overviewRentText = (amount?: number) =>
+    amount ? `starting at ${formatMonthlyRent(amount)}` : "contact us for current rent";
+
+  const replacements: Record<string, string> = {
+    "{{RENT_SUMMARY}}": startingPrice
+      ? `Income-restricted rents currently start at ${formatMonthlyRent(startingPrice)}. Income limits and availability apply.`
+      : "Contact our leasing team for current income-restricted rents and availability. Income limits apply.",
+    "{{TWO_BED_RENT}}": overviewRentText(
+      twoBedroomPlans.length
+        ? Math.min(...twoBedroomPlans.map((plan) => plan.startingPrice))
+        : undefined,
+    ),
+    "{{THREE_BED_RENT}}": overviewRentText(
+      threeBedroomPlans.length
+        ? Math.min(...threeBedroomPlans.map((plan) => plan.startingPrice))
+        : undefined,
+    ),
+    "{{TWO_BED_A_RENT}}": rentText(byName("2 Bedroom A")?.startingPrice),
+    "{{TWO_BED_B_RENT}}": rentText(byName("2 Bedroom B")?.startingPrice),
+  };
+
+  let bodyHtml = data.bodyHtml;
+  for (const [token, value] of Object.entries(replacements)) {
+    bodyHtml = bodyHtml.replaceAll(token, value);
+  }
+
+  return { ...data, bodyHtml };
+}
+
 function escapeAttr(str: string): string {
   return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
@@ -649,18 +702,10 @@ function applyPrerender(html: string, data: RoutePrerender): string {
       // Will be caught per-request below if not available
     }
 
-    // Pre-generate per-route HTML from the index template and cache it
-    const prerenderCache: Map<string, string> = new Map();
-    if (indexHtmlTemplate) {
-      for (const [route, data] of Object.entries(ROUTE_PRERENDER)) {
-        prerenderCache.set(route, applyPrerender(indexHtmlTemplate, data));
-      }
-    }
-
     // Production catch-all: serve prerendered HTML for valid routes, 404 for unknown ones.
     // Applies to ALL visitors — React replaces the bodyHtml on hydration.
     // Non-JS crawlers (social bots, AI crawlers) read the complete HTML directly.
-    app.use("*", (req: Request, res: Response, next: NextFunction) => {
+    app.use("*", async (req: Request, res: Response, next: NextFunction) => {
       // NOTE: when middleware is mounted on "*", Express puts the matched path in
       // req.baseUrl and leaves req.path as "/", so we must read the real request
       // path from req.originalUrl (stripping any query string). Using req.path here
@@ -683,10 +728,13 @@ function applyPrerender(html: string, data: RoutePrerender): string {
       // Unknown route: 404 + noindex
       if (!VALID_SPA_ROUTES.has(reqPath)) {
         res.status(404).set('X-Robots-Tag', 'noindex');
-        const cached = prerenderCache.get('/');
-        if (cached) {
+        if (indexHtmlTemplate) {
+          const notFoundHtml = applyPrerender(
+            indexHtmlTemplate,
+            withCurrentRents(ROUTE_PRERENDER['/'], []),
+          );
           return res.set('Content-Type', 'text/html').send(
-            cached.replace('<title>', '<title>404 Not Found | ')
+            notFoundHtml.replace('<title>', '<title>404 Not Found | ')
           );
         }
         if (fs.existsSync(distIndexPath)) {
@@ -695,9 +743,19 @@ function applyPrerender(html: string, data: RoutePrerender): string {
         return res.send('<h1>404 Not Found</h1>');
       }
 
-      // Valid SPA route: serve prerendered HTML
-      const prerendered = prerenderCache.get(reqPath);
-      if (prerendered) {
+      // Valid SPA route: build prerendered HTML with current database rents.
+      const routeData = ROUTE_PRERENDER[reqPath];
+      if (indexHtmlTemplate && routeData) {
+        let floorPlans: Awaited<ReturnType<typeof storage.getFloorPlans>> = [];
+        try {
+          floorPlans = await storage.getFloorPlans();
+        } catch (error) {
+          console.error("Unable to load current rents for prerender:", error);
+        }
+        const prerendered = applyPrerender(
+          indexHtmlTemplate,
+          withCurrentRents(routeData, floorPlans),
+        );
         return res.status(200).set('Content-Type', 'text/html').send(prerendered);
       }
 

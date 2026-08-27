@@ -440,50 +440,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize database with sample data
   app.post("/api/init-data", requireAdmin, async (req, res) => {
     try {
-      // Initialize floor plans
-      const floorPlansData = [
-        {
-          name: "Maple",
-          bedrooms: 1,
-          bathrooms: "1",
-          sqft: 600,
-          startingPrice: 1055,
-          imageUrl: "/images/maple-floorplan.jpg",
-          description: "Cozy one-bedroom apartment with modern amenities"
-        },
-        {
-          name: "Cypress",
-          bedrooms: 1,
-          bathrooms: "1",
-          sqft: 700,
-          startingPrice: 1149,
-          imageUrl: "/images/cypress-floorplan.jpg",
-          description: "Spacious one-bedroom with enhanced layout"
-        },
-        {
-          name: "Dogwood",
-          bedrooms: 2,
-          bathrooms: "2",
-          sqft: 1000,
-          startingPrice: 1399,
-          imageUrl: "/images/dogwood-floorplan.jpg",
-          description: "Two-bedroom, two-bathroom apartment home"
-        },
-        {
-          name: "Summit",
-          bedrooms: 3,
-          bathrooms: "2",
-          sqft: 1200,
-          startingPrice: 2295,
-          imageUrl: "/images/summit-floorplan.jpg",
-          description: "Premium three-bedroom apartment with luxury features"
-        }
-      ];
-
-      for (const plan of floorPlansData) {
-        await storage.createFloorPlan(plan);
-      }
-
       // Initialize amenities
       const amenitiesData = [
         { name: "Two resort style pools", category: "property", icon: "fas fa-swimming-pool" },

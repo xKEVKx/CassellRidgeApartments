@@ -122,7 +122,7 @@ export default function FloorPlans() {
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-slate-600 font-medium">Rent:</span>
                       <Badge className="bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 text-white px-4 py-2 text-lg font-bold">
-                        ${plan.startingPrice.toLocaleString()}
+                        ${plan.startingPrice.toLocaleString()}/month
                       </Badge>
                     </div>
                     
@@ -146,7 +146,6 @@ export default function FloorPlans() {
           </div>
         </div>
       </section>
-
 
 
     </div>

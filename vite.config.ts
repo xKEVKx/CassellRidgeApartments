@@ -2,11 +2,20 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { SITE_DESCRIPTION } from "./shared/rent-config";
+
+const siteMetadataPlugin = {
+  name: "site-metadata",
+  transformIndexHtml(html: string) {
+    return html.replaceAll("__SITE_DESCRIPTION__", SITE_DESCRIPTION);
+  },
+};
 
 export default defineConfig({
   plugins: [
     react(),
     runtimeErrorOverlay(),
+    siteMetadataPlugin,
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
