@@ -77,7 +77,7 @@ export default function FloorPlans() {
                   
                   {/* Floor Plan Name Overlay */}
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2">
-                    <h3 className="text-xl font-bold text-slate-900">{plan.name}</h3>
+                    <h2 className="text-xl font-bold text-slate-900">{plan.name}</h2>
                   </div>
                 </div>
                 
