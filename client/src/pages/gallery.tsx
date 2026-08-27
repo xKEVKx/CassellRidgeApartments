@@ -126,8 +126,10 @@ export default function Gallery() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredImages.map((image, index) => (
               <div key={image.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow h-64">
-                <div 
-                  className="relative group cursor-pointer h-full bg-gray-100"
+                <button
+                  type="button"
+                  aria-label={`View enlarged ${image.title}`}
+                  className="relative group cursor-pointer h-full w-full border-0 p-0 text-left bg-gray-100"
                   onClick={() => openDialog(index)}
                 >
                   <img 
@@ -146,9 +148,9 @@ export default function Gallery() {
                     }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
-                    <Expand className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8" />
+                    <Expand aria-hidden="true" className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8" />
                   </div>
-                </div>
+                </button>
 
               </div>
             ))}
@@ -178,18 +180,20 @@ export default function Gallery() {
                   <Button
                     variant="outline"
                     size="icon"
+                    aria-label="Previous photo"
                     className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 backdrop-blur-sm"
                     onClick={goToPrevious}
                   >
-                    <ChevronLeft className="h-4 w-4" />
+                    <ChevronLeft aria-hidden="true" className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="outline"
                     size="icon"
+                    aria-label="Next photo"
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 backdrop-blur-sm"
                     onClick={goToNext}
                   >
-                    <ChevronRight className="h-4 w-4" />
+                    <ChevronRight aria-hidden="true" className="h-4 w-4" />
                   </Button>
                 </>
               )}

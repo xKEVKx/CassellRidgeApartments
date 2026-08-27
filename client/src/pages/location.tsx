@@ -115,6 +115,7 @@ export default function Location() {
                 <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-100">
                   <iframe
                     src={SITE_CONFIG.mapEmbedUrl}
+                    title="Map showing Cassell Ridge Apartments in Knoxville, Tennessee"
                     width="100%"
                     height="400"
                     style={{ border: 0 }}

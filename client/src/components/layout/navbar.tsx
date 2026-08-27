@@ -105,6 +105,7 @@ export default function Navbar() {
                       link.href.startsWith('#') || link.href.startsWith('/#') ? (
                         <a
                           href={link.href}
+                          aria-label={link.isIcon ? "Home" : undefined}
                           className={`group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                             location === link.href
                               ? 'text-warm-brown-700'
@@ -114,7 +115,7 @@ export default function Navbar() {
                           <span className="relative flex items-center">
                             {link.isIcon ? (
                               <>
-                                <Home className="w-5 h-5" />
+                                <Home aria-hidden="true" className="w-5 h-5" />
                                 <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 ${
                                   location === link.href ? 'w-5' : 'w-0 group-hover:w-5'
                                 }`}></div>
@@ -133,6 +134,7 @@ export default function Navbar() {
                         <Link
                           href={link.href}
                           onClick={link.href === '/' ? handleHomeClick : undefined}
+                          aria-label={link.isIcon ? "Home" : undefined}
                           className={`group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 ${
                             location === link.href
                               ? 'text-warm-brown-700'
@@ -142,7 +144,7 @@ export default function Navbar() {
                           <span className="relative flex items-center">
                             {link.isIcon ? (
                               <>
-                                <Home className="w-5 h-5" />
+                                <Home aria-hidden="true" className="w-5 h-5" />
                                 <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 ${
                                   location === link.href ? 'w-5' : 'w-0 group-hover:w-5'
                                 }`}></div>
@@ -172,8 +174,8 @@ export default function Navbar() {
                     className="group bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 hover:from-warm-brown-600 hover:to-warm-brown-600 text-white px-3 xl:px-4 py-2 rounded-2xl font-semibold shadow-xl transition-all duration-300 hover:scale-105" 
                     asChild
                   >
-                    <a href={`tel:${SITE_CONFIG.contact.phone}`}>
-                      <Phone className="w-4 h-4 xl:mr-2 transition-transform group-hover:scale-110" />
+                    <a href={`tel:${SITE_CONFIG.contact.phone}`} aria-label={`Call ${SITE_CONFIG.name}`}>
+                      <Phone aria-hidden="true" className="w-4 h-4 xl:mr-2 transition-transform group-hover:scale-110" />
                       <span className="hidden xl:inline">Call Now</span>
                     </a>
                   </Button>
@@ -189,9 +191,10 @@ export default function Navbar() {
                 <Button 
                   variant="ghost" 
                   size="icon"
+                  aria-label="Open navigation menu"
                   className="group bg-slate-100 hover:bg-slate-200 p-3 rounded-2xl text-slate-700 hover:text-warm-brown-600 transition-all duration-300"
                 >
-                  <Menu className="h-6 w-6 transition-transform group-hover:scale-110" />
+                  <Menu aria-hidden="true" className="h-6 w-6 transition-transform group-hover:scale-110" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-80 bg-white/95 backdrop-blur-xl overflow-y-auto">

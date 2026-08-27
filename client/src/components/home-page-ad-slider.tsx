@@ -57,7 +57,11 @@ export default function HomePageAdSlider({ isVisible, onClose, initialMinimized 
         <div className="bg-white rounded-r-xl shadow-2xl overflow-hidden border-r border-t border-b border-gray-200">
           {/* Collapsed State - Tab Handle */}
           {!isExpanded && (
-            <div 
+            <button
+              type="button"
+              aria-label="Open announcement"
+              aria-expanded={isExpanded}
+              aria-controls="announcement-panel"
               className="h-32 w-16 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 flex items-center justify-center cursor-pointer hover:from-warm-brown-600 hover:to-warm-brown-700 transition-colors duration-200"
               onClick={() => setIsExpanded(true)}
             >
@@ -65,22 +69,23 @@ export default function HomePageAdSlider({ isVisible, onClose, initialMinimized 
               <div className="hidden sm:block text-white transform -rotate-90 whitespace-nowrap text-sm font-medium">
                 Announcement
               </div>
-              <ChevronRight className="h-5 w-5 text-white sm:absolute sm:right-1" />
-            </div>
+              <ChevronRight aria-hidden="true" className="h-5 w-5 text-white sm:absolute sm:right-1" />
+            </button>
           )}
 
           {/* Expanded State - Full Ad */}
           {isExpanded && (
-            <div className="p-4">
+            <div id="announcement-panel" className="p-4">
               {/* Close Button */}
               <div className="flex justify-end mb-2">
                 <Button
                   variant="ghost"
                   size="sm"
+                  aria-label="Close announcement"
                   onClick={() => setIsExpanded(false)}
                   className="h-8 w-8 p-0 hover:bg-gray-100"
                 >
-                  <X className="h-4 w-4" />
+                  <X aria-hidden="true" className="h-4 w-4" />
                 </Button>
               </div>
 

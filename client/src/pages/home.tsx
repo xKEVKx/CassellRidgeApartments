@@ -542,24 +542,30 @@ export default function Home() {
               
               {/* Pet Policy Collapsible Section */}
               <div className="mt-8">
-                <div 
-                  className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-slate-200"
-                  onClick={() => setPetPolicyExpanded(!petPolicyExpanded)}
-                >
-                  <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center">
-                      <span className="text-lg mr-2">🐾</span>
-                      <h4 className="text-lg font-semibold text-slate-900">Pet Policy</h4>
-                    </div>
-                    {petPolicyExpanded ? (
-                      <ChevronUp className="h-5 w-5 text-warm-brown-600" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5 text-warm-brown-600" />
-                    )}
-                  </div>
+                <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200">
+                  <h4 className="w-full">
+                    <button
+                      id="pet-policy-toggle"
+                      type="button"
+                      aria-expanded={petPolicyExpanded}
+                      aria-controls="pet-policy-panel"
+                      className="flex items-center justify-between w-full p-0 text-left text-lg font-semibold text-slate-900"
+                      onClick={() => setPetPolicyExpanded(!petPolicyExpanded)}
+                    >
+                      <span className="flex items-center">
+                        <span aria-hidden="true" className="text-lg mr-2">🐾</span>
+                        <span>Pet Policy</span>
+                      </span>
+                      {petPolicyExpanded ? (
+                        <ChevronUp aria-hidden="true" className="h-5 w-5 text-warm-brown-600" />
+                      ) : (
+                        <ChevronDown aria-hidden="true" className="h-5 w-5 text-warm-brown-600" />
+                      )}
+                    </button>
+                  </h4>
                   
                   {petPolicyExpanded && (
-                    <div className="mt-4 space-y-4 animate-in slide-in-from-top-2 duration-300">
+                    <div id="pet-policy-panel" aria-labelledby="pet-policy-toggle" className="mt-4 space-y-4 animate-in slide-in-from-top-2 duration-300">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                         <div>
                           <span className="font-semibold text-slate-900">Pet Policy Type:</span>
@@ -762,19 +768,26 @@ export default function Home() {
 
                 {/* Right column: income limits table */}
                 <div className="rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-white">
-                  <div className="flex justify-between items-center bg-slate-900 px-5 py-4">
-                    <span className="text-white font-semibold text-sm sm:text-base"># in Household</span>
-                    <span className="text-white font-semibold text-sm sm:text-base">Maximum Annual Income</span>
-                  </div>
-                  {INCOME_LIMITS.map((item) => (
-                    <div
-                      key={item.size}
-                      className={`flex justify-between items-center px-5 py-3.5 border-b border-slate-100 last:border-b-0 transition-colors ${item.size === eligibilityHousehold ? 'bg-warm-brown-100 ring-1 ring-inset ring-warm-brown-300' : 'bg-white'}`}
-                    >
-                      <span className={`font-medium ${item.size === eligibilityHousehold ? 'text-warm-brown-900 font-bold' : 'text-slate-700'}`}>{item.people}</span>
-                      <span className="font-bold text-warm-brown-600">${item.limit.toLocaleString()}</span>
-                    </div>
-                  ))}
+                  <table className="w-full border-collapse">
+                    <caption className="sr-only">Maximum annual income limits by household size</caption>
+                    <thead>
+                      <tr className="bg-slate-900">
+                        <th scope="col" className="px-5 py-4 text-left text-white font-semibold text-sm sm:text-base"># in Household</th>
+                        <th scope="col" className="px-5 py-4 text-right text-white font-semibold text-sm sm:text-base">Maximum Annual Income</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {INCOME_LIMITS.map((item) => (
+                        <tr
+                          key={item.size}
+                          className={`border-b border-slate-100 last:border-b-0 transition-colors ${item.size === eligibilityHousehold ? 'bg-warm-brown-100 ring-1 ring-inset ring-warm-brown-300' : 'bg-white'}`}
+                        >
+                          <td className={`px-5 py-3.5 font-medium ${item.size === eligibilityHousehold ? 'text-warm-brown-900 font-bold' : 'text-slate-700'}`}>{item.people}</td>
+                          <td className="px-5 py-3.5 text-right font-bold text-warm-brown-600">${item.limit.toLocaleString()}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
@@ -978,26 +991,32 @@ export default function Home() {
             </div>
 
             {/* Students Section */}
-            <div 
-              className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 cursor-pointer"
-              onClick={() => setStudentsExpanded(!studentsExpanded)}
-            >
-              <div className="flex items-center justify-between w-full mb-6">
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mr-4">
-                    <span className="text-white text-2xl">🎓</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900">STUDENTS</h3>
-                </div>
-                {studentsExpanded ? (
-                  <ChevronUp className="h-6 w-6 text-warm-brown-600" />
-                ) : (
-                  <ChevronDown className="h-6 w-6 text-warm-brown-600" />
-                )}
-              </div>
+            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <h3 className="w-full mb-6">
+                <button
+                  id="students-toggle"
+                  type="button"
+                  aria-expanded={studentsExpanded}
+                  aria-controls="students-panel"
+                  className="flex items-center justify-between w-full p-0 text-left"
+                  onClick={() => setStudentsExpanded(!studentsExpanded)}
+                >
+                  <span className="flex items-center">
+                    <span aria-hidden="true" className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mr-4">
+                      <span className="text-white text-2xl">🎓</span>
+                    </span>
+                    <span className="text-2xl font-bold text-slate-900">STUDENTS</span>
+                  </span>
+                  {studentsExpanded ? (
+                    <ChevronUp aria-hidden="true" className="h-6 w-6 text-warm-brown-600" />
+                  ) : (
+                    <ChevronDown aria-hidden="true" className="h-6 w-6 text-warm-brown-600" />
+                  )}
+                </button>
+              </h3>
               
               {studentsExpanded && (
-                <div className="space-y-4 animate-in slide-in-from-top-2 duration-300">
+                <div id="students-panel" aria-labelledby="students-toggle" className="space-y-4 animate-in slide-in-from-top-2 duration-300">
                   <p className="text-slate-600 leading-relaxed">
                     Because of program requirements, households made up entirely of full-time students must meet one of the following exceptions to qualify:
                   </p>
@@ -1029,26 +1048,32 @@ export default function Home() {
             </div>
 
             {/* FAQ Section */}
-            <div 
-              className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 cursor-pointer"
-              onClick={() => setFaqExpanded(!faqExpanded)}
-            >
-              <div className="flex items-center justify-between w-full mb-6">
-                <div className="flex items-center">
-                  <div className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mr-4">
-                    <span className="text-white text-2xl">❓</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900">FREQUENTLY ASKED QUESTIONS</h3>
-                </div>
-                {faqExpanded ? (
-                  <ChevronUp className="h-6 w-6 text-warm-brown-600" />
-                ) : (
-                  <ChevronDown className="h-6 w-6 text-warm-brown-600" />
-                )}
-              </div>
+            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <h3 className="w-full mb-6">
+                <button
+                  id="faq-toggle"
+                  type="button"
+                  aria-expanded={faqExpanded}
+                  aria-controls="faq-panel"
+                  className="flex items-center justify-between w-full p-0 text-left"
+                  onClick={() => setFaqExpanded(!faqExpanded)}
+                >
+                  <span className="flex items-center">
+                    <span aria-hidden="true" className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mr-4">
+                      <span className="text-white text-2xl">❓</span>
+                    </span>
+                    <span className="text-2xl font-bold text-slate-900">FREQUENTLY ASKED QUESTIONS</span>
+                  </span>
+                  {faqExpanded ? (
+                    <ChevronUp aria-hidden="true" className="h-6 w-6 text-warm-brown-600" />
+                  ) : (
+                    <ChevronDown aria-hidden="true" className="h-6 w-6 text-warm-brown-600" />
+                  )}
+                </button>
+              </h3>
               
               {faqExpanded && (
-                <div className="space-y-6 animate-in slide-in-from-top-2 duration-300">
+                <div id="faq-panel" aria-labelledby="faq-toggle" className="space-y-6 animate-in slide-in-from-top-2 duration-300">
                   {FAQS.map((faq) => (
                     <div key={faq.question}>
                       <h4 className="font-semibold text-slate-900 mb-2">{faq.question}</h4>
