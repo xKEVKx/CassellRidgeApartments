@@ -43,7 +43,7 @@ Preferred communication style: Simple, everyday language.
 - **Phone**: (865) 344-2490 (updated from (865) 357-2712 on Aug 1, 2026 — changed in site config, prerender HTML/JSON-LD, and email templates)
 - **Email**: cassellridge@elmingtonpm.com
 - **Address**: 1230 Cassell Valley Way, Knoxville, TN
-- **Office Hours**: Mon–Fri 8AM–5PM, Saturday 8AM–4PM (updated from 10AM–2PM on Aug 1, 2026), Sunday closed — defined in `client/src/lib/constants.ts`, prerender HTML/JSON-LD in `server/index.ts`, and email templates in `server/email.ts`
+- **Office Hours**: Mon–Fri 8AM–5PM, Saturday 9AM–1PM, Sunday closed — defined in `client/src/lib/constants.ts`, prerender HTML/JSON-LD in `server/index.ts`, and email templates in `server/email.ts`
 
 ## Key Technical Decisions
 
