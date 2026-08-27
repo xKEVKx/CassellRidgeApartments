@@ -3,6 +3,11 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import path from "path";
 import fs from "fs";
+import {
+  APARTMENT_COMPLEX_LOCATION_SCHEMA,
+  OFFICE_HOURS,
+  PROPERTY_LOCATION,
+} from "@shared/site-location";
 
 const app = express();
 app.set('trust proxy', 1);
@@ -95,7 +100,7 @@ const STATIC_NAV_HTML = `
   </ul>
 </nav>
 <footer aria-label="Site Footer">
-  <p>Cassell Ridge Apartments &mdash; 1230 Cassell Valley Way, Knoxville, TN 37912</p>
+  <p>Cassell Ridge Apartments &mdash; ${PROPERTY_LOCATION.address.street}, ${PROPERTY_LOCATION.address.city}, ${PROPERTY_LOCATION.address.state} ${PROPERTY_LOCATION.address.zip}</p>
   <p>Phone: <a href="tel:+18653442490">(865) 344-2490</a> &mdash; Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a></p>
   <nav aria-label="Footer Navigation">
     <a href="/">Home</a> |
@@ -118,23 +123,7 @@ const APARTMENT_COMPLEX_JSONLD = JSON.stringify({
   "telephone": "+18653442490",
   "email": "cassellridge@elmingtonpm.com",
   "image": "https://www.cassellridgeapts.com/images/cassell-hero.jpg",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "1230 Cassell Valley Way",
-    "addressLocality": "Knoxville",
-    "addressRegion": "TN",
-    "postalCode": "37912",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 36.0347,
-    "longitude": -83.9654
-  },
-  "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "09:00", "closes": "13:00" }
-  ],
+  ...APARTMENT_COMPLEX_LOCATION_SCHEMA,
   "amenityFeature": [
     { "@type": "LocationFeatureSpecification", "name": "Swimming Pool", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "Fitness Center", "value": true },
@@ -142,7 +131,6 @@ const APARTMENT_COMPLEX_JSONLD = JSON.stringify({
     { "@type": "LocationFeatureSpecification", "name": "Washer/Dryer Connections", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "On-Site Management", "value": true }
   ],
-  "numberOfRooms": "2-3",
   "petsAllowed": true
 });
 
@@ -267,7 +255,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
   </section>
   <section aria-label="Contact">
     <h2>Schedule a Tour</h2>
-    <p>Cassell Ridge Apartments &mdash; 1230 Cassell Valley Way, Knoxville, TN</p>
+    <p>Cassell Ridge Apartments &mdash; ${PROPERTY_LOCATION.address.street}, ${PROPERTY_LOCATION.address.city}, ${PROPERTY_LOCATION.address.state}</p>
     <p>Phone: <a href="tel:+18653442490">(865) 344-2490</a> &mdash; Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a></p>
     <p><a href="/contact#contact-form">Schedule a Tour</a> &mdash; <a href="/gallery">View Photo Gallery</a> &mdash; <a href="/virtual-tours">Take a Virtual Tour</a></p>
   </section>
@@ -415,7 +403,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
       <figcaption>Community view</figcaption>
     </figure>
 
-    <p>Located at 1230 Cassell Valley Way, Knoxville, TN. Contact us at <a href="tel:+18653442490">(865) 344-2490</a> to <a href="/contact#contact-form">schedule a tour</a>.</p>
+    <p>Located at ${PROPERTY_LOCATION.address.street}, ${PROPERTY_LOCATION.address.city}, ${PROPERTY_LOCATION.address.state}. Contact us at <a href="tel:+18653442490">(865) 344-2490</a> to <a href="/contact#contact-form">schedule a tour</a>.</p>
     <p><a href="/floor-plans">View Floor Plans</a> &mdash; <a href="/virtual-tours">Take a Virtual Tour</a> &mdash; <a href="/contact#contact-form">Contact Us</a></p>
   </section>
 </main>`,
@@ -479,17 +467,17 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
     <h1>Location &amp; Directions &mdash; Cassell Ridge Apartments</h1>
     <address>
       <strong>Cassell Ridge Apartments</strong><br />
-      1230 Cassell Valley Way<br />
-      Knoxville, TN 37912<br />
+      ${PROPERTY_LOCATION.address.street}<br />
+      ${PROPERTY_LOCATION.address.city}, ${PROPERTY_LOCATION.address.state} ${PROPERTY_LOCATION.address.zip}<br />
       Phone: <a href="tel:+18653442490">(865) 344-2490</a><br />
       Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a>
     </address>
     <section aria-label="Office Hours">
       <h2>Office Hours</h2>
       <ul>
-        <li>Monday &ndash; Friday: 8:00 AM &ndash; 5:00 PM</li>
-        <li>Saturday: 9:00 AM &ndash; 1:00 PM</li>
-        <li>Sunday: Closed</li>
+        <li>${OFFICE_HOURS.weekdays.label}</li>
+        <li>${OFFICE_HOURS.saturday.label}</li>
+        <li>${OFFICE_HOURS.sunday.label}</li>
       </ul>
     </section>
     <section aria-label="Getting Here">
@@ -545,16 +533,16 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
     <p>Ready to make Cassell Ridge Apartments your home? Reach out to our leasing team to schedule a tour or ask about current availability.</p>
     <address>
       <strong>Cassell Ridge Apartments</strong><br />
-      1230 Cassell Valley Way, Knoxville, TN 37912<br />
+      ${PROPERTY_LOCATION.address.street}, ${PROPERTY_LOCATION.address.city}, ${PROPERTY_LOCATION.address.state} ${PROPERTY_LOCATION.address.zip}<br />
       Phone: <a href="tel:+18653442490">(865) 344-2490</a><br />
       Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a>
     </address>
     <section aria-label="Office Hours">
       <h2>Office Hours</h2>
       <ul>
-        <li>Monday &ndash; Friday: 8:00 AM &ndash; 5:00 PM</li>
-        <li>Saturday: 9:00 AM &ndash; 1:00 PM</li>
-        <li>Sunday: Closed</li>
+        <li>${OFFICE_HOURS.weekdays.label}</li>
+        <li>${OFFICE_HOURS.saturday.label}</li>
+        <li>${OFFICE_HOURS.sunday.label}</li>
       </ul>
     </section>
     <p>You may also use our online contact form to send a message directly to our leasing office.</p>

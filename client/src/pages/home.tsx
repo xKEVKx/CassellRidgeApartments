@@ -23,6 +23,7 @@ import { apiRequest } from "@/lib/queryClient";
 import HomePageAdSlider from "@/components/home-page-ad-slider";
 import { AccommodationsHeader, AccommodationsFeatures } from "@/components/accommodations-section";
 import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
+import { APARTMENT_COMPLEX_LOCATION_SCHEMA } from "@shared/site-location";
 import type { FloorPlan, GalleryImage, HomePageAd } from "@shared/schema";
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from "lucide-react";
@@ -254,20 +255,7 @@ export default function Home() {
           "telephone": "(865) 344-2490",
           "email": "cassellridge@elmingtonpm.com",
           "logo": "https://www.cassellridgeapts.com/images/Cassell%20Ridge%20Logo.png",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "1230 Cassell Valley Way",
-            "addressLocality": "Knoxville",
-            "addressRegion": "TN",
-            "postalCode": "37912",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "36.0107",
-            "longitude": "-83.9667"
-          },
-          "openingHours": ["Mo-Fr 08:00-17:00", "Sa 10:00-14:00"],
+          ...APARTMENT_COMPLEX_LOCATION_SCHEMA,
           "priceRange": "$950-$1100",
           "amenityFeature": [
             { "@type": "LocationFeatureSpecification", "name": "Fitness Center" },
