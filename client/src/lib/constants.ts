@@ -9,7 +9,7 @@ export const SITE_CONFIG = {
   contact: {
     phone: "(865) 344-2490",
     fax: "",
-    email: "cassellridge@elmingtonpm.com",
+    email: "cassellrm@fourmidable.com",
     address: PROPERTY_LOCATION.address,
     hours: {
       weekdays: OFFICE_HOURS.weekdays.label,

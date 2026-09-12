@@ -106,7 +106,7 @@ const STATIC_NAV_HTML = `
 </nav>
 <footer aria-label="Site Footer">
   <p>Cassell Ridge Apartments &mdash; ${PROPERTY_LOCATION.address.street}, ${PROPERTY_LOCATION.address.city}, ${PROPERTY_LOCATION.address.state} ${PROPERTY_LOCATION.address.zip}</p>
-  <p>Phone: <a href="tel:+18653442490">(865) 344-2490</a> &mdash; Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a></p>
+  <p>Phone: <a href="tel:+18653442490">(865) 344-2490</a> &mdash; Email: <a href="mailto:cassellrm@fourmidable.com">cassellrm@fourmidable.com</a></p>
   <nav aria-label="Footer Navigation">
     <a href="/">Home</a> |
     <a href="/floor-plans">Floor Plans</a> |
@@ -126,7 +126,7 @@ const APARTMENT_COMPLEX_JSONLD = JSON.stringify({
   "description": "LIHTC affordable housing community in Knoxville, Tennessee offering spacious 2 and 3 bedroom income-based apartments with modern amenities.",
   "url": "https://www.cassellridgeapts.com",
   "telephone": "+18653442490",
-  "email": "cassellridge@elmingtonpm.com",
+  "email": "cassellrm@fourmidable.com",
   "image": "https://www.cassellridgeapts.com/images/cassell-hero.jpg",
   ...APARTMENT_COMPLEX_LOCATION_SCHEMA,
   "amenityFeature": [
@@ -261,7 +261,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
   <section aria-label="Contact">
     <h2>Schedule a Tour</h2>
     <p>Cassell Ridge Apartments &mdash; ${PROPERTY_LOCATION.address.street}, ${PROPERTY_LOCATION.address.city}, ${PROPERTY_LOCATION.address.state}</p>
-    <p>Phone: <a href="tel:+18653442490">(865) 344-2490</a> &mdash; Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a></p>
+    <p>Phone: <a href="tel:+18653442490">(865) 344-2490</a> &mdash; Email: <a href="mailto:cassellrm@fourmidable.com">cassellrm@fourmidable.com</a></p>
     <p><a href="/contact#contact-form">Schedule a Tour</a> &mdash; <a href="/gallery">View Photo Gallery</a> &mdash; <a href="/virtual-tours">Take a Virtual Tour</a></p>
   </section>
 </main>`,
@@ -331,7 +331,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
       <p><a href="/contact#contact-form">Schedule a Visit</a></p>
     </article>
 
-    <p>Contact us at <a href="tel:+18653442490">(865) 344-2490</a> or <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a> to learn more about current availability.</p>
+    <p>Contact us at <a href="tel:+18653442490">(865) 344-2490</a> or <a href="mailto:cassellrm@fourmidable.com">cassellrm@fourmidable.com</a> to learn more about current availability.</p>
     <p><a href="/virtual-tours">Take a 3D Virtual Tour</a> &mdash; <a href="/gallery">View Photo Gallery</a> &mdash; <a href="/contact#contact-form">Contact Us</a></p>
   </section>
 </main>`,
@@ -475,7 +475,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
       ${PROPERTY_LOCATION.address.street}<br />
       ${PROPERTY_LOCATION.address.city}, ${PROPERTY_LOCATION.address.state} ${PROPERTY_LOCATION.address.zip}<br />
       Phone: <a href="tel:+18653442490">(865) 344-2490</a><br />
-      Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a>
+      Email: <a href="mailto:cassellrm@fourmidable.com">cassellrm@fourmidable.com</a>
     </address>
     <section aria-label="Office Hours">
       <h2>Office Hours</h2>
@@ -540,7 +540,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
       <strong>Cassell Ridge Apartments</strong><br />
       ${PROPERTY_LOCATION.address.street}, ${PROPERTY_LOCATION.address.city}, ${PROPERTY_LOCATION.address.state} ${PROPERTY_LOCATION.address.zip}<br />
       Phone: <a href="tel:+18653442490">(865) 344-2490</a><br />
-      Email: <a href="mailto:cassellridge@elmingtonpm.com">cassellridge@elmingtonpm.com</a>
+      Email: <a href="mailto:cassellrm@fourmidable.com">cassellrm@fourmidable.com</a>
     </address>
     <section aria-label="Office Hours">
       <h2>Office Hours</h2>
