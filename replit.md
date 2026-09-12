@@ -70,8 +70,8 @@ In production (`server/index.ts`), a catch-all `app.use("*", ...)` serves preren
 - **Dev vs prod**: this bug only appears in the production build (`npm run build` + `NODE_ENV=production`); the dev workflow uses Vite middleware and does not reproduce it.
 
 ### Funnel Leasing Integration (added Aug 1, 2026)
-All Funnel/Nestio widgets share the public embed key `c00f0c92dc684b96a8b510c8b37867c1`, community ID 10551, group 11245 (public client identifiers, not secrets).
-- **AI Chatbot (site-wide)**: loader + `FunnelGenAIChat.initialize` in `client/index.html` with `waitForMarketingInfo: true`, `enableGAEvents: true` (leadSourceId/campaignInfo removed per client on Aug 1, 2026). The widget itself is served by **sierra.chat** (Sierra agent config fetched from nestiolistings.com); it renders a "Live chat" bubble bottom-right on every page. It only appears if chat is enabled for the community on Funnel's side — a 400 "Chat not enabled for this community" from `nestiolistings.com/api/v2/communities/10551/sierra-chatbot-config/` means Funnel must flip it on.
+Funnel/Nestio widgets share the public embed key `c00f0c92dc684b96a8b510c8b37867c1`, community ID 10551, group 11245 (public client identifiers, not secrets).
+- **AI Chatbot**: removed from the site. The Funnel Gen AI loader and initialization are no longer present in `client/index.html`.
 - **DNI (dynamic number insertion, site-wide)**: loader + `FunnelDNI(key, communityId)` in `client/index.html`. Invisible by design — swaps displayed phone numbers for campaign tracking numbers. "No dynamic number was found in service" in console means no tracking numbers are configured in the Funnel account yet (not a site bug).
 - **Lead-capture forms**: `client/src/components/nestio-lead-capture.tsx` re-injects the vendor script (`integrations.nestio.com/contact-widget/v1/integration.js`) per mount and calls `window.NestioLeadCapture` on load. The vendor locates its injection point via the script tag id `nestio-lead-capture-frame` (required, cannot be renamed), so the component skips init if another instance is already mounted, and guards against late `onload` after unmount. Used as:
   - `type="lead_capture_appointment"` — "Or book a tour instantly" section inside the Schedule Visit modal
@@ -81,14 +81,14 @@ All Funnel/Nestio widgets share the public embed key `c00f0c92dc684b96a8b510c8b3
 
 ### Content Security Policy (CSP)
 CSP headers are set via middleware in `server/index.ts` before all other middleware. The policy allows only approved external domains:
-- **Scripts**: Google Tag Manager, Google Analytics, Accessibe (accessibility), Replit dev banner, Funnel Leasing (`*.funnelleasing.com`), Nestio (`*.nestio.com`), Sierra chat (`sierra.chat`, `*.sierra.chat`)
-- **Styles**: Google Fonts, CloudFlare CDN (Font Awesome), Accessibe, Sierra chat
-- **Fonts**: Google Fonts (gstatic), CloudFlare CDN, Accessibe, Sierra chat
-- **Images**: Google Analytics, Google Tag Manager, Accessibe, Matterport (wildcard), Funnel/Nestio/nestiolistings.com/Sierra
-- **Frames**: Fortress Technologies portal, Matterport virtual tours, Google Maps embeds, Funnel/Nestio/nestiolistings.com/Sierra
-- **Connections**: Google Analytics, Google Tag Manager, Accessibe, Funnel/Nestio/nestiolistings.com (widget config APIs), Sierra chat
+- **Scripts**: Google Tag Manager, Google Analytics, Accessibe (accessibility), Replit dev banner, Funnel Leasing (`*.funnelleasing.com`), Nestio (`*.nestio.com`)
+- **Styles**: Google Fonts, CloudFlare CDN (Font Awesome), Accessibe
+- **Fonts**: Google Fonts (gstatic), CloudFlare CDN, Accessibe
+- **Images**: Google Analytics, Google Tag Manager, Accessibe, Matterport (wildcard), Funnel/Nestio/nestiolistings.com
+- **Frames**: Fortress Technologies portal, Matterport virtual tours, Google Maps embeds, Funnel/Nestio/nestiolistings.com
+- **Connections**: Google Analytics, Google Tag Manager, Accessibe, Funnel/Nestio/nestiolistings.com (widget APIs)
 - **Restrictions**: `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`
-- **Gotcha**: Funnel widgets call APIs on `nestiolistings.com` and load the chat UI from `sierra.chat` — neither is guessable from the loader script domains; both were discovered via CSP violation console errors and must stay allowlisted.
+- **Gotcha**: Nestio widgets call APIs on `nestiolistings.com`, which is not apparent from the loader script domain and must remain allowlisted.
 
 ### Google Analytics
 - GA4 tracking with measurement ID `G-EWTRSPP73F`
