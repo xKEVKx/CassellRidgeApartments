@@ -74,11 +74,10 @@ All Funnel/Nestio widgets share the public embed key `c00f0c92dc684b96a8b510c8b3
 - **AI Chatbot (site-wide)**: loader + `FunnelGenAIChat.initialize` in `client/index.html` with `waitForMarketingInfo: true`, `enableGAEvents: true` (leadSourceId/campaignInfo removed per client on Aug 1, 2026). The widget itself is served by **sierra.chat** (Sierra agent config fetched from nestiolistings.com); it renders a "Live chat" bubble bottom-right on every page. It only appears if chat is enabled for the community on Funnel's side — a 400 "Chat not enabled for this community" from `nestiolistings.com/api/v2/communities/10551/sierra-chatbot-config/` means Funnel must flip it on.
 - **DNI (dynamic number insertion, site-wide)**: loader + `FunnelDNI(key, communityId)` in `client/index.html`. Invisible by design — swaps displayed phone numbers for campaign tracking numbers. "No dynamic number was found in service" in console means no tracking numbers are configured in the Funnel account yet (not a site bug).
 - **Lead-capture forms**: `client/src/components/nestio-lead-capture.tsx` re-injects the vendor script (`integrations.nestio.com/contact-widget/v1/integration.js`) per mount and calls `window.NestioLeadCapture` on load. The vendor locates its injection point via the script tag id `nestio-lead-capture-frame` (required, cannot be renamed), so the component skips init if another instance is already mounted, and guards against late `onload` after unmount. Used as:
-  - `type="lead_capture"` — "Send Us a Message" card on the Contact page (carries the `#contact-form` anchor)
   - `type="lead_capture_appointment"` — "Or book a tour instantly" section inside the Schedule Visit modal
   - `onComplete` pushes `{event: 'lead-form-submission'}` to `dataLayer` for GA
   - `.nestio-widget-container iframe` CSS in `client/src/index.css` forces the injected iframe to full width
-- **Removed**: the Fortress Technologies embedded contact-us iframe on the Contact page (removed Aug 1, 2026; replaced by the Nestio lead_capture form). Fortress is still used for the resident portal link.
+- **Contact page**: the Funnel `lead_capture` form was removed and replaced with the site's custom `ContactForm`, which posts to `/api/contact`, stores the inquiry, notifies the leasing team, and emails the visitor a confirmation. Fortress remains in use only for the resident portal link.
 
 ### Content Security Policy (CSP)
 CSP headers are set via middleware in `server/index.ts` before all other middleware. The policy allows only approved external domains:
@@ -99,7 +98,7 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 ### Navigation & Contact Form Pattern
 - "Schedule Your Tour" / "Schedule Visit" CTAs either navigate to `/contact#contact-form` or open the Schedule Visit modal (`client/src/components/schedule-visit-modal.tsx`)
 - The Contact page uses a `useEffect` hook with a 100ms delay to auto-scroll to the contact form section when the URL contains `#contact-form`
-- The `#contact-form` anchor now lives on the Nestio "Send Us a Message" card (the Fortress contact iframe was removed Aug 1, 2026)
+- The `#contact-form` anchor lives on the custom "Send Us a Message" form; the Fortress and Funnel lead-capture forms have both been removed from the Contact page
 - The Schedule Visit modal contains the internal ContactForm plus the Nestio appointment widget, and is scrollable (`max-h-[90vh] overflow-y-auto`)
 - **Hash links** (`/#amenities`, `/#eligibility`) are rendered as plain `<a>` tags in the navbar and footer (not wouter `<Link>`) so native anchor scrolling works. On the home page itself, in-page CTA buttons use `onClick` `scrollIntoView` because the home page's hash-scroll `useEffect` only runs on mount.
 
@@ -190,7 +189,7 @@ Durable outcomes from these are reflected in **Key Technical Decisions**, **Key 
 - `server/email.ts` - Postmark SMTP email integration, eligibility metadata rendering
 - `client/src/pages/admin.tsx` - Admin panel with photo management, rent updates, promotional banners, home page ads
 - `client/src/pages/home.tsx` - Home page with LIHTC info, floor plan cards, ad slider, and the income limits & eligibility checker (`INCOME_LIMITS` source of truth)
-- `client/src/pages/contact.tsx` - Contact page with embedded Fortress form and hash anchor scrolling
+- `client/src/pages/contact.tsx` - Contact page with the custom contact form and hash anchor scrolling
 - `client/src/pages/community.tsx` - Community / "living near Cassell Ridge" content page
 - `client/src/pages/floor-plans.tsx` - Floor plans browser with schedule visit CTAs
 - `client/src/lib/constants.ts` - Site config and `NAVIGATION_LINKS` (includes the Eligibility item and Property dropdown)

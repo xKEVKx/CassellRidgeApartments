@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import NestioLeadCapture from "@/components/nestio-lead-capture";
+import ContactForm from "@/components/contact-form";
 
 export default function Contact() {
   // Handle scrolling when component mounts
@@ -93,10 +93,9 @@ export default function Contact() {
             </div>
           </div>
           
-          {/* Nestio (Funnel Leasing) Contact Form */}
-          <div id="contact-form" className="bg-white rounded-lg p-8 shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
-            <NestioLeadCapture type="lead_capture" />
+          {/* Custom Contact Form */}
+          <div id="contact-form">
+            <ContactForm title="Send Us a Message" />
           </div>
         </div>
 
