@@ -65,6 +65,7 @@ export const contactSubmissions = pgTable("contact_submissions", {
 export const homePageAds = pgTable("home_page_ads", {
   id: serial("id").primaryKey(),
   imageUrl: text("image_url").notNull(),
+  linkUrl: text("link_url"),
   displayFrequency: integer("display_frequency").default(5),
   isActive: boolean("is_active").default(true),
   startDate: timestamp("start_date"),
@@ -136,6 +137,20 @@ export const insertHomePageAdSchema = createInsertSchema(homePageAds, {
   startDate: z.coerce.date().optional().nullable(),
   endDate: z.coerce.date().optional().nullable(),
   imageUrl: z.string().max(MAX_IMAGE_URL_LENGTH, "Image is too large. Maximum size is 5 MB."),
+  linkUrl: z
+    .string()
+    .trim()
+    .max(2048, "Announcement link is too long.")
+    .url("Please enter a valid URL.")
+    .refine(
+      (value) => {
+        const protocol = new URL(value).protocol;
+        return protocol === "http:" || protocol === "https:";
+      },
+      "Announcement link must use http:// or https://.",
+    )
+    .optional()
+    .nullable(),
 }).omit({
   id: true,
   createdAt: true,

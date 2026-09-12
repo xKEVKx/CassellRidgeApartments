@@ -29,6 +29,7 @@ export default function Admin() {
   const [showAdForm, setShowAdForm] = useState(false);
   const [editingAd, setEditingAd] = useState<HomePageAd | null>(null);
   const [adFormData, setAdFormData] = useState({
+    linkUrl: '',
     displayFrequency: 5,
     isActive: true,
   });
@@ -304,6 +305,7 @@ export default function Admin() {
       setAdImageFile(null);
       setAdImagePreview('');
       setAdFormData({
+        linkUrl: '',
         displayFrequency: 5,
         isActive: true,
       });
@@ -652,6 +654,23 @@ export default function Admin() {
       });
       return;
     }
+
+    const linkUrl = adFormData.linkUrl.trim();
+    if (linkUrl) {
+      try {
+        const parsedUrl = new URL(linkUrl);
+        if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
+          throw new Error('Unsupported protocol');
+        }
+      } catch {
+        toast({
+          title: "Invalid Link",
+          description: "Please enter a complete URL beginning with http:// or https://",
+          variant: "destructive",
+        });
+        return;
+      }
+    }
     
     const formData = new FormData();
 
@@ -687,6 +706,7 @@ export default function Admin() {
 
     formData.append('displayFrequency', String(adFormData.displayFrequency));
     formData.append('isActive', String(adFormData.isActive));
+    formData.append('linkUrl', linkUrl);
     if (editingAd) {
       updateHomePageAdMutation.mutate({ id: editingAd.id, formData });
     } else {
@@ -697,6 +717,7 @@ export default function Admin() {
   const handleEditAd = (ad: HomePageAd) => {
     setEditingAd(ad);
     setAdFormData({
+      linkUrl: ad.linkUrl ?? '',
       displayFrequency: ad.displayFrequency ?? 5,
       isActive: ad.isActive ?? true,
     });
@@ -710,6 +731,7 @@ export default function Admin() {
     setAdImageFile(null);
     setAdImagePreview('');
     setAdFormData({
+      linkUrl: '',
       displayFrequency: 5,
       isActive: true,
     });
@@ -1086,6 +1108,23 @@ export default function Admin() {
                     )}
                   </div>
 
+                  <div className="space-y-2">
+                    <Label htmlFor="ad-link">Announcement Link (optional)</Label>
+                    <Input
+                      id="ad-link"
+                      type="url"
+                      placeholder="https://example.com/"
+                      value={adFormData.linkUrl}
+                      onChange={(e) => setAdFormData(prev => ({
+                        ...prev,
+                        linkUrl: e.target.value,
+                      }))}
+                    />
+                    <p className="text-sm text-gray-500">
+                      Leave blank to make the announcement non-clickable.
+                    </p>
+                  </div>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="display-frequency">Display Frequency (every X visits)</Label>
@@ -1221,6 +1260,18 @@ export default function Admin() {
                             </div>
                             <div className="text-sm text-gray-600">
                               <p>Display Frequency: Every {ad.displayFrequency} visits</p>
+                              <p>
+                                Link: {ad.linkUrl ? (
+                                  <a
+                                    href={ad.linkUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:underline"
+                                  >
+                                    {ad.linkUrl}
+                                  </a>
+                                ) : 'None'}
+                              </p>
                               <p className="text-xs text-gray-400 mt-1">
                                 Created: {ad.createdAt ? (ad.createdAt instanceof Date ? ad.createdAt : new Date(ad.createdAt)).toLocaleString() : 'Unknown'}
                               </p>

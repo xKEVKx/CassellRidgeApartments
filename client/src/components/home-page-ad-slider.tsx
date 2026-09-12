@@ -91,11 +91,25 @@ export default function HomePageAdSlider({ isVisible, onClose, initialMinimized 
 
               {/* Ad Content */}
               <div className="space-y-4">
-                <img
-                  src={activeAd.imageUrl}
-                  alt="Special offer"
-                  className="w-full h-auto rounded-lg border"
-                />
+                {activeAd.linkUrl ? (
+                  <a
+                    href={activeAd.linkUrl}
+                    aria-label="Open announcement link"
+                    className="block rounded-lg focus:outline-none focus:ring-2 focus:ring-warm-brown-500 focus:ring-offset-2"
+                  >
+                    <img
+                      src={activeAd.imageUrl}
+                      alt="Special offer"
+                      className="w-full h-auto rounded-lg border transition-opacity hover:opacity-90"
+                    />
+                  </a>
+                ) : (
+                  <img
+                    src={activeAd.imageUrl}
+                    alt="Special offer"
+                    className="w-full h-auto rounded-lg border"
+                  />
+                )}
                 
 
               </div>

@@ -87,6 +87,11 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 - Script loaded via Google Tag Manager in `client/index.html`
 - Allowed through CSP headers for scripts, images, and connections
 
+### Home Page Announcements
+- Admins can optionally add an HTTP/HTTPS destination URL when creating or editing an announcement.
+- Announcements with a URL make the expanded announcement image clickable; announcements with a blank URL remain non-clickable.
+- The optional URL is stored in the nullable `home_page_ads.link_url` column and validated on both the admin client and server.
+
 ### Navigation & Contact Form Pattern
 - "Schedule Your Tour" / "Schedule Visit" CTAs either navigate to `/contact#contact-form` or open the Schedule Visit modal (`client/src/components/schedule-visit-modal.tsx`)
 - The Contact page uses a `useEffect` hook with a 100ms delay to auto-scroll to the contact form section when the URL contains `#contact-form`

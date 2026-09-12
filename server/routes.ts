@@ -370,6 +370,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const isActive = req.body.isActive === 'true';
       const adData = insertHomePageAdSchema.parse({
         imageUrl,
+        linkUrl: req.body.linkUrl?.trim() || null,
         displayFrequency: parseInt(req.body.displayFrequency) || 5,
         isActive,
       });
@@ -401,15 +402,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (req.body.displayFrequency !== undefined) {
         updates.displayFrequency = parseInt(req.body.displayFrequency);
       }
+      if (req.body.linkUrl !== undefined) {
+        updates.linkUrl = req.body.linkUrl.trim() || null;
+      }
       let deactivatedCount = 0;
       if (req.body.isActive !== undefined) {
         updates.isActive = req.body.isActive === 'true' || req.body.isActive === true;
-        if (updates.isActive) {
-          deactivatedCount = await storage.deactivateOtherAds(id);
-        }
       }
 
-      const ad = await storage.updateHomePageAd(id, updates);
+      const validatedUpdates = insertHomePageAdSchema.partial().parse(updates);
+      if (validatedUpdates.isActive) {
+        deactivatedCount = await storage.deactivateOtherAds(id);
+      }
+
+      const ad = await storage.updateHomePageAd(id, validatedUpdates);
       if (!ad) {
         return res.status(404).json({ error: "Home page ad not found" });
       }
@@ -417,6 +423,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       if (error?.code === 'LIMIT_FILE_SIZE') {
         return res.status(413).json({ error: "Image is too large. Maximum size is 5 MB." });
+      }
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ error: "Invalid ad data", details: error.errors });
       }
       console.error("Error updating home page ad:", error);
       res.status(500).json({ error: "Failed to update home page ad" });
