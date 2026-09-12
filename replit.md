@@ -33,7 +33,7 @@ Preferred communication style: Simple, everyday language.
 - **Content Management**: Admin panel for managing photos, rents, promotional banners, and home page ads with image compression.
 - **Email System**: Automatic confirmation emails via Postmark SMTP (legacy system, now managed through Fortress Technologies).
 - **Dynamic Content**: Home page ad management system with configurable display frequency and date range scheduling.
-- **Property Management Integration**: Fortress Technologies resident portal links; lead capture and chat via Funnel Leasing (see "Funnel Leasing Integration" below).
+- **Property Management Integration**: Fortress Technologies remains linked only for the resident portal. Public inquiries use the site's custom contact forms.
 - **Navigation Enhancement**: Hash anchor scrolling and optimized user journey from all call-to-action buttons to contact form via /contact#contact-form URLs.
 - **Accessibility**: Integrated Accessibe widget for ADA compliance.
 - **Analytics**: Google Analytics 4 (GA4) with measurement ID G-EWTRSPP73F for visitor tracking and site analytics.
@@ -69,26 +69,18 @@ In production (`server/index.ts`), a catch-all `app.use("*", ...)` serves preren
 - **Trailing slashes** are normalized before matching (`/contact/` → `/contact`; root stays `/`).
 - **Dev vs prod**: this bug only appears in the production build (`npm run build` + `NODE_ENV=production`); the dev workflow uses Vite middleware and does not reproduce it.
 
-### Funnel Leasing Integration (added Aug 1, 2026)
-Funnel/Nestio widgets share the public embed key `c00f0c92dc684b96a8b510c8b37867c1`, community ID 10551, group 11245 (public client identifiers, not secrets).
-- **AI Chatbot**: removed from the site. The Funnel Gen AI loader and initialization are no longer present in `client/index.html`.
-- **DNI (dynamic number insertion, site-wide)**: loader + `FunnelDNI(key, communityId)` in `client/index.html`. Invisible by design — swaps displayed phone numbers for campaign tracking numbers. "No dynamic number was found in service" in console means no tracking numbers are configured in the Funnel account yet (not a site bug).
-- **Lead-capture forms**: `client/src/components/nestio-lead-capture.tsx` re-injects the vendor script (`integrations.nestio.com/contact-widget/v1/integration.js`) per mount and calls `window.NestioLeadCapture` on load. The vendor locates its injection point via the script tag id `nestio-lead-capture-frame` (required, cannot be renamed), so the component skips init if another instance is already mounted, and guards against late `onload` after unmount. Used as:
-  - `type="lead_capture_appointment"` — "Or book a tour instantly" section inside the Schedule Visit modal
-  - `onComplete` pushes `{event: 'lead-form-submission'}` to `dataLayer` for GA
-  - `.nestio-widget-container iframe` CSS in `client/src/index.css` forces the injected iframe to full width
-- **Contact page**: the Funnel `lead_capture` form was removed and replaced with the site's custom `ContactForm`, which posts to `/api/contact`, stores the inquiry, notifies the leasing team, and emails the visitor a confirmation. Fortress remains in use only for the resident portal link.
+### Former Funnel Leasing Integration
+All Funnel Leasing and Nestio integrations have been removed because the property changed management providers. This includes the site-wide AI chatbot, DNI phone tracking, the Contact-page lead form, and the appointment widget. Public inquiries and tour requests now use the site's custom `ContactForm`, which posts to `/api/contact`, stores the inquiry, notifies the leasing team, and emails the visitor a confirmation.
 
 ### Content Security Policy (CSP)
 CSP headers are set via middleware in `server/index.ts` before all other middleware. The policy allows only approved external domains:
-- **Scripts**: Google Tag Manager, Google Analytics, Accessibe (accessibility), Replit dev banner, Funnel Leasing (`*.funnelleasing.com`), Nestio (`*.nestio.com`)
+- **Scripts**: Google Tag Manager, Google Analytics, Accessibe (accessibility), Replit dev banner
 - **Styles**: Google Fonts, CloudFlare CDN (Font Awesome), Accessibe
 - **Fonts**: Google Fonts (gstatic), CloudFlare CDN, Accessibe
-- **Images**: Google Analytics, Google Tag Manager, Accessibe, Matterport (wildcard), Funnel/Nestio/nestiolistings.com
-- **Frames**: Fortress Technologies portal, Matterport virtual tours, Google Maps embeds, Funnel/Nestio/nestiolistings.com
-- **Connections**: Google Analytics, Google Tag Manager, Accessibe, Funnel/Nestio/nestiolistings.com (widget APIs)
+- **Images**: Google Analytics, Google Tag Manager, Accessibe, Matterport (wildcard)
+- **Frames**: Fortress Technologies resident portal, Matterport virtual tours, Google Maps embeds
+- **Connections**: Google Analytics, Google Tag Manager, Accessibe
 - **Restrictions**: `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`
-- **Gotcha**: Nestio widgets call APIs on `nestiolistings.com`, which is not apparent from the loader script domain and must remain allowlisted.
 
 ### Google Analytics
 - GA4 tracking with measurement ID `G-EWTRSPP73F`
@@ -99,7 +91,7 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 - "Schedule Your Tour" / "Schedule Visit" CTAs either navigate to `/contact#contact-form` or open the Schedule Visit modal (`client/src/components/schedule-visit-modal.tsx`)
 - The Contact page uses a `useEffect` hook with a 100ms delay to auto-scroll to the contact form section when the URL contains `#contact-form`
 - The `#contact-form` anchor lives on the custom "Send Us a Message" form; the Fortress and Funnel lead-capture forms have both been removed from the Contact page
-- The Schedule Visit modal contains the internal ContactForm plus the Nestio appointment widget, and is scrollable (`max-h-[90vh] overflow-y-auto`)
+- The Schedule Visit modal contains only the site's custom `ContactForm` and is scrollable (`max-h-[90vh] overflow-y-auto`)
 - **Hash links** (`/#amenities`, `/#eligibility`) are rendered as plain `<a>` tags in the navbar and footer (not wouter `<Link>`) so native anchor scrolling works. On the home page itself, in-page CTA buttons use `onClick` `scrollIntoView` because the home page's hash-scroll `useEffect` only runs on mount.
 
 ### Floor Plans Page
