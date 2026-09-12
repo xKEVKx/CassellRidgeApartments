@@ -33,7 +33,7 @@ Preferred communication style: Simple, everyday language.
 - **Content Management**: Admin panel for managing photos, rents, promotional banners, and home page ads with image compression.
 - **Email System**: Automatic confirmation emails via Postmark SMTP (legacy system, now managed through Fortress Technologies).
 - **Dynamic Content**: Home page ad management system with configurable display frequency and date range scheduling.
-- **Property Management Integration**: Fortress Technologies remains linked only for the resident portal. Public inquiries use the site's custom contact forms.
+- **Property Management Integration**: The main-menu Residents item opens an on-site maintenance notice instead of leaving the site; its Contact Us link routes to `/contact`. Public inquiries use the site's custom contact forms.
 - **Navigation Enhancement**: Hash anchor scrolling and optimized user journey from all call-to-action buttons to contact form via /contact#contact-form URLs.
 - **Accessibility**: Integrated Accessibe widget for ADA compliance.
 - **Analytics**: Google Analytics 4 (GA4) with measurement ID G-EWTRSPP73F for visitor tracking and site analytics.
