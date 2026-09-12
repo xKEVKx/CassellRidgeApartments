@@ -225,6 +225,14 @@ export async function sendConfirmationEmail(submission: ContactSubmission) {
             </p>
           </div>
           <div style="margin-top: 15px;">
+            <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">
+              <strong style="color: #8b4513;">🌐 Website</strong><br>
+              <a href="https://www.cassellridgeapts.com/" style="color: #8b4513; text-decoration: none;">
+                www.cassellridgeapts.com
+              </a>
+            </p>
+          </div>
+          <div style="margin-top: 15px;">
             <p style="color: #666; font-size: 14px; margin: 0;">
               <strong style="color: #8b4513;">🕒 Office Hours</strong><br>
               Monday-Friday: 8AM to 5PM<br>
