@@ -26,6 +26,46 @@ const contactRateLimit = rateLimit({
   message: { error: "Too many submissions. Please try again later." },
 });
 
+interface RecaptchaVerificationResponse {
+  success: boolean;
+  hostname?: string;
+}
+
+function isAllowedRecaptchaHostname(hostname: string | undefined): boolean {
+  if (!hostname) return false;
+
+  const normalizedHostname = hostname.toLowerCase().replace(/\.$/, "");
+  const productionHostnames = new Set([
+    "cassellridgeapts.com",
+    "www.cassellridgeapts.com",
+  ]);
+
+  if (productionHostnames.has(normalizedHostname)) return true;
+  return process.env.NODE_ENV !== "production"
+    && (normalizedHostname === "localhost" || normalizedHostname.endsWith(".replit.dev"));
+}
+
+async function verifyRecaptchaToken(token: string, remoteIp?: string): Promise<boolean> {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  if (!secretKey) {
+    throw new Error("RECAPTCHA_SECRET_KEY is not configured");
+  }
+
+  const body = new URLSearchParams({ secret: secretKey, response: token });
+  if (remoteIp) body.set("remoteip", remoteIp);
+
+  const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body,
+    signal: AbortSignal.timeout(8000),
+  });
+
+  if (!response.ok) return false;
+  const result = await response.json() as RecaptchaVerificationResponse;
+  return result.success === true && isAllowedRecaptchaHostname(result.hostname);
+}
+
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -289,9 +329,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Contact Submissions API
+  app.get("/api/recaptcha/site-key", (_req, res) => {
+    const siteKey = process.env.RECAPTCHA_SITE_KEY;
+    if (!siteKey) {
+      return res.status(503).json({ error: "reCAPTCHA is not configured" });
+    }
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.json({ siteKey });
+  });
+
   app.post("/api/contact", contactRateLimit, async (req, res) => {
     try {
       const validatedData = insertContactSubmissionSchema.parse(req.body);
+      const recaptchaToken = typeof req.body.recaptchaToken === "string"
+        ? req.body.recaptchaToken.trim()
+        : "";
+      if (!recaptchaToken) {
+        return res.status(400).json({ error: "Please complete the reCAPTCHA verification." });
+      }
+
+      try {
+        const recaptchaValid = await verifyRecaptchaToken(recaptchaToken, req.ip);
+        if (!recaptchaValid) {
+          return res.status(400).json({
+            error: "reCAPTCHA verification failed. Please try again.",
+          });
+        }
+      } catch (recaptchaError) {
+        console.error("reCAPTCHA verification error:", recaptchaError);
+        return res.status(503).json({
+          error: "Verification is temporarily unavailable. Please try again.",
+        });
+      }
+
       const submission = await storage.createContactSubmission(validatedData);
       
       // Send email notifications

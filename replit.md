@@ -72,14 +72,21 @@ In production (`server/index.ts`), a catch-all `app.use("*", ...)` serves preren
 ### Former Funnel Leasing Integration
 All Funnel Leasing and Nestio integrations have been removed because the property changed management providers. This includes the site-wide AI chatbot, DNI phone tracking, the Contact-page lead form, and the appointment widget. Public inquiries and tour requests now use the site's custom `ContactForm`, which posts to `/api/contact`, stores the inquiry, notifies the leasing team, and emails the visitor a confirmation.
 
+### Contact Form reCAPTCHA
+- Every submission to `/api/contact` requires successful Google reCAPTCHA v2 Checkbox verification before it is stored or emailed.
+- The Contact page and Schedule Visit modal share the protected `ContactForm`; the homepage eligibility contact dialog uses the same reCAPTCHA component and protected API.
+- The public site key is served by `/api/recaptcha/site-key`. `RECAPTCHA_SITE_KEY` and `RECAPTCHA_SECRET_KEY` are configured as Replit Secrets and must never be committed or logged.
+- Server verification accepts successful tokens only for `cassellridgeapts.com`, `www.cassellridgeapts.com`, and `.replit.dev`/localhost during development.
+- CSP allows the required Google and gstatic script, frame, and connection origins.
+
 ### Content Security Policy (CSP)
 CSP headers are set via middleware in `server/index.ts` before all other middleware. The policy allows only approved external domains:
-- **Scripts**: Google Tag Manager, Google Analytics, Accessibe (accessibility), Replit dev banner
+- **Scripts**: Google Tag Manager, Google Analytics, Google reCAPTCHA, Accessibe (accessibility), Replit dev banner
 - **Styles**: Google Fonts, CloudFlare CDN (Font Awesome), Accessibe
 - **Fonts**: Google Fonts (gstatic), CloudFlare CDN, Accessibe
 - **Images**: Google Analytics, Google Tag Manager, Accessibe, Matterport (wildcard)
-- **Frames**: Fortress Technologies resident portal, Matterport virtual tours, Google Maps embeds
-- **Connections**: Google Analytics, Google Tag Manager, Accessibe
+- **Frames**: Fortress Technologies resident portal, Matterport virtual tours, Google Maps embeds, Google reCAPTCHA
+- **Connections**: Google Analytics, Google Tag Manager, Google reCAPTCHA, Accessibe
 - **Restrictions**: `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`
 
 ### Google Analytics

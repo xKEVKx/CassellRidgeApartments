@@ -21,6 +21,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
 import HomePageAdSlider from "@/components/home-page-ad-slider";
+import RecaptchaV2 from "@/components/recaptcha-v2";
 import { AccommodationsHeader, AccommodationsFeatures } from "@/components/accommodations-section";
 import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
 import { APARTMENT_COMPLEX_LOCATION_SCHEMA } from "@shared/site-location";
@@ -144,6 +145,8 @@ export default function Home() {
     phone: "",
     message: "",
   });
+  const [eligibilityRecaptchaToken, setEligibilityRecaptchaToken] = useState<string | null>(null);
+  const [eligibilityRecaptchaResetKey, setEligibilityRecaptchaResetKey] = useState(0);
 
   const eligibilityContactMutation = useMutation({
     mutationFn: async (payload: any) => {
@@ -158,6 +161,8 @@ export default function Home() {
       });
       setContactDialogOpen(false);
       setContactForm({ name: "", email: "", phone: "", message: "" });
+      setEligibilityRecaptchaToken(null);
+      setEligibilityRecaptchaResetKey((key) => key + 1);
     },
     onError: (error: any) => {
       toast({
@@ -166,6 +171,8 @@ export default function Home() {
           error?.message || "We couldn't send your message. Please try again or call (865) 344-2490.",
         variant: "destructive",
       });
+      setEligibilityRecaptchaToken(null);
+      setEligibilityRecaptchaResetKey((key) => key + 1);
     },
   });
 
@@ -783,7 +790,14 @@ export default function Home() {
               </div>
 
               {/* Eligibility contact dialog */}
-              <Dialog open={contactDialogOpen} onOpenChange={setContactDialogOpen}>
+              <Dialog
+                open={contactDialogOpen}
+                onOpenChange={(open) => {
+                  setContactDialogOpen(open);
+                  setEligibilityRecaptchaToken(null);
+                  setEligibilityRecaptchaResetKey((key) => key + 1);
+                }}
+              >
                 <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>Contact Our Leasing Team</DialogTitle>
@@ -882,6 +896,14 @@ export default function Home() {
                         });
                         return;
                       }
+                      if (!eligibilityRecaptchaToken) {
+                        toast({
+                          title: "Verification required",
+                          description: "Please confirm that you are not a robot.",
+                          variant: "destructive",
+                        });
+                        return;
+                      }
 
                       const limit = INCOME_LIMITS_BY_HOUSEHOLD[eligibilityHousehold];
                       const cleanedIncome = eligibilityIncome.replace(/[$,\s]/g, "");
@@ -896,6 +918,7 @@ export default function Home() {
                         phone,
                         message: message || undefined,
                         type: "eligibility",
+                        recaptchaToken: eligibilityRecaptchaToken,
                         metadata: {
                           householdSize: eligibilityHousehold,
                           income: hasIncome ? parsedIncome : null,
@@ -960,6 +983,11 @@ export default function Home() {
                         placeholder="Anything you'd like us to know?"
                       />
                     </div>
+
+                    <RecaptchaV2
+                      onChange={setEligibilityRecaptchaToken}
+                      resetKey={eligibilityRecaptchaResetKey}
+                    />
 
                     <DialogFooter>
                       <Button

@@ -27,12 +27,12 @@ app.use((req, res, next) => {
     'Content-Security-Policy',
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://acsbapp.com https://replit.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com https://acsbapp.com https://replit.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://acsbapp.com",
       "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://acsbapp.com",
       "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://acsbapp.com https://*.matterport.com",
-      "frame-src 'self' https://www.portal.fortresstech.io https://discover.matterport.com https://www.google.com https://my.matterport.com",
-      "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://acsbapp.com https://region1.google-analytics.com",
+      "frame-src 'self' https://www.portal.fortresstech.io https://discover.matterport.com https://www.google.com https://recaptcha.google.com https://my.matterport.com",
+      "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.gstatic.com https://acsbapp.com https://region1.google-analytics.com",
       "media-src 'self'",
       "object-src 'none'",
       "base-uri 'self'",
@@ -60,7 +60,7 @@ app.use((req, res, next) => {
     const duration = Date.now() - start;
     if (path.startsWith("/api")) {
       let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
+      if (capturedJsonResponse && path !== "/api/recaptcha/site-key") {
         logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
       }
 

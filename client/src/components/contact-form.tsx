@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import RecaptchaV2 from "@/components/recaptcha-v2";
 
 const contactSchema = z.object({
   name: z
@@ -54,6 +55,8 @@ export default function ContactForm({
 }: ContactFormProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const [recaptchaResetKey, setRecaptchaResetKey] = useState(0);
   
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -67,7 +70,7 @@ export default function ContactForm({
   });
 
   const mutation = useMutation({
-    mutationFn: (data: ContactFormData) => 
+    mutationFn: (data: ContactFormData & { recaptchaToken: string }) =>
       apiRequest("POST", "/api/contact", data),
     onSuccess: () => {
       toast({
@@ -75,6 +78,8 @@ export default function ContactForm({
         description: "We'll get back to you within 24 hours.",
       });
       form.reset();
+      setRecaptchaToken(null);
+      setRecaptchaResetKey((key) => key + 1);
       queryClient.invalidateQueries({ queryKey: ["/api/contact"] });
     },
     onError: (error: any) => {
@@ -83,11 +88,21 @@ export default function ContactForm({
         description: error.message || "Please try again later.",
         variant: "destructive",
       });
+      setRecaptchaToken(null);
+      setRecaptchaResetKey((key) => key + 1);
     }
   });
 
   const onSubmit = (data: ContactFormData) => {
-    mutation.mutate(data);
+    if (!recaptchaToken) {
+      toast({
+        title: "Verification required",
+        description: "Please confirm that you are not a robot.",
+        variant: "destructive",
+      });
+      return;
+    }
+    mutation.mutate({ ...data, recaptchaToken });
   };
 
   return (
@@ -148,6 +163,11 @@ export default function ContactForm({
               disabled={mutation.isPending}
             />
           </div>
+
+          <RecaptchaV2
+            onChange={setRecaptchaToken}
+            resetKey={recaptchaResetKey}
+          />
           
           <Button 
             type="submit" 
