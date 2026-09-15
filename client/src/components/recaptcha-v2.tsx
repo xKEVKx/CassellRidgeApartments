@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 declare global {
   interface Window {
     grecaptcha?: {
+      ready: (callback: () => void) => void;
       render: (
         container: HTMLElement,
         parameters: {
@@ -20,14 +21,50 @@ declare global {
 
 let recaptchaScriptPromise: Promise<void> | null = null;
 
+function waitForRecaptchaReady(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const startedAt = Date.now();
+
+    const checkReady = () => {
+      if (window.grecaptcha?.ready) {
+        window.grecaptcha.ready(() => {
+          if (window.grecaptcha?.render) {
+            resolve();
+          } else {
+            reject(new Error("reCAPTCHA API did not initialize"));
+          }
+        });
+        return;
+      }
+
+      if (Date.now() - startedAt >= 10000) {
+        reject(new Error("Timed out waiting for reCAPTCHA"));
+        return;
+      }
+
+      window.setTimeout(checkReady, 50);
+    };
+
+    checkReady();
+  });
+}
+
 function loadRecaptchaScript(): Promise<void> {
-  if (window.grecaptcha) return Promise.resolve();
+  if (window.grecaptcha?.ready) return waitForRecaptchaReady();
   if (recaptchaScriptPromise) return recaptchaScriptPromise;
 
   recaptchaScriptPromise = new Promise((resolve, reject) => {
     const existingScript = document.getElementById("google-recaptcha-v2");
     if (existingScript) {
-      existingScript.addEventListener("load", () => resolve(), { once: true });
+      if (window.grecaptcha?.ready) {
+        waitForRecaptchaReady().then(resolve, reject);
+        return;
+      }
+      existingScript.addEventListener(
+        "load",
+        () => waitForRecaptchaReady().then(resolve, reject),
+        { once: true },
+      );
       existingScript.addEventListener("error", () => reject(new Error("Failed to load reCAPTCHA")), { once: true });
       return;
     }
@@ -37,7 +74,7 @@ function loadRecaptchaScript(): Promise<void> {
     script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
     script.async = true;
     script.defer = true;
-    script.onload = () => resolve();
+    script.onload = () => waitForRecaptchaReady().then(resolve, reject);
     script.onerror = () => reject(new Error("Failed to load reCAPTCHA"));
     document.head.appendChild(script);
   });
