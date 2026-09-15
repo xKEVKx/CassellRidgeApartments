@@ -7,15 +7,15 @@
 
 ### Management Notifications
 - **From**: no-reply@cassellridgeapts.com (verified Postmark sender)
-- **To**: cassellrm@fourmidable.com (property management)
-- **Reply-To**: cassellrm@fourmidable.com
+- **To**: info@cassellridgeapts.com (property management)
+- **Reply-To**: info@cassellridgeapts.com
 - **Purpose**: Notify property management of new inquiries and visit requests
 - **Template**: Detailed contact information with inquiry specifics
 
 ### Customer Confirmations
 - **From**: no-reply@cassellridgeapts.com (verified Postmark sender)
 - **To**: Customer's email address
-- **Reply-To**: cassellrm@fourmidable.com
+- **Reply-To**: info@cassellridgeapts.com
 - **Purpose**: Confirm receipt of inquiry to customer
 - **Template**: Professional confirmation with contact information and next steps
 
@@ -29,7 +29,7 @@
 
 ## Environment Variables
 - `POSTMARK_SERVER_TOKEN`: SMTP authentication token
-- `NOTIFICATION_EMAIL`: cassellrm@fourmidable.com (management recipient)
+- `NOTIFICATION_EMAIL`: info@cassellridgeapts.com (management recipient)
 
 ## Email Verification Results
 **Latest Test Results** (January 31, 2025):
@@ -41,13 +41,13 @@
 ## Professional Email Handling
 1. **Customer Experience**: Receives email from professional no-reply address
 2. **Reply Routing**: Customer replies automatically go to property management
-3. **Management Workflow**: All inquiries centralized to cassellrm@fourmidable.com
+3. **Management Workflow**: All inquiries centralized to info@cassellridgeapts.com
 4. **No Bounces**: Verified sender ensures reliable delivery
 5. **Professional Branding**: Cassell Ridge branding with brown color scheme
 
 ## Contact Information in Templates
 - **Phone**: (865) 344-2490
-- **Email**: cassellrm@fourmidable.com
+- **Email**: info@cassellridgeapts.com
 - **Address**: 1230 Cassell Valley Way, Knoxville, TN 37912
 - **Office Hours**: Mon-Fri 8AM-5PM, Sat 10AM-2PM, Sun Closed
 

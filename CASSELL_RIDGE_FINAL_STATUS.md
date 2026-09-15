@@ -9,7 +9,7 @@
 - **Location**: Knoxville, Tennessee 37912
 - **Address**: 1230 Cassell Valley Way
 - **Phone**: (865) 344-2490
-- **Email**: cassellrm@fourmidable.com
+- **Email**: info@cassellridgeapts.com
 - **Type**: LIHTC Affordable Housing Community
 
 ## Technical Implementation Status
@@ -49,8 +49,8 @@
 - **SMTP Provider**: Postmark
 - **Authentication**: POSTMARK_SERVER_TOKEN (configured and verified)
 - **From Address**: no-reply@cassellridgeapts.com (verified sender signature)
-- **Reply-To**: cassellrm@fourmidable.com (property management)
-- **Management Email**: cassellrm@fourmidable.com (via NOTIFICATION_EMAIL env var)
+- **Reply-To**: info@cassellridgeapts.com (property management)
+- **Management Email**: info@cassellridgeapts.com (via NOTIFICATION_EMAIL env var)
 - **Templates**: 
   - Management notification (detailed inquiry info, sent from verified address)
   - Customer confirmation (clean header, no LIHTC tagline, professional no-reply setup)

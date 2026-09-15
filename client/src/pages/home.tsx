@@ -257,7 +257,7 @@ export default function Home() {
           "description": "Quality LIHTC affordable housing community in Knoxville, Tennessee offering 2 & 3 bedroom apartments with modern amenities.",
           "url": "https://www.cassellridgeapts.com",
           "telephone": "(865) 344-2490",
-          "email": "cassellrm@fourmidable.com",
+          "email": "info@cassellridgeapts.com",
           "logo": "https://www.cassellridgeapts.com/images/Cassell%20Ridge%20Logo.png",
           ...APARTMENT_COMPLEX_LOCATION_SCHEMA,
           ...(rentPriceRange ? { "priceRange": rentPriceRange } : {}),
