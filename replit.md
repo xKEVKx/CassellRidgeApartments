@@ -78,6 +78,7 @@ All Funnel Leasing and Nestio integrations have been removed because the propert
 - The public site key is served by `/api/recaptcha/site-key`. `RECAPTCHA_SITE_KEY` and `RECAPTCHA_SECRET_KEY` are configured as Replit Secrets and must never be committed or logged.
 - Server verification accepts successful tokens only for `cassellridgeapts.com`, `www.cassellridgeapts.com`, and `.replit.dev`/localhost during development.
 - CSP allows the required Google and gstatic script, frame, and connection origins.
+- The eligibility contact dialog uses non-modal pointer handling while preventing outside dismissal, allowing Google's body-level image challenge iframe to receive clicks without closing the dialog.
 
 ### Content Security Policy (CSP)
 CSP headers are set via middleware in `server/index.ts` before all other middleware. The policy allows only approved external domains:

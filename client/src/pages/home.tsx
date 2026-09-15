@@ -791,6 +791,7 @@ export default function Home() {
 
               {/* Eligibility contact dialog */}
               <Dialog
+                modal={false}
                 open={contactDialogOpen}
                 onOpenChange={(open) => {
                   setContactDialogOpen(open);
@@ -798,7 +799,10 @@ export default function Home() {
                   setEligibilityRecaptchaResetKey((key) => key + 1);
                 }}
               >
-                <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
+                <DialogContent
+                  className="sm:max-w-lg max-h-[90vh] overflow-y-auto"
+                  onInteractOutside={(event) => event.preventDefault()}
+                >
                   <DialogHeader>
                     <DialogTitle>Contact Our Leasing Team</DialogTitle>
                     <DialogDescription>
