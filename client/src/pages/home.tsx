@@ -27,6 +27,7 @@ import { HERO_IMAGE, SITE_CONFIG } from "@/lib/constants";
 import { APARTMENT_COMPLEX_LOCATION_SCHEMA } from "@shared/site-location";
 import type { FloorPlan, GalleryImage, HomePageAd } from "@shared/schema";
 import { getRentPriceRange } from "@shared/rent-config";
+import { HOME_FAQS as FAQS, HOME_FAQ_SCHEMA, STUDENT_ELIGIBILITY } from "@shared/public-content";
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from "lucide-react";
 
@@ -46,52 +47,6 @@ const INCOME_LIMITS: { size: number; people: string; limit: number }[] = [
 const INCOME_LIMITS_BY_HOUSEHOLD: Record<number, number> = Object.fromEntries(
   INCOME_LIMITS.map((row) => [row.size, row.limit])
 );
-
-// Single source of truth for the home page FAQ. Drives both the visible
-// "Frequently Asked Questions" section and the FAQPage structured data (JSON-LD)
-// in the page <head>, so the two never drift apart.
-const FAQS: { question: string; answer: string }[] = [
-  {
-    question: "What is the Low-Income Housing Tax Credit (LIHTC) program?",
-    answer:
-      "The LIHTC program was created to make quality housing more affordable. It allows communities like Cassell Ridge to offer homes at reduced rental rates to households that meet specific income and eligibility guidelines.",
-  },
-  {
-    question: "How do I know if I qualify for a LIHTC home?",
-    answer:
-      "Eligibility is primarily based on your household's gross (pre-tax) annual income and full-time student status. Review the Students and Income Limits sections above for more information. Our team is also available to answer any questions you have along the way!",
-  },
-  {
-    question: "Are all homes at Cassell Ridge part of the LIHTC program?",
-    answer:
-      "Yes, every home at Cassell Ridge is income-restricted through the LIHTC program. All residents must meet the program's income and eligibility requirements to qualify.",
-  },
-  {
-    question: "What if my income is over the limit?",
-    answer:
-      "Because all homes at Cassell Ridge are income-restricted, households exceeding the income limits would not qualify. If you're unsure where you stand, reach out to our team — we're happy to walk through your options with you!",
-  },
-  {
-    question: "Do I have to be a first-time renter to qualify?",
-    answer:
-      "No, you do not have to be a first-time renter. Your eligibility is based on your income and student status, not your rental history.",
-  },
-  {
-    question: "What happens if my income changes after I move in?",
-    answer:
-      "If your household income increases after you move in, you are usually allowed to remain in your home. However, certain program rules may apply if your income increases significantly. Our team will guide you through any necessary next steps if needed.",
-  },
-  {
-    question: "Can full-time students live in a LIHTC home?",
-    answer:
-      "Yes, but with some restrictions. If all household members are full-time students, you must meet one of the specific exceptions listed in the Students section to qualify.",
-  },
-  {
-    question: "What documents will I need to provide?",
-    answer:
-      "You'll be asked to provide documentation verifying your household income, student status (if applicable), and other standard application information. Our leasing team will provide a full checklist to help make the process easy!",
-  },
-];
 
 export default function Home() {
   const { data: floorPlans, isLoading: floorPlansLoading } = useQuery<FloorPlan[]>({
@@ -128,8 +83,6 @@ export default function Home() {
   const [adMinimized, setAdMinimized] = useState(false);
 
   // Collapsible sections state
-  const [studentsExpanded, setStudentsExpanded] = useState(false);
-  const [faqExpanded, setFaqExpanded] = useState(false);
   const [petPolicyExpanded, setPetPolicyExpanded] = useState(false);
 
   // Eligibility checker state
@@ -268,18 +221,7 @@ export default function Home() {
             { "@type": "LocationFeatureSpecification", "name": "On-site Laundry" }
           ]
         })}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": FAQS.map((faq) => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        })}</script>
+        <script type="application/ld+json">{JSON.stringify(HOME_FAQ_SCHEMA)}</script>
       </Helmet>
       {/* Home Page Ad Slider */}
       <HomePageAdSlider 
@@ -1008,89 +950,56 @@ export default function Home() {
             </div>
 
             {/* Students Section */}
-            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
-              <h3 className="w-full mb-6">
-                <button
+            <details className="group bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+                <summary
                   id="students-toggle"
-                  type="button"
-                  aria-expanded={studentsExpanded}
-                  aria-controls="students-panel"
-                  className="flex items-center justify-between w-full p-0 text-left"
-                  onClick={() => setStudentsExpanded(!studentsExpanded)}
+                  className="flex items-center justify-between w-full p-0 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden"
                 >
-                  <span className="flex items-center">
+                  <h3 className="flex items-center justify-between w-full">
+                    <span className="flex items-center">
                     <span aria-hidden="true" className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mr-4">
                       <span className="text-white text-2xl">🎓</span>
                     </span>
                     <span className="text-2xl font-bold text-slate-900">STUDENTS</span>
-                  </span>
-                  {studentsExpanded ? (
-                    <ChevronUp aria-hidden="true" className="h-6 w-6 text-warm-brown-600" />
-                  ) : (
-                    <ChevronDown aria-hidden="true" className="h-6 w-6 text-warm-brown-600" />
-                  )}
-                </button>
-              </h3>
+                    </span>
+                    <ChevronDown aria-hidden="true" className="h-6 w-6 text-warm-brown-600 group-open:rotate-180" />
+                  </h3>
+                </summary>
               
-              {studentsExpanded && (
-                <div id="students-panel" aria-labelledby="students-toggle" className="space-y-4 animate-in slide-in-from-top-2 duration-300">
+                <div id="students-panel" aria-labelledby="students-toggle" className="mt-6 space-y-4">
                   <p className="text-slate-600 leading-relaxed">
-                    Because of program requirements, households made up entirely of full-time students must meet one of the following exceptions to qualify:
+                    {STUDENT_ELIGIBILITY.introduction}
                   </p>
                   
                   <ul className="space-y-3 text-slate-600">
-                    <li className="flex items-start">
+                    {STUDENT_ELIGIBILITY.exceptions.map((exception) => (
+                    <li key={exception} className="flex items-start">
                       <span className="text-warm-brown-500 mr-3 mt-1">•</span>
-                      <span>At least one student is married and files a joint tax return.</span>
+                      <span>{exception}</span>
                     </li>
-                    <li className="flex items-start">
-                      <span className="text-warm-brown-500 mr-3 mt-1">•</span>
-                      <span>At least one student is enrolled in a job training program receiving assistance under the Job Training Partnership Act or a similar federal, state, or local program.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-warm-brown-500 mr-3 mt-1">•</span>
-                      <span>At least one student was formerly in foster care.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-warm-brown-500 mr-3 mt-1">•</span>
-                      <span>At least one student receives Temporary Assistance for Needy Families (TANF) benefits.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-warm-brown-500 mr-3 mt-1">•</span>
-                      <span>The household consists of a single parent and their children, and neither the parent nor the children are claimed as dependents by another individual.</span>
-                    </li>
+                    ))}
                   </ul>
                 </div>
-              )}
-            </div>
+            </details>
 
             {/* FAQ Section */}
-            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
-              <h3 className="w-full mb-6">
-                <button
+            <details className="group bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+                <summary
                   id="faq-toggle"
-                  type="button"
-                  aria-expanded={faqExpanded}
-                  aria-controls="faq-panel"
-                  className="flex items-center justify-between w-full p-0 text-left"
-                  onClick={() => setFaqExpanded(!faqExpanded)}
+                  className="flex items-center justify-between w-full p-0 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden"
                 >
-                  <span className="flex items-center">
+                  <h3 className="flex items-center justify-between w-full">
+                    <span className="flex items-center">
                     <span aria-hidden="true" className="w-12 h-12 bg-gradient-to-r from-warm-brown-500 to-warm-brown-600 rounded-xl flex items-center justify-center mr-4">
                       <span className="text-white text-2xl">❓</span>
                     </span>
                     <span className="text-2xl font-bold text-slate-900">FREQUENTLY ASKED QUESTIONS</span>
-                  </span>
-                  {faqExpanded ? (
-                    <ChevronUp aria-hidden="true" className="h-6 w-6 text-warm-brown-600" />
-                  ) : (
-                    <ChevronDown aria-hidden="true" className="h-6 w-6 text-warm-brown-600" />
-                  )}
-                </button>
-              </h3>
+                    </span>
+                    <ChevronDown aria-hidden="true" className="h-6 w-6 text-warm-brown-600 group-open:rotate-180" />
+                  </h3>
+                </summary>
               
-              {faqExpanded && (
-                <div id="faq-panel" aria-labelledby="faq-toggle" className="space-y-6 animate-in slide-in-from-top-2 duration-300">
+                <div id="faq-panel" aria-labelledby="faq-toggle" className="mt-6 space-y-6">
                   {FAQS.map((faq) => (
                     <div key={faq.question}>
                       <h4 className="font-semibold text-slate-900 mb-2">{faq.question}</h4>
@@ -1098,8 +1007,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              )}
-            </div>
+            </details>
           </div>
         </div>
       </section>

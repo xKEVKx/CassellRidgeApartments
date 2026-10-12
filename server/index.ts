@@ -13,6 +13,8 @@ import {
   SITE_DESCRIPTION,
   formatMonthlyRent,
 } from "@shared/rent-config";
+import { HOME_FAQ_SCHEMA } from "@shared/public-content";
+import { COMMUNITY_GUIDE_HTML, HOME_FAQ_HTML, STUDENT_ELIGIBILITY_HTML } from "./public-content-html";
 
 const app = express();
 app.set('trust proxy', 1);
@@ -140,52 +142,7 @@ const APARTMENT_COMPLEX_JSONLD = JSON.stringify({
 });
 
 // FAQPage JSON-LD — emitted only on the home page
-const FAQPAGE_JSONLD = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the Low-Income Housing Tax Credit (LIHTC) program?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The LIHTC program was created to make quality housing more affordable. It allows communities like Cassell Ridge to offer homes at reduced rental rates to households that meet specific income and eligibility guidelines." }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I know if I qualify for a LIHTC home?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Eligibility is primarily based on your household's gross (pre-tax) annual income and full-time student status. Review the Students and Income Limits sections for more information. Our team is also available to answer any questions you have along the way!" }
-    },
-    {
-      "@type": "Question",
-      "name": "Are all homes at Cassell Ridge part of the LIHTC program?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes, every home at Cassell Ridge is income-restricted through the LIHTC program. All residents must meet the program's income and eligibility requirements to qualify." }
-    },
-    {
-      "@type": "Question",
-      "name": "What if my income is over the limit?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Because all homes at Cassell Ridge are income-restricted, households exceeding the income limits would not qualify. If you're unsure where you stand, reach out to our team — we're happy to walk through your options with you!" }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I have to be a first-time renter to qualify?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No, you do not have to be a first-time renter. Your eligibility is based on your income and student status, not your rental history." }
-    },
-    {
-      "@type": "Question",
-      "name": "What happens if my income changes after I move in?",
-      "acceptedAnswer": { "@type": "Answer", "text": "If your household income increases after you move in, you are usually allowed to remain in your home. However, certain program rules may apply if your income increases significantly. Our team will guide you through any necessary next steps if needed." }
-    },
-    {
-      "@type": "Question",
-      "name": "Can full-time students live in a LIHTC home?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes, but with some restrictions. If all household members are full-time students, you must meet one of the specific exceptions listed in the Students section to qualify." }
-    },
-    {
-      "@type": "Question",
-      "name": "What documents will I need to provide?",
-      "acceptedAnswer": { "@type": "Answer", "text": "You'll be asked to provide documentation verifying your household income, student status (if applicable), and other standard application information. Our leasing team will provide a full checklist to help make the process easy!" }
-    }
-  ]
-});
+const FAQPAGE_JSONLD = JSON.stringify(HOME_FAQ_SCHEMA);
 
 interface RoutePrerender {
   title: string;
@@ -258,6 +215,8 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
     </table>
     <p><a href="/contact#contact-form">Contact us</a> if you have questions about eligibility.</p>
   </section>
+  ${STUDENT_ELIGIBILITY_HTML}
+  ${HOME_FAQ_HTML}
   <section aria-label="Contact">
     <h2>Schedule a Tour</h2>
     <p>Cassell Ridge Apartments &mdash; ${PROPERTY_LOCATION.address.street}, ${PROPERTY_LOCATION.address.city}, ${PROPERTY_LOCATION.address.state}</p>
@@ -428,22 +387,7 @@ const ROUTE_PRERENDER: Record<string, RoutePrerender> = {
     <h1>Living Near Cassell Ridge Apartments in Knoxville, TN</h1>
     <p>Cassell Ridge Apartments is ideally situated in North Knoxville, Tennessee, offering residents convenient access to shopping, dining, schools, parks, and healthcare facilities.</p>
   </section>
-  <section aria-label="Shopping and Dining">
-    <h2>Shopping &amp; Dining</h2>
-    <p>Residents enjoy easy access to major retailers, grocery stores, and a wide variety of local and national restaurants within a short drive of the community.</p>
-  </section>
-  <section aria-label="Schools">
-    <h2>Nearby Schools</h2>
-    <p>Cassell Ridge is served by Knox County Schools, with elementary, middle, and high schools within convenient distance of the community.</p>
-  </section>
-  <section aria-label="Parks and Recreation">
-    <h2>Parks &amp; Recreation</h2>
-    <p>The North Knoxville area offers numerous parks, greenways, and recreational facilities for residents of all ages to enjoy outdoor activities and nature.</p>
-  </section>
-  <section aria-label="Healthcare">
-    <h2>Healthcare</h2>
-    <p>Several hospitals, medical offices, and urgent care centers are located nearby, ensuring residents have convenient access to quality healthcare services.</p>
-  </section>
+  ${COMMUNITY_GUIDE_HTML}
   <section aria-label="Why Choose Cassell Ridge">
     <h2>Why Rent at Cassell Ridge Apartments?</h2>
     <ul>

@@ -3,3 +3,4 @@
 - [Rent data authority](rent-data-authority.md) — public React and prerender pricing must read the environment database so admin rent updates propagate without code edits.
 - [reCAPTCHA script readiness](recaptcha-script-readiness.md) — api.js load does not guarantee v2 render is ready; wait for grecaptcha.ready before creating widgets.
 - [Tailwind security exception](tailwind-security-exception.md) — user chose to retain Tailwind 3 and accept the unresolved braces vulnerability rather than migrate to Tailwind 4.
+- [Server-side React test interop](react-test-interop.md) — native Node ESM cannot import this installed react-helmet-async build's named exports; bundle render tests as CommonJS.
