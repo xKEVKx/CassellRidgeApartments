@@ -44,7 +44,7 @@ export const NAVIGATION_LINKS = [
       { href: "/virtual-tours", label: "Virtual Tours" }
     ]
   },
-  { href: "#resident-portal", label: "Residents", external: false },
+  { href: "https://cassellridge.residentportal.com", label: "Residents", external: true },
   { href: "/contact", label: "Contact" }
 ];
 

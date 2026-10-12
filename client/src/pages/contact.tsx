@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import ContactForm from "@/components/contact-form";
+import ProspectPortalGuestCard from "@/components/prospect-portal-guest-card";
 
 export default function Contact() {
   // Handle scrolling when component mounts
@@ -93,9 +93,9 @@ export default function Contact() {
             </div>
           </div>
           
-          {/* Custom Contact Form */}
+          {/* ProspectPortal Guest Card */}
           <div id="contact-form">
-            <ContactForm title="Send Us a Message" />
+            <ProspectPortalGuestCard />
           </div>
         </div>
 

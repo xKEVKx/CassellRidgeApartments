@@ -4,13 +4,11 @@ import { Menu, X, Phone, ChevronDown, ExternalLink, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { SITE_CONFIG, NAVIGATION_LINKS } from "@/lib/constants";
 
 export default function Navbar() {
   const [location] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const [residentDialogOpen, setResidentDialogOpen] = useState(false);
 
   const handleLogoClick = (e: React.MouseEvent) => {
     if (location === '/') {
@@ -54,18 +52,7 @@ export default function Navbar() {
                 {/* Navigation Links */}
                 {NAVIGATION_LINKS.map((link, index) => (
                   <div key={link.href} className="relative">
-                    {link.label === "Residents" ? (
-                      <button
-                        type="button"
-                        onClick={() => setResidentDialogOpen(true)}
-                        className="group px-4 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 text-slate-700 hover:text-warm-brown-600"
-                      >
-                        <span className="relative flex items-center">
-                          {link.label}
-                          <div className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 w-0 group-hover:w-full"></div>
-                        </span>
-                      </button>
-                    ) : link.subItems ? (
+                    {link.subItems ? (
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <button 
@@ -110,7 +97,8 @@ export default function Navbar() {
                         >
                           <span className="relative flex items-center">
                             {link.label}
-                            <ExternalLink className="w-4 h-4 ml-1" />
+                            <ExternalLink aria-hidden="true" className="w-4 h-4 ml-1" />
+                            <span className="sr-only"> (opens in a new tab)</span>
                             <div className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 w-0 group-hover:w-full"></div>
                           </span>
                         </a>
@@ -224,21 +212,7 @@ export default function Navbar() {
                   {/* Navigation Links */}
                   {NAVIGATION_LINKS.map((link) => (
                     <div key={link.href} className="space-y-2">
-                      {link.label === "Residents" ? (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setIsOpen(false);
-                            setResidentDialogOpen(true);
-                          }}
-                          className="group w-full px-6 py-4 rounded-2xl text-left text-base font-semibold transition-all duration-300 block text-slate-700 hover:bg-slate-100 hover:text-warm-brown-600 hover:shadow-lg"
-                        >
-                          <span className="relative">
-                            {link.label}
-                            <div className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 w-0 group-hover:w-full"></div>
-                          </span>
-                        </button>
-                      ) : link.subItems ? (
+                      {link.subItems ? (
                         <div className="space-y-2">
                           <div className="px-6 py-3 text-sm font-semibold text-slate-500 uppercase tracking-wide">
                             {link.label}
@@ -273,7 +247,8 @@ export default function Navbar() {
                         >
                           <span className="relative flex items-center">
                             {link.label}
-                            <ExternalLink className="w-4 h-4 ml-2" />
+                            <ExternalLink aria-hidden="true" className="w-4 h-4 ml-2" />
+                            <span className="sr-only"> (opens in a new tab)</span>
                             <div className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-warm-brown-500 to-warm-brown-500 transition-all duration-300 w-0 group-hover:w-full"></div>
                           </span>
                         </a>
@@ -357,29 +332,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      <Dialog open={residentDialogOpen} onOpenChange={setResidentDialogOpen}>
-        <DialogContent className="max-w-md overflow-hidden border-warm-brown-200 p-0 shadow-2xl">
-          <div className="h-2 bg-gradient-to-r from-warm-brown-500 to-warm-brown-700" />
-          <div className="p-7">
-            <DialogHeader className="space-y-3">
-              <DialogTitle className="text-2xl text-slate-900">
-                Resident Portal
-              </DialogTitle>
-              <DialogDescription className="text-base leading-7 text-slate-600">
-                Our resident portal is currently under maintenance. Please{" "}
-                <Link
-                  href="/contact"
-                  onClick={() => setResidentDialogOpen(false)}
-                  className="font-semibold text-warm-brown-700 underline decoration-warm-brown-300 underline-offset-4 transition-colors hover:text-warm-brown-900"
-                >
-                  Contact Us
-                </Link>{" "}
-                if you require assistance.
-              </DialogDescription>
-            </DialogHeader>
-          </div>
-        </DialogContent>
-      </Dialog>
     </nav>
   );
 }

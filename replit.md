@@ -33,7 +33,7 @@ Preferred communication style: Simple, everyday language.
 - **Content Management**: Admin panel for managing photos, rents, promotional banners, and home page ads with image compression.
 - **Email System**: Automatic confirmation emails via Postmark SMTP (legacy system, now managed through Fortress Technologies).
 - **Dynamic Content**: Home page ad management system with configurable display frequency and date range scheduling.
-- **Property Management Integration**: The main-menu Residents item opens an on-site maintenance notice instead of leaving the site; its Contact Us link routes to `/contact`. Public inquiries use the site's custom contact forms.
+- **Property Management Integration**: The desktop and mobile Residents menu links open `https://cassellridge.residentportal.com` in a new tab with an external-link icon. Public inquiries use the site's custom contact forms.
 - **Navigation Enhancement**: Hash anchor scrolling and optimized user journey from all call-to-action buttons to contact form via /contact#contact-form URLs.
 - **Accessibility**: Integrated Accessibe widget for ADA compliance.
 - **Analytics**: Google Analytics 4 (GA4) with measurement ID G-EWTRSPP73F for visitor tracking and site analytics.
@@ -70,11 +70,11 @@ In production (`server/index.ts`), a catch-all `app.use("*", ...)` serves preren
 - **Dev vs prod**: this bug only appears in the production build (`npm run build` + `NODE_ENV=production`); the dev workflow uses Vite middleware and does not reproduce it.
 
 ### Former Funnel Leasing Integration
-All Funnel Leasing and Nestio integrations have been removed because the property changed management providers. This includes the site-wide AI chatbot, DNI phone tracking, the Contact-page lead form, and the appointment widget. Public inquiries and tour requests now use the site's custom `ContactForm`, which posts to `/api/contact`, stores the inquiry, notifies the leasing team, and emails the visitor a confirmation.
+All Funnel Leasing and Nestio integrations have been removed because the property changed management providers. The Contact page now embeds the ProspectPortal guest card for property 100184046. Schedule Visit and eligibility inquiries still use the site's `/api/contact` flow, which stores the inquiry, notifies the leasing team, and emails the visitor a confirmation.
 
 ### Contact Form reCAPTCHA
 - Every submission to `/api/contact` requires successful Google reCAPTCHA v2 Checkbox verification before it is stored or emailed.
-- The Contact page and Schedule Visit modal share the protected `ContactForm`; the homepage eligibility contact dialog uses the same reCAPTCHA component and protected API.
+- The Schedule Visit modal uses the protected `ContactForm`; the homepage eligibility contact dialog uses the same reCAPTCHA component and protected API. The Contact page's embedded ProspectPortal form is managed by the provider, not this API.
 - The public site key is served by `/api/recaptcha/site-key`. `RECAPTCHA_SITE_KEY` and `RECAPTCHA_SECRET_KEY` are configured as Replit Secrets and must never be committed or logged.
 - Server verification accepts successful tokens only for `cassellridgeapts.com`, `www.cassellridgeapts.com`, and `.replit.dev`/localhost during development.
 - CSP allows the required Google and gstatic script, frame, and connection origins.
@@ -103,7 +103,7 @@ CSP headers are set via middleware in `server/index.ts` before all other middlew
 ### Navigation & Contact Form Pattern
 - "Schedule Your Tour" / "Schedule Visit" CTAs either navigate to `/contact#contact-form` or open the Schedule Visit modal (`client/src/components/schedule-visit-modal.tsx`)
 - The Contact page uses a `useEffect` hook with a 100ms delay to auto-scroll to the contact form section when the URL contains `#contact-form`
-- The `#contact-form` anchor lives on the custom "Send Us a Message" form; the Fortress and Funnel lead-capture forms have both been removed from the Contact page
+- The `#contact-form` anchor wraps the ProspectPortal guest-card iframe. Its host_domain parameter is set to the current hostname and the provider's cross-domain script is loaded once. CSP permits that provider's scripts and frames.
 - The Schedule Visit modal contains only the site's custom `ContactForm` and is scrollable (`max-h-[90vh] overflow-y-auto`)
 - **Hash links** (`/#amenities`, `/#eligibility`) are rendered as plain `<a>` tags in the navbar and footer (not wouter `<Link>`) so native anchor scrolling works. On the home page itself, in-page CTA buttons use `onClick` `scrollIntoView` because the home page's hash-scroll `useEffect` only runs on mount.
 
@@ -194,7 +194,7 @@ Durable outcomes from these are reflected in **Key Technical Decisions**, **Key 
 - `server/email.ts` - Postmark SMTP email integration, eligibility metadata rendering
 - `client/src/pages/admin.tsx` - Admin panel with photo management, rent updates, promotional banners, home page ads
 - `client/src/pages/home.tsx` - Home page with LIHTC info, floor plan cards, ad slider, and the income limits & eligibility checker (`INCOME_LIMITS` source of truth)
-- `client/src/pages/contact.tsx` - Contact page with the custom contact form and hash anchor scrolling
+- `client/src/pages/contact.tsx` - Contact page with the ProspectPortal guest card and hash anchor scrolling
 - `client/src/pages/community.tsx` - Community / "living near Cassell Ridge" content page
 - `client/src/pages/floor-plans.tsx` - Floor plans browser with schedule visit CTAs
 - `client/src/lib/constants.ts` - Site config and `NAVIGATION_LINKS` (includes the Eligibility item and Property dropdown)
