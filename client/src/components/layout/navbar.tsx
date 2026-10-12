@@ -56,7 +56,7 @@ export default function Navbar() {
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <button 
-                            className={`group px-4 py-2 text-sm font-semibold transition-all duration-300 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent outline-none border-none ${
+                            className={`group px-4 py-2 text-sm font-semibold transition-all duration-300 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700 border-none ${
                               link.subItems.some(subItem => location === subItem.href)
                                 ? 'text-warm-brown-700'
                                 : 'text-slate-700 hover:text-warm-brown-600'
