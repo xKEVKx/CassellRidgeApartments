@@ -1,7 +1,7 @@
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import PageMetadata from "@/components/page-metadata";
 import ProspectPortalGuestCard from "@/components/prospect-portal-guest-card";
 
 export default function Contact() {
@@ -22,14 +22,11 @@ export default function Contact() {
   }, []);
   return (
     <div className="min-h-screen py-20 bg-gray-50">
-      <Helmet>
-        <title>Contact Us | Cassell Ridge Apartments - Knoxville, TN</title>
-        <meta name="description" content="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 344-2490 or fill out our online form today." />
-        <link rel="canonical" href="https://www.cassellridgeapts.com/contact" />
-        <meta property="og:title" content="Contact Us | Cassell Ridge Apartments - Knoxville, TN" />
-        <meta property="og:description" content="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 344-2490 or fill out our online form today." />
-        <meta property="og:url" content="https://www.cassellridgeapts.com/contact" />
-      </Helmet>
+      <PageMetadata
+        path="/contact"
+        title="Contact Us | Cassell Ridge Apartments - Knoxville, TN"
+        description="Contact Cassell Ridge Apartments in Knoxville, TN to schedule a tour or ask about availability. Call (865) 344-2490 or fill out our online form today."
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>

@@ -15,6 +15,7 @@ import {
 } from "@shared/rent-config";
 import { HOME_FAQ_SCHEMA } from "@shared/public-content";
 import { COMMUNITY_GUIDE_HTML, HOME_FAQ_HTML, STUDENT_ELIGIBILITY_HTML } from "./public-content-html";
+import { APP_ROUTES, APARTMENT_COMPLEX_SCHEMA, ROUTE_IMAGES } from "../shared/seo";
 
 const app = express();
 app.set('trust proxy', 1);
@@ -78,16 +79,7 @@ app.use((req, res, next) => {
 });
 
 // Known valid SPA routes — everything else returns 404 in production
-const VALID_SPA_ROUTES = new Set([
-  '/',
-  '/floor-plans',
-  '/gallery',
-  '/community',
-  '/location',
-  '/virtual-tours',
-  '/contact',
-  '/admin',
-]);
+const VALID_SPA_ROUTES = APP_ROUTES;
 
 // Static internal links injected into every prerendered page so non-JS crawlers
 // (GPTBot, ClaudeBot, social bots) can discover and follow the full site structure.
@@ -121,25 +113,7 @@ const STATIC_NAV_HTML = `
 </footer>`;
 
 // ApartmentComplex JSON-LD — emitted on every public route
-const APARTMENT_COMPLEX_JSONLD = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "ApartmentComplex",
-  "name": "Cassell Ridge Apartments",
-  "description": "LIHTC affordable housing community in Knoxville, Tennessee offering spacious 2 and 3 bedroom income-based apartments with modern amenities.",
-  "url": "https://www.cassellridgeapts.com",
-  "telephone": "+18653442490",
-  "email": "info@cassellridgeapts.com",
-  "image": "https://www.cassellridgeapts.com/images/cassell-hero.jpg",
-  ...APARTMENT_COMPLEX_LOCATION_SCHEMA,
-  "amenityFeature": [
-    { "@type": "LocationFeatureSpecification", "name": "Swimming Pool", "value": true },
-    { "@type": "LocationFeatureSpecification", "name": "Fitness Center", "value": true },
-    { "@type": "LocationFeatureSpecification", "name": "Pet Friendly", "value": true },
-    { "@type": "LocationFeatureSpecification", "name": "Washer/Dryer Connections", "value": true },
-    { "@type": "LocationFeatureSpecification", "name": "On-Site Management", "value": true }
-  ],
-  "petsAllowed": true
-});
+const APARTMENT_COMPLEX_JSONLD = JSON.stringify(APARTMENT_COMPLEX_SCHEMA);
 
 // FAQPage JSON-LD — emitted only on the home page
 const FAQPAGE_JSONLD = JSON.stringify(HOME_FAQ_SCHEMA);
@@ -555,10 +529,19 @@ function escapeAttr(str: string): string {
 
 function applyPrerender(html: string, data: RoutePrerender): string {
   const safeTitle = data.title.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const routeImage = ROUTE_IMAGES[new URL(data.canonical).pathname];
+  // Use the same route image definitions as the client head manager.
+  if (routeImage) {
+    data = {
+      ...data,
+      ogImage: `https://www.cassellridgeapts.com/images/${routeImage.image}`,
+      ogImageAlt: routeImage.alt,
+    };
+  }
 
   // Build JSON-LD script blocks to inject before </head>
   const jsonLdBlocks = data.jsonLd
-    .map(schema => `<script type="application/ld+json">${schema}</script>`)
+    .map(schema => `<script type="application/ld+json" data-rh="true">${schema}</script>`)
     .join('\n');
 
   // Build bodyHtml with static nav appended for crawlers
@@ -616,6 +599,14 @@ function applyPrerender(html: string, data: RoutePrerender): string {
     result = result.replace('</head>', `${jsonLdBlocks}\n</head>`);
   }
 
+  // Helmet reconciles only data-rh nodes. Keep shared head tags unmanaged.
+  result = result.replace(
+    /<(meta|link)\s[^>]*>/g,
+    (tag) => /(?:name="(?:description|twitter:(?:title|description|image))"|property="og:(?:title|description|url|image|image:alt)"|rel="canonical")/.test(tag)
+      ? tag.replace(/\sdata-rh="true"/g, "").replace(/(\s*\/?>)$/, ' data-rh="true"$1')
+      : tag,
+  );
+
   return result;
 }
 
@@ -636,6 +627,9 @@ function applyPrerender(html: string, data: RoutePrerender): string {
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
+    // Successful built assets are served before URL classification. Missing
+    // file-like URLs must go through the same 404 handling as other unknown URLs.
+    serveStatic(app, { staticOnly: true });
     const distIndexPath = path.resolve(import.meta.dirname, 'public', 'index.html');
 
     // Cache the index.html content at startup to avoid repeated disk reads
@@ -658,36 +652,8 @@ function applyPrerender(html: string, data: RoutePrerender): string {
       // never mounted in production.
       const rawPath = req.originalUrl.split('?')[0];
 
-      // Pass through real static-asset requests (e.g. /assets/index-*.js, favicon.ico)
-      // to serveStatic below. Use a true file-extension check rather than a naive
-      // "contains a dot" test so SPA routes that happen to include a dot are not
-      // mistakenly treated as files.
-      if (path.extname(rawPath) !== '') {
-        return next();
-      }
-
       // Normalize trailing slash so /contact/ resolves like /contact (root stays "/")
       const reqPath = rawPath.length > 1 ? rawPath.replace(/\/+$/, '') : rawPath;
-
-      // Unknown route: 404 + noindex
-      if (!VALID_SPA_ROUTES.has(reqPath)) {
-        res.status(404).set('X-Robots-Tag', 'noindex');
-        if (indexHtmlTemplate) {
-          const notFoundHtml = applyPrerender(
-            indexHtmlTemplate,
-            withCurrentRents(ROUTE_PRERENDER['/'], []),
-          );
-          return res.set('Content-Type', 'text/html').send(
-            notFoundHtml.replace('<title>', '<title>404 Not Found | ')
-          );
-        }
-        if (fs.existsSync(distIndexPath)) {
-          return res.sendFile(distIndexPath);
-        }
-        return res.send('<h1>404 Not Found</h1>');
-      }
-
-      // Valid SPA route: build prerendered HTML with current database rents.
       const routeData = ROUTE_PRERENDER[reqPath];
       if (indexHtmlTemplate && routeData) {
         let floorPlans: Awaited<ReturnType<typeof storage.getFloorPlans>> = [];

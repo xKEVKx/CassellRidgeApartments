@@ -4,7 +4,7 @@ import { Play, ExternalLink, Home, Building, MapPin } from "lucide-react";
 import ScheduleVisitModal from "@/components/schedule-visit-modal";
 import { VIRTUAL_TOUR_LINKS } from "@/lib/constants";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import PageMetadata from "@/components/page-metadata";
 
 export default function VirtualTours() {
   // Scroll to top when component mounts
@@ -34,14 +34,11 @@ export default function VirtualTours() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
-      <Helmet>
-        <title>Virtual Tours | Cassell Ridge Apartments - Knoxville, TN</title>
-        <meta name="description" content="Take a 3D virtual tour of Cassell Ridge Apartments in Knoxville, TN. Explore our spacious 2 and 3 bedroom LIHTC affordable apartment floor plans online." />
-        <link rel="canonical" href="https://www.cassellridgeapts.com/virtual-tours" />
-        <meta property="og:title" content="Virtual Tours | Cassell Ridge Apartments - Knoxville, TN" />
-        <meta property="og:description" content="Take a 3D virtual tour of Cassell Ridge Apartments in Knoxville, TN. Explore our spacious 2 and 3 bedroom LIHTC affordable apartment floor plans online." />
-        <meta property="og:url" content="https://www.cassellridgeapts.com/virtual-tours" />
-      </Helmet>
+      <PageMetadata
+        path="/virtual-tours"
+        title="Virtual Tours | Cassell Ridge Apartments - Knoxville, TN"
+        description="Take a 3D virtual tour of Cassell Ridge Apartments in Knoxville, TN. Explore our spacious 2 and 3 bedroom LIHTC affordable apartment floor plans online."
+      />
       {/* Hero Section */}
       <section className="relative py-32 bg-slate-900 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-warm-brown-900"></div>

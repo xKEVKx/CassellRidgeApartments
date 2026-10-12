@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
 import { MapPin, ShoppingBag, Utensils, GraduationCap, Trees, Heart, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { COMMUNITY_SECTIONS } from "@shared/public-content";
+import PageMetadata from "@/components/page-metadata";
 
 function SectionHeader({ title, subtitle }: {
   title: string;
@@ -42,14 +42,11 @@ export default function Community() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Helmet>
-        <title>Community | Cassell Ridge Apartments - Knoxville, TN</title>
-        <meta name="description" content="Discover what's near Cassell Ridge Apartments in North Knoxville, TN. Explore nearby neighborhoods, shopping, dining, schools, parks, and healthcare." />
-        <link rel="canonical" href="https://www.cassellridgeapts.com/community" />
-        <meta property="og:title" content="Community | Cassell Ridge Apartments - Knoxville, TN" />
-        <meta property="og:description" content="Discover what's near Cassell Ridge Apartments in North Knoxville, TN. Explore nearby neighborhoods, shopping, dining, schools, parks, and healthcare." />
-        <meta property="og:url" content="https://www.cassellridgeapts.com/community" />
-      </Helmet>
+      <PageMetadata
+        path="/community"
+        title="Community | Cassell Ridge Apartments - Knoxville, TN"
+        description="Discover what's near Cassell Ridge Apartments in North Knoxville, TN. Explore nearby neighborhoods, shopping, dining, schools, parks, and healthcare."
+      />
       {/* Hero */}
       <section className="relative py-20 bg-slate-700 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-slate-700 via-slate-600 to-warm-brown-700"></div>

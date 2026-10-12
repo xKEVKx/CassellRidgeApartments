@@ -4,3 +4,4 @@
 - [reCAPTCHA script readiness](recaptcha-script-readiness.md) — api.js load does not guarantee v2 render is ready; wait for grecaptcha.ready before creating widgets.
 - [Tailwind security exception](tailwind-security-exception.md) — user chose to retain Tailwind 3 and accept the unresolved braces vulnerability rather than migrate to Tailwind 4.
 - [Server-side React test interop](react-test-interop.md) — native Node ESM cannot import this installed react-helmet-async build's named exports; bundle render tests as CommonJS.
+- [Prerender head ownership](prerender-head-ownership.md) — server metadata must be owned by the client head manager, or direct-load metadata survives internal navigation.

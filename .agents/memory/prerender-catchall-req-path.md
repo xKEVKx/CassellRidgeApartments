@@ -21,9 +21,8 @@ because it uses the Vite middleware path, not this catch-all.
 
 **How to apply:**
 - Use `const rawPath = req.originalUrl.split('?')[0];`.
-- Detect real static files with `path.extname(rawPath) !== ''` (not a naive
-  `includes('.')`, which would misclassify dotted SPA routes) so they fall
-  through via `next()` to `serveStatic` (registered after the catch-all).
+- Do not infer that a file exists from its extension. Serve existing static
+  files before classifying unresolved URLs; missing resources must return 404.
 - Normalize trailing slashes before matching `VALID_SPA_ROUTES`
   (`/contact/` -> `/contact`, root stays `/`).
 - This bug only manifests in the production build (`npm run build` +

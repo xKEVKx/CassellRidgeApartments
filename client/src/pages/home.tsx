@@ -1,7 +1,7 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Check, Phone, ExternalLink, Tag, Camera, Star, Mail } from "lucide-react";
-import { Helmet } from "react-helmet-async";
+import PageMetadata from "@/components/page-metadata";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -196,13 +196,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <Helmet>
-        <title>Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN</title>
-        <meta name="description" content={SITE_CONFIG.description} />
-        <link rel="canonical" href="https://www.cassellridgeapts.com/" />
-        <meta property="og:title" content="Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN" />
-        <meta property="og:description" content={SITE_CONFIG.description} />
-        <meta property="og:url" content="https://www.cassellridgeapts.com/" />
+      <PageMetadata
+        path="/"
+        title="Cassell Ridge Apartments | LIHTC Affordable Housing - Knoxville, TN"
+        description={SITE_CONFIG.description}
+      >
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ApartmentComplex",
@@ -222,7 +220,7 @@ export default function Home() {
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify(HOME_FAQ_SCHEMA)}</script>
-      </Helmet>
+      </PageMetadata>
       {/* Home Page Ad Slider */}
       <HomePageAdSlider 
         isVisible={showAdSlider}
